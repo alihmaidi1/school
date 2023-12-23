@@ -12,7 +12,6 @@
       <Folder Include="AppMetaData\Parent\" />
       <Folder Include="AppMetaData\Student\" />
       <Folder Include="AppMetaData\Teacher\" />
-      <Folder Include="Entities\" />
     </ItemGroup>
 
     <ItemGroup>
