@@ -1,0 +1,73 @@
+{
+  "Files": [
+    {
+      "Id": "/home/alihmaidi/RiderProjects/schoolmanagment/api/wwwroot/Temps/0859428d-4cfe-4eeb-b63d-68695f020cd1code1.png",
+      "PackagePath": "staticwebassets/Temps/0859428d-4cfe-4eeb-b63d-68695f020cd1code1.png"
+    },
+    {
+      "Id": "/home/alihmaidi/RiderProjects/schoolmanagment/api/wwwroot/Temps/0f3eaf8c-2603-4f2a-8fc0-a15015362a81code.png",
+      "PackagePath": "staticwebassets/Temps/0f3eaf8c-2603-4f2a-8fc0-a15015362a81code.png"
+    },
+    {
+      "Id": "/home/alihmaidi/RiderProjects/schoolmanagment/api/wwwroot/Temps/13d5389f-4123-43ce-90a7-b308528592b2code1.png",
+      "PackagePath": "staticwebassets/Temps/13d5389f-4123-43ce-90a7-b308528592b2code1.png"
+    },
+    {
+      "Id": "/home/alihmaidi/RiderProjects/schoolmanagment/api/wwwroot/Temps/5b87735a-236f-4fed-80c8-ad3de7607b62code.png",
+      "PackagePath": "staticwebassets/Temps/5b87735a-236f-4fed-80c8-ad3de7607b62code.png"
+    },
+    {
+      "Id": "/home/alihmaidi/RiderProjects/schoolmanagment/api/wwwroot/Temps/626a9248-fd09-4c72-b6cb-5970650ffdc3code.png",
+      "PackagePath": "staticwebassets/Temps/626a9248-fd09-4c72-b6cb-5970650ffdc3code.png"
+    },
+    {
+      "Id": "/home/alihmaidi/RiderProjects/schoolmanagment/api/wwwroot/Temps/8475071e-6cd8-4f62-9dad-ae7f0d7e49c2code.png",
+      "PackagePath": "staticwebassets/Temps/8475071e-6cd8-4f62-9dad-ae7f0d7e49c2code.png"
+    },
+    {
+      "Id": "/home/alihmaidi/RiderProjects/schoolmanagment/api/wwwroot/Temps/92e346fe-5155-4baa-a7d0-b450ac50a105code.png",
+      "PackagePath": "staticwebassets/Temps/92e346fe-5155-4baa-a7d0-b450ac50a105code.png"
+    },
+    {
+      "Id": "/home/alihmaidi/RiderProjects/schoolmanagment/api/wwwroot/Temps/a5700857-33b2-4723-ad83-d7f6a60dbbc0code.png",
+      "PackagePath": "staticwebassets/Temps/a5700857-33b2-4723-ad83-d7f6a60dbbc0code.png"
+    },
+    {
+      "Id": "/home/alihmaidi/RiderProjects/schoolmanagment/api/wwwroot/Temps/cb6b8943-fedb-4234-be3d-aeddccccabffcode.png",
+      "PackagePath": "staticwebassets/Temps/cb6b8943-fedb-4234-be3d-aeddccccabffcode.png"
+    },
+    {
+      "Id": "/home/alihmaidi/RiderProjects/schoolmanagment/api/wwwroot/Temps/efddd27a-bfa7-4f9f-be87-d691c24db471code.png",
+      "PackagePath": "staticwebassets/Temps/efddd27a-bfa7-4f9f-be87-d691c24db471code.png"
+    },
+    {
+      "Id": "/home/alihmaidi/RiderProjects/schoolmanagment/api/wwwroot/Temps/f1ff2035-a37c-4e1c-ae4e-2aee6cce7843code.png",
+      "PackagePath": "staticwebassets/Temps/f1ff2035-a37c-4e1c-ae4e-2aee6cce7843code.png"
+    },
+    {
+      "Id": "/home/alihmaidi/RiderProjects/schoolmanagment/api/wwwroot/Temps/f25c60d3-bf00-4594-9753-6c797898b5e4code1.png",
+      "PackagePath": "staticwebassets/Temps/f25c60d3-bf00-4594-9753-6c797898b5e4code1.png"
+    },
+    {
+      "Id": "/home/alihmaidi/RiderProjects/schoolmanagment/api/wwwroot/Temps/f576fc18-5dc1-4c41-96d6-879d181443dbcode.png",
+      "PackagePath": "staticwebassets/Temps/f576fc18-5dc1-4c41-96d6-879d181443dbcode.png"
+    },
+    {
+      "Id": "obj/Debug/net7.0/staticwebassets/msbuild.api.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj/Debug/net7.0/staticwebassets/msbuild.build.api.props",
+      "PackagePath": "build\\api.props"
+    },
+    {
+      "Id": "obj/Debug/net7.0/staticwebassets/msbuild.buildMultiTargeting.api.props",
+      "PackagePath": "buildMultiTargeting\\api.props"
+    },
+    {
+      "Id": "obj/Debug/net7.0/staticwebassets/msbuild.buildTransitive.api.props",
+      "PackagePath": "buildTransitive\\api.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

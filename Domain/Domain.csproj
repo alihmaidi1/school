@@ -8,7 +8,6 @@
 
     <ItemGroup>
       <Folder Include="AppMetaData\Admin\" />
-      <Folder Include="AppMetaData\Common\" />
       <Folder Include="AppMetaData\Parent\" />
       <Folder Include="AppMetaData\Student\" />
       <Folder Include="AppMetaData\Teacher\" />

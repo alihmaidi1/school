@@ -1,0 +1,15 @@
+/home/alihmaidi/RiderProjects/schoolmanagment/Domain/bin/Debug/net7.0/Domain.deps.json
+/home/alihmaidi/RiderProjects/schoolmanagment/Domain/bin/Debug/net7.0/Domain.dll
+/home/alihmaidi/RiderProjects/schoolmanagment/Domain/bin/Debug/net7.0/Domain.pdb
+/home/alihmaidi/RiderProjects/schoolmanagment/Domain/bin/Debug/net7.0/Shared.dll
+/home/alihmaidi/RiderProjects/schoolmanagment/Domain/bin/Debug/net7.0/Shared.pdb
+/home/alihmaidi/RiderProjects/schoolmanagment/Domain/obj/Debug/net7.0/Domain.csproj.AssemblyReference.cache
+/home/alihmaidi/RiderProjects/schoolmanagment/Domain/obj/Debug/net7.0/Domain.GeneratedMSBuildEditorConfig.editorconfig
+/home/alihmaidi/RiderProjects/schoolmanagment/Domain/obj/Debug/net7.0/Domain.AssemblyInfoInputs.cache
+/home/alihmaidi/RiderProjects/schoolmanagment/Domain/obj/Debug/net7.0/Domain.AssemblyInfo.cs
+/home/alihmaidi/RiderProjects/schoolmanagment/Domain/obj/Debug/net7.0/Domain.csproj.CoreCompileInputs.cache
+/home/alihmaidi/RiderProjects/schoolmanagment/Domain/obj/Debug/net7.0/Domain.csproj.CopyComplete
+/home/alihmaidi/RiderProjects/schoolmanagment/Domain/obj/Debug/net7.0/Domain.dll
+/home/alihmaidi/RiderProjects/schoolmanagment/Domain/obj/Debug/net7.0/refint/Domain.dll
+/home/alihmaidi/RiderProjects/schoolmanagment/Domain/obj/Debug/net7.0/Domain.pdb
+/home/alihmaidi/RiderProjects/schoolmanagment/Domain/obj/Debug/net7.0/ref/Domain.dll

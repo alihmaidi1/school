@@ -1,4 +1,12 @@
+using System.Reflection;
+using Common;
+using FluentValidation;
+using infrutructure;
+using infrutructure.Seed;
+using MediatR;
 using Microsoft.AspNetCore.RateLimiting;
+using schoolmanagment.Base;
+using schoolmanagment.Middleware;
 using Shared.Redis;
 using Shared.Swagger;
 
@@ -8,9 +16,35 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-
+builder.Services.AddEndpointsApiExplorer(); 
 builder.Services.AddOpenApi();
+
+
+// api area
+builder.Services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddTransient<ErrorHandling>();
+
+// end api area
+
+
+
+
+// common area
+
+builder.Services.AddCommondependency();
+
+// end common area
+
+
+
+
+builder.Services.AddInfrustucture(builder.Configuration);
+
+
+
+
+
 
 builder.Services.AddRateLimiter(Limitrateoption =>
 {
@@ -49,6 +83,19 @@ app.ConfigureOpenAPI();
 
     app.UseSwagger();
     app.UseSwaggerUI();
+
+using(var scope= app.Services.CreateScope()){
+    
+
+    
+    await DatabaseSeed.InitializeAsync(scope.ServiceProvider);
+
+
+}
+
+app.UseMiddleware<ErrorHandling>();
+
+
 
 
 app.UseHttpsRedirection();

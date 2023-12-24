@@ -15,6 +15,7 @@ public static class FileExtension
     {
         try
         {
+            
             var imageinfo = image.GetImagePath(WebRootPath);
             using FileStream fileStream = new FileStream(imageinfo.imagepath, FileMode.Create);
             image.CopyTo(fileStream);

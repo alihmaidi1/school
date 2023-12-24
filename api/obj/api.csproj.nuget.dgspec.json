@@ -4,6 +4,351 @@
     "/home/alihmaidi/RiderProjects/schoolmanagment/api/api.csproj": {}
   },
   "projects": {
+    "/home/alihmaidi/RiderProjects/schoolmanagment/Common/Common.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/alihmaidi/RiderProjects/schoolmanagment/Common/Common.csproj",
+        "projectName": "Common",
+        "projectPath": "/home/alihmaidi/RiderProjects/schoolmanagment/Common/Common.csproj",
+        "packagesPath": "/home/alihmaidi/.nuget/packages/",
+        "outputPath": "/home/alihmaidi/RiderProjects/schoolmanagment/Common/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/alihmaidi/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "/home/alihmaidi/RiderProjects/schoolmanagment/Domain/Domain.csproj": {
+                "projectPath": "/home/alihmaidi/RiderProjects/schoolmanagment/Domain/Domain.csproj"
+              },
+              "/home/alihmaidi/RiderProjects/schoolmanagment/Dto/Dto.csproj": {
+                "projectPath": "/home/alihmaidi/RiderProjects/schoolmanagment/Dto/Dto.csproj"
+              },
+              "/home/alihmaidi/RiderProjects/schoolmanagment/Model/Model.csproj": {
+                "projectPath": "/home/alihmaidi/RiderProjects/schoolmanagment/Model/Model.csproj"
+              },
+              "/home/alihmaidi/RiderProjects/schoolmanagment/Repository/Repository.csproj": {
+                "projectPath": "/home/alihmaidi/RiderProjects/schoolmanagment/Repository/Repository.csproj"
+              },
+              "/home/alihmaidi/RiderProjects/schoolmanagment/Shared/Shared.csproj": {
+                "projectPath": "/home/alihmaidi/RiderProjects/schoolmanagment/Shared/Shared.csproj"
+              },
+              "/home/alihmaidi/RiderProjects/schoolmanagment/infrutructure/infrutructure.csproj": {
+                "projectPath": "/home/alihmaidi/RiderProjects/schoolmanagment/infrutructure/infrutructure.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "FluentValidation": {
+              "target": "Package",
+              "version": "[11.9.0, )"
+            },
+            "FluentValidation.DependencyInjectionExtensions": {
+              "target": "Package",
+              "version": "[11.9.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/7.0.114/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/alihmaidi/RiderProjects/schoolmanagment/Domain/Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/alihmaidi/RiderProjects/schoolmanagment/Domain/Domain.csproj",
+        "projectName": "Domain",
+        "projectPath": "/home/alihmaidi/RiderProjects/schoolmanagment/Domain/Domain.csproj",
+        "packagesPath": "/home/alihmaidi/.nuget/packages/",
+        "outputPath": "/home/alihmaidi/RiderProjects/schoolmanagment/Domain/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/alihmaidi/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "/home/alihmaidi/RiderProjects/schoolmanagment/Shared/Shared.csproj": {
+                "projectPath": "/home/alihmaidi/RiderProjects/schoolmanagment/Shared/Shared.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Authorization": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.AspNetCore.Mvc.Abstractions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Mvc.Core": {
+              "target": "Package",
+              "version": "[2.2.5, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/7.0.114/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/alihmaidi/RiderProjects/schoolmanagment/Dto/Dto.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/alihmaidi/RiderProjects/schoolmanagment/Dto/Dto.csproj",
+        "projectName": "Dto",
+        "projectPath": "/home/alihmaidi/RiderProjects/schoolmanagment/Dto/Dto.csproj",
+        "packagesPath": "/home/alihmaidi/.nuget/packages/",
+        "outputPath": "/home/alihmaidi/RiderProjects/schoolmanagment/Dto/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/alihmaidi/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "/home/alihmaidi/RiderProjects/schoolmanagment/Domain/Domain.csproj": {
+                "projectPath": "/home/alihmaidi/RiderProjects/schoolmanagment/Domain/Domain.csproj"
+              },
+              "/home/alihmaidi/RiderProjects/schoolmanagment/Model/Model.csproj": {
+                "projectPath": "/home/alihmaidi/RiderProjects/schoolmanagment/Model/Model.csproj"
+              },
+              "/home/alihmaidi/RiderProjects/schoolmanagment/Shared/Shared.csproj": {
+                "projectPath": "/home/alihmaidi/RiderProjects/schoolmanagment/Shared/Shared.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/7.0.114/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/alihmaidi/RiderProjects/schoolmanagment/Model/Model.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/alihmaidi/RiderProjects/schoolmanagment/Model/Model.csproj",
+        "projectName": "Model",
+        "projectPath": "/home/alihmaidi/RiderProjects/schoolmanagment/Model/Model.csproj",
+        "packagesPath": "/home/alihmaidi/.nuget/packages/",
+        "outputPath": "/home/alihmaidi/RiderProjects/schoolmanagment/Model/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/alihmaidi/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "/home/alihmaidi/RiderProjects/schoolmanagment/Domain/Domain.csproj": {
+                "projectPath": "/home/alihmaidi/RiderProjects/schoolmanagment/Domain/Domain.csproj"
+              },
+              "/home/alihmaidi/RiderProjects/schoolmanagment/Shared/Shared.csproj": {
+                "projectPath": "/home/alihmaidi/RiderProjects/schoolmanagment/Shared/Shared.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/7.0.114/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/alihmaidi/RiderProjects/schoolmanagment/Repository/Repository.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/alihmaidi/RiderProjects/schoolmanagment/Repository/Repository.csproj",
+        "projectName": "Repository",
+        "projectPath": "/home/alihmaidi/RiderProjects/schoolmanagment/Repository/Repository.csproj",
+        "packagesPath": "/home/alihmaidi/.nuget/packages/",
+        "outputPath": "/home/alihmaidi/RiderProjects/schoolmanagment/Repository/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/alihmaidi/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "/home/alihmaidi/RiderProjects/schoolmanagment/Domain/Domain.csproj": {
+                "projectPath": "/home/alihmaidi/RiderProjects/schoolmanagment/Domain/Domain.csproj"
+              },
+              "/home/alihmaidi/RiderProjects/schoolmanagment/Dto/Dto.csproj": {
+                "projectPath": "/home/alihmaidi/RiderProjects/schoolmanagment/Dto/Dto.csproj"
+              },
+              "/home/alihmaidi/RiderProjects/schoolmanagment/Model/Model.csproj": {
+                "projectPath": "/home/alihmaidi/RiderProjects/schoolmanagment/Model/Model.csproj"
+              },
+              "/home/alihmaidi/RiderProjects/schoolmanagment/Shared/Shared.csproj": {
+                "projectPath": "/home/alihmaidi/RiderProjects/schoolmanagment/Shared/Shared.csproj"
+              },
+              "/home/alihmaidi/RiderProjects/schoolmanagment/infrutructure/infrutructure.csproj": {
+                "projectPath": "/home/alihmaidi/RiderProjects/schoolmanagment/infrutructure/infrutructure.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/7.0.114/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
     "/home/alihmaidi/RiderProjects/schoolmanagment/Shared/Shared.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -133,8 +478,14 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
+              "/home/alihmaidi/RiderProjects/schoolmanagment/Common/Common.csproj": {
+                "projectPath": "/home/alihmaidi/RiderProjects/schoolmanagment/Common/Common.csproj"
+              },
               "/home/alihmaidi/RiderProjects/schoolmanagment/Shared/Shared.csproj": {
                 "projectPath": "/home/alihmaidi/RiderProjects/schoolmanagment/Shared/Shared.csproj"
+              },
+              "/home/alihmaidi/RiderProjects/schoolmanagment/infrutructure/infrutructure.csproj": {
+                "projectPath": "/home/alihmaidi/RiderProjects/schoolmanagment/infrutructure/infrutructure.csproj"
               }
             }
           }
@@ -154,6 +505,12 @@
               "version": "[12.2.0, )"
             },
             "Microsoft.AspNetCore.OpenApi": {
+              "target": "Package",
+              "version": "[7.0.14, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
               "version": "[7.0.14, )"
             },
@@ -177,6 +534,96 @@
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
             },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/7.0.114/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/alihmaidi/RiderProjects/schoolmanagment/infrutructure/infrutructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/alihmaidi/RiderProjects/schoolmanagment/infrutructure/infrutructure.csproj",
+        "projectName": "infrutructure",
+        "projectPath": "/home/alihmaidi/RiderProjects/schoolmanagment/infrutructure/infrutructure.csproj",
+        "packagesPath": "/home/alihmaidi/.nuget/packages/",
+        "outputPath": "/home/alihmaidi/RiderProjects/schoolmanagment/infrutructure/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/alihmaidi/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "/home/alihmaidi/RiderProjects/schoolmanagment/Domain/Domain.csproj": {
+                "projectPath": "/home/alihmaidi/RiderProjects/schoolmanagment/Domain/Domain.csproj"
+              },
+              "/home/alihmaidi/RiderProjects/schoolmanagment/Dto/Dto.csproj": {
+                "projectPath": "/home/alihmaidi/RiderProjects/schoolmanagment/Dto/Dto.csproj"
+              },
+              "/home/alihmaidi/RiderProjects/schoolmanagment/Model/Model.csproj": {
+                "projectPath": "/home/alihmaidi/RiderProjects/schoolmanagment/Model/Model.csproj"
+              },
+              "/home/alihmaidi/RiderProjects/schoolmanagment/Shared/Shared.csproj": {
+                "projectPath": "/home/alihmaidi/RiderProjects/schoolmanagment/Shared/Shared.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "EntityFrameworkCore.EncryptColumn": {
+              "target": "Package",
+              "version": "[6.0.8, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.14, )"
+            },
+            "Microsoft.EntityFrameworkCore.Proxies": {
+              "target": "Package",
+              "version": "[7.0.14, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.14, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.14, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
