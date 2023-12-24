@@ -12,7 +12,11 @@ using Shared.OperationResult;
 namespace Common.Feature.Image.Command.Handler;
 
 public class ImageHandler:OperationResult,
-                          IRequestHandler<UploadImageCommand, JsonResult>
+                          IRequestHandler<UploadImageCommand, JsonResult>,
+                          IRequestHandler<UploadBase64ImageCommand, JsonResult>,
+                          IRequestHandler<UploadImagesCommand, JsonResult>
+
+
 
 {
     
@@ -32,6 +36,23 @@ public class ImageHandler:OperationResult,
         var image = request.Image.UploadImage(webHost.WebRootPath,host);
 
         return Success(image,"The Image Was Uploaded Successfully");
+
+    }
+
+    public async Task<JsonResult> Handle(UploadBase64ImageCommand request, CancellationToken cancellationToken)
+    {
+        string host = httpContextAccessor.GetBaseUri();
+
+        string image = request.Image.UploadBase64Image(webHost.WebRootPath,host);
+        return Success(image,"The Image Was Uploaded Successfully");
+
+    }
+
+    public async Task<JsonResult> Handle(UploadImagesCommand request, CancellationToken cancellationToken)
+    {
+        string host = httpContextAccessor.GetBaseUri();
+        var images = request.images.UploadImages(webHost.WebRootPath,host);
+        return Success(images, "The Images Was Uploaded Successfully");
 
     }
 }

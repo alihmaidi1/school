@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "q3fojw1XIF8xQLwosGr3yvpPo1m9o28BvUkENW8aJng=",
+  "Hash": "nH/OvVklbwIOjPwe3p6grQZyg42t2nD9djqDJCO0k6s=",
   "Source": "api",
   "BasePath": "_content/api",
   "Mode": "Default",
@@ -151,6 +151,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/Temps/a5700857-33b2-4723-ad83-d7f6a60dbbc0code.png"
+    },
+    {
+      "Identity": "/home/alihmaidi/RiderProjects/schoolmanagment/api/wwwroot/Temps/bda191b1-0112-4269-a925-d341c9a3dbd7.png",
+      "SourceId": "api",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/alihmaidi/RiderProjects/schoolmanagment/api/wwwroot/",
+      "BasePath": "_content/api",
+      "RelativePath": "Temps/bda191b1-0112-4269-a925-d341c9a3dbd7.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/Temps/bda191b1-0112-4269-a925-d341c9a3dbd7.png"
     },
     {
       "Identity": "/home/alihmaidi/RiderProjects/schoolmanagment/api/wwwroot/Temps/cb6b8943-fedb-4234-be3d-aeddccccabffcode.png",
