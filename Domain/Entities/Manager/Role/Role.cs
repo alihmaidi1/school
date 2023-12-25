@@ -15,7 +15,7 @@ public class Role:BaseEntity<RoleID>
 
     public string Name { get; set; }
 
-    public virtual ICollection<Admin.Admin>? Admins { get; set; }
-    public string Permissions { get; set; }
-    
+    public  ICollection<Admin.Admin>? Admins { get; set; }
+    public List<string> Permissions { get; set; }
+
 }

@@ -154,3 +154,11 @@
 /home/alihmaidi/RiderProjects/schoolmanagment/api/bin/infrutructure.csproj/net7.0/Microsoft.EntityFrameworkCore.Design.dll
 /home/alihmaidi/RiderProjects/schoolmanagment/api/bin/infrutructure.csproj/net7.0/Mono.TextTemplating.dll
 /home/alihmaidi/RiderProjects/schoolmanagment/api/bin/infrutructure.csproj/net7.0/System.CodeDom.dll
+/home/alihmaidi/RiderProjects/schoolmanagment/api/bin/infrutructure.csproj/net7.0/FluentValidation.dll
+/home/alihmaidi/RiderProjects/schoolmanagment/api/bin/infrutructure.csproj/net7.0/FluentValidation.DependencyInjectionExtensions.dll
+/home/alihmaidi/RiderProjects/schoolmanagment/api/bin/infrutructure.csproj/net7.0/Common.dll
+/home/alihmaidi/RiderProjects/schoolmanagment/api/bin/infrutructure.csproj/net7.0/Repository.dll
+/home/alihmaidi/RiderProjects/schoolmanagment/api/bin/infrutructure.csproj/net7.0/Common.pdb
+/home/alihmaidi/RiderProjects/schoolmanagment/api/bin/infrutructure.csproj/net7.0/Repository.pdb
+/home/alihmaidi/RiderProjects/schoolmanagment/api/bin/infrutructure.csproj/net7.0/Admin.dll
+/home/alihmaidi/RiderProjects/schoolmanagment/api/bin/infrutructure.csproj/net7.0/Admin.pdb

@@ -22,5 +22,8 @@ public class AdminConfigration:IEntityTypeConfiguration<Admin>
             .WithMany(Role => Role.Admins)
             .OnDelete(DeleteBehavior.Restrict);
 
+        builder.HasMany(x => x.RefreshTokens)
+               .WithOne(x => x.Admin).OnDelete(DeleteBehavior.Cascade);
+        
     }
 }

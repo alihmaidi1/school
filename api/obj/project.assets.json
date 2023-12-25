@@ -4096,6 +4096,21 @@
           "lib/netstandard1.3/System.Xml.XPath.XDocument.dll": {}
         }
       },
+      "Admin/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "Microsoft.AspNetCore.Mvc": "2.2.0",
+          "Repository": "1.0.0",
+          "Shared": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Admin.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Admin.dll": {}
+        }
+      },
       "Common/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
@@ -11279,6 +11294,11 @@
         "system.xml.xpath.xdocument.nuspec"
       ]
     },
+    "Admin/1.0.0": {
+      "type": "project",
+      "path": "../Admin/Admin.csproj",
+      "msbuildProject": "../Admin/Admin.csproj"
+    },
     "Common/1.0.0": {
       "type": "project",
       "path": "../Common/Common.csproj",
@@ -11317,6 +11337,7 @@
   },
   "projectFileDependencyGroups": {
     "net7.0": [
+      "Admin >= 1.0.0",
       "Common >= 1.0.0",
       "MediatR >= 12.2.0",
       "Microsoft.AspNetCore.OpenApi >= 7.0.14",
@@ -11351,6 +11372,9 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
+            "/home/alihmaidi/RiderProjects/schoolmanagment/Admin/Admin.csproj": {
+              "projectPath": "/home/alihmaidi/RiderProjects/schoolmanagment/Admin/Admin.csproj"
+            },
             "/home/alihmaidi/RiderProjects/schoolmanagment/Common/Common.csproj": {
               "projectPath": "/home/alihmaidi/RiderProjects/schoolmanagment/Common/Common.csproj"
             },

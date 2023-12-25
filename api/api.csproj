@@ -44,6 +44,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Admin\Admin.csproj" />
       <ProjectReference Include="..\Common\Common.csproj" />
       <ProjectReference Include="..\infrutructure\infrutructure.csproj" />
       <ProjectReference Include="..\Shared\Shared.csproj" />

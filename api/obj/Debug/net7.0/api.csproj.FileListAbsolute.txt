@@ -160,3 +160,5 @@
 /home/alihmaidi/RiderProjects/schoolmanagment/api/bin/Debug/net7.0/Repository.dll
 /home/alihmaidi/RiderProjects/schoolmanagment/api/bin/Debug/net7.0/Common.pdb
 /home/alihmaidi/RiderProjects/schoolmanagment/api/bin/Debug/net7.0/Repository.pdb
+/home/alihmaidi/RiderProjects/schoolmanagment/api/bin/Debug/net7.0/Admin.dll
+/home/alihmaidi/RiderProjects/schoolmanagment/api/bin/Debug/net7.0/Admin.pdb

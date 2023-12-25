@@ -11,7 +11,8 @@
           "Microsoft.AspNetCore.Authorization": "8.0.0",
           "Microsoft.AspNetCore.Mvc.Abstractions": "2.2.0",
           "Microsoft.AspNetCore.Mvc.Core": "2.2.5",
-          "Shared": "1.0.0"
+          "Shared": "1.0.0",
+          "EntityFrameworkCore.EncryptColumn": "1.0.0.0"
         },
         "runtime": {
           "Domain.dll": {}
@@ -1859,6 +1860,14 @@
         "runtime": {
           "Shared.dll": {}
         }
+      },
+      "EntityFrameworkCore.EncryptColumn/1.0.0.0": {
+        "runtime": {
+          "EntityFrameworkCore.EncryptColumn.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
       }
     }
   },
@@ -3186,6 +3195,11 @@
     },
     "Shared/1.0.0": {
       "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "EntityFrameworkCore.EncryptColumn/1.0.0.0": {
+      "type": "reference",
       "serviceable": false,
       "sha512": ""
     }

@@ -2240,6 +2240,14 @@
         "runtime": {
           "Shared.dll": {}
         }
+      },
+      "MediatR.Contracts/2.0.1.0": {
+        "runtime": {
+          "MediatR.Contracts.dll": {
+            "assemblyVersion": "2.0.1.0",
+            "fileVersion": "2.0.1.0"
+          }
+        }
       }
     }
   },
@@ -3792,6 +3800,11 @@
     },
     "Shared/1.0.0": {
       "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "MediatR.Contracts/2.0.1.0": {
+      "type": "reference",
       "serviceable": false,
       "sha512": ""
     }

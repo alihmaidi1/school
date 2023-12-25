@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v7.0": {
       "api/1.0.0": {
         "dependencies": {
+          "Admin": "1.0.0",
           "Common": "1.0.0",
           "MediatR": "12.2.0",
           "Microsoft.AspNetCore.OpenApi": "7.0.14",
@@ -2244,6 +2245,16 @@
           "System.Xml.XPath": "4.3.0"
         }
       },
+      "Admin/1.0.0": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Mvc": "2.2.0",
+          "Repository": "1.0.0",
+          "Shared": "1.0.0"
+        },
+        "runtime": {
+          "Admin.dll": {}
+        }
+      },
       "Common/1.0.0": {
         "dependencies": {
           "Domain": "1.0.0",
@@ -3911,6 +3922,11 @@
       "sha512": "sha512-jw9oHHEIVW53mHY9PgrQa98Xo2IZ0ZjrpdOTmtvk+Rvg4tq7dydmxdNqUvJ5YwjDqhn75mBXWttWjiKhWP53LQ==",
       "path": "system.xml.xpath.xdocument/4.3.0",
       "hashPath": "system.xml.xpath.xdocument.4.3.0.nupkg.sha512"
+    },
+    "Admin/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     },
     "Common/1.0.0": {
       "type": "project",

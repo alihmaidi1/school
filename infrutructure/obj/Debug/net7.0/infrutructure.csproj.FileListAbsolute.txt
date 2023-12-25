@@ -21,3 +21,4 @@
 /home/alihmaidi/RiderProjects/schoolmanagment/infrutructure/obj/Debug/net7.0/infrutructure.pdb
 /home/alihmaidi/RiderProjects/schoolmanagment/infrutructure/obj/Debug/net7.0/infrutructure.genruntimeconfig.cache
 /home/alihmaidi/RiderProjects/schoolmanagment/infrutructure/obj/Debug/net7.0/ref/infrutructure.dll
+/home/alihmaidi/RiderProjects/schoolmanagment/infrutructure/bin/Debug/net7.0/MediatR.Contracts.dll

@@ -1,12 +1,15 @@
 using System.Reflection;
+using Admin;
 using Common;
 using FluentValidation;
 using infrutructure;
 using infrutructure.Seed;
 using MediatR;
 using Microsoft.AspNetCore.RateLimiting;
+using Repository;
 using schoolmanagment.Base;
 using schoolmanagment.Middleware;
+using Shared.Jwt;
 using Shared.Redis;
 using Shared.Swagger;
 
@@ -38,11 +41,30 @@ builder.Services.AddCommondependency();
 
 
 
-
+// infrustucture area
 builder.Services.AddInfrustucture(builder.Configuration);
 
+// end infrustucture area
 
 
+// repository area
+builder.Services.AddRepository();
+
+// end repository area
+
+
+
+// admin area
+
+builder.Services.AddAdmindependency();
+
+// end admin area
+
+
+// shared area
+builder.Services.AddJwtConfigration(builder.Configuration);
+
+// end shared area
 
 
 

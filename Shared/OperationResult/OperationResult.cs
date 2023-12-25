@@ -45,6 +45,14 @@ public class OperationResult
 
     }
 
+    
+    public JsonResult Fail(string ResultMessage = "")
+    {
+        int StatusCode = (int)System.Net.HttpStatusCode.UnprocessableEntity;
+        string Message = ResultMessage;
+        return this.ToJsonResult<object>(StatusCode,Message:Message);
+
+    }
     public JsonResult Created<T>(T Data, string Message = "") 
     {
 

@@ -19,9 +19,9 @@ public static class DependencyInjection
         {
 
 
-            options.DefaultAuthenticateScheme = nameof(JwtSchema.Main);
-            options.DefaultChallengeScheme = nameof(JwtSchema.Main);
-            options.DefaultScheme = nameof(JwtSchema.Main);
+            options.DefaultAuthenticateScheme = nameof(JwtSchema.Admin);
+            options.DefaultChallengeScheme = nameof(JwtSchema.Admin);
+            options.DefaultScheme = nameof(JwtSchema.Admin);
         });
 
         
@@ -48,26 +48,26 @@ public static class DependencyInjection
                 };
                 options.Events = new JwtBearerEvents
                 {
-
+                    
                     OnChallenge = async context =>
                     {
                         context.HandleResponse();
-
+                    
                         throw new UnAuthenticationException();
-
-
+                    
+                    
                     },
-
+                    
                     OnForbidden = async context =>
                     {
-
-
-
+                    
+                    
+                    
                         throw new UnAuthorizationException();
-
-
+                    
+                    
                     }
-
+                    
 
 
                 };

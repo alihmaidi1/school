@@ -13,3 +13,5 @@
 /home/alihmaidi/RiderProjects/schoolmanagment/Domain/obj/infrutructure.csproj/net7.0/refint/Domain.dll
 /home/alihmaidi/RiderProjects/schoolmanagment/Domain/obj/infrutructure.csproj/net7.0/Domain.pdb
 /home/alihmaidi/RiderProjects/schoolmanagment/Domain/obj/infrutructure.csproj/net7.0/ref/Domain.dll
+/home/alihmaidi/RiderProjects/schoolmanagment/Domain/bin/infrutructure.csproj/net7.0/EntityFrameworkCore.EncryptColumn.dll
+/home/alihmaidi/RiderProjects/schoolmanagment/Domain/bin/infrutructure.csproj/net7.0/EntityFrameworkCore.EncryptColumn.pdb

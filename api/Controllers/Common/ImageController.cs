@@ -7,10 +7,11 @@ using Shared.Swagger;
 namespace schoolmanagment.Controllers.Common;
 
 
+[ApiGroup(ApiGroupName.All, ApiGroupName.Admin, ApiGroupName.Parent,ApiGroupName.Student,ApiGroupName.Teacher)]
+
 public class ImageController:ApiController
 {
     
-    [ApiGroup(ApiGroupName.All, ApiGroupName.Admin, ApiGroupName.Parent,ApiGroupName.Student,ApiGroupName.Teacher)]
 
 
     [HttpPost(ImageRouter.UploadSingle)]
@@ -25,7 +26,6 @@ public class ImageController:ApiController
 
     
     [HttpPost(ImageRouter.UploadBase64Image)]
-    [ApiGroup(ApiGroupName.All, ApiGroupName.Admin, ApiGroupName.Parent,ApiGroupName.Student,ApiGroupName.Teacher)]
     
     public async Task<IActionResult> UploadBase64Image([FromBody] UploadBase64ImageCommand commands)
     {
@@ -38,7 +38,6 @@ public class ImageController:ApiController
     
     [HttpPost(ImageRouter.UploadImages)]
     
-    [ApiGroup(ApiGroupName.All, ApiGroupName.Admin, ApiGroupName.Parent,ApiGroupName.Student,ApiGroupName.Teacher)]
 
     public async Task<IActionResult> UploadImages(UploadImagesCommand commands)
     {

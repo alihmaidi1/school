@@ -7,7 +7,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="AppMetaData\Admin\" />
       <Folder Include="AppMetaData\Parent\" />
       <Folder Include="AppMetaData\Student\" />
       <Folder Include="AppMetaData\Teacher\" />
@@ -21,6 +20,12 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Shared\Shared.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="EntityFrameworkCore.EncryptColumn">
+        <HintPath>..\..\..\.nuget\packages\entityframeworkcore.encryptcolumn\6.0.8\lib\netcoreapp6.0\EntityFrameworkCore.EncryptColumn.dll</HintPath>
+      </Reference>
     </ItemGroup>
 
 </Project>

@@ -21,3 +21,4 @@
 /home/alihmaidi/RiderProjects/schoolmanagment/Repository/obj/Debug/net7.0/refint/Repository.dll
 /home/alihmaidi/RiderProjects/schoolmanagment/Repository/obj/Debug/net7.0/Repository.pdb
 /home/alihmaidi/RiderProjects/schoolmanagment/Repository/obj/Debug/net7.0/ref/Repository.dll
+/home/alihmaidi/RiderProjects/schoolmanagment/Repository/bin/Debug/net7.0/MediatR.Contracts.dll

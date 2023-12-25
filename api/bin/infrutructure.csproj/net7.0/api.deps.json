@@ -8,6 +8,8 @@
     ".NETCoreApp,Version=v7.0": {
       "api/1.0.0": {
         "dependencies": {
+          "Admin": "1.0.0",
+          "Common": "1.0.0",
           "MediatR": "12.2.0",
           "Microsoft.AspNetCore.OpenApi": "7.0.14",
           "Microsoft.EntityFrameworkCore.Design": "7.0.14",
@@ -294,6 +296,26 @@
             "rid": "linux-x64",
             "assetType": "native",
             "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "FluentValidation/11.9.0": {
+        "runtime": {
+          "lib/net7.0/FluentValidation.dll": {
+            "assemblyVersion": "11.0.0.0",
+            "fileVersion": "11.9.0.0"
+          }
+        }
+      },
+      "FluentValidation.DependencyInjectionExtensions/11.9.0": {
+        "dependencies": {
+          "FluentValidation": "11.9.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.1/FluentValidation.DependencyInjectionExtensions.dll": {
+            "assemblyVersion": "11.0.0.0",
+            "fileVersion": "11.9.0.0"
           }
         }
       },
@@ -2223,6 +2245,31 @@
           "System.Xml.XPath": "4.3.0"
         }
       },
+      "Admin/1.0.0": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Mvc": "2.2.0",
+          "Repository": "1.0.0",
+          "Shared": "1.0.0"
+        },
+        "runtime": {
+          "Admin.dll": {}
+        }
+      },
+      "Common/1.0.0": {
+        "dependencies": {
+          "Domain": "1.0.0",
+          "Dto": "1.0.0",
+          "FluentValidation": "11.9.0",
+          "FluentValidation.DependencyInjectionExtensions": "11.9.0",
+          "Model": "1.0.0",
+          "Repository": "1.0.0",
+          "Shared": "1.0.0",
+          "infrutructure": "1.0.0"
+        },
+        "runtime": {
+          "Common.dll": {}
+        }
+      },
       "Domain/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Authorization": "8.0.0",
@@ -2266,6 +2313,18 @@
         },
         "runtime": {
           "Model.dll": {}
+        }
+      },
+      "Repository/1.0.0": {
+        "dependencies": {
+          "Domain": "1.0.0",
+          "Dto": "1.0.0",
+          "Model": "1.0.0",
+          "Shared": "1.0.0",
+          "infrutructure": "1.0.0"
+        },
+        "runtime": {
+          "Repository.dll": {}
         }
       },
       "Shared/1.0.0": {
@@ -2351,6 +2410,20 @@
       "sha512": "sha512-03WkAOtjI3pjZH2ivl1do2FWrE/tZAHXy8ZPjvFO6Ygrt7TnzLVKegZFWit+R8WsKdj/YQvVPbnIatq1qI0SWQ==",
       "path": "ereno.linux-x64.eugeneereno.system.drawing/6.1.1.4",
       "hashPath": "ereno.linux-x64.eugeneereno.system.drawing.6.1.1.4.nupkg.sha512"
+    },
+    "FluentValidation/11.9.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-VneVlTvwYDkfHV5av3QrQ0amALgrLX6LV94wlYyEsh0B/klJBW7C8y2eAtj5tOZ3jH6CAVpr4s1ZGgew/QWyig==",
+      "path": "fluentvalidation/11.9.0",
+      "hashPath": "fluentvalidation.11.9.0.nupkg.sha512"
+    },
+    "FluentValidation.DependencyInjectionExtensions/11.9.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Ko++xvN7HUf4WlHJL6bhsybUj/uho8ApOYIdxGjpF8Ot7Fukz6LRfRJ06H0KXhWqmMHWEbu89hJbjKJHtg7b9g==",
+      "path": "fluentvalidation.dependencyinjectionextensions/11.9.0",
+      "hashPath": "fluentvalidation.dependencyinjectionextensions.11.9.0.nupkg.sha512"
     },
     "Humanizer.Core/2.14.1": {
       "type": "package",
@@ -3850,6 +3923,16 @@
       "path": "system.xml.xpath.xdocument/4.3.0",
       "hashPath": "system.xml.xpath.xdocument.4.3.0.nupkg.sha512"
     },
+    "Admin/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Common/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
     "Domain/1.0.0": {
       "type": "project",
       "serviceable": false,
@@ -3866,6 +3949,11 @@
       "sha512": ""
     },
     "Model/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Repository/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

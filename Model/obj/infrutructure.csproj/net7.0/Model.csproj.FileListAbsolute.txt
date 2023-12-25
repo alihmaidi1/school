@@ -15,3 +15,6 @@
 /home/alihmaidi/RiderProjects/schoolmanagment/Model/obj/infrutructure.csproj/net7.0/refint/Model.dll
 /home/alihmaidi/RiderProjects/schoolmanagment/Model/obj/infrutructure.csproj/net7.0/Model.pdb
 /home/alihmaidi/RiderProjects/schoolmanagment/Model/obj/infrutructure.csproj/net7.0/ref/Model.dll
+/home/alihmaidi/RiderProjects/schoolmanagment/Model/bin/infrutructure.csproj/net7.0/EntityFrameworkCore.EncryptColumn.dll
+/home/alihmaidi/RiderProjects/schoolmanagment/Model/bin/infrutructure.csproj/net7.0/EntityFrameworkCore.EncryptColumn.pdb
+/home/alihmaidi/RiderProjects/schoolmanagment/Model/bin/infrutructure.csproj/net7.0/MediatR.Contracts.dll

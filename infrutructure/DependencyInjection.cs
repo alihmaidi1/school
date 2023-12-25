@@ -15,9 +15,10 @@ public static class DependencyInjection
              
         services.AddDbContext<ApplicationDbContext>(option =>
         {
-            option.UseLazyLoadingProxies()                
+            option
+                // .UseLazyLoadingProxies()                
                 .UseSqlServer(configuration.GetConnectionString("DefaultConnection"));                
-            option.LogTo(Console.WriteLine,LogLevel.Information);
+            // option.LogTo(Console.WriteLine,LogLevel.Information);
             option.EnableSensitiveDataLogging();                                
             
         });

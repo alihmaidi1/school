@@ -1,6 +1,10 @@
 {
   "Files": [
     {
+      "Id": "/home/alihmaidi/RiderProjects/schoolmanagment/api/wwwroot/Temps/07dc9fa0-c763-4f4f-b19f-a1e97136a7dccode.png",
+      "PackagePath": "staticwebassets/Temps/07dc9fa0-c763-4f4f-b19f-a1e97136a7dccode.png"
+    },
+    {
       "Id": "/home/alihmaidi/RiderProjects/schoolmanagment/api/wwwroot/Temps/0859428d-4cfe-4eeb-b63d-68695f020cd1code1.png",
       "PackagePath": "staticwebassets/Temps/0859428d-4cfe-4eeb-b63d-68695f020cd1code1.png"
     },
@@ -13,12 +17,20 @@
       "PackagePath": "staticwebassets/Temps/13d5389f-4123-43ce-90a7-b308528592b2code1.png"
     },
     {
+      "Id": "/home/alihmaidi/RiderProjects/schoolmanagment/api/wwwroot/Temps/2d91e56b-39f0-4cdf-a534-7cb732ee9b96code.png",
+      "PackagePath": "staticwebassets/Temps/2d91e56b-39f0-4cdf-a534-7cb732ee9b96code.png"
+    },
+    {
       "Id": "/home/alihmaidi/RiderProjects/schoolmanagment/api/wwwroot/Temps/5b87735a-236f-4fed-80c8-ad3de7607b62code.png",
       "PackagePath": "staticwebassets/Temps/5b87735a-236f-4fed-80c8-ad3de7607b62code.png"
     },
     {
       "Id": "/home/alihmaidi/RiderProjects/schoolmanagment/api/wwwroot/Temps/626a9248-fd09-4c72-b6cb-5970650ffdc3code.png",
       "PackagePath": "staticwebassets/Temps/626a9248-fd09-4c72-b6cb-5970650ffdc3code.png"
+    },
+    {
+      "Id": "/home/alihmaidi/RiderProjects/schoolmanagment/api/wwwroot/Temps/6561ee9a-d2d4-4d35-8116-3c9e03ef1da8code.png",
+      "PackagePath": "staticwebassets/Temps/6561ee9a-d2d4-4d35-8116-3c9e03ef1da8code.png"
     },
     {
       "Id": "/home/alihmaidi/RiderProjects/schoolmanagment/api/wwwroot/Temps/8475071e-6cd8-4f62-9dad-ae7f0d7e49c2code.png",
@@ -33,12 +45,20 @@
       "PackagePath": "staticwebassets/Temps/a5700857-33b2-4723-ad83-d7f6a60dbbc0code.png"
     },
     {
+      "Id": "/home/alihmaidi/RiderProjects/schoolmanagment/api/wwwroot/Temps/ae663fbf-0ada-4721-80ed-f16fc7f9c1c6code.png",
+      "PackagePath": "staticwebassets/Temps/ae663fbf-0ada-4721-80ed-f16fc7f9c1c6code.png"
+    },
+    {
       "Id": "/home/alihmaidi/RiderProjects/schoolmanagment/api/wwwroot/Temps/bda191b1-0112-4269-a925-d341c9a3dbd7.png",
       "PackagePath": "staticwebassets/Temps/bda191b1-0112-4269-a925-d341c9a3dbd7.png"
     },
     {
       "Id": "/home/alihmaidi/RiderProjects/schoolmanagment/api/wwwroot/Temps/cb6b8943-fedb-4234-be3d-aeddccccabffcode.png",
       "PackagePath": "staticwebassets/Temps/cb6b8943-fedb-4234-be3d-aeddccccabffcode.png"
+    },
+    {
+      "Id": "/home/alihmaidi/RiderProjects/schoolmanagment/api/wwwroot/Temps/da73360d-9939-4787-a801-4bf1dfd20126code1.png",
+      "PackagePath": "staticwebassets/Temps/da73360d-9939-4787-a801-4bf1dfd20126code1.png"
     },
     {
       "Id": "/home/alihmaidi/RiderProjects/schoolmanagment/api/wwwroot/Temps/efddd27a-bfa7-4f9f-be87-d691c24db471code.png",
@@ -55,6 +75,10 @@
     {
       "Id": "/home/alihmaidi/RiderProjects/schoolmanagment/api/wwwroot/Temps/f576fc18-5dc1-4c41-96d6-879d181443dbcode.png",
       "PackagePath": "staticwebassets/Temps/f576fc18-5dc1-4c41-96d6-879d181443dbcode.png"
+    },
+    {
+      "Id": "/home/alihmaidi/RiderProjects/schoolmanagment/api/wwwroot/Temps/fa98f195-b8a9-4b67-8fe4-c4e777fe36d8code.png",
+      "PackagePath": "staticwebassets/Temps/fa98f195-b8a9-4b67-8fe4-c4e777fe36d8code.png"
     },
     {
       "Id": "obj/Debug/net7.0/staticwebassets/msbuild.api.Microsoft.AspNetCore.StaticWebAssets.props",

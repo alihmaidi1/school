@@ -1,3 +1,4 @@
+using infrutructure.Seed.Manager;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -17,6 +18,8 @@ public static class DatabaseSeed
 
         try
         {
+
+            await SuperAdminSeed.seedData(context);
 
             await transaction.CommitAsync();
 

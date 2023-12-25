@@ -1,17 +1,23 @@
 using Domain.Base.Entity;
+using Domain.Base.ValueObject;
 using Domain.Entities.Role;
+using EntityFrameworkCore.EncryptColumn.Attribute;
+
 namespace Domain.Entities.Admin;
 
-public class Admin:BaseEntity<AdminID>
+public class Admin:AccountEntity<AdminID>
 {
 
+    
 
     public Admin()
     {
 
         Id = new AdminID(Guid.NewGuid());
-        
+
+        RefreshTokens = new HashSet<AdminRefreshToken>();
     }
+
     
     
     public string Name { get; set; }
@@ -19,9 +25,14 @@ public class Admin:BaseEntity<AdminID>
     public string Email { get; set; }
 
     public RoleID RoleId { get; set; }
-    public virtual Role.Role Role { set; get; }
+    public  Role.Role Role { set; get; }
     
+    
+    [EncryptColumn]
+
     public string Password { get; set; }
+    
+    public  ICollection<AdminRefreshToken>? RefreshTokens { get; set; }
 
     
 }
