@@ -23,7 +23,7 @@ public class AdminRepository:GenericRepository<Domain.Entities.Admin.Admin>,IAdm
     public bool IsEmailExists(string Email)
     {
         
-        return this.DbContext.Admins.IgnoreQueryFilters().Any(x => x.Email.Equals(Email));
+        return DbContext.Admins.IgnoreQueryFilters().Any(x => x.Email.Equals(Email));
         
     }
 
@@ -97,5 +97,22 @@ public class AdminRepository:GenericRepository<Domain.Entities.Admin.Admin>,IAdm
 
     }
 
-    
+
+    public bool IsEmailExists(string Email, AdminID id)
+    {
+
+        return DbContext.Admins.Any(x => x.Email.Equals(Email) && !x.Id.Equals(id));
+
+
+    }
+
+
+    public bool Delete(AdminID id)
+    {
+
+        DbContext.Admins.Where(x => x.Id.Equals(id)).ExecuteUpdate(setter=>setter.SetProperty(x=>x.DateDeleted,DateTime.Now));
+        DbContext.SaveChanges();
+        return true;
+    }
+
 }

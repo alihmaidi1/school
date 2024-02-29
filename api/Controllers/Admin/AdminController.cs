@@ -1,6 +1,8 @@
 using Admin.Admin.Command.AddAdmin;
 using Admin.Admin.Query.GetAll;
 using Admin.Auth.Command.Login;
+using Admin.Manager.Admin.Command.Delete;
+using Admin.Manager.Admin.Command.Update;
 using Admin.Manager.Admin.Query.Get;
 using Domain.AppMetaData.Admin;
 using Domain.Attributes;
@@ -39,13 +41,28 @@ public class AdminController:ApiController
     }
     
     [HttpPost(AdminRouter.prefix)]
-
-
     public async Task<IActionResult> AddAdmin([FromBody] AddAdminCommand command,CancellationToken Token)
     {
         var response = await this.Mediator.Send(command,Token);
         return response;
 
     }
+    
+    [HttpPut(AdminRouter.prefix)]
+    public async Task<IActionResult> updateAdmin([FromBody] UpdateAdminCommand command,CancellationToken Token)
+    {
+        var response = await this.Mediator.Send(command,Token);
+        return response;
 
+    }
+    
+    
+    [HttpDelete(AdminRouter.Get)]
+    public async Task<IActionResult> DeleteAdmin(Guid id,CancellationToken Token)
+    {
+     
+        var response = await this.Mediator.Send(new DeleteAdminCommand(id),Token);
+        return response;
+
+    }
 }

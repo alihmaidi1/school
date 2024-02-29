@@ -10,6 +10,9 @@ public interface IAdminRepository:IgenericRepository<Domain.Entities.Admin.Admin
 
     public bool IsEmailExists(string Email);
 
+    public bool Delete(AdminID id);
+
+    public bool IsEmailExists(string Email,AdminID id);
 
     public Domain.Entities.Admin.Admin GetByEmail(string Email);
     

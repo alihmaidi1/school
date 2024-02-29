@@ -37,7 +37,10 @@ builder.Services.AddTransient<IAuthorizationPolicyProvider,PermissionProvider>()
 builder.Services.AddTransient<IAuthorizationHandler,PermissionAuthorizationHandler>();
 
 builder.Services.AddScoped<IMailService, MailService>();
-// end api area
+// end api area     
+
+
+builder.Services.Configure<MailSetting>(builder.Configuration.GetRequiredSection("Email"));
 
 builder.Services.AddHangfire(x => x.UseSqlServerStorage(builder.Configuration["ConnectionStrings:DefaultConnection"]));
 builder.Services.AddHangfireServer();

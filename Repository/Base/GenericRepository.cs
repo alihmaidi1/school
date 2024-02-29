@@ -1,3 +1,5 @@
+using Common.Entity.Entity;
+using Common.Entity.ValueObject;
 using infrutructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
@@ -23,6 +25,11 @@ public class GenericRepository<T>: IgenericRepository<T> where T : class
     {
 
         return DbContext.Database.BeginTransaction();
+    }
+
+    public bool SoftDelete(StronglyTypeId Id)
+    {
+        throw new NotImplementedException();
     }
 
     public void Commit()
@@ -74,4 +81,5 @@ public class GenericRepository<T>: IgenericRepository<T> where T : class
 
 
     }
+
 }

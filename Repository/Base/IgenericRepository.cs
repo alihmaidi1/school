@@ -1,4 +1,5 @@
 using Common.Entity.Interface;
+using Common.Entity.ValueObject;
 using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Repository.Base;
@@ -16,6 +17,8 @@ public interface IgenericRepository<T> :basesuper where T : class
     void Rollback();
     IDbContextTransaction BeginTransaction();
 
+
+    
 
     IQueryable<T> GetTableAsNoTracking();
     IQueryable<T> GetTableAsTracking();

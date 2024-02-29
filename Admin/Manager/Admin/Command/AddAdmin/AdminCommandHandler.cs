@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Repository.Manager.Admin;
 using Shared.Enum;
 using Shared.File;
@@ -21,11 +22,11 @@ public class AdminCommandHandler:OperationResult,
 
     private readonly IMailService MailService;
     private IWebHostEnvironment webHostEnvironment;
-    private IHttpContextAccessor httpContextAccessor;
-    public AdminCommandHandler(IAdminRepository AdminRepository, IMailService MailService,IWebHostEnvironment webHostEnvironment,IHttpContextAccessor httpContextAccessor)
+    private string uri;
+    public AdminCommandHandler(IAdminRepository AdminRepository, IMailService MailService,IWebHostEnvironment webHostEnvironment,IConfiguration configuration)
     {
 
-        this.httpContextAccessor = httpContextAccessor;
+        uri = configuration["Url"];
         this.webHostEnvironment = webHostEnvironment;
         this.MailService = MailService;
         this.AdminRepository = AdminRepository;
@@ -42,7 +43,7 @@ public class AdminCommandHandler:OperationResult,
 
             Image=request.Image.OptimizeFile(FileName.Admin.ToString(),
     webHostEnvironment.WebRootPath,
-      httpContextAccessor.HttpContext.Request.GetDisplayUrl());
+      uri);
 
         }
         
