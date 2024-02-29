@@ -2,6 +2,9 @@ namespace Shared.Enum;
 
 public enum JwtSchema
 {
-    Admin
+    Admin,
+    Parent,
+    Student,
+    Teacher
     
 }

@@ -30,7 +30,7 @@ public static class FileExtension
 
     }
     
-    public static (string imagepath,string imagename) GetImagePath(this IFormFile image,string wwwroot)
+    private static (string imagepath,string imagename) GetImagePath(this IFormFile image,string wwwroot)
     {
 
         string TempDirectory = Path.Combine(wwwroot, FolderName.Temp);
@@ -82,7 +82,7 @@ public static class FileExtension
         return (imagePath,imageName,bytes);
     }
 
-    public static (string base64, string extension) GetBase64Info(this string base64File)
+    private static (string base64, string extension) GetBase64Info(this string base64File)
     {
 
         var base64 = base64File.Substring(base64File.IndexOf(",") + 1);
@@ -129,7 +129,7 @@ public static class FileExtension
     }
 
 
-    public static string GetImageHash(this FileStream imagepath)
+    private static string GetImageHash(this FileStream imagepath)
     {
         try
         {
@@ -144,21 +144,40 @@ public static class FileExtension
     }
 
 
-    public static (string imagefile,MemoryStream memorystream)resizeImage(this FileStream imagepath,string Folder,int Width=300,int Height = 300)
+    public static string resizeImage(this FileStream imagepath,string filePath,string wwwroot,string Folder,int Width=300,int Height = 300)
     {
-            
         Image img = Bitmap.FromStream(imagepath);
-            
         var imageResized = ImageResize.Scale(img, Width, Height);
-        var resizepath = Guid.NewGuid().ToString() + ".png";
-        resizepath=Folder+"/"+ resizepath;
-        MemoryStream memoryStream = new MemoryStream();
-        imageResized.Save(memoryStream, ImageFormat.Png);
-        return (resizepath, memoryStream);
-
-         
+        
+        var resizepath =Path.Combine(Folder,Guid.NewGuid().ToString()+".png");
+        imageResized.Save(Path.Combine(wwwroot,resizepath));
+        return Path.Combine(filePath,resizepath);
 
     }
+
+    public static ImageResponse OptimizeFile(this string file,string Folder,string wwwroot,string filePath)
+    {
+        string splitFile = Path.GetFileName(file);        
+        string fullPath = Path.Combine(wwwroot,FolderName.Temp,splitFile);
+        if (!Directory.Exists(Path.Combine(wwwroot,Folder)))
+        {
+
+            Directory.CreateDirectory(Path.Combine(wwwroot,Folder));
+        }
+        using var Filestream = new FileStream(fullPath,FileMode.Open);
+        var hash = Filestream.GetImageHash();
+        var resized = Filestream.resizeImage(filePath,wwwroot,Folder, 400, 400);
+        var newpath = Path.Combine(Folder, splitFile);
+        System.IO.File.Move(fullPath, Path.Combine(wwwroot,newpath));
+        return new ImageResponse
+        {
+            Url=Path.Combine(filePath,newpath),
+            hash=hash,
+            resized=resized
+                
+        };
+    }
+
 
 
 }

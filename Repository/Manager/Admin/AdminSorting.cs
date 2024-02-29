@@ -1,0 +1,22 @@
+using System.Linq.Expressions;
+
+namespace Repository.Manager.Admin;
+
+public static class AdminSorting
+{
+    public static List<string> OrderBy = new()
+    {
+        "Name",
+        "Email",
+        "DateCreated"
+    };
+
+
+    public static Func<string, Expression<Func<Domain.Entities.Admin.Admin, object>>> switchOrdering = key
+        => key switch
+        {
+            "Name" => x => x.Name,
+            "Email" => x => x.Email,
+            _ => x => x.DateCreated
+        };
+}

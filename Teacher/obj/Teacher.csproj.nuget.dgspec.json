@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/alihmaidi/RiderProjects/schoolmanagment/Teacher/Teacher.csproj": {}
+    "/home/alihmaidi/Desktop/schhol1/Teacher/Teacher.csproj": {}
   },
   "projects": {
-    "/home/alihmaidi/RiderProjects/schoolmanagment/Teacher/Teacher.csproj": {
+    "/home/alihmaidi/Desktop/schhol1/Teacher/Teacher.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/alihmaidi/RiderProjects/schoolmanagment/Teacher/Teacher.csproj",
+        "projectUniqueName": "/home/alihmaidi/Desktop/schhol1/Teacher/Teacher.csproj",
         "projectName": "Teacher",
-        "projectPath": "/home/alihmaidi/RiderProjects/schoolmanagment/Teacher/Teacher.csproj",
+        "projectPath": "/home/alihmaidi/Desktop/schhol1/Teacher/Teacher.csproj",
         "packagesPath": "/home/alihmaidi/.nuget/packages/",
-        "outputPath": "/home/alihmaidi/RiderProjects/schoolmanagment/Teacher/obj/",
+        "outputPath": "/home/alihmaidi/Desktop/schhol1/Teacher/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/alihmaidi/.nuget/NuGet/NuGet.Config"
@@ -48,12 +48,22 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[7.0.16, 7.0.16]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[7.0.16, 7.0.16]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/7.0.114/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.102/RuntimeIdentifierGraph.json"
         }
       }
     }

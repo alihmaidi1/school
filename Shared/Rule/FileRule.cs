@@ -20,7 +20,7 @@ public static class FileRule
     };
 
 
-    public static Func<string,string, bool> isFileExists = (x,wwwroot) =>
+    public static Func<string,string, bool> IsFileExists = (x,wwwroot) =>
     {
 
         if (x is null)

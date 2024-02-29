@@ -9,6 +9,7 @@ public class AppAuthorizeAttribute:CheckTokenInRedisAttribute
         if(roles.Length != 0)
         {
 
+            
             Roles = string.Join(",", roles.Select(x => x.ToString()));
 
         }

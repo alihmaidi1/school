@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "lc9Kv7pqM60fqoePa20AgjXDENclDi4wfLKWHIhAZk7ZgqyhTz/B1+m2VeqqpgJcZnBDkH80moTAzAupzEAX3Q==",
+  "dgSpecHash": "ncWbW43rfFptVTZY16d32EqsP17+3vXgHHN96buK/eNdQlmazPLfCTkz/wV6VlBzjOez2KG9OgQxFnAvFq9ErA==",
   "success": true,
-  "projectFilePath": "/home/alihmaidi/RiderProjects/schoolmanagment/Teacher/Teacher.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "/home/alihmaidi/Desktop/schhol1/Teacher/Teacher.csproj",
+  "expectedPackageFiles": [
+    "/home/alihmaidi/.nuget/packages/microsoft.netcore.app.ref/7.0.16/microsoft.netcore.app.ref.7.0.16.nupkg.sha512",
+    "/home/alihmaidi/.nuget/packages/microsoft.aspnetcore.app.ref/7.0.16/microsoft.aspnetcore.app.ref.7.0.16.nupkg.sha512"
+  ],
   "logs": []
 }

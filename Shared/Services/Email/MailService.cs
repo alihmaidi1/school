@@ -17,7 +17,7 @@ public class MailService:IMailService
     }
 
 
-    public bool SendMail(string Email, string message)
+    public bool SendMail(string Email, string subject, string message)
     {
         
         
@@ -27,7 +27,7 @@ public class MailService:IMailService
             using MimeMessage emailMessage = new MimeMessage();
             emailMessage.From.Add(MailboxAddress.Parse(MailSetting.From));
             emailMessage.To.Add(MailboxAddress.Parse(Email));
-            emailMessage.Subject = "Reset Password Ecommerce :)";
+            emailMessage.Subject = subject;
             emailMessage.Body = new TextPart(TextFormat.Text)
             {
                 Text=message

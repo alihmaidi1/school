@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/alihmaidi/RiderProjects/schoolmanagment/Shared/Shared.csproj": {}
+    "/home/alihmaidi/Desktop/schhol1/Shared/Shared.csproj": {}
   },
   "projects": {
-    "/home/alihmaidi/RiderProjects/schoolmanagment/Shared/Shared.csproj": {
+    "/home/alihmaidi/Desktop/schhol1/Shared/Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/alihmaidi/RiderProjects/schoolmanagment/Shared/Shared.csproj",
+        "projectUniqueName": "/home/alihmaidi/Desktop/schhol1/Shared/Shared.csproj",
         "projectName": "Shared",
-        "projectPath": "/home/alihmaidi/RiderProjects/schoolmanagment/Shared/Shared.csproj",
+        "projectPath": "/home/alihmaidi/Desktop/schhol1/Shared/Shared.csproj",
         "packagesPath": "/home/alihmaidi/.nuget/packages/",
-        "outputPath": "/home/alihmaidi/RiderProjects/schoolmanagment/Shared/obj/",
+        "outputPath": "/home/alihmaidi/Desktop/schhol1/Shared/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/alihmaidi/.nuget/NuGet/NuGet.Config"
@@ -42,6 +42,10 @@
               "target": "Package",
               "version": "[3.0.0, )"
             },
+            "FluentValidation": {
+              "target": "Package",
+              "version": "[11.9.0, )"
+            },
             "LazZiya.ImageResize": {
               "target": "Package",
               "version": "[4.1.4, )"
@@ -49,6 +53,10 @@
             "MailKit": {
               "target": "Package",
               "version": "[4.3.0, )"
+            },
+            "MediatR": {
+              "target": "Package",
+              "version": "[12.2.0, )"
             },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
@@ -65,6 +73,14 @@
             "Microsoft.AspNetCore.Mvc.Core": {
               "target": "Package",
               "version": "[2.2.5, )"
+            },
+            "Microsoft.Data.SqlClient": {
+              "target": "Package",
+              "version": "[5.2.0, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.14, )"
             },
             "Microsoft.Extensions.Configuration.Abstractions": {
               "target": "Package",
@@ -102,12 +118,22 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[7.0.16, 7.0.16]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[7.0.16, 7.0.16]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/7.0.114/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.102/RuntimeIdentifierGraph.json"
         }
       }
     }

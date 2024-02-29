@@ -2,15 +2,20 @@ using System.Reflection;
 using Admin;
 using Common;
 using FluentValidation;
+using Hangfire;
 using infrutructure;
+using infrutructure.Authorization.Handler;
+using infrutructure.Authorization.Provider;
 using infrutructure.Seed;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.RateLimiting;
 using Repository;
 using schoolmanagment.Base;
 using schoolmanagment.Middleware;
 using Shared.Jwt;
 using Shared.Redis;
+using Shared.Services.Email;
 using Shared.Swagger;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -27,8 +32,15 @@ builder.Services.AddOpenApi();
 builder.Services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddTransient<ErrorHandling>();
+builder.Services.AddScoped<IAuthorizationHandler,RolesAuthorizationHandler>();
+builder.Services.AddTransient<IAuthorizationPolicyProvider,PermissionProvider>();
+builder.Services.AddTransient<IAuthorizationHandler,PermissionAuthorizationHandler>();
 
+builder.Services.AddScoped<IMailService, MailService>();
 // end api area
+
+builder.Services.AddHangfire(x => x.UseSqlServerStorage(builder.Configuration["ConnectionStrings:DefaultConnection"]));
+builder.Services.AddHangfireServer();
 
 
 

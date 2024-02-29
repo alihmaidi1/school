@@ -10,7 +10,6 @@
       <ProjectReference Include="..\Domain\Domain.csproj" />
       <ProjectReference Include="..\Dto\Dto.csproj" />
       <ProjectReference Include="..\infrutructure\infrutructure.csproj" />
-      <ProjectReference Include="..\Model\Model.csproj" />
       <ProjectReference Include="..\Repository\Repository.csproj" />
       <ProjectReference Include="..\Shared\Shared.csproj" />
     </ItemGroup>
