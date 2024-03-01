@@ -22,8 +22,8 @@ public class Vacation:BaseEntity<VacationID>
 
     public string Date { get; set; }
     
-    public AdminID AdminId { get; set; }
-    public Admin.Admin Admin { get; set; }
+    public AdminID? AdminId { get; set; }
+    public Admin.Admin? Admin { get; set; }
     
     public Teacher.Teacher Teacher { get; set; } 
     public TeacherID TeacherId { get; set; }

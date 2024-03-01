@@ -3,6 +3,7 @@ namespace Shared.Enum;
 public enum FileName
 {
     
-    Admin
+    Admin,
+    Teacher
     
 }

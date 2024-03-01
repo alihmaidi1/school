@@ -356,3 +356,8 @@
 /home/alihmaidi/Desktop/schhol1/api/bin/Debug/net7.0/ru/Microsoft.Data.SqlClient.resources.dll
 /home/alihmaidi/Desktop/schhol1/api/bin/Debug/net7.0/zh-Hans/Microsoft.Data.SqlClient.resources.dll
 /home/alihmaidi/Desktop/schhol1/api/bin/Debug/net7.0/zh-Hant/Microsoft.Data.SqlClient.resources.dll
+/home/alihmaidi/Desktop/schhol1/api/bin/Debug/net7.0/System.Net.WebSockets.WebSocketProtocol.dll
+/home/alihmaidi/Desktop/schhol1/api/bin/Debug/net7.0/RealTime.dll
+/home/alihmaidi/Desktop/schhol1/api/bin/Debug/net7.0/RealTime.pdb
+/home/alihmaidi/Desktop/schhol1/api/bin/Debug/net7.0/Teacher.dll
+/home/alihmaidi/Desktop/schhol1/api/bin/Debug/net7.0/Teacher.pdb

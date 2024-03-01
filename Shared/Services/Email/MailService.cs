@@ -42,10 +42,7 @@ public class MailService:IMailService
             return true;
         }
         catch (Exception ex){
-
             throw new CannotSendEmailException(ex.Message);
-
-
         }
 
 

@@ -6,4 +6,13 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Folder Include="Warning\Command\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Repository\Repository.csproj" />
+      <ProjectReference Include="..\Shared\Shared.csproj" />
+    </ItemGroup>
+
 </Project>

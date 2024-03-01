@@ -14,6 +14,9 @@ public interface IAdminRepository:IgenericRepository<Domain.Entities.Admin.Admin
 
     public bool IsEmailExists(string Email,AdminID id);
 
+    public List<AdminID> GetIds(string Permission);
+    
+    
     public Domain.Entities.Admin.Admin GetByEmail(string Email);
     
     

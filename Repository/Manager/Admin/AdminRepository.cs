@@ -115,4 +115,14 @@ public class AdminRepository:GenericRepository<Domain.Entities.Admin.Admin>,IAdm
         return true;
     }
 
+    public List<AdminID> GetIds(string Permission)
+    {
+
+        return DbContext.Admins.Include(x => x.Role)
+            .Where(x=>x.Role.Permissions.Any(y=>y.Equals(Permission)))
+            .Select(x=>x.Id)
+            .ToList();
+
+    }
+
 }

@@ -18,5 +18,18 @@ public static class QueryExtension
         return !isDes.HasValue || isDes.Value
             ? source?.OrderByDescending(by)
             : source?.OrderBy(by);
+        
     }
+
+
+    public static IQueryable<T> WhereWhenNotNull<T>(this IQueryable<T> source,bool status,Expression<Func<T,bool>> expression)
+    {
+
+        if (status)
+        {
+            return source.Where(expression);
+        }
+
+        return source;
+    } 
 }

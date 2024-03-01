@@ -49,7 +49,9 @@
       <ProjectReference Include="..\Admin\Admin.csproj" />
       <ProjectReference Include="..\Common\Common.csproj" />
       <ProjectReference Include="..\infrutructure\infrutructure.csproj" />
+      <ProjectReference Include="..\RealTime\RealTime.csproj" />
       <ProjectReference Include="..\Shared\Shared.csproj" />
+      <ProjectReference Include="..\Teacher\Teacher.csproj" />
     </ItemGroup>
 
     <ItemGroup>

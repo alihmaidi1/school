@@ -3,7 +3,10 @@ public enum PermissionEnum
 {
 
     Admin,
-    Role
+    Role,
+    Teacher,
+    Vacation,
+    Warning
     
     
 }

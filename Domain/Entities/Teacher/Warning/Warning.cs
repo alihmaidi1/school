@@ -14,7 +14,7 @@ public class Warning:BaseEntity<WarningID>
         
     }
     public string Reason { get; set; }
-    public string Date { get; set; }
+    public int Date { get; set; }
 
     
     public AdminID AdminId { get; set; }

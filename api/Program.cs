@@ -10,6 +10,7 @@ using infrutructure.Seed;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.RateLimiting;
+using RealTime.Notifications.Admin;
 using Repository;
 using schoolmanagment.Base;
 using schoolmanagment.Middleware;
@@ -45,6 +46,12 @@ builder.Services.Configure<MailSetting>(builder.Configuration.GetRequiredSection
 builder.Services.AddHangfire(x => x.UseSqlServerStorage(builder.Configuration["ConnectionStrings:DefaultConnection"]));
 builder.Services.AddHangfireServer();
 
+
+builder.Services.AddSignalR(option =>
+{
+
+    option.EnableDetailedErrors = true;
+});
 
 
 
@@ -142,6 +149,8 @@ app.UseAuthorization();
 
 
 app.UseCors("Policy");
+
+app.MapHub<AdminHub>("/admin");
 
 app.MapControllers();
 
