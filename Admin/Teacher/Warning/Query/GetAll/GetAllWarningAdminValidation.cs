@@ -15,7 +15,7 @@ public class GetAllWarningAdminValidation:AbstractValidator<GetAllWarningAdminQu
 
         RuleFor(x => x.Date)
             .LessThanOrEqualTo(DateTime.Now.Year)
-            .When(x => x.Date != null)
+            .When(x => x.Date!=null)
             .GreaterThan(0)
             .When(x=>x.Date!=null);
     }

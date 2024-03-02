@@ -10,7 +10,7 @@ public class GetAllWarningAdminQuery:IQuery, ICommand
     public int? PageSize { get; set; }
     public Guid? TeacherId { get; set; }
     
-    public int Date { get; set; }
+    public int? Date { get; set; }
 
     
 }

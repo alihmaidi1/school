@@ -14,7 +14,7 @@ public class GetAllWarningHandler:OperationResult,
     {
         this.WarningRepository = WarningRepository;
     }
-    public async wiTask<JsonResult> Handle(GetAllWarningAdminQuery request, CancellationToken cancellationToken)
+    public async Task<JsonResult> Handle(GetAllWarningAdminQuery request, CancellationToken cancellationToken)
     {
         var Result = WarningRepository.GetAll(request.Date,request.TeacherId,request.PageNumber,request.PageSize);
 
