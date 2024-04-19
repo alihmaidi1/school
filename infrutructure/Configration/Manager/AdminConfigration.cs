@@ -1,5 +1,7 @@
 using Domain.Entities.Admin;
+using Domain.Entities.Manager.Admin;
 using Domain.Entities.Role;
+using Domain.Enum;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -11,6 +13,10 @@ public class AdminConfigration:IEntityTypeConfiguration<Admin>
     {
 
         builder.HasKey(Admin => Admin.Id);
+        
+        builder.Property(x => x.Status)
+            .HasDefaultValue(true);
+        builder.HasQueryFilter(x =>x.DateDeleted == null&& !x.Name.Equals(RoleEnum.SuperAdmin.ToString()));
         builder.Property(Admin => Admin.Id)
             .HasConversion(AdminID => AdminID.Value, Value => new AdminID(Value));
 
@@ -24,6 +30,15 @@ public class AdminConfigration:IEntityTypeConfiguration<Admin>
 
         builder.HasMany(x => x.RefreshTokens)
                .WithOne(x => x.Admin).OnDelete(DeleteBehavior.Cascade);
-        
+
+
+        builder.HasMany(x => x.Vacations)
+            .WithOne(x => x.Admin)
+            .HasForeignKey(x => x.AdminId)
+            .OnDelete(DeleteBehavior.Restrict);
+        builder.HasMany(x => x.Warnings)
+            .WithOne(x => x.Admin)
+            .HasForeignKey(x => x.AdminId)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }

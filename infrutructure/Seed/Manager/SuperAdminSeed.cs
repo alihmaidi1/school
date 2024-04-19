@@ -17,7 +17,6 @@ public static class SuperAdminSeed
             {
 
                 Name = RoleEnum.SuperAdmin.ToString(),
-                
                  Permissions = Permissions
 
             };
