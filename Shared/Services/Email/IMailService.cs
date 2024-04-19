@@ -1,9 +1,11 @@
+using Shared.Entity.Interface;
+
 namespace Shared.Services.Email;
 
-public interface IMailService
+public interface IMailService : IBaseSuper
 {
     
-    public bool SendMail(string Email, string subject, string message);
+    public bool SendMail(string email, string subject, string message);
 
     
 }

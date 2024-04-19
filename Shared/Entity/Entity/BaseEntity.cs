@@ -1,8 +1,16 @@
-using Common.Entity.ValueObject;
+using Common.Entity.Entity;
+using Shared.Entity.Interface;
 
-namespace Common.Entity.Entity;
+namespace Shared.Entity.Entity;
 
-public class BaseEntity<TKey> : BaseEntityWithoutId where TKey : StronglyTypeId
+public class BaseEntity : BaseEntityWithoutId, IBaseEntity
 {
-    public TKey Id { get; set; }
+
+    public BaseEntity()
+    {
+        
+        Id=Guid.NewGuid();
+        
+    }
+    public Guid Id { get; set; }
 }

@@ -1,4 +1,4 @@
-namespace Common.Entity.Interface;
+namespace Shared.Entity.Interface;
 
 public interface IBaseEntity
 {

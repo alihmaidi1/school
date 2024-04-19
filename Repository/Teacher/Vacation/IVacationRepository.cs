@@ -8,14 +8,14 @@ using Shared.Entity.EntityOperation;
 
 namespace Repository.Teacher.Vacation;
 
-public interface IVacationRepository:IgenericRepository<Domain.Entities.Teacher.Vacation.Vacation>
+public interface IVacationRepository:IGenericRepository<Domain.Entities.Teacher.Vacation.Vacation>
 {
 
 
-    public bool IsExists(VacationID vacationId);
+    public bool IsExists(Guid vacationId);
 
 
-    public bool ChangeStatus(VacationID vacationId,AdminID adminId, bool Status);
+    public bool ChangeStatus(Guid vacationId,Guid adminId, bool Status);
 
 
     public PageList<GetAllVacationResponse> GetAll(bool? Status,Guid? teacherId, int? pageNumber, int? pageSize);

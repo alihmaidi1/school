@@ -1,6 +1,6 @@
 using Domain.Entities.Teacher.Teacher;
 using Dto.Teacher.Warning;
-using infrutructure;
+using infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Repository.Base;
 using Shared.Entity.EntityOperation;
@@ -19,12 +19,12 @@ public class WarningRepository:GenericRepository<Domain.Entities.Teacher.Warning
      
         return DbContext
             .Warnings
-            .Where(x=>x.TeacherId.Equals(new TeacherID((Guid)teacherId)))
+            .Where(x=>x.TeacherId.Equals((Guid)teacherId))
             .Include(x=>x.Admin)
             .Select(x=>new GetAllWarningResponse()
             {
                  
-                Id = x.Id.Value,
+                Id = x.Id,
                 ManagerName = x.Admin.Name,
                 Reason = x.Reason,
                 Date = x.Date
@@ -38,14 +38,14 @@ public class WarningRepository:GenericRepository<Domain.Entities.Teacher.Warning
         
         return DbContext
             .Warnings
-            .WhereWhenNotNull(teacherId!=null,x=>x.TeacherId.Equals(new TeacherID((Guid)teacherId)))
+            .WhereWhenNotNull(teacherId!=null,x=>x.TeacherId.Equals((Guid)teacherId))
             .WhereWhenNotNull(Date!=null,x=>x.Date==Date)
             .Include(x=>x.Admin)
             .Include(x=>x.Teacher)
             .Select(x=>new GetAllWarningAdminResponse()
             {
                  
-                Id = x.Id.Value,
+                Id = x.Id,
                 ManagerName = x.Admin.Name,
                 Reason = x.Reason,
                 Date = x.Date,

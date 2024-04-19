@@ -5,27 +5,23 @@ using Shared.Entity.EntityOperation;
 
 namespace Repository.Manager.Admin;
 
-public interface IAdminRepository:IgenericRepository<Domain.Entities.Admin.Admin>
+public interface IAdminRepository:IGenericRepository<Domain.Entities.Manager.Admin.Admin>
 {
 
-    public bool IsEmailExists(string Email);
 
-    public bool Delete(AdminID id);
+    public bool Delete(Guid id);
 
-    public bool IsEmailExists(string Email,AdminID id);
 
-    public List<AdminID> GetIds(string Permission);
+    public List<Guid> GetIds(string permission);
     
     
-    public Domain.Entities.Admin.Admin GetByEmail(string Email);
     
     
-    public PageList<GetAllAdmin> GetAlladmin(string? OrderBy, int? pageNumber, int? pageSize);
+    public PageList<GetAllAdmin> GetAll(AdminSorting.OrderBy orderBy, int? pageNumber, int? pageSize,string? search);
 
 
-    public bool IsExists(AdminID id);
 
-    public GetAdminInfo GetInfo(AdminID id);
+    public GetAdminInfo GetInfo(Guid id);
 
     public bool Logout(string Token);
 

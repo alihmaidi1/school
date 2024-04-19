@@ -6,7 +6,8 @@ public enum PermissionEnum
     Role,
     Teacher,
     Vacation,
-    Warning
+    Warning,
+    Parent,
     
     
 }

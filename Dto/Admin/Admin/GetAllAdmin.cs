@@ -12,8 +12,7 @@ public class GetAllAdmin
     
     public string? Image { get; set; }
     
-    public string? Resize { get; set; } 
-    
     public string? Hash { get; set; }
     public bool Status { get; set; }
+    public string Role { get; set; }
 }

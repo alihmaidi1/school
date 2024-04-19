@@ -5,8 +5,7 @@ using Shared.OperationResult;
 
 namespace Admin.Manager.Role.Query.GetAll;
 
-public class GetAllRoleHandler:OperationResult,
-    IQueryHandler<GetRolesQuery>
+public class GetAllRoleHandler:OperationResult,IQueryHandler<GetRolesQuery>
 
 {
     private readonly IRoleRepository roleRepository;
@@ -20,8 +19,7 @@ public class GetAllRoleHandler:OperationResult,
     
     public async Task<JsonResult> Handle(GetRolesQuery request, CancellationToken cancellationToken)
     {
-        var Result = roleRepository.GetAll(request.OrderBy, request.PageNumber, request.PageSize);
-
+        var Result = roleRepository.GetAll(request.PageNumber, request.PageSize,request.Search);
         return Success(Result, "this is all role");
 
     }

@@ -5,37 +5,60 @@ using Admin.Manager.Role.Query.Get;
 using Admin.Manager.Role.Query.GetAll;
 using Admin.Manager.Role.Query.GetPermissions;
 using Domain.AppMetaData.Admin;
-using Domain.Attributes;
 using Domain.Enum;
+using Dto.Admin.Role;
+using infrastructure.Attribute;
 using Microsoft.AspNetCore.Mvc;
-using schoolmanagment.Base;
+using schoolManagement.Base;
+using Shared.Entity.EntityOperation;
+using Shared.OperationResult.Base;
 using Shared.Swagger;
 
 namespace schoolmanagment.Controllers.Admin;
 
 
+[Route("Api/SuperAdmin/[controller]/[action]")]
 [ApiGroup(ApiGroupName.All, ApiGroupName.Admin)]
-[AppAuthorize(Policy = nameof(PermissionEnum.Role))]
+[CheckTokenSession(Policy = nameof(PermissionEnum.Admin))]
 public class RoleController:ApiController
 {
-    
-    [HttpGet(RoleRouter.prefix)]
-    public async Task<IActionResult> AddAdmin([FromQuery] GetRolesQuery command,CancellationToken Token)
+    /// <summary>
+    /// get all role 
+    /// </summary>
+    /// <returns>return all role in pagination</returns>
+   
+    [Produces(typeof(OperationResultBase<PageList<GetAllRole>>))]
+
+    [HttpGet]
+    public async Task<IActionResult> GetAll([FromQuery] GetRolesQuery command,CancellationToken Token)
     {
         var response = await this.Mediator.Send(command,Token);
         return response;
 
     }
     
-    [HttpGet(RoleRouter.Admins)]
-    public async Task<IActionResult> AddAdmin([FromQuery] GetManagerByRoleQuery command,CancellationToken Token)
+     /// <summary>
+    /// get all admin by role id 
+    /// </summary>
+    /// <returns>return all admin in pagination</returns>
+    [Produces(typeof(OperationResultBase<PageList<GetAllAdminByRole>>))]
+   
+    [HttpGet]
+    public async Task<IActionResult> GetAllAdminByRole([FromQuery] GetManagerByRoleQuery command,CancellationToken Token)
     {
         var response = await this.Mediator.Send(command,Token);
         return response;
 
     }
 
-    [HttpGet(RoleRouter.Permission)]
+  /// <summary>
+    /// get all Permission that you should use in add role 
+    /// </summary>
+    /// <returns>return all permissions</returns>
+   
+    [Produces(typeof(OperationResultBase<List<string>>))]
+
+    [HttpGet]
     public async Task<IActionResult> GetPermissions(CancellationToken Token)
     {
         var response = await this.Mediator.Send(new GetPermissionsQuery(),Token);
@@ -43,8 +66,16 @@ public class RoleController:ApiController
 
     }
     
-    
-    [HttpPost(RoleRouter.prefix)]
+     /// <summary>
+    /// add a new role to use 
+    /// </summary>
+    /// <returns>return response true if operation is successed</returns>
+
+    [HttpPost]
+
+    [Produces(typeof(OperationResultBase<Boolean>))]
+
+   
     public async Task<IActionResult> AddRole([FromBody] AddRoleCommand request,CancellationToken Token)
     {
         var response = await this.Mediator.Send(request,Token);
@@ -52,15 +83,28 @@ public class RoleController:ApiController
 
     }
     
-    [HttpPut(RoleRouter.prefix)]
+     /// <summary>
+    ///  update role  
+    /// </summary>
+    /// <returns>return response true if operation is successed</returns>
+
+    [HttpPut]
     public async Task<IActionResult> UpdateRole([FromBody] UpdateRoleCommand request,CancellationToken Token)
     {
         var response = await this.Mediator.Send(request,Token);
         return response;
     }
     
+
+     /// <summary>
+    /// delete role that not any admin use it 
+    /// </summary>
+    /// <returns>return response true if operation is successed</returns>
+
+    [HttpDelete]
     
-    [HttpDelete(RoleRouter.prefix)]
+    [Produces(typeof(OperationResultBase<Boolean>))]
+
     public async Task<IActionResult> DeleteRole([FromQuery] DeleteRoleCommand request,CancellationToken Token)
     {
         var response = await this.Mediator.Send(request,Token);

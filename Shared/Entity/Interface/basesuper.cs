@@ -1,5 +1,16 @@
-namespace Common.Entity.Interface;
+namespace Shared.Entity.Interface;
 
-public interface basesuper
+public interface IBaseSuper
 {
+}
+
+public interface IBaseSuperTransient
+{
+    
+}
+
+public interface IBaseSuperSingleTon
+{
+    
+    
 }

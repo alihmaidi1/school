@@ -1,11 +1,8 @@
-using System.Data;
-using System.Reflection;
-using EntityFramework.BulkExtension.DataBases.Upsert;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace EntityFramework.BulkExtension.EntityFramework;
+namespace Shared.test.EntityFramework;
 
 public class Helper
 {

@@ -5,19 +5,19 @@ using Shared.Entity.EntityOperation;
 
 namespace Repository.Teacher.Teacher;
 
-public interface ITeacherRepository:IgenericRepository<Domain.Entities.Teacher.Teacher.Teacher>
+public interface ITeacherRepository:IGenericRepository<Domain.Entities.Teacher.Teacher.Teacher>
 {
     
-    public PageList<GetAllTeacher> GetAllTecher(string? OrderBy, int? pageNumber, int? pageSize);
+    public PageList<GetAllTeacher> GetAllTecher( int? pageNumber, int? pageSize,string? Search);
 
 
-    public bool IsExists(string Email);
+    // public bool IsExists(string Email);
 
 
-    public bool IsExists(TeacherID ID);
+    // public bool IsExists(Guid ID);
 
-    public bool IsUnique(TeacherID id ,string Email);
+    // public bool IsUnique(Guid id ,string Email);
 
-    public Domain.Entities.Teacher.Teacher.Teacher Get(TeacherID id);
+    public Domain.Entities.Teacher.Teacher.Teacher Get(Guid id);
 
 }

@@ -2,7 +2,7 @@ using Common.CQRS;
 
 namespace Admin.Teacher.Warning.Query.GetAll;
 
-public class GetAllWarningAdminQuery:IQuery, ICommand
+public class GetAllWarningAdminQuery:IQuery
 {
     
     public int? PageNumber { get; set; }

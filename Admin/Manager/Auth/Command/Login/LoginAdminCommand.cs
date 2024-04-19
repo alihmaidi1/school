@@ -1,14 +1,14 @@
-using MediatR;
-using Microsoft.AspNetCore.Mvc;
+using Common.CQRS;
+using Shared.CQRS;
 
-namespace Admin.Auth.Command.Login;
+namespace Admin.Manager.Auth.Command.Login;
 
-public class LoginAdminCommand:IRequest<JsonResult>
+public class LoginAdminCommand: ICommand
 {
  
     
-    public string Email { get; set; }
+    public string Email { get; init; }
 
-    public string Password { get; set; }
+    public string Password { get; init; }
 
 }

@@ -8,16 +8,16 @@ namespace Shared.Services.Email;
 
 public class MailService:IMailService
 {
-    private readonly MailSetting MailSetting;
+    private readonly MailSetting _mailSetting;
 
-    public MailService(IOptions<MailSetting> MailSetting) {
+    public MailService(IOptions<MailSetting> mailSetting) {
 
 
-        this.MailSetting = MailSetting.Value;
+        this._mailSetting = mailSetting.Value;
     }
 
 
-    public bool SendMail(string Email, string subject, string message)
+    public bool SendMail(string email, string subject, string message)
     {
         
         
@@ -25,8 +25,8 @@ public class MailService:IMailService
         {
 
             using MimeMessage emailMessage = new MimeMessage();
-            emailMessage.From.Add(MailboxAddress.Parse(MailSetting.From));
-            emailMessage.To.Add(MailboxAddress.Parse(Email));
+            emailMessage.From.Add(MailboxAddress.Parse(_mailSetting.From));
+            emailMessage.To.Add(MailboxAddress.Parse(email));
             emailMessage.Subject = subject;
             emailMessage.Body = new TextPart(TextFormat.Text)
             {
@@ -35,8 +35,8 @@ public class MailService:IMailService
             };
             using SmtpClient mailClient = new SmtpClient();
 
-            mailClient.Connect(MailSetting.SmtpServer,MailSetting.Port,MailKit.Security.SecureSocketOptions.StartTls);
-            mailClient.Authenticate(MailSetting.Username,MailSetting.Password); 
+            mailClient.Connect(_mailSetting.SmtpServer,_mailSetting.Port,MailKit.Security.SecureSocketOptions.StartTls);
+            mailClient.Authenticate(_mailSetting.Username,_mailSetting.Password); 
             mailClient.Send(emailMessage);
             mailClient.Disconnect(true);
             return true;

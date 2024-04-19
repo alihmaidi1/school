@@ -11,10 +11,8 @@ public class DeleteRoleCommandValidation:AbstractValidator<DeleteRoleCommand>
     {
         RuleFor(x => x.Id)
             .NotEmpty()
-            .WithMessage("id should be not empty")
             .NotNull()
-            .WithMessage("id should be not null")
-            .Must(Id => roleRepository.IsExists(new RoleID(Id)))
+            .Must(Id => roleRepository.IsExists(Id).GetAwaiter().GetResult())
             .WithMessage("id is not exists in our data");
     }
     

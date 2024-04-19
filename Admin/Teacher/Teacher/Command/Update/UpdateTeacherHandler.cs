@@ -1,73 +1,63 @@
-using Common.CQRS;
-using Domain.Entities.Teacher.Teacher;
 using Hangfire;
+using infrastructure;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using Repository.Manager.Admin;
 using Repository.Teacher.Teacher;
-using Shared.Enum;
+using Shared.Constant;
+using Shared.CQRS;
 using Shared.File;
+using Shared.Helper;
 using Shared.OperationResult;
 using Shared.Services.Email;
 
 namespace Admin.Teacher.Teacher.Command.Update;
 
-public class UpdateTeacherHandler:OperationResult,
-    ICommandHandler<UpdateTeacherCommand>
+public class UpdateTeacherHandler:OperationResult,ICommandHandler<UpdateTeacherCommand>
 {
-    private ITeacherRepository TeacherRepository;
-    private IWebHostEnvironment webHostEnvironment;
-    private string uri;
-    private readonly IMailService MailService;
+    private ITeacherRepository _teacherRepository;
+    private ApplicationDbContext _context;
 
-    public UpdateTeacherHandler(IMailService MailService,IConfiguration configuration,ITeacherRepository TeacherRepository,IWebHostEnvironment webHostEnvironment)
+    private readonly IMailService _mailService;
+
+    public UpdateTeacherHandler(ApplicationDbContext context,IMailService MailService,IConfiguration configuration,ITeacherRepository TeacherRepository,IWebHostEnvironment webHostEnvironment)
     {
 
-        this.MailService = MailService;
-        uri = configuration["Url"];
-        this.webHostEnvironment = webHostEnvironment;
-        this.TeacherRepository = TeacherRepository;
+        _context=context;
+
+        _mailService = MailService;
+        _teacherRepository = TeacherRepository;
 
     }
     
     public async Task<JsonResult> Handle(UpdateTeacherCommand request, CancellationToken cancellationToken)
     {
         
-        var oldAdmin = TeacherRepository.Get(new TeacherID(request.Id));
-        var Admin = new Domain.Entities.Teacher.Teacher.Teacher()
+        var image=_context.Images.First(x=>x.Id==request.Image);
+        
+        var teacher = new Domain.Entities.Teacher.Teacher.Teacher()
         {
-
-            Id = new TeacherID(request.Id),
+        
+            Id = request.Id,
             Email = request.Email,
-            Password = request.Password,
-            Name = request.Name,
-            Image = oldAdmin.Image,
-            Resize = oldAdmin.Resize,
-            Hash = oldAdmin.Hash
+            Password = PasswordHelper.HashPassword(request.Password),
+            Name = request.Name
         };
 
-        if (request.Image is not null)
-        {
-
-            var imageResponse = request.Image.OptimizeFile(FileName.Teacher.ToString(),webHostEnvironment.WebRootPath,uri);
-            Admin.Image = imageResponse.Url;
-            Admin.Resize = imageResponse.resized;
-            Admin.Hash = imageResponse.hash;
-            if (oldAdmin.Image is not null)
-            {
-                File.Delete(oldAdmin.Image);
-                File.Delete(oldAdmin.Resize);
-            }
-        }
-
-        TeacherRepository.UpdateAsync(Admin);
-        BackgroundJob.Enqueue(() =>
-            MailService.SendMail(request.Email, "Update Teacher Info In School",
-                $"this is your email In School and this is your password {request.Password}")
-        );
-
         
+        if (request.Image is not null){
+
+            teacher.Image=image.Url.GetNewPath(FolderName.Teacher).httpPath;
+            teacher.Hash=image.Hash;
+            _context.Images.Remove(image);
+        }
+        _context.Teachers.Update(teacher);
+        await _context.SaveChangesAsync(cancellationToken);
+
+        if(request.Image is not null) image!.Url.MoveFile(image.Url.GetNewPath(FolderName.Teacher).localPath);
+    
+        BackgroundJob.Enqueue(()=>_mailService.SendMail(request.Email, "Update Teacher Info In School",$"this is your email In School and this is your password {request.Password}"));
+
         return Success("admin was updated successfully");
     }
 }

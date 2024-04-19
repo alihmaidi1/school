@@ -1,6 +1,16 @@
-namespace Dto.Admin.Auth.Mapper;
+using AutoMapper;
+using Domain.Entities.Account;
+using Dto.Admin.Auth.Dto;
 
-public class AdminAuthMapper
+namespace Dto.Admin.Auth;
+
+public class AdminAuthMapper : Profile
 {
+
+    public AdminAuthMapper()
+    {
+
+        CreateMap<AccountSession,AdminRefreshTokenDto>().ReverseMap();
+    }
     
 }

@@ -3,10 +3,8 @@
 /home/alihmaidi/Desktop/schhol1/RealTime/bin/Debug/net7.0/RealTime.pdb
 /home/alihmaidi/Desktop/schhol1/RealTime/bin/Debug/net7.0/Domain.dll
 /home/alihmaidi/Desktop/schhol1/RealTime/bin/Debug/net7.0/Shared.dll
-/home/alihmaidi/Desktop/schhol1/RealTime/bin/Debug/net7.0/EntityFrameworkCore.EncryptColumn.dll
 /home/alihmaidi/Desktop/schhol1/RealTime/bin/Debug/net7.0/Domain.pdb
 /home/alihmaidi/Desktop/schhol1/RealTime/bin/Debug/net7.0/Shared.pdb
-/home/alihmaidi/Desktop/schhol1/RealTime/bin/Debug/net7.0/EntityFrameworkCore.EncryptColumn.pdb
 /home/alihmaidi/Desktop/schhol1/RealTime/obj/Debug/net7.0/RealTime.csproj.AssemblyReference.cache
 /home/alihmaidi/Desktop/schhol1/RealTime/obj/Debug/net7.0/RealTime.GeneratedMSBuildEditorConfig.editorconfig
 /home/alihmaidi/Desktop/schhol1/RealTime/obj/Debug/net7.0/RealTime.AssemblyInfoInputs.cache

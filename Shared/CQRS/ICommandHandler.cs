@@ -1,7 +1,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Common.CQRS;
+namespace Shared.CQRS;
 
 public interface ICommandHandler<TCommand> : IRequestHandler<TCommand, JsonResult> where TCommand : ICommand
 {

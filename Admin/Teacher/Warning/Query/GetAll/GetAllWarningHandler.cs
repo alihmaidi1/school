@@ -6,7 +6,7 @@ using Shared.OperationResult;
 namespace Admin.Teacher.Warning.Query.GetAll;
 
 public class GetAllWarningHandler:OperationResult,
-    ICommandHandler<GetAllWarningAdminQuery>
+    IQueryHandler<GetAllWarningAdminQuery>
 {
     private IWarningRepository WarningRepository;
 

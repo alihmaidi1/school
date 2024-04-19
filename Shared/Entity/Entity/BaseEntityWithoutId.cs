@@ -1,4 +1,5 @@
-using Common.Entity.Interface;
+using Shared.Entity.Entity;
+using Shared.Entity.Interface;
 
 namespace Common.Entity.Entity;
 

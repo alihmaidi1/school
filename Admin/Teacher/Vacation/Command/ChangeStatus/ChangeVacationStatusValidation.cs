@@ -10,16 +10,16 @@ public class ChangeVacationStatusValidation:AbstractValidator<ChnageVacationStat
     public ChangeVacationStatusValidation(IVacationRepository vacationRepository)
     {
 
-        RuleFor(x => x.Id)
-            .NotEmpty()
-            .NotNull()
-            .Must(x => vacationRepository.IsExists(new VacationID(x)))
-            .WithMessage("this id is not exists in our data");
-        
-        
-        RuleFor(x => x.Status)
-            .NotEmpty()
-            .NotNull();
+        // RuleFor(x => x.Id)
+        //     .NotEmpty()
+        //     .NotNull()
+        //     .Must(x => vacationRepository.IsExists(new VacationID(x)))
+        //     .WithMessage("this id is not exists in our data");
+        //
+        //
+        // RuleFor(x => x.Status)
+        //     .NotEmpty()
+        //     .NotNull();
 
     }
     

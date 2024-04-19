@@ -1,10 +1,9 @@
-using EntityFramework.BulkExtension.EntityFramework;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 
-namespace EntityFramework.BulkExtension.DataBases.Upsert;
+namespace Shared.test.DataBases.Upsert;
 
-public class UpsertMethod
+public static class UpsertMethod
 {
     /// <summary>
     /// add entity if it is not exists in database and if exists update it
@@ -14,7 +13,7 @@ public class UpsertMethod
     /// <param name="updateConditionColumn">passing property name list that you want to match upsert command to database</param>
     /// <typeparam name="T">you should passing this type as entity framework model</typeparam>
     /// <returns>return if upsert command executed successfully</returns>
-    public static bool Upsert<T>(DbSet<T> dbSet,T entity,List<string>? updateConditionColumn=null) where T : class
+    public static bool Upsert<T>(this DbSet<T> dbSet,T entity,List<string>? updateConditionColumn=null) where T : class
     {
         ArgumentNullException.ThrowIfNull(dbSet);
         ArgumentNullException.ThrowIfNull(entity);
@@ -25,7 +24,7 @@ public class UpsertMethod
 
     
 
-    public static bool UpsertRange<T>(DbSet<T> dbSet, List<T> entities,List<string>? updateExpression=null) where T : class
+    public static bool UpsertRange<T>(this DbSet<T> dbSet, List<T> entities,List<string>? updateExpression=null) where T : class
     {
         ArgumentNullException.ThrowIfNull(dbSet);
         ArgumentNullException.ThrowIfNull(entities);
@@ -41,25 +40,21 @@ public class UpsertMethod
 
 
         var context = dbSet.GetService<ICurrentDbContext>().Context;
-        using var conn = context.Database.GetDbConnection();
-        conn.Open();
-        using var transaction = conn.BeginTransaction();
+        
         try
         {
 
-            var tableName = Helper.GetTableName(dbSet);
-            var mergeColumns = Helper.GetNonGeneratedPrimaryKeyProperties(dbSet).Select(x=>x.GetColumnName()).ToList();
-            var joinColumns =updateCondition??Helper.GetAllProperty(dbSet).Select(x=>x.GetColumnName()).ToList();
-            var command=conn.CreateCommand();
+            var tableName = EntityFramework.Helper.GetTableName(dbSet);
+            var mergeColumns = EntityFramework.Helper.GetNonGeneratedPrimaryKeyProperties(dbSet).Select(x=>x.GetColumnName()).ToList();
+            var joinColumns =updateCondition??EntityFramework.Helper.GetAllProperty(dbSet).Select(x=>x.GetColumnName()).ToList();
+            var entityvalues=EntityFramework.Helper.ConvertToListOfLists<T>(entities);
+            var command= SqlServer.GetCommand(tableName, mergeColumns, joinColumns,entityvalues);
+            context.Database.ExecuteSqlRaw(command);
+
             
-            command.CommandText = SqlServer.GetCommand(tableName, mergeColumns, joinColumns,Helper.ConvertToListOfLists<T>(entities));
-            command.Transaction = transaction;
-            command.ExecuteNonQuery();
-            transaction.Commit();
         }
         catch (Exception e)
         {
-            transaction.Rollback();
 
             throw;
         }

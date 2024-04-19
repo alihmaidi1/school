@@ -2,19 +2,22 @@ using Common.CQRS;
 using Domain.Entities.Manager.Admin;
 using Domain.Entities.Role;
 using Hangfire;
+using infrastructure;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Repository.Manager.Admin;
+using Shared.Constant;
+using Shared.CQRS;
 using Shared.Enum;
 using Shared.File;
+using Shared.Helper;
 using Shared.OperationResult;
 using Shared.Services.Email;
 
 namespace Admin.Manager.Admin.Command.Update;
 
-public class UpdateAdminHandler:OperationResult,
-    ICommandHandler<UpdateAdminCommand>
+public class UpdateAdminHandler:OperationResult,ICommandHandler<UpdateAdminCommand>
 
 {
     private readonly IAdminRepository AdminRepository;
@@ -22,15 +25,16 @@ public class UpdateAdminHandler:OperationResult,
     private readonly IMailService MailService;
 
     private IWebHostEnvironment webHostEnvironment;
+    private ApplicationDbContext _context;
 
     private string uri;
-    public UpdateAdminHandler(IConfiguration configuration,IWebHostEnvironment webHostEnvironment, IAdminRepository AdminRepository, IMailService MailService)
+    public UpdateAdminHandler(ApplicationDbContext context,IConfiguration configuration,IWebHostEnvironment webHostEnvironment, IAdminRepository AdminRepository, IMailService MailService)
     {
 
         uri = configuration["Url"];
         this.webHostEnvironment = webHostEnvironment;
         this.MailService = MailService;
-        
+        _context=context;
         this.AdminRepository = AdminRepository;
 
     }
@@ -39,41 +43,26 @@ public class UpdateAdminHandler:OperationResult,
     public async Task<JsonResult> Handle(UpdateAdminCommand request, CancellationToken cancellationToken)
     {
 
-        var oldAdmin = AdminRepository.GetInfo(new AdminID(request.AdminId));
-        var Admin = new Domain.Entities.Admin.Admin()
-        {
+        var Admin = await AdminRepository.GetByIdAsync(request.AdminId);
+        var image = _context.Images.FirstOrDefault(x => x.Id == request.Image);
+        
+        Admin.RoleId=request.RoleId;
+        Admin.Email=request.Email;
+        Admin.Password=PasswordHelper.HashPassword(request.Password);
+        Admin.Status=request.Status;
+        Admin.Name=request.Name;
+        if(request.Image is not null){
 
-            Id = new AdminID(request.AdminId),
-            RoleId = new RoleID(request.RoleId),
-            Email = request.Email,
-            Password = request.Password,
-            Status = request.Status,
-            Name = request.Name,
-            Image = oldAdmin.Image,
-            Resize = oldAdmin.Resize,
-            Hash = oldAdmin.Hash
-        };
-
-        if (request.Image is not null)
-        {
-
-            var imageResponse = request.Image.OptimizeFile(FileName.Admin.ToString(),webHostEnvironment.WebRootPath,uri);
-            Admin.Image = imageResponse.Url;
-            Admin.Resize = imageResponse.resized;
-            Admin.Hash = imageResponse.hash;
-            if (oldAdmin.Image is not null)
-            {
-                File.Delete(oldAdmin.Image);
-                File.Delete(oldAdmin.Resize);
-            }
+            Admin.Image=image!.Url.GetNewPath(FolderName.Admin).httpPath;
+            Admin.Hash=image.Hash;
+            _context.Images.Remove(image);
         }
-        await AdminRepository.UpdateAsync(Admin);
-        BackgroundJob.Enqueue(() =>
-                
-            MailService.SendMail(request.Email, "new Admin In School",
-                $"You Are New Manager In School and this is your password {request.Password}")
-        );
+        _context.Admins.Update(Admin);
+        await _context.SaveChangesAsync(cancellationToken);
+        if(request.Image is not null) image!.Url.MoveFile(image.Url.GetNewPath(FolderName.Admin).localPath);
+
 
         return Success("admin was updated successfully");
+
     }
 }

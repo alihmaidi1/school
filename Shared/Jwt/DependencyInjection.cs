@@ -11,72 +11,53 @@ namespace Shared.Jwt;
 public static class DependencyInjection
 {
     
-    public static IServiceCollection AddJwtConfigration(this IServiceCollection services, IConfiguration Configuration)
+    public static IServiceCollection AddJwtConfiguration(this IServiceCollection services, IConfiguration configuration)
     {
-            
 
-        var Authentication=services.AddAuthentication(options =>
+
+
+        var iJwtOption = configuration.GetSection("Jwt");
+        services.Configure<JwtSetting>(iJwtOption);
+        var authentication = services.AddAuthentication(options =>
+        {
+            options.DefaultAuthenticateScheme = "school";
+            options.DefaultChallengeScheme = "school";
+            options.DefaultScheme = "school";
+        }).AddJwtBearer("school", options =>
         {
 
-
-            options.DefaultAuthenticateScheme = nameof(JwtSchema.Admin);
-            options.DefaultChallengeScheme = nameof(JwtSchema.Admin);
-            options.DefaultScheme = nameof(JwtSchema.Admin);
-        });
-
-        
-        
-        foreach(var SchmeaName in System.Enum.GetNames(typeof(JwtSchema)))
-        {
-            var JwtOption = Configuration.GetSection(SchmeaName.ToString());
-
-            Authentication.AddJwtBearer(SchmeaName.ToString(), options =>
+            options.SaveToken = true;
+            options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
             {
-                options.SaveToken = true;
-                options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+
+                ValidateIssuerSigningKey = true,
+                ValidateIssuer = true,
+                ValidateAudience = true,
+                ValidateLifetime = true,
+                ValidIssuer = iJwtOption["Issuer"],
+                ValidAudience = iJwtOption["Audience"],
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(iJwtOption["Key"]??""))
+
+
+            };
+            options.Events = new JwtBearerEvents
+            {
+                    
+                OnChallenge = context =>
                 {
-
-                    ValidateIssuerSigningKey = true,
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
-                    ValidateLifetime = true,
-                    ValidIssuer = JwtOption["Issuer"],
-                    ValidAudience = JwtOption["Audience"],
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JwtOption["Key"]))
-
-
-                };
-                options.Events = new JwtBearerEvents
-                {
+                    context.HandleResponse();
+                    throw new UnAuthenticationException();
                     
-                    OnChallenge = async context =>
-                    {
-                        context.HandleResponse();
+                },
                     
-                        throw new UnAuthenticationException();
-                    
-                    
-                    },
-                    
-                    OnForbidden = async context =>
-                    {
-                    
-                    
-                    
-                        throw new UnAuthorizationException();
-                    
-                    
-                    }
-                    
-
-
-                };
+                OnForbidden = context => throw new UnAuthorizationException()
+            };
 
 
 
-            });
-        }
 
+        });
+        
         return services;
 
     }

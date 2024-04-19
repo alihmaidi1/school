@@ -1,0 +1,166 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>api</name>
+    </assembly>
+    <members>
+        <member name="M:schoolmanagment.Controllers.Admin.AdminController.GetAllAdmin(Admin.Manager.Admin.Query.GetAll.GetAllAdminQuery,System.Threading.CancellationToken)">
+            <summary>
+            Get All Admin With Role Name
+            </summary>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Admin.AdminController.GetAdmin(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Get  Admin With Role Name
+            </summary>    
+        </member>
+        <member name="M:schoolmanagment.Controllers.Admin.AdminController.Add(Admin.Manager.Admin.Command.Add.AddAdminCommand,System.Threading.CancellationToken)">
+            <summary>
+            Create a new admin and notify him
+            </summary>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Admin.AdminController.updateAdmin(Admin.Manager.Admin.Command.Update.UpdateAdminCommand,System.Threading.CancellationToken)">
+            <summary>
+            update admin info
+            </summary>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Admin.AdminController.updateAdminStatus(Admin.Manager.Admin.Command.ChangeStatus.ChangeAdminStatusCommand,System.Threading.CancellationToken)">
+            <summary>
+            update admin status
+            </summary>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Admin.AdminController.DeleteAdmin(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete  admin
+            </summary>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Admin.AuthController.Login(Admin.Manager.Auth.Command.Login.LoginAdminCommand,System.Threading.CancellationToken)">
+            <summary>
+            Login admin to dashboard
+            </summary>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Admin.AuthController.Logout">
+            <summary>
+            logout admin from dashboard
+            </summary>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Admin.AuthController.RefreshToken(Admin.Manager.Auth.Command.RefreshToken.RefreshAdminTokenCommand)">
+            <summary>
+            Refresh Admin token and refresh token  for use at one time
+            </summary>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Admin.RoleController.GetAll(Admin.Manager.Role.Query.GetAll.GetRolesQuery,System.Threading.CancellationToken)">
+            <summary>
+            get all role 
+            </summary>
+            <returns>return all role in pagination</returns>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Admin.RoleController.GetAllAdminByRole(Admin.Manager.Role.Query.Get.GetManagerByRoleQuery,System.Threading.CancellationToken)">
+            <summary>
+            get all admin by role id 
+            </summary>
+            <returns>return all admin in pagination</returns>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Admin.RoleController.GetPermissions(System.Threading.CancellationToken)">
+            <summary>
+            get all Permission that you should use in add role 
+            </summary>
+            <returns>return all permissions</returns>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Admin.RoleController.AddRole(Admin.Manager.Role.Command.Add.AddRoleCommand,System.Threading.CancellationToken)">
+            <summary>
+            add a new role to use 
+            </summary>
+            <returns>return response true if operation is successed</returns>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Admin.RoleController.UpdateRole(Admin.Manager.Role.Command.Update.UpdateRoleCommand,System.Threading.CancellationToken)">
+            <summary>
+             update role  
+            </summary>
+            <returns>return response true if operation is successed</returns>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Admin.RoleController.DeleteRole(Admin.Manager.Role.Command.Delete.DeleteRoleCommand,System.Threading.CancellationToken)">
+            <summary>
+            delete role that not any admin use it 
+            </summary>
+            <returns>return response true if operation is successed</returns>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Admin.TeacherController.GetAllTeacher(Admin.Teacher.Teacher.Query.GetAll.GetAllTeacherQuery,System.Threading.CancellationToken)">
+            <summary>
+            get all Teacher with subject count in this year 
+            </summary>
+            <returns>return all role in pagination</returns>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Admin.TeacherController.GetAllSubjectWithStudent(Admin.Teacher.Teacher.Query.GetAllSubjectAndStudent.GetAllSubjectAndStudentQuery,System.Threading.CancellationToken)">
+            <summary>
+            get all Teacher with subject and student in all year 
+            </summary>
+            <returns>return all role in pagination</returns>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Admin.TeacherController.GetAllSubjectAndLeson(Admin.Teacher.Teacher.Query.GetAllLeson.GetAllTeacherLesonQuery,System.Threading.CancellationToken)">
+            <summary>
+            get all Teacher  subject  and leson  in specific year 
+            </summary>
+            <returns>return all role in pagination</returns>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Admin.TeacherController.GetAllTeacherQuez(Admin.Teacher.Teacher.Query.GetAllQuez.GetAllTeacherQuezQuery,System.Threading.CancellationToken)">
+            <summary>
+            get all Teacher  subject  and leson  in specific year 
+            </summary>
+            <returns>return all role in pagination</returns>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Admin.TeacherController.AddTeacher(Admin.Teacher.Teacher.Command.Add.AddTeacherCommand,System.Threading.CancellationToken)">
+            <summary>
+            add new   Teacher and notify him by email 
+            </summary>
+            <returns>return if the operation successed</returns>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Admin.TeacherController.UpdateTeacher(Admin.Teacher.Teacher.Command.Update.UpdateTeacherCommand,System.Threading.CancellationToken)">
+            <summary>
+            update exists Teacher info and notify him by email 
+            </summary>
+            <returns>return if the operation successed</returns>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Admin.TeacherController.DeleteTeacher(Admin.Teacher.Teacher.Command.Delete.DeleteTeacherCommand,System.Threading.CancellationToken)">
+            <summary>
+            delete  Teacher  
+            </summary>
+            <returns>return if the operation successed</returns>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Common.ImageController.UploadImage(Common.Feature.Image.Command.UploadSingle.UploadImageCommand)">
+            <summary>
+            upload image with at great size is 1 mega
+            </summary>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Common.ImageController.UploadBase64Image(Common.Feature.Image.Command.UploadBase64.UploadBase64Command)">
+            <summary>
+            upload base64 image 
+            </summary>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Common.ImageController.UploadImages(Common.Feature.Image.Command.UploadImages.UploadImagesCommand)">
+            <summary>
+            upload images with at great size is 1 mega for one
+            </summary>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Teacher.AuthController.LoginTeacher(Teacher.Auth.Login.LoginTeacherCommand,System.Threading.CancellationToken)">
+            <summary>
+            Login teacher to dashboard
+            </summary>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Teacher.AuthController.LogoutTeacher(Teacher.Auth.Logout.LogoutTeacherCommand,System.Threading.CancellationToken)">
+            <summary>
+            logout teacher from dashboard
+            </summary>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Teacher.AuthController.RefreshToken(Teacher.Auth.RefreshToken.RefreshTokenTeacherCommand)">
+            <summary>
+            Refresh Teacher token and refresh token  for use at one time
+            </summary>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Teacher.LesonController.Add(Teacher.Leson.Command.Add.AddLesonCommand,System.Threading.CancellationToken)">
+            <summary>
+            Create a new leson to specific subject in currect year
+            </summary>
+        </member>
+    </members>
+</doc>

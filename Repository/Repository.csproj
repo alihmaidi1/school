@@ -9,12 +9,11 @@
     <ItemGroup>
       <ProjectReference Include="..\Domain\Domain.csproj" />
       <ProjectReference Include="..\Dto\Dto.csproj" />
-      <ProjectReference Include="..\infrutructure\infrutructure.csproj" />
+      <ProjectReference Include="..\infrastructure\infrastructure.csproj" />
       <ProjectReference Include="..\Shared\Shared.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Hangfire" Version="1.8.11" />
       <PackageReference Include="Scrutor" Version="4.2.2" />
     </ItemGroup>
 

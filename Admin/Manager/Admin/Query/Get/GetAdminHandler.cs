@@ -1,6 +1,4 @@
-using Admin.Admin.Query.GetAll;
 using Common.CQRS;
-using Domain.Entities.Manager.Admin;
 using Microsoft.AspNetCore.Mvc;
 using Repository.Manager.Admin;
 using Shared.OperationResult;
@@ -21,8 +19,8 @@ public class GetAdminHandler:OperationResult,
     public async Task<JsonResult> Handle(GetAdminQuery request, CancellationToken cancellationToken)
     {
 
-        var Result = adminRepository.GetInfo(new AdminID(request.id));
-        return Success(Result,"this is admin info");
-        throw new NotImplementedException();
+        var result=adminRepository.GetInfo(request.id);
+        return Success(result, "this is all admin");
+
     }
 }

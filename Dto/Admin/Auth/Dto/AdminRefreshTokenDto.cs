@@ -1,10 +1,12 @@
-using Domain.Entities.Manager.Admin;
+namespace Dto.Admin.Auth.Dto;
 
-namespace Dto.Admin.Auth;
-
-public static class AdminRefreshTokenDto
+public  class AdminRefreshTokenDto
 {
 
+    public string Token { get; set; }
     
-    
+    public string RefreshToken { get; set; }
+
+    public DateTime ExpireAt { get; set; }
+
 }

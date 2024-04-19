@@ -1,9 +1,10 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Shared.CQRS;
 
-namespace Admin.Auth.Command.Logout;
+namespace Admin.Manager.Auth.Command.Logout;
 
-public class LogoutAdminCommand:IRequest<JsonResult>
+public class LogoutAdminCommand: ICommand
 {
     
 }

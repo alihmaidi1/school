@@ -1,13 +1,15 @@
 using Domain.Base.Entity;
+using Domain.Entities.Account;
 using Dto;
+using Shared.Entity.Interface;
 
 namespace Repository.Jwt;
 
-public interface IJwtRepository
+public interface IJwtRepository : IBaseSuperTransient
 {
-    public Task<(RefreshToken refreshToken,string token,int ExpiredAt)> GetTokensInfo(Guid Id,string Email);
+    public Task<AccountSession> GetTokensInfo(Guid id,string email,List<string>? permissions);
 
-    public string GetToken(Guid Id,string Email);
+    public string GetToken(Guid id,string email,List<string>? permissions);
 
     
 }

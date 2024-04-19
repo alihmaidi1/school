@@ -6,22 +6,21 @@ using Shared.OperationResult;
 
 namespace Admin.Teacher.Teacher.Query.GetAll;
 
-public class GetAllTeacherHandler:OperationResult,
-    IQueryHandler<GetAllTeacherQuery>
+public class GetAllTeacherHandler:OperationResult,IQueryHandler<GetAllTeacherQuery>
 {
     
     
-    private ITeacherRepository TeacherRepository;
+    private ITeacherRepository _teacherRepository;
 
     public GetAllTeacherHandler(ITeacherRepository TeacherRepository)
     {
 
-        this.TeacherRepository = TeacherRepository;
+        _teacherRepository = TeacherRepository;
 
     }
     public async Task<JsonResult> Handle(GetAllTeacherQuery request, CancellationToken cancellationToken)
     {
-        var Result=TeacherRepository.GetAllTecher(request.OrderBy, request.PageNumber, request.PageSize);
+        var Result=_teacherRepository.GetAllTecher(request.PageNumber, request.PageSize,request.Search);
         return Success(Result,"this is all teacher");
         
     }

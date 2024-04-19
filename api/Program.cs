@@ -3,55 +3,114 @@ using Admin;
 using Common;
 using FluentValidation;
 using Hangfire;
-using infrutructure;
-using infrutructure.Authorization.Handler;
-using infrutructure.Authorization.Provider;
-using infrutructure.Seed;
+using infrastructure;
+using infrastructure.Authorization.Handler;
+using infrastructure.Authorization.Provider;
+using infrastructure.Seed;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.RateLimiting;
-using RealTime.Notifications.Admin;
-using Repository;
-using schoolmanagment.Base;
+using Newtonsoft.Json.Converters;
+using Schoolmanagment.Base;
 using schoolmanagment.Middleware;
+using Shared.Entity.Interface;
 using Shared.Jwt;
-using Shared.Redis;
 using Shared.Services.Email;
 using Shared.Swagger;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer(); 
-builder.Services.AddOpenApi();
-
-
-// api area
+#region MainConfiguration
+builder.Services.AddControllers().AddNewtonsoftJson(options =>
+{
+    options.SerializerSettings.Converters.Add(new StringEnumConverter());
+});
+builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-builder.Services.AddTransient<ErrorHandling>();
-builder.Services.AddScoped<IAuthorizationHandler,RolesAuthorizationHandler>();
+builder.Services.AddHangfire(x => x.UseSqlServerStorage(builder.Configuration["ConnectionStrings:DefaultConnection"]));
+builder.Services.AddHangfireServer();
+#endregion
+
+
+#region CommonConfiguration
+
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+
+builder.Services.Scan(selector =>
+    selector
+        .FromAssemblies(AppDomain.CurrentDomain.GetAssemblies())
+        .AddClasses(c => c.AssignableTo(typeof(IBaseSuper)))
+        .AsSelfWithInterfaces()
+        .WithScopedLifetime()
+        .AddClasses(c=>c.AssignableTo(typeof(IBaseSuperTransient)))
+        .AsSelfWithInterfaces()
+        .WithTransientLifetime()
+        .AddClasses(c=>c.AssignableTo(typeof(IBaseSuperSingleTon)))
+        .AsSelfWithInterfaces()
+        .WithSingletonLifetime());
+
+builder.Services.AddMediatR(c => c.RegisterServicesFromAssemblies(AppDomain.CurrentDomain.GetAssemblies()));
+builder.Services.AddValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
+
+
+
+#endregion
+
+
+#region SharedConfiguration
+
+builder.Services.AddJwtConfiguration(builder.Configuration);
+builder.Services.Configure<MailSetting>(builder.Configuration.GetRequiredSection("Email"));
+#endregion
+
+
+#region securityConfiguration
+
 builder.Services.AddTransient<IAuthorizationPolicyProvider,PermissionProvider>();
 builder.Services.AddTransient<IAuthorizationHandler,PermissionAuthorizationHandler>();
 
-builder.Services.AddScoped<IMailService, MailService>();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("Policy", policyBuilder =>
+    {
+        policyBuilder
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+    });
+});
+
+builder.Services.AddRateLimiter(rateLimiterOptions =>
+{
+
+    rateLimiterOptions.AddFixedWindowLimiter("fixedwindow", option =>
+    {
+
+        option.PermitLimit = 2;
+        option.Window=TimeSpan.FromSeconds(1);
+        option.QueueLimit = 0;
+    });
+
+
+});
+
+#endregion
+
+// builder.Services.AddScoped<IAuthorizationHandler,RolesAuthorizationHandler>();
+
 // end api area     
 
 
-builder.Services.Configure<MailSetting>(builder.Configuration.GetRequiredSection("Email"));
-
-builder.Services.AddHangfire(x => x.UseSqlServerStorage(builder.Configuration["ConnectionStrings:DefaultConnection"]));
-builder.Services.AddHangfireServer();
 
 
-builder.Services.AddSignalR(option =>
-{
 
-    option.EnableDetailedErrors = true;
-});
+// builder.Services.AddSignalR(option =>
+// {
+//
+//     option.EnableDetailedErrors = true;
+// });
 
 
 
@@ -69,11 +128,6 @@ builder.Services.AddInfrustucture(builder.Configuration);
 // end infrustucture area
 
 
-// repository area
-builder.Services.AddRepository();
-
-// end repository area
-
 
 
 // admin area
@@ -84,46 +138,20 @@ builder.Services.AddAdmindependency();
 
 
 // shared area
-builder.Services.AddJwtConfigration(builder.Configuration);
 
 // end shared area
 
 
 
-builder.Services.AddRateLimiter(Limitrateoption =>
-{
-
-    Limitrateoption.AddFixedWindowLimiter("fixedwindow", option =>
-    {
-
-        option.PermitLimit = 2;
-        option.Window=TimeSpan.FromSeconds(1);
-        option.QueueLimit = 0;
-    });
 
 
-});
 
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("Policy", policyBuilder =>
-    {
-        policyBuilder
-            .AllowAnyOrigin()
-            .AllowAnyMethod()
-            .AllowAnyHeader();
-    });
-});
-
-builder.Services.AddScoped<ICacheRepository,CacheRepository>();
-
-
-builder.Services.AddSwaggerGen();
+builder.Services.AddOpenApi(Assembly.GetExecutingAssembly().GetName().Name??"");
 
 
 var app = builder.Build();
 
-app.ConfigureOpenAPI();
+app.ConfigureOpenApi();
 
     app.UseSwagger();
     app.UseSwaggerUI();
@@ -140,17 +168,15 @@ using(var scope= app.Services.CreateScope()){
 app.UseMiddleware<ErrorHandling>();
 
 
-
-
 app.UseHttpsRedirection();
 
 app.UseStaticFiles();
 app.UseAuthorization();
-
+app.UseHangfireDashboard("/hangfire/dashboard");
 
 app.UseCors("Policy");
 
-app.MapHub<AdminHub>("/admin");
+// app.MapHub<AdminHub>("/admin");
 
 app.MapControllers();
 

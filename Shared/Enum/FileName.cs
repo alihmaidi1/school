@@ -4,6 +4,7 @@ public enum FileName
 {
     
     Admin,
-    Teacher
+    Teacher,
+    Parent
     
 }

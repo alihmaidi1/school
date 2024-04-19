@@ -61,22 +61,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[7.0.16, 7.0.16]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[7.0.16, 7.0.16]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.102/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.103/RuntimeIdentifierGraph.json"
         }
       }
     },
@@ -114,8 +104,8 @@
               "/home/alihmaidi/Desktop/schhol1/Shared/Shared.csproj": {
                 "projectPath": "/home/alihmaidi/Desktop/schhol1/Shared/Shared.csproj"
               },
-              "/home/alihmaidi/Desktop/schhol1/infrutructure/infrutructure.csproj": {
-                "projectPath": "/home/alihmaidi/Desktop/schhol1/infrutructure/infrutructure.csproj"
+              "/home/alihmaidi/Desktop/schhol1/infrastructure/infrastructure.csproj": {
+                "projectPath": "/home/alihmaidi/Desktop/schhol1/infrastructure/infrastructure.csproj"
               }
             }
           }
@@ -150,22 +140,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[7.0.16, 7.0.16]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[7.0.16, 7.0.16]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.102/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.103/RuntimeIdentifierGraph.json"
         }
       }
     },
@@ -207,6 +187,14 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            },
+            "Hangfire": {
+              "target": "Package",
+              "version": "[1.8.12, )"
+            },
             "Microsoft.AspNetCore.Authorization": {
               "target": "Package",
               "version": "[8.0.0, )"
@@ -231,22 +219,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[7.0.16, 7.0.16]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[7.0.16, 7.0.16]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.102/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.103/RuntimeIdentifierGraph.json"
         }
       }
     },
@@ -301,22 +279,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[7.0.16, 7.0.16]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[7.0.16, 7.0.16]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.102/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.103/RuntimeIdentifierGraph.json"
         }
       }
     },
@@ -374,22 +342,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[7.0.16, 7.0.16]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[7.0.16, 7.0.16]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.102/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.103/RuntimeIdentifierGraph.json"
         }
       }
     },
@@ -424,8 +382,8 @@
               "/home/alihmaidi/Desktop/schhol1/Shared/Shared.csproj": {
                 "projectPath": "/home/alihmaidi/Desktop/schhol1/Shared/Shared.csproj"
               },
-              "/home/alihmaidi/Desktop/schhol1/infrutructure/infrutructure.csproj": {
-                "projectPath": "/home/alihmaidi/Desktop/schhol1/infrutructure/infrutructure.csproj"
+              "/home/alihmaidi/Desktop/schhol1/infrastructure/infrastructure.csproj": {
+                "projectPath": "/home/alihmaidi/Desktop/schhol1/infrastructure/infrastructure.csproj"
               }
             }
           }
@@ -440,10 +398,6 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
-            "Hangfire": {
-              "target": "Package",
-              "version": "[1.8.11, )"
-            },
             "Scrutor": {
               "target": "Package",
               "version": "[4.2.2, )"
@@ -460,22 +414,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[7.0.16, 7.0.16]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[7.0.16, 7.0.16]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.102/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.103/RuntimeIdentifierGraph.json"
         }
       }
     },
@@ -513,17 +457,9 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
-            "Blurhash.ImageSharp": {
-              "target": "Package",
-              "version": "[3.0.0, )"
-            },
             "FluentValidation": {
               "target": "Package",
               "version": "[11.9.0, )"
-            },
-            "LazZiya.ImageResize": {
-              "target": "Package",
-              "version": "[4.1.4, )"
             },
             "MailKit": {
               "target": "Package",
@@ -537,17 +473,9 @@
               "target": "Package",
               "version": "[7.0.14, )"
             },
-            "Microsoft.AspNetCore.Http.Abstractions": {
-              "target": "Package",
-              "version": "[2.2.0, )"
-            },
             "Microsoft.AspNetCore.Mvc": {
               "target": "Package",
               "version": "[2.2.0, )"
-            },
-            "Microsoft.AspNetCore.Mvc.Core": {
-              "target": "Package",
-              "version": "[2.2.5, )"
             },
             "Microsoft.Data.SqlClient": {
               "target": "Package",
@@ -557,17 +485,13 @@
               "target": "Package",
               "version": "[7.0.14, )"
             },
-            "Microsoft.Extensions.Configuration.Abstractions": {
+            "Microsoft.EntityFrameworkCore.Relational": {
               "target": "Package",
-              "version": "[8.0.0, )"
+              "version": "[7.0.14, )"
             },
-            "SixLabors.ImageSharp": {
+            "Swashbuckle.AspNetCore.Newtonsoft": {
               "target": "Package",
-              "version": "[3.1.1, )"
-            },
-            "StackExchange.Redis": {
-              "target": "Package",
-              "version": "[2.7.10, )"
+              "version": "[6.5.0, )"
             },
             "Swashbuckle.AspNetCore.SwaggerGen": {
               "target": "Package",
@@ -576,10 +500,6 @@
             "Swashbuckle.AspNetCore.SwaggerUI": {
               "target": "Package",
               "version": "[6.5.0, )"
-            },
-            "ereno.linux-x64.eugeneereno.System.Drawing": {
-              "target": "Package",
-              "version": "[6.1.1.4, )"
             }
           },
           "imports": [
@@ -593,22 +513,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[7.0.16, 7.0.16]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[7.0.16, 7.0.16]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.102/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.103/RuntimeIdentifierGraph.json"
         }
       }
     },
@@ -663,22 +573,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[7.0.16, 7.0.16]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[7.0.16, 7.0.16]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.102/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.103/RuntimeIdentifierGraph.json"
         }
       }
     },
@@ -719,8 +619,8 @@
               "/home/alihmaidi/Desktop/schhol1/Teacher/Teacher.csproj": {
                 "projectPath": "/home/alihmaidi/Desktop/schhol1/Teacher/Teacher.csproj"
               },
-              "/home/alihmaidi/Desktop/schhol1/infrutructure/infrutructure.csproj": {
-                "projectPath": "/home/alihmaidi/Desktop/schhol1/infrutructure/infrutructure.csproj"
+              "/home/alihmaidi/Desktop/schhol1/infrastructure/infrastructure.csproj": {
+                "projectPath": "/home/alihmaidi/Desktop/schhol1/infrastructure/infrastructure.csproj"
               }
             }
           }
@@ -767,16 +667,8 @@
           "warn": true,
           "downloadDependencies": [
             {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[7.0.16, 7.0.16]"
-            },
-            {
               "name": "Microsoft.NETCore.App.Host.linux-x64",
-              "version": "[7.0.16, 7.0.16]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[7.0.16, 7.0.16]"
+              "version": "[7.0.17, 7.0.17]"
             }
           ],
           "frameworkReferences": {
@@ -787,18 +679,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.102/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.103/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/home/alihmaidi/Desktop/schhol1/infrutructure/infrutructure.csproj": {
+    "/home/alihmaidi/Desktop/schhol1/infrastructure/infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/alihmaidi/Desktop/schhol1/infrutructure/infrutructure.csproj",
-        "projectName": "infrutructure",
-        "projectPath": "/home/alihmaidi/Desktop/schhol1/infrutructure/infrutructure.csproj",
+        "projectUniqueName": "/home/alihmaidi/Desktop/schhol1/infrastructure/infrastructure.csproj",
+        "projectName": "infrastructure",
+        "projectPath": "/home/alihmaidi/Desktop/schhol1/infrastructure/infrastructure.csproj",
         "packagesPath": "/home/alihmaidi/.nuget/packages/",
-        "outputPath": "/home/alihmaidi/Desktop/schhol1/infrutructure/obj/",
+        "outputPath": "/home/alihmaidi/Desktop/schhol1/infrastructure/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/alihmaidi/.nuget/NuGet/NuGet.Config"
@@ -839,15 +731,7 @@
               "target": "Package",
               "version": "[35.4.0, )"
             },
-            "EntityFrameworkCore.EncryptColumn": {
-              "target": "Package",
-              "version": "[6.0.8, )"
-            },
             "Microsoft.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[7.0.14, )"
-            },
-            "Microsoft.EntityFrameworkCore.Proxies": {
               "target": "Package",
               "version": "[7.0.14, )"
             },
@@ -873,22 +757,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[7.0.16, 7.0.16]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[7.0.16, 7.0.16]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.102/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.103/RuntimeIdentifierGraph.json"
         }
       }
     }

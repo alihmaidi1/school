@@ -9,11 +9,28 @@ public static class FileRule
     public static Func<IFormFile,bool> IsFile = x =>
     {
 
-        if (x?.ContentType is null)
+        if (x is null)
             return false;
-        if (x.ContentType.Equals("image/jpeg") ||
-            x.ContentType.Equals("image/jpg") ||
-            x.ContentType.Equals("image/png")
+
+        var Extension = Path.GetExtension(x.FileName);
+        if (Extension==".jpeg" ||
+            Extension==".jpg" ||
+            Extension==".png"
+           )
+            return true;
+        return false;
+    };
+
+
+    
+    public static Func<IFormFile,bool> IsPDF = x =>
+    {
+
+        if (x is null)
+            return false;
+
+        var Extension = Path.GetExtension(x.FileName);
+        if (Extension==".pdf"
            )
             return true;
         return false;

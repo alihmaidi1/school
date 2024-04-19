@@ -5,17 +5,17 @@ namespace Repository.Manager.Admin;
 
 public static class AdminQuery
 {
-    public static Expression<Func<Domain.Entities.Admin.Admin, GetAllAdmin>> ToGetAllAdmin = admin =>
+    public static readonly Expression<Func<Domain.Entities.Manager.Admin.Admin, GetAllAdmin>> ToGetAllAdmin = admin =>
         new GetAllAdmin
         {
-            Id = admin.Id.Value,
+            Id = admin.Id,
             Name = admin.Name,
             Email = admin.Email,
             CreatedAt = admin.DateCreated,
             Status = admin.Status,
             Image = admin.Image,
-            Resize = admin.Resize,
-            Hash = admin.Hash
+            Hash = admin.Hash,
+            Role = admin.Role.Name
         };
     
 }

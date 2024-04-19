@@ -6,25 +6,24 @@ using Shared.OperationResult;
 
 namespace Admin.Manager.Role.Query.Get;
 
-public class GetManagersByRoleHanlder:OperationResult,
-    IQueryHandler<GetManagerByRoleQuery>
+public class GetManagersByRoleHanlder:OperationResult,IQueryHandler<GetManagerByRoleQuery>
 
 {
 
-    private readonly IRoleRepository roleRepository;
+    private readonly IRoleRepository _roleRepository;
 
 
     public GetManagersByRoleHanlder(IRoleRepository roleRepository)
     {
 
-        this.roleRepository = roleRepository;
+        _roleRepository = roleRepository;
     }
 
     
     public async Task<JsonResult> Handle(GetManagerByRoleQuery request, CancellationToken cancellationToken)
     {
 
-        var Result = roleRepository.GetAdminById(new RoleID(request.Id), request.OrderBy, request.PageNumber, request.PageSize);
+        var Result = _roleRepository.GetAdminById(request.Id, request.PageNumber, request.PageSize,request.Search);
         return Success(Result, "this is all admin");
         
     }

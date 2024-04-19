@@ -13,15 +13,9 @@ public class GetManagerByRoleValidation:AbstractValidator<GetManagerByRoleQuery>
     {
         RuleFor(x => x.Id)
             .NotEmpty()
-            .WithMessage("id should be not empty")
             .NotNull()
-            .WithMessage("id should be not null")
-            .Must(Id => roleRepository.IsExists(new RoleID(Id)))
+            .Must(Id => roleRepository.IsExists(Id).GetAwaiter().GetResult())
             .WithMessage("id is not exists in our data");
 
-
-        RuleFor(x => x.OrderBy)
-            .Must(x => CrudOpterationRule.IsValidOrder(x, AdminSorting.OrderBy))
-            .WithMessage("order by string is not valid");
     }
 }

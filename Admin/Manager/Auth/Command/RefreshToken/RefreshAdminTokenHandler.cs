@@ -1,55 +1,43 @@
-using Domain.Entities.Admin;
-using Dto;
-using infrutructure;
-using MediatR;
+using AutoMapper;
+using Dto.Admin.Auth.Dto;
+using infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Repository.Jwt;
-using Repository.Jwt.Factory;
-using Shared.Enum;
+using Shared.CQRS;
 using Shared.OperationResult;
 
-namespace Admin.Auth.Command.RefreshToken;
+namespace Admin.Manager.Auth.Command.RefreshToken;
 
-public class RefreshAdminTokenHandler:OperationResult,
-    IRequestHandler<RefreshAdminTokenCommand, JsonResult>
+public class RefreshAdminTokenHandler:OperationResult,ICommandHandler<RefreshAdminTokenCommand>
 {
     
-    private IJwtRepository jwtRepository;
-    private readonly ApplicationDbContext DbContext;
+    private readonly IJwtRepository _jwtRepository;
+    private readonly ApplicationDbContext _dbContext;
+    private readonly IMapper _mapper;
 
 
-    public RefreshAdminTokenHandler(ApplicationDbContext DbContext,ISchemaFactory SchemaFactory)
+    public RefreshAdminTokenHandler(IMapper mapper,ApplicationDbContext dbContext, IJwtRepository jwtRepository)
     {
-
-        this.DbContext = DbContext;
-        this.jwtRepository = SchemaFactory.CreateJwt(JwtSchema.Admin);
-
-
+        _dbContext = dbContext;
+        _mapper = mapper;
+        _jwtRepository = jwtRepository;
     }
     
     public async Task<JsonResult> Handle(RefreshAdminTokenCommand request, CancellationToken cancellationToken)
     {
-        AdminRefreshToken? RefreshToken =  DbContext.AdminRefreshTokens
-            .Include(x => x.Admin)
-            .Select(x=>new AdminRefreshToken()
-            {
-                Id = x.Id,
-                ExpireAt = x.ExpireAt,
-                Admin = x.Admin,
-                Token = x.Token
-                
-            })
-            .FirstOrDefault(x => x.Token.Equals(request.RefreshToken));
-
-        Domain.Entities.Admin.Admin Admin = RefreshToken.Admin;
-
-        DbContext.AdminRefreshTokens.Remove(RefreshToken);
+        var userSession = _dbContext.AccountSessions.FirstOrDefault(x=>x.RefreshToken==request.RefreshToken);
+        if (userSession is null)
+        {
+            return ValidationError(nameof(request.RefreshToken),"refresh token is not correct");
+        }
+        var admin = _dbContext.Admins.IgnoreQueryFilters().Include(admin => admin.Role).First(x => x.Id == userSession.AccountId);
+        var tokensInfo =await _jwtRepository.GetTokensInfo(userSession.AccountId, admin.Email,admin.Role.Permissions);
+        userSession.RefreshToken = tokensInfo.RefreshToken;
+        userSession.Token = tokensInfo.Token;
+        userSession.ExpireAt = userSession.ExpireAt;
+        await _dbContext.SaveChangesAsync(cancellationToken);
+        return Success(_mapper.Map<AdminRefreshTokenDto>(userSession),"this this your login info");
         
-        var TokensData = await this.jwtRepository.GetTokensInfo(Admin.Id.Value,Admin.Email);
-        
-        TokenDto TokenInfo = TokenDto.ToTokenDto(TokensData.token,TokensData.ExpiredAt,TokensData.refreshToken.Token);
-        return Success(TokenInfo);
-
     }
 }

@@ -1,4 +1,5 @@
 using Common.CQRS;
+using Shared.CQRS;
 
 namespace Admin.Manager.Role.Command.Add;
 

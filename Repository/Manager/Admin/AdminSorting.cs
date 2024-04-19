@@ -4,19 +4,27 @@ namespace Repository.Manager.Admin;
 
 public static class AdminSorting
 {
-    public static List<string> OrderBy = new()
+    // public static List<string> OrderBy = new()
+    // {
+    //     "Name",
+    //     "Email",
+    //     "DateCreated"
+    // };
+
+    public enum OrderBy
     {
-        "Name",
-        "Email",
-        "DateCreated"
-    };
+        Name=1,
+        Email,
+        DateCreated
+        
+    }
+    
 
-
-    public static Func<string, Expression<Func<Domain.Entities.Admin.Admin, object>>> switchOrdering = key
+    public static readonly Func<OrderBy, Expression<Func<Domain.Entities.Manager.Admin.Admin, object>>> SwitchOrdering = key
         => key switch
         {
-            "Name" => x => x.Name,
-            "Email" => x => x.Email,
+            OrderBy.Name => x => x.Name,
+            OrderBy.Email => x => x.Email,
             _ => x => x.DateCreated
         };
 }

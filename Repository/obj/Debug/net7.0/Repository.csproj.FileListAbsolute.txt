@@ -27,11 +27,9 @@
 /home/alihmaidi/Desktop/schhol1/Repository/bin/Debug/net7.0/Repository.pdb
 /home/alihmaidi/Desktop/schhol1/Repository/bin/Debug/net7.0/Domain.dll
 /home/alihmaidi/Desktop/schhol1/Repository/bin/Debug/net7.0/Dto.dll
-/home/alihmaidi/Desktop/schhol1/Repository/bin/Debug/net7.0/infrutructure.dll
 /home/alihmaidi/Desktop/schhol1/Repository/bin/Debug/net7.0/Shared.dll
 /home/alihmaidi/Desktop/schhol1/Repository/bin/Debug/net7.0/Domain.pdb
 /home/alihmaidi/Desktop/schhol1/Repository/bin/Debug/net7.0/Dto.pdb
-/home/alihmaidi/Desktop/schhol1/Repository/bin/Debug/net7.0/infrutructure.pdb
 /home/alihmaidi/Desktop/schhol1/Repository/bin/Debug/net7.0/Shared.pdb
 /home/alihmaidi/Desktop/schhol1/Repository/obj/Debug/net7.0/Repository.csproj.AssemblyReference.cache
 /home/alihmaidi/Desktop/schhol1/Repository/obj/Debug/net7.0/Repository.GeneratedMSBuildEditorConfig.editorconfig
@@ -44,3 +42,5 @@
 /home/alihmaidi/Desktop/schhol1/Repository/obj/Debug/net7.0/refint/Repository.dll
 /home/alihmaidi/Desktop/schhol1/Repository/obj/Debug/net7.0/Repository.pdb
 /home/alihmaidi/Desktop/schhol1/Repository/obj/Debug/net7.0/ref/Repository.dll
+/home/alihmaidi/Desktop/schhol1/Repository/bin/Debug/net7.0/infrastructure.dll
+/home/alihmaidi/Desktop/schhol1/Repository/bin/Debug/net7.0/infrastructure.pdb

@@ -13,26 +13,22 @@ public class UpdateRoleCommandValidation:AbstractValidator<UpdateRoleCommand>
     {
         RuleFor(x => x.Id)
             .NotEmpty()
-            .WithMessage("id should be not empty")
             .NotNull()
-            .WithMessage("id should be not null")
-            .Must(Id => roleRepository.IsExists(new RoleID(Id)))
+            .Must(Id => roleRepository.IsExists(Id).GetAwaiter().GetResult())
             .WithMessage("id is not exists in our data");
+        
 
+        RuleFor(x=>x.Name)
+        .NotNull()
+        .NotEmpty()
+        .Must((request,name)=>roleRepository.IsUnique(request.Id,"Name",name))
+        .WithMessage("this role is already exists");
+        
 
-        RuleFor(x => x)
-            .NotEmpty()
-            .WithMessage("name should be not empty")
-            .NotNull()
-            .WithMessage("name should be not null")
-            .Must(request => !roleRepository.IsExists(request.Name, new RoleID(request.Id)))
-            .WithMessage("this role is already exists");
-
+    
         RuleForEach(x => x.Permissions)
             .NotEmpty()
-            .WithMessage("permission should be not empty")
             .NotNull()
-            .WithMessage("permission should be not null")
             .Must(x => Enum.GetNames(typeof(PermissionEnum)).Any(permission => permission.Equals(x)))
             .WithMessage("this permission is not exists");
     }

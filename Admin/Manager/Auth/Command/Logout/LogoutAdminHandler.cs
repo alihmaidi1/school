@@ -1,31 +1,28 @@
+using infrastructure;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Repository.Manager.Admin;
+using Microsoft.EntityFrameworkCore;
+using Shared.CQRS;
 using Shared.OperationResult;
+using Shared.Services.User;
 
-namespace Admin.Auth.Command.Logout;
+namespace Admin.Manager.Auth.Command.Logout;
 
-public class LogoutAdminHandler:OperationResult,
-    IRequestHandler<LogoutAdminCommand, JsonResult>
+public class LogoutAdminHandler:OperationResult, ICommandHandler<LogoutAdminCommand>
 {
-    private readonly IHttpContextAccessor _httpContextAccessor;
-    private IAdminRepository AdminRepository;
 
-    public LogoutAdminHandler(IHttpContextAccessor _httpContextAccessor,IAdminRepository adminRepository)
+    private readonly ICurrentUserService _currentUserService;
+    private readonly ApplicationDbContext _context;
+    public LogoutAdminHandler(ICurrentUserService currentUserService,ApplicationDbContext context)
     {
-
-        this._httpContextAccessor = _httpContextAccessor;
-        this.AdminRepository = adminRepository;
-
+        _currentUserService = currentUserService;
+        _context = context;
     }
     
     public async Task<JsonResult> Handle(LogoutAdminCommand request, CancellationToken cancellationToken)
     {
-    
-        string Token = _httpContextAccessor.HttpContext.Request.Headers.Authorization.ToString().Split(" ")[1];
-        bool status = AdminRepository.Logout(Token);
-        return Success(status, "You Are Logout Successfully");
-
+        await _context.AccountSessions.Where(x => x.Token==_currentUserService.Token).ExecuteDeleteAsync(cancellationToken);
+        await _context.SaveChangesAsync(cancellationToken);
+        return Success(true,"you are logout successfully");
     }
 }

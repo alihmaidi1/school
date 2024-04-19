@@ -12,7 +12,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dto", "Dto\Dto.csproj", "{143C11EB-D7BF-46A8-AAE9-34CA0FA55CE7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "infrutructure", "infrutructure\infrutructure.csproj", "{65FFB744-DC42-4912-BCBB-B6D08A8333F1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "infrastructure", "infrastructure\infrastructure.csproj", "{65FFB744-DC42-4912-BCBB-B6D08A8333F1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Admin", "Admin\Admin.csproj", "{3B236F9E-D267-4D81-B01B-1296E8CF2541}"
 EndProject

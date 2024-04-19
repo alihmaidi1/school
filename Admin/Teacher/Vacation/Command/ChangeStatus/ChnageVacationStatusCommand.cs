@@ -1,4 +1,5 @@
 using Common.CQRS;
+using Shared.CQRS;
 
 namespace Admin.Teacher.Vacation.Command.ChangeStatus;
 

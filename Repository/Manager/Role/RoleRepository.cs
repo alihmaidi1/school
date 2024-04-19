@@ -2,7 +2,7 @@ using Domain.Entities.Manager.Admin;
 using Domain.Entities.Role;
 using Domain.Enum;
 using Dto.Admin.Role;
-using infrutructure;
+using infrastructure;
 using Repository.Base;
 using Repository.Manager.Admin;
 using Shared.Entity.EntityOperation;
@@ -16,19 +16,15 @@ public class RoleRepository:GenericRepository<Domain.Entities.Role.Role>,IRoleRe
     {
     }
 
-    public bool IsExists(RoleID id)
-    {
-        
-        return DbContext.Roles.Any(x => x.Id.Equals(id));
-    }
 
-    public PageList<GetAllRole> GetAll(string? OrderBy, int? pageNumber, int? pageSize)
+    public PageList<GetAllRole> GetAll(int? pageNumber, int? pageSize,string? Search)
     {
         
         var Result = DbContext.Roles
             .Where(x => !x.Name.Equals(RoleEnum.SuperAdmin.ToString()))
-            .Sort<RoleID, Domain.Entities.Role.Role>(OrderBy, RoleSorting.switchOrdering)
-            .Select(RoleQuery.ToGetAllRole)
+            .Where(x=>x.Name.Contains(Search??""))
+            // .Sort<Domain.Entities.Role.Role>(OrderBy, RoleSorting.switchOrdering)
+            !.Select(RoleQuery.ToGetAllRole)
             .ToPagedList(pageNumber, pageSize);
         return Result;
 
@@ -36,32 +32,26 @@ public class RoleRepository:GenericRepository<Domain.Entities.Role.Role>,IRoleRe
     }
 
 
-    public bool IsExists(string Name)
-    {
 
-        return DbContext.Roles.Any(x => x.Name.Equals(Name));
+    // public bool IsExists(string Name,Guid roleId)
+    // {
 
-    }
+    //     return DbContext.Roles.Any(x=>x.Name.Equals(Name)&&!x.Id.Equals(roleId));
+    // }
 
-    public bool IsExists(string Name, RoleID roleId)
-    {
-
-        return DbContext.Roles.Any(x=>x.Name.Equals(Name)&&!x.Id.Equals(roleId));
-    }
-
-    public PageList<GetAllAdminByRole> GetAdminById(RoleID Id, string? OrderBy, int? pageNumber, int? pageSize)
+    public PageList<GetAllAdminByRole> GetAdminById(Guid Id, int? pageNumber, int? pageSize,string? Search)
     {
         
         
-        var Result = DbContext.Admins
+        return  DbContext
+            .Admins
             .Where(x => x.RoleId == Id)
-            .Sort<AdminID,Domain.Entities.Admin.Admin>(OrderBy, AdminSorting.switchOrdering)
+            .Where(x=>x.Name.Contains(Search??""))
+            .Where(x=>x.Email.Contains(Search??""))
             .Select(RoleQuery.ToGetAllAdmin)
             .ToPagedList(pageNumber, pageSize);
-
-        return Result;
         
-        
+    
     }
 
 

@@ -12,6 +12,7 @@ public class GetAllTeacher
 
     public string? Hash { get; set; }
 
-    public string? Resize { get; set; }
+
+    public int SubjectNumber{get;set;}
 
 }

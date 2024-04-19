@@ -1,9 +1,6 @@
 using System.Text;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.Extensions.Primitives;
 
-namespace EntityFramework.BulkExtension.DataBases.Upsert;
+namespace Shared.test.DataBases.Upsert;
 
 public class SqlServer
 {

@@ -3,27 +3,22 @@ using Microsoft.AspNetCore.Mvc;
 using Repository.Manager.Admin;
 using Shared.OperationResult;
 
-namespace Admin.Admin.Query.GetAll;
+namespace Admin.Manager.Admin.Query.GetAll;
 
-public class GetAllAdminHandler:OperationResult,
-    IQueryHandler<GetAllAdminQuery>
+public class GetAllAdminHandler:OperationResult,IQueryHandler<GetAllAdminQuery>
 {
     
-    private readonly IAdminRepository adminRepository;
+    private readonly IAdminRepository _adminRepository;
 
     public GetAllAdminHandler(IAdminRepository adminRepository)
     {
-
-
-        this.adminRepository = adminRepository;
-
-
+        this._adminRepository = adminRepository;
     }
     
     public async Task<JsonResult> Handle(GetAllAdminQuery request, CancellationToken cancellationToken)
     {
         
-        var Result = adminRepository.GetAlladmin(request.OrderBy, request.PageNumber, request.PageSize);
-        return Success(Result, "this is all admin");
+        var result = _adminRepository.GetAll(request.OrderBy, request.PageNumber, request.PageSize,request.Search);
+        return Success(result, "this is all admin");
     }
 }

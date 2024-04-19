@@ -5,34 +5,47 @@ using Microsoft.AspNetCore.Mvc;
 
 public static class Result
 {
-    public static OperationResultBase<T> CreateOperationResultBase<T>(T Result,string Message,int StatusCode) 
+    public static OperationResultBase<T> CreateOperationResultBase<T>(T result,string message,int statusCode,Dictionary<string,string> errors=default) 
     {
 
         return new OperationResultBase<T>
         {
-            Result=Result,
-            Message=Message,
-            StatusCode=StatusCode
+            Result=result,
+            Message=message,
+            StatusCode=statusCode,
+            Errors = errors
 
         };
 
     }
-    public static JsonResult ToJsonResult<T>(this OperationResult OperationResult, int StatusCode, T? Result=default(T),string Message="") 
+    public static JsonResult ToJsonResult<T>(this OperationResult operationResult, int statusCode, T? result=default(T),string message="") 
     {
-
-        var OperationResultBase=CreateOperationResultBase<T>(Result,Message,StatusCode);
-        return new JsonResult(OperationResultBase)
+        using var operationResultBase=CreateOperationResultBase<T>(result,message,statusCode);
+        return new JsonResult(operationResultBase)
         {
 
-            StatusCode=StatusCode
+            StatusCode=statusCode
         };
         
     }
 
-    public static async Task<JsonResult> ToJsonResultAsync<T>(this Task<OperationResult> OperationResult, int StatusCode, T? Result = null, string Message = "") where T : class
+    public static JsonResult ToJsonValidationResult(this OperationResult operationResult, int statusCode, Dictionary<string,string> errors=default)
+    {
+        
+        
+        using var operationResultBase=CreateOperationResultBase<object>(null,"validation error",statusCode,errors);
+        return new JsonResult(operationResultBase)
+        {
+
+            StatusCode=statusCode,
+            
+        };
+    }
+
+    public static async Task<JsonResult> ToJsonResultAsync<T>(this Task<OperationResult> operationResult, int StatusCode, T? Result = null, string Message = "") where T : class
     {
 
-        return (await OperationResult).ToJsonResult(StatusCode,Result,Message);
+        return (await operationResult).ToJsonResult(StatusCode,Result,Message);
     }
     
 }

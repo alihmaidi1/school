@@ -11,7 +11,7 @@ public class OperationResultBase<T>:IDisposable
         
     public int StatusCode { get; set; }
 
-    public Dictionary<string,List<string>> Errors { get; set; }
+    public Dictionary<string,string> Errors { get; set; }
         
         
     protected bool disposed = false;

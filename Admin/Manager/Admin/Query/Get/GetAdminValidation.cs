@@ -15,7 +15,7 @@ public class GetAdminValidation:AbstractValidator<GetAdminQuery>
         RuleFor(x => x.id)
             .NotNull()
             .NotEmpty()
-            .Must(x=>adminRepository.IsExists(new AdminID(x)))
+            .Must(x=>adminRepository.IsExists(x).GetAwaiter().GetResult())
             .WithMessage("this admin is not exists in our data");
     }
 }

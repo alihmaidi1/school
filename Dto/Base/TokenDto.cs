@@ -1,5 +1,4 @@
 using Domain.Base.Entity;
-using Domain.Entities.Admin;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Dto;

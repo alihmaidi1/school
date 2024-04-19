@@ -1,6 +1,7 @@
 using Domain.Entities.Teacher.Teacher;
 using Dto.Admin.Teacher;
-using infrutructure;
+using infrastructure;
+using Microsoft.EntityFrameworkCore;
 using Repository.Base;
 using Shared.Entity.EntityOperation;
 using Shared.Repository;
@@ -13,11 +14,15 @@ public class TeacherRepository:GenericRepository<Domain.Entities.Teacher.Teacher
     {
     }
 
-    public PageList<GetAllTeacher> GetAllTecher(string? OrderBy, int? pageNumber, int? pageSize)
+    public PageList<GetAllTeacher> GetAllTecher( int? pageNumber, int? pageSize,string? Search)
     {
 
-        var Result = DbContext.Teachers
-            .Sort<TeacherID,Domain.Entities.Teacher.Teacher.Teacher>(OrderBy, TeacherSorting.switchOrdering)
+        var Result = DbContext
+            .Teachers
+            .Include(x=>x.SubjectYears)
+            .ThenInclude(x=>x.Year)
+            .Where(x=>x.Name.Contains(Search??""))
+            .Where(x=>x.Email.Contains(Search??""))            
             .Select(TeacherQuery.ToGetAllTeacher)
             .ToPagedList(pageNumber,pageSize);
 
@@ -27,24 +32,24 @@ public class TeacherRepository:GenericRepository<Domain.Entities.Teacher.Teacher
 
     }
 
-    public bool IsExists(string Email)
-    {
-        return DbContext.Teachers.Any(x => x.Email.Equals(Email));
-    }
+    // public bool IsExists(string Email)
+    // {
+    //     return DbContext.Teachers.Any(x => x.Email.Equals(Email));
+    // }
 
-    public bool IsExists(TeacherID ID)
-    {
+    // public bool IsExists(Guid ID)
+    // {
 
-        return DbContext.Teachers.Any(x=>x.Id.Equals(ID));
-    }
+    //     return DbContext.Teachers.Any(x=>x.Id.Equals(ID));
+    // }
 
-    public bool IsUnique(TeacherID id, string Email)
-    {
+    // public bool IsUnique(Guid id, string Email)
+    // {
 
-        return DbContext.Teachers.Any(x => x.Email.Equals(Email) && !x.Id.Equals(id));
-    }
+    //     return DbContext.Teachers.Any(x => x.Email.Equals(Email) && !x.Id.Equals(id));
+    // }
 
-    public Domain.Entities.Teacher.Teacher.Teacher Get(TeacherID id)
+    public Domain.Entities.Teacher.Teacher.Teacher Get(Guid id)
     {
 
         return DbContext.Teachers.FirstOrDefault(x=>x.Id.Equals(id));

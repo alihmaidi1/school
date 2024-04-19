@@ -32,12 +32,10 @@
 /home/alihmaidi/Desktop/schhol1/Common/bin/Debug/net7.0/Common.pdb
 /home/alihmaidi/Desktop/schhol1/Common/bin/Debug/net7.0/Domain.dll
 /home/alihmaidi/Desktop/schhol1/Common/bin/Debug/net7.0/Dto.dll
-/home/alihmaidi/Desktop/schhol1/Common/bin/Debug/net7.0/infrutructure.dll
 /home/alihmaidi/Desktop/schhol1/Common/bin/Debug/net7.0/Repository.dll
 /home/alihmaidi/Desktop/schhol1/Common/bin/Debug/net7.0/Shared.dll
 /home/alihmaidi/Desktop/schhol1/Common/bin/Debug/net7.0/Domain.pdb
 /home/alihmaidi/Desktop/schhol1/Common/bin/Debug/net7.0/Dto.pdb
-/home/alihmaidi/Desktop/schhol1/Common/bin/Debug/net7.0/infrutructure.pdb
 /home/alihmaidi/Desktop/schhol1/Common/bin/Debug/net7.0/Repository.pdb
 /home/alihmaidi/Desktop/schhol1/Common/bin/Debug/net7.0/Shared.pdb
 /home/alihmaidi/Desktop/schhol1/Common/obj/Debug/net7.0/Common.csproj.AssemblyReference.cache
@@ -51,3 +49,5 @@
 /home/alihmaidi/Desktop/schhol1/Common/obj/Debug/net7.0/refint/Common.dll
 /home/alihmaidi/Desktop/schhol1/Common/obj/Debug/net7.0/Common.pdb
 /home/alihmaidi/Desktop/schhol1/Common/obj/Debug/net7.0/ref/Common.dll
+/home/alihmaidi/Desktop/schhol1/Common/bin/Debug/net7.0/infrastructure.dll
+/home/alihmaidi/Desktop/schhol1/Common/bin/Debug/net7.0/infrastructure.pdb

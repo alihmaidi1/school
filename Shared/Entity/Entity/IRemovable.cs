@@ -1,6 +1,9 @@
 namespace Shared.Entity.Entity;
 
-public class IRemovable
+public interface IRemovable
 {
+    public DateTime? DateDeleted { get; set; }
+    public Guid? DeletedBy { get; set; }
+
     
 }

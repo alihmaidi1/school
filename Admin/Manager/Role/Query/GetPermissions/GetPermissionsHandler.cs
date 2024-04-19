@@ -5,8 +5,7 @@ using Shared.OperationResult;
 
 namespace Admin.Manager.Role.Query.GetPermissions;
 
-public class GetPermissionsHandler:OperationResult,
-    IQueryHandler<GetPermissionsQuery>
+public class GetPermissionsHandler:OperationResult,IQueryHandler<GetPermissionsQuery>
 {
     
     

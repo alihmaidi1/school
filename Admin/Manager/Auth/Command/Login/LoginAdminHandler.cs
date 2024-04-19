@@ -1,50 +1,44 @@
-using Domain.Entities.Admin;
-using Dto;
-using Dto.Admin.Auth;
-using infrutructure;
-using MediatR;
+using AutoMapper;
+using Common.CQRS;
+using Domain.Entities.Account;
+using Dto.Admin.Auth.Dto;
+using infrastructure;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Repository.Jwt;
-using Repository.Jwt.Factory;
-using Repository.Manager.Admin;
-using Shared.Enum;
+using Shared.CQRS;
+using Shared.Helper;
 using Shared.OperationResult;
 
-namespace Admin.Auth.Command.Login;
+namespace Admin.Manager.Auth.Command.Login;
 
-public class LoginAdminHandler:OperationResult,
-    IRequestHandler<LoginAdminCommand, JsonResult>
+public class LoginAdminHandler:OperationResult,ICommandHandler<LoginAdminCommand>
 {
-    
-    
-    private IJwtRepository jwtRepository;
-    private IAdminRepository AdminRepository;
-    private readonly ApplicationDbContext DbContext;
 
-    public LoginAdminHandler(ApplicationDbContext DbContext,IAdminRepository AdminRepository,ISchemaFactory SchemaFactory)
+    private readonly IJwtRepository _jwtRepository;
+    private readonly ApplicationDbContext _dbContext;
+
+    private readonly IMapper _mapper;
+    public LoginAdminHandler(IMapper mapper,ApplicationDbContext dbContext,IJwtRepository jwtRepository)
     {
         
-        this.DbContext = DbContext;
-        this.jwtRepository = SchemaFactory.CreateJwt(JwtSchema.Admin);
-        this.AdminRepository = AdminRepository;
+        _dbContext = dbContext;
+        _mapper = mapper;
+        _jwtRepository = jwtRepository;
 
     }
     
     public async Task<JsonResult> Handle(LoginAdminCommand request, CancellationToken cancellationToken)
     {
-        Domain.Entities.Admin.Admin admin = this.AdminRepository.GetByEmail(request.Email);
-        
-        if (admin.Password.Equals(request.Password))
+        var admin = _dbContext.Admins.IgnoreQueryFilters().Include(x=>x.Role).First(x=>x.Email.Equals(request.Email));
+        if (!PasswordHelper.VerifyPassword(request.Password,admin!.Password))
         {
-            var tokens = await jwtRepository.GetTokensInfo(admin.Id.Value,admin.Email);
-            AdminRefreshToken adminRefreshToken =AdminRefreshTokenDto.ToAdminRefreshToken(tokens.refreshToken.Token, tokens.refreshToken.ExpireAt);
-            admin.RefreshTokens.Add(adminRefreshToken);
-            DbContext.SaveChanges();
-            TokenDto TokenInfo = TokenDto.ToTokenDto(tokens.token, tokens.ExpiredAt, tokens.refreshToken.Token);
-            return Success(TokenInfo,"You are login successfully");
+            return ValidationError(nameof(request.Password),"password is not correct");
         }
-
-        return Fail("password is not correct");
-
+        AccountSession accountSession =await _jwtRepository.GetTokensInfo(admin.Id, admin.Email,admin.Role.Permissions);
+        _dbContext.AccountSessions.Add(accountSession);
+        _dbContext.SaveChanges();
+        return Success(_mapper.Map<AdminRefreshTokenDto>(accountSession),"this this your login info");
+        
     }
 }

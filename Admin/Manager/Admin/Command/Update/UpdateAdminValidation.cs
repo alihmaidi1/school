@@ -1,6 +1,7 @@
 using Domain.Entities.Manager.Admin;
 using Domain.Entities.Role;
 using FluentValidation;
+using infrastructure;
 using Repository.Manager.Admin;
 using Repository.Manager.Role;
 
@@ -9,55 +10,49 @@ namespace Admin.Manager.Admin.Command.Update;
 public class UpdateAdminValidation:AbstractValidator<UpdateAdminCommand>
 {
 
-    public UpdateAdminValidation(IRoleRepository roleRepository,IAdminRepository adminRepository)
+    public UpdateAdminValidation(ApplicationDbContext context,IRoleRepository roleRepository,IAdminRepository adminRepository)
     {
 
         RuleFor(x => x.Status)
             .NotEmpty()
             .NotNull();
+
+
         RuleFor(x => x.Name)
             .NotEmpty()
-            .WithMessage("name should be not empty")
-            .NotNull()
-            .WithMessage("name should be not null");
-
+            .NotNull();
+        //
         RuleFor(x => x.RoleId)
             .NotEmpty()
             .WithMessage("name should be not empty")
             .NotNull()
             .WithMessage("name should be not null")
-            .Must(Id => roleRepository.IsExists(new RoleID(Id)))
+            .Must(Id => roleRepository.IsExists(Id).GetAwaiter().GetResult())
             .WithMessage("this role is not valid");
-
-
+        
         RuleFor(x => x.Email)
-            .EmailAddress();
+        .EmailAddress()
+        .Must((request,email)=>adminRepository.IsUnique(request.AdminId,"Email",email))
+        .WithMessage("this admin is already exists in our data");
+       
+       
         RuleFor(x => x.Password)
             .NotEmpty()
-            .WithMessage("password should be not empty")
             .NotNull()
-            .WithMessage("password should be not null")
-            .MinimumLength(8)
-            .WithMessage("password should be at leat 8 charecter");
+            .MinimumLength(8);
 
 
-        RuleFor(x => x)
-            .NotEmpty()
-            .WithMessage("email should be not empty")
-            .NotNull()
-            .WithMessage("email should be not null")
-            
-            .Must(x => !adminRepository.IsEmailExists(x.Email, new AdminID(x.AdminId)))
-            .WithMessage("email address is already exists");
 
         RuleFor(x => x.AdminId)
             .NotEmpty()
-            .WithMessage("id should be not empty")
             .NotNull()
-            .WithMessage("id should be not null")
-            .Must(x => adminRepository.IsExists(new AdminID(x)))
+            .Must(x => adminRepository.IsExists(x).GetAwaiter().GetResult())
             .WithMessage("this admin is not exists in our data");
 
+        RuleFor(x=>x.Image)
+            .Must(id=>context.Images.Any(x=>x.Id==id))
+            .When(x=>x.Image!=null)
+            .WithMessage("image is not exists");
         
     }
 }

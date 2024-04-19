@@ -1,8 +1,7 @@
-using Admin.Teacher.Vacation.Command.Add;
 using Domain.AppMetaData.Teacher;
-using Domain.Attributes;
+
 using Microsoft.AspNetCore.Mvc;
-using schoolmanagment.Base;
+using schoolManagement.Base;
 using Shared.Swagger;
 using Teacher.Warning.Query.GetAll;
 
@@ -10,7 +9,7 @@ namespace schoolmanagment.Controllers.Teacher;
 
 
 [ApiGroup(ApiGroupName.All, ApiGroupName.Teacher)]
-[TeacherAuthorizeAtrribute]
+// [TeacherAuthorizeAtrribute]
 public class WarningController:ApiController
 {
     

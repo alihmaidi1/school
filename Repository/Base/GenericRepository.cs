@@ -1,12 +1,14 @@
+using System.Linq.Expressions;
 using Common.Entity.Entity;
 using Common.Entity.ValueObject;
-using infrutructure;
+using infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
+using Shared.Entity.Entity;
 
 namespace Repository.Base;
 
-public class GenericRepository<T>: IgenericRepository<T> where T : class
+public class GenericRepository<T>: IGenericRepository<T> where T : BaseEntity
 {
     
     public readonly ApplicationDbContext DbContext;
@@ -14,6 +16,7 @@ public class GenericRepository<T>: IgenericRepository<T> where T : class
 
         this.DbContext = DbContext;
     }
+    
     public virtual async Task<T> AddAsync(T entity)
     {
         await DbContext.Set<T>().AddAsync(entity);
@@ -27,10 +30,6 @@ public class GenericRepository<T>: IgenericRepository<T> where T : class
         return DbContext.Database.BeginTransaction();
     }
 
-    public bool SoftDelete(StronglyTypeId Id)
-    {
-        throw new NotImplementedException();
-    }
 
     public void Commit()
     {
@@ -42,7 +41,7 @@ public class GenericRepository<T>: IgenericRepository<T> where T : class
     {
 
         DbContext.Set<T>().Remove(entity);
-        DbContext.SaveChangesAsync();
+        await DbContext.SaveChangesAsync();
     }
 
     public virtual async Task<List<T>> GetAllasync()
@@ -81,5 +80,53 @@ public class GenericRepository<T>: IgenericRepository<T> where T : class
 
 
     }
+
+    public async Task<bool> IsExists(Guid id)
+    {
+        return DbContext.Set<T>().Any(x=>x.Id==id);
+    }
+
+
+    public  bool IsExistsByProperty(string property,object value)
+    {
+        var parameter = Expression.Parameter(typeof(T), "e");
+        var propertyExpression = Expression.Property(parameter, property);
+        var equals = Expression.Equal(propertyExpression, Expression.Constant(value));
+        var predicate = Expression.Lambda<Func<T, bool>>(equals, parameter);
+        return DbContext.Set<T>().Any(predicate);
+
+    }
+
+
+    public bool IsUnique(Guid id,string property,object value){
+
+
+        var parameter = Expression.Parameter(typeof(T), "e");
+        var propertyExpression = Expression.Property(parameter, property);
+        var equals = Expression.Equal(propertyExpression, Expression.Constant(value));
+
+        var idExpression = Expression.Property(parameter, "Id");
+        var notEqual=Expression.NotEqual(idExpression, Expression.Constant(id));
+
+        var predicate = Expression.Lambda<Func<T, bool>>(equals, parameter);
+        var wherepredicate = Expression.Lambda<Func<T, bool>>(notEqual, parameter);
+        return !DbContext.Set<T>().Where(wherepredicate).Any(predicate);
+
+
+    }
+
+
+    public T? GetByProperty(string property, object value)
+    {
+        
+        var parameter = Expression.Parameter(typeof(T), "e");
+        var propertyExpression = Expression.Property(parameter, property);
+        var equals = Expression.Equal(propertyExpression, Expression.Constant(value));
+        var predicate = Expression.Lambda<Func<T, bool>>(equals, parameter);
+        return DbContext.Set<T>().FirstOrDefault(predicate);
+
+        
+    }
+
 
 }

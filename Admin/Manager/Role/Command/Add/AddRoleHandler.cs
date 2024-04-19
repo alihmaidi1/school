@@ -1,25 +1,25 @@
 using Common.CQRS;
 using Microsoft.AspNetCore.Mvc;
 using Repository.Manager.Role;
+using Shared.CQRS;
 using Shared.OperationResult;
 
 namespace Admin.Manager.Role.Command.Add;
 
-public class AddRoleHandler:OperationResult,
-    ICommandHandler<AddRoleCommand>
+public class AddRoleHandler:OperationResult,ICommandHandler<AddRoleCommand>
 {
     
-    private readonly IRoleRepository roleRepository;
+    private readonly IRoleRepository _roleRepository;
 
     
     public AddRoleHandler(IRoleRepository roleRepository)
     {
-        this.roleRepository = roleRepository;
+        _roleRepository = roleRepository;
     }
 
     public async Task<JsonResult> Handle(AddRoleCommand request, CancellationToken cancellationToken)
     {
-        roleRepository.AddAsync(new Domain.Entities.Role.Role()
+        await _roleRepository.AddAsync(new Domain.Entities.Role.Role()
         {
 
             Name = request.Name,

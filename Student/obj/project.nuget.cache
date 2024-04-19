@@ -1,11 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "v234azTAlTe3koEPvo8XeZtZ8/cta7XpwUGoeg3miclWzJZ8L4C+DsHx+1fxZQJoAJ+iKeiC1Fhld/9rFBUuGw==",
+  "dgSpecHash": "fvIYmFx9qUhbGJxBvajhiCz+pdoDi1NaX+rHZdgwnP3GEINFFaAtRfPz5uVUI8hwUv1ybphyMGCBGtYtLBlfug==",
   "success": true,
   "projectFilePath": "/home/alihmaidi/Desktop/schhol1/Student/Student.csproj",
-  "expectedPackageFiles": [
-    "/home/alihmaidi/.nuget/packages/microsoft.netcore.app.ref/7.0.16/microsoft.netcore.app.ref.7.0.16.nupkg.sha512",
-    "/home/alihmaidi/.nuget/packages/microsoft.aspnetcore.app.ref/7.0.16/microsoft.aspnetcore.app.ref.7.0.16.nupkg.sha512"
-  ],
+  "expectedPackageFiles": [],
   "logs": []
 }

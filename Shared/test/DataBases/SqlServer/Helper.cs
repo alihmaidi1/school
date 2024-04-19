@@ -1,5 +1,5 @@
 
-namespace EntityFramework.BulkExtension.DataBases.SqlServer;
+namespace Shared.test.DataBases.SqlServer;
 
 public class Helper
 {

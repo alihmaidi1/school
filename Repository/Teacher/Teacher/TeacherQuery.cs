@@ -9,13 +9,12 @@ public static class TeacherQuery
     public static Expression<Func<Domain.Entities.Teacher.Teacher.Teacher, GetAllTeacher>> ToGetAllTeacher = Teacher =>
         new GetAllTeacher()
         {
-            Id = Teacher.Id.Value,
+            Id = Teacher.Id,
             Name = Teacher.Name,
             Email = Teacher.Email,
-            Status = Teacher.status,
             Image = Teacher.Image,
-            Resize = Teacher.Resize,
-            Hash = Teacher.Hash
+            Hash = Teacher.Hash,
+            SubjectNumber=Teacher.SubjectYears.Count(x=>x.Year.Date.Year==DateTime.Now.Year)
         };
 
 

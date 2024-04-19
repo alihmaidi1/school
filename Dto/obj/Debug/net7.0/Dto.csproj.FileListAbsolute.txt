@@ -25,10 +25,8 @@
 /home/alihmaidi/Desktop/schhol1/Dto/bin/Debug/net7.0/Dto.pdb
 /home/alihmaidi/Desktop/schhol1/Dto/bin/Debug/net7.0/Domain.dll
 /home/alihmaidi/Desktop/schhol1/Dto/bin/Debug/net7.0/Shared.dll
-/home/alihmaidi/Desktop/schhol1/Dto/bin/Debug/net7.0/EntityFrameworkCore.EncryptColumn.dll
 /home/alihmaidi/Desktop/schhol1/Dto/bin/Debug/net7.0/Domain.pdb
 /home/alihmaidi/Desktop/schhol1/Dto/bin/Debug/net7.0/Shared.pdb
-/home/alihmaidi/Desktop/schhol1/Dto/bin/Debug/net7.0/EntityFrameworkCore.EncryptColumn.pdb
 /home/alihmaidi/Desktop/schhol1/Dto/obj/Debug/net7.0/Dto.csproj.AssemblyReference.cache
 /home/alihmaidi/Desktop/schhol1/Dto/obj/Debug/net7.0/Dto.GeneratedMSBuildEditorConfig.editorconfig
 /home/alihmaidi/Desktop/schhol1/Dto/obj/Debug/net7.0/Dto.AssemblyInfoInputs.cache

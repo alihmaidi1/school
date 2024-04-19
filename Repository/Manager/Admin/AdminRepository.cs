@@ -2,69 +2,53 @@ using Domain.Entities.Manager.Admin;
 using Domain.Enum;
 using Dto.Admin.Admin;
 using Dto.Admin.Role;
-using infrutructure;
+using infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Repository.Base;
 using Shared.Entity.EntityOperation;
-using Shared.Redis;
 using Shared.Repository;
 
 namespace Repository.Manager.Admin;
 
-public class AdminRepository:GenericRepository<Domain.Entities.Admin.Admin>,IAdminRepository
+public class AdminRepository:GenericRepository<Domain.Entities.Manager.Admin.Admin>,IAdminRepository
 {
     
-    public readonly ICacheRepository CacheRepository;
-    public AdminRepository(ICacheRepository CacheRepository,ApplicationDbContext DbContext) : base(DbContext)
+    public AdminRepository(ApplicationDbContext dbContext) : base(dbContext)
     {
-        this.CacheRepository = CacheRepository;
     }
 
-    public bool IsEmailExists(string Email)
-    {
-        
-        return DbContext.Admins.IgnoreQueryFilters().Any(x => x.Email.Equals(Email));
-        
-    }
 
-    public Domain.Entities.Admin.Admin GetByEmail(string Email)
-    {
-
-
-        return DbContext.Admins.IgnoreQueryFilters().First(x=>x.Email.Equals(Email));
-
-    }
 
 
     public bool Logout(string Token)
     {
         
-        CacheRepository.RemoveData($"Token:{Token}");
         return true;
         
     }
 
-
-
-    public PageList<GetAllAdmin> GetAlladmin(string? OrderBy, int? pageNumber, int? pageSize)
+    public PageList<GetAllAdmin> GetAll(AdminSorting.OrderBy orderBy, int? pageNumber, int? pageSize, string? search)
     {
-
-        var Result = DbContext.Admins
-            .Where(x => !x.Name.Equals(RoleEnum.SuperAdmin.ToString()))
-            .Sort<AdminID, Domain.Entities.Admin.Admin>(OrderBy, AdminSorting.switchOrdering)
+        var result = DbContext
+            .Admins
+            .Include(x=>x.Role)
+            .Where(x=>x.Name.Contains(search??"")||x.Email.Contains(search??"")||x.Role.Name.Contains(search??""))
+            .OrderBy(AdminSorting.SwitchOrdering(orderBy))
             .Select(AdminQuery.ToGetAllAdmin)
             .ToPagedList(pageNumber, pageSize);
-        return Result;
+        return result;
         
     }
 
-    public bool IsExists(AdminID id)
-    {
 
-        return DbContext.Admins.Any(x => x.Id.Equals(id));
-    }
 
-    public GetAdminInfo GetInfo(AdminID id)
+    // public bool IsExists(Guid id)
+    // {
+
+    //     return DbContext.Admins.Any(x => x.Id.Equals(id));
+    // }
+
+    public GetAdminInfo GetInfo(Guid id)
     {
 
         return DbContext
@@ -74,18 +58,17 @@ public class AdminRepository:GenericRepository<Domain.Entities.Admin.Admin>,IAdm
             .Select(x=>new GetAdminInfo()
             {
                 
-                Id = x.Id.Value,
+                Id = x.Id,
                 Name = x.Name,
                 Email = x.Email,
                 Status = x.Status,
                 Image = x.Image,
                 Hash = x.Hash,
-                Resize = x.Resize,
                 CreatedAt = x.DateCreated,
                 Role = new GetAllRole()
                 {
                     
-                    Id = x.Role.Id.Value,
+                    Id = x.Role.Id,
                     Name = x.Role.Name,
                     Permissions = x.Role.Permissions,
                     CreatedAt = x.Role.DateCreated
@@ -98,16 +81,8 @@ public class AdminRepository:GenericRepository<Domain.Entities.Admin.Admin>,IAdm
     }
 
 
-    public bool IsEmailExists(string Email, AdminID id)
-    {
 
-        return DbContext.Admins.Any(x => x.Email.Equals(Email) && !x.Id.Equals(id));
-
-
-    }
-
-
-    public bool Delete(AdminID id)
+    public bool Delete(Guid id)
     {
 
         DbContext.Admins.Where(x => x.Id.Equals(id)).ExecuteUpdate(setter=>setter.SetProperty(x=>x.DateDeleted,DateTime.Now));
@@ -115,7 +90,7 @@ public class AdminRepository:GenericRepository<Domain.Entities.Admin.Admin>,IAdm
         return true;
     }
 
-    public List<AdminID> GetIds(string Permission)
+    public List<Guid> GetIds(string Permission)
     {
 
         return DbContext.Admins.Include(x => x.Role)

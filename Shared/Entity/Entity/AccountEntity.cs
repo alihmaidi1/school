@@ -2,7 +2,7 @@ using Common.Entity.ValueObject;
 
 namespace Common.Entity.Entity;
 
-public class AccountEntity<TKey> : BaseEntityWithoutId where TKey : StronglyTypeId
+public class AccountEntity : BaseEntityWithoutId 
 {
-    public TKey Id { get; set; }
+    public Guid Id { get; set; }
 }

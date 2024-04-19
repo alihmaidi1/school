@@ -12,60 +12,60 @@ public class OperationResult
 
 
 
-    public JsonResult Deleted<T>() where T : class
+    public JsonResult Deleted()
     {
                 
-        int StatusCode = (int)System.Net.HttpStatusCode.OK;
-        string Message = "Deleted Successfully";
-        return this.ToJsonResult<T>(StatusCode:StatusCode,Message:Message);
+        const int statusCode = (int)System.Net.HttpStatusCode.OK;
+        const string message = "Deleted Successfully";
+        return this.ToJsonResult<object>(statusCode:statusCode,message:message);
     }
 
-    public  JsonResult NotFound<T>(string Message="") where T : class
+    public  JsonResult NotFound<T>(string message="") where T : class
     {
+        const int statusCode = (int)OperationResultType.OperationResultTypes.NotExist;
 
-        int StatusCode = (int)OperationResultType.OperationResultTypes.NotExist;
-
-        return this.ToJsonResult<T>(StatusCode: StatusCode, Message: Message);
+        return this.ToJsonResult<T>(statusCode: statusCode, message: message);
     }
 
-    public JsonResult Success<T>(T Data,string ResultMessage="") 
+    public JsonResult Success<T>(T data,string resultMessage="") 
     {
-        int StatusCode = (int)System.Net.HttpStatusCode.OK;
+        const int statusCode = (int)System.Net.HttpStatusCode.OK;
         //string Message = _StringLocalizer[SharedResourceKeys.Operation_Success];
-        string Message = ResultMessage;
-        return this.ToJsonResult<T>(StatusCode, Data, Message);
+        return this.ToJsonResult<T>(statusCode, data, resultMessage);
 
     }
 
-    public JsonResult Success(string ResultMessage = "")
+    public JsonResult Success(string resultMessage = "")
     {
-        int StatusCode = (int)System.Net.HttpStatusCode.OK;
-        string Message = ResultMessage;
-        return this.ToJsonResult<object>(StatusCode,Message:Message);
+        const int statusCode = (int)System.Net.HttpStatusCode.OK;
+        return this.ToJsonResult<object>(statusCode,message:resultMessage);
 
     }
 
     
-    public JsonResult Fail(string ResultMessage = "")
+    public JsonResult Fail(string resultMessage = "")
     {
-        int StatusCode = (int)System.Net.HttpStatusCode.UnprocessableEntity;
-        string Message = ResultMessage;
-        return this.ToJsonResult<object>(StatusCode,Message:Message);
+        const int statusCode = (int)System.Net.HttpStatusCode.UnprocessableEntity;
+        return this.ToJsonResult<object>(statusCode,message:resultMessage);
 
     }
-    public JsonResult Created<T>(T Data, string Message = "") 
+    public JsonResult Created<T>(T data, string message = "")
     {
-
-        int StatusCode = (int)System.Net.HttpStatusCode.Created;
-        return this.ToJsonResult<T>(StatusCode,Data,Message);            
-
-
+        const int statusCode = (int)System.Net.HttpStatusCode.Created;
+        return this.ToJsonResult<T>(statusCode,data,message);
     }
-    public  JsonResult Exists<T>(string Message="") where T : class
+    public JsonResult ValidationError(string propertyName,string propertyMessage)
     {
-        int StatusCode = (int)System.Net.HttpStatusCode.UnprocessableEntity;
-        return this.ToJsonResult<T>(StatusCode,Message:Message);
-
+        // const T data=
+        const int statusCode = (int)System.Net.HttpStatusCode.UnprocessableEntity;
+        Dictionary<string, string> errors = new Dictionary<string, string>();
+        errors.Add(propertyName,propertyMessage);
+        return this.ToJsonValidationResult(statusCode,errors);
+    }
+    public  JsonResult Exists<T>(string message="") where T : class
+    {
+        const int statusCode = (int)System.Net.HttpStatusCode.UnprocessableEntity;
+        return this.ToJsonResult<T>(statusCode,message:message);
     }
    
 }

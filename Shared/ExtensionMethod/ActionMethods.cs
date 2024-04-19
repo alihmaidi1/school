@@ -1,12 +1,12 @@
 using System.Net;
 using System.Text.Json;
 using Microsoft.AspNetCore.Http;
-using Shared.Exceptions;
-using Shared.OperationResult.Base;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Shared.Exceptions;
+using Shared.OperationResult.Base;
 using ValidationException = FluentValidation.ValidationException;
-namespace Common.ExtensionMethod;
+namespace Shared.ExtensionMethod;
 
 public static class ActionMethods
 {
@@ -14,30 +14,30 @@ public static class ActionMethods
     {
         var response = context.Response;
         response.ContentType = "application/json";
-        var Result = new OperationResultBase<string>();
+        var result = new OperationResultBase<string>();
 
 
         switch (error)
         {
             case ValidationException exception:
-                Result.Message = exception.Message;
-                Result.StatusCode = (int)HttpStatusCode.UnprocessableEntity;
+                result.Message = exception.Message;
+                result.StatusCode = (int)HttpStatusCode.UnprocessableEntity;
                 response.StatusCode = (int)HttpStatusCode.UnprocessableEntity;
-                Result.Errors = exception.Errors.GroupBy(e => e.PropertyName)
-                    .ToDictionary(x => x.Key, x => x.Select(x => x.ErrorMessage).ToList());
+                result.Errors = exception.Errors.GroupBy(e => e.PropertyName)
+                    .ToDictionary(x => x.Key, x => x.Select(x => x.ErrorMessage).FirstOrDefault());
 
                 break;
 
             case UnAuthenticationException exception:
-                Result.Message = exception.Message;
-                Result.StatusCode = (int)HttpStatusCode.Unauthorized;
+                result.Message = exception.Message;
+                result.StatusCode = (int)HttpStatusCode.Unauthorized;
                 response.StatusCode = (int)HttpStatusCode.Unauthorized;
                 break;
 
 
             case UnAuthorizationException exception:
-                Result.Message = exception.Message;
-                Result.StatusCode = (int)HttpStatusCode.Forbidden;
+                result.Message = exception.Message;
+                result.StatusCode = (int)HttpStatusCode.Forbidden;
                 response.StatusCode = (int)HttpStatusCode.Forbidden;
                 break;
 
@@ -47,33 +47,33 @@ public static class ActionMethods
                 var innerexception = exception.InnerException;
                 if (innerexception is SqlException && ((SqlException)innerexception).ErrorCode == -2146232060)
                 {
-                    Result.Message = "you can't delete this record becuase it is have relation data";
-                    Result.StatusCode = (int)HttpStatusCode.InternalServerError;
+                    result.Message = "you can't delete this record becuase it is have relation data";
+                    result.StatusCode = (int)HttpStatusCode.InternalServerError;
                     response.StatusCode = (int)HttpStatusCode.InternalServerError;
                     break;
                 }
 
-                Result.Message = exception.Message;
-                Result.StatusCode = (int)HttpStatusCode.InternalServerError;
+                result.Message = exception.Message;
+                result.StatusCode = (int)HttpStatusCode.InternalServerError;
                 response.StatusCode = (int)HttpStatusCode.InternalServerError;
                 break;
 
                 ;
-            case Exception exception:
-                Result.Message = exception.Message;
-                Result.StatusCode = (int)HttpStatusCode.InternalServerError;
-                response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                break;
+            // case Exception exception:
+            //     result.Message = exception.Message;
+            //     result.StatusCode = (int)HttpStatusCode.InternalServerError;
+            //     response.StatusCode = (int)HttpStatusCode.InternalServerError;
+            //     break;
 
             default:
-                Result.Message = error.Message;
-                Result.StatusCode = (int)HttpStatusCode.InternalServerError;
+                result.Message = error.Message;
+                result.StatusCode = (int)HttpStatusCode.InternalServerError;
                 response.StatusCode = (int)HttpStatusCode.InternalServerError;
                 break;
         }
 
 
-        var errors = JsonSerializer.Serialize(Result);
+        var errors = JsonSerializer.Serialize(result);
         await response.WriteAsync(errors);
     };
 }

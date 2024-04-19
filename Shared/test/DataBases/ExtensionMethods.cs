@@ -1,6 +1,4 @@
-using Microsoft.EntityFrameworkCore;
-
-namespace EntityFramework.BulkExtension.DataBases;
+namespace Shared.test.DataBases;
 
 public class ExtensionMethods
 {

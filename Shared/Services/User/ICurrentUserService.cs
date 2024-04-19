@@ -1,6 +1,13 @@
+using Shared.Entity.Interface;
+
 namespace Shared.Services.User;
 
-public class ICurrentUserService
+public interface ICurrentUserService : IBaseSuper
 {
+    
+    Guid? UserId { get; init; }
+    
+    string? Token { get;  }
+
     
 }

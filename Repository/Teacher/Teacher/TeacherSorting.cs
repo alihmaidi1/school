@@ -20,7 +20,6 @@ public static class TeacherSorting
 
             "Name" => x => x.Name,
             "Email"=>x=>x.Email,
-            "Status"=>x=>x.status,
             _ => x => x.DateCreated,
 
         };

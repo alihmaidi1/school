@@ -11,10 +11,8 @@ public class DeleteAdminValidation:AbstractValidator<DeleteAdminCommand>
     {
         RuleFor(x => x.Id)
             .NotEmpty()
-            .WithMessage("id should be not empty")
             .NotNull()
-            .WithMessage("id should be not null")
-            .Must(x => adminRepository.IsExists(new AdminID(x)))
+            .Must(x => adminRepository.IsExists(x).GetAwaiter().GetResult())
             .WithMessage("this admin is not exists in our data");
     }
 }

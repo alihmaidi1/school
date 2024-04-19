@@ -1,8 +1,6 @@
-using Domain.Entities.Manager.Admin;
-using Domain.Entities.Teacher.Teacher;
-using Domain.Entities.Teacher.Vacation;
+
 using Dto.Teacher.Vacation;
-using infrutructure;
+using infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Repository.Base;
 using Shared.Entity.EntityOperation;
@@ -13,12 +11,12 @@ public class VacationRepository:GenericRepository<Domain.Entities.Teacher.Vacati
     {
     }
 
-    public bool IsExists(VacationID vacationId)
+    public bool IsExists(Guid vacationId)
     {
         return DbContext.Vacations.Any(x => x.Id.Equals(vacationId));
     }
 
-    public bool ChangeStatus(VacationID vacationId,AdminID adminId, bool Status)
+    public bool ChangeStatus(Guid vacationId,Guid adminId, bool Status)
     {
 
 
@@ -37,11 +35,11 @@ public class VacationRepository:GenericRepository<Domain.Entities.Teacher.Vacati
             .Vacations
             .Include(x => x.Admin)
             .Include(x => x.Teacher)
-            .WhereWhenNotNull(teacherId!=null,x=>x.TeacherId==new TeacherID((Guid)teacherId))
+            .WhereWhenNotNull(teacherId!=null,x=>x.TeacherId==(Guid)teacherId)
             .WhereWhenNotNull(Status!=null,x=>x.Status==Status)
             .Select(x=>new GetAllVacationResponse()
             {
-                Id = x.Id.Value,
+                Id = x.Id,
                 Admin = x.Admin!.Name,
                 Teacher = x.Teacher.Name,
                 Status = x.Status,

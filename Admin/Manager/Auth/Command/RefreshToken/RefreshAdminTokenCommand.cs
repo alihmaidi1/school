@@ -1,11 +1,9 @@
-using MediatR;
-using Microsoft.AspNetCore.Mvc;
+using Shared.CQRS;
 
-namespace Admin.Auth.Command.RefreshToken;
+namespace Admin.Manager.Auth.Command.RefreshToken;
 
-public class RefreshAdminTokenCommand:IRequest<JsonResult>
+public class RefreshAdminTokenCommand: ICommand
 {
-    
-    public string RefreshToken { get; set; }
+    public string RefreshToken { get; init; }
     
 }

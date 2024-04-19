@@ -1,4 +1,5 @@
 using Common.CQRS;
+using Shared.CQRS;
 
 namespace Admin.Teacher.Teacher.Command.Add;
 
@@ -13,7 +14,7 @@ public class AddTeacherCommand:ICommand
     
     public bool Status { get; set; }
 
-    public string? Image { get; set; }
+    public Guid Image { get; set; }
     
     
 }

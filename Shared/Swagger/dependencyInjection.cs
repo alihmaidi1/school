@@ -1,20 +1,28 @@
 using System.Reflection;
+using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Swashbuckle.AspNetCore.SwaggerUI;
 
 namespace Shared.Swagger;
 
-public static class dependencyInjection
+public static class DependencyInjection
 {
     
-    public static IServiceCollection AddOpenApi(this IServiceCollection services)
+    public static IServiceCollection AddOpenApi(this IServiceCollection services,string AssemblyName)
         {
-
+            
             services.AddSwaggerGen(option =>
             {
+
+
+                // option.SchemaFilter<EnumSchemaFilter>();
+                var xmlFile = $"{AssemblyName}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                option.IncludeXmlComments(xmlPath);
 
 
                 //create  swagger document
@@ -31,26 +39,25 @@ public static class dependencyInjection
                 });
 
 
-                option.DocInclusionPredicate((docName, ApiDescription) =>
+                option.DocInclusionPredicate((docName, apiDescription) =>
                 {
-                    if (!ApiDescription.TryGetMethodInfo(out MethodInfo method)) return false;
+                    if (!apiDescription.TryGetMethodInfo(out MethodInfo method)) return false;
                     if (docName == "All") return true;
 
-                    var actionlist = ApiDescription.ActionDescriptor.EndpointMetadata.FirstOrDefault(x => x is ApiGroupAttribute);
+                    var actionList = apiDescription.ActionDescriptor.EndpointMetadata.FirstOrDefault(x => x is ApiGroupAttribute);
 
-                    if (docName == "NoGroup") return actionlist == null ? true : false;
-                    if (actionlist != null)
+                    if (docName == "NoGroup") return actionList == null ? true : false;
+                    if (actionList != null)
                     {
                         //Determine whether to include this group
-                        var actionfilter = actionlist as ApiGroupAttribute;
-                        return actionfilter.GroupName.Any(x => x.ToString().Trim() == docName);
+                        var actionFilter = actionList as ApiGroupAttribute;
+                        return actionFilter.GroupName.Any(x => x.ToString().Trim() == docName);
                     }
                     return false;
 
                 });
 
-
-                option.CustomSchemaIds(x => x.FullName);
+                option.CustomSchemaIds(s => s.FullName?.Replace("+", "."));
 
                 option.AddSecurityDefinition("Bearer",new OpenApiSecurityScheme()
                 {
@@ -62,6 +69,7 @@ public static class dependencyInjection
                     Scheme = "Bearer",
 
                 });
+
 
                 option.AddSecurityRequirement(new OpenApiSecurityRequirement
                 {
@@ -86,12 +94,12 @@ public static class dependencyInjection
                 });
 
 
-            });
+            }).AddSwaggerGenNewtonsoftSupport();
 
             return services;
 
         }
-        public static IApplicationBuilder ConfigureOpenAPI(this IApplicationBuilder app)
+        public static IApplicationBuilder ConfigureOpenApi(this IApplicationBuilder app)
         {
             app.UseSwagger();
             app.UseSwaggerUI(c =>
@@ -105,9 +113,7 @@ public static class dependencyInjection
                 });
 
                 c.DocExpansion(DocExpansion.None);
-
                 
-
             });
             return app;
         }

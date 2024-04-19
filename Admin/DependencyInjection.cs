@@ -12,9 +12,6 @@ public static class DependencyInjection
 
 
         
-        services.AddMediatR(config => config.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
-        services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
-
         return services;
     }
 

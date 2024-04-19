@@ -1,7 +1,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace schoolmanagment.Base;
+namespace schoolManagement.Base;
 
 public class ApiController: ControllerBase
 {

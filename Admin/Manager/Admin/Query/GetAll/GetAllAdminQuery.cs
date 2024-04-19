@@ -1,12 +1,12 @@
 using Common.CQRS;
+using Repository.Manager.Admin;
+using Shared.Abstraction;
 
-namespace Admin.Admin.Query.GetAll;
+namespace Admin.Manager.Admin.Query.GetAll;
 
-public class GetAllAdminQuery:IQuery
+public class GetAllAdminQuery: PaginationRequest , IQuery
 {
-    public string? OrderBy { get; set; }
+    public AdminSorting.OrderBy OrderBy { get; set; }
+    public string? Search { get; set; }
 
-    public int? PageNumber { get; set; }
-
-    public int? PageSize { get; set; }
 }
