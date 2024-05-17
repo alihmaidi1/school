@@ -1,8 +1,11 @@
+using System.Runtime.InteropServices;
 using Domain.Base.Entity;
 using Domain.Base.interfaces;
 using Domain.Entities.Account;
 using Domain.Entities.Teacher.Vacation;
 using Domain.Entities.Teacher.Warning;
+using Domain.Event;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Shared.Entity.Entity;
 
 namespace Domain.Entities.Manager.Admin;
@@ -17,9 +20,24 @@ public class Admin: Account.Account, ISoftDelete
         Id = Guid.NewGuid();
         Vacations = new HashSet<Vacation>();
         Warnings = new HashSet<Warning>();
+
     }
 
+
+    public void SendEmail(string Message,string Subject){
+
+        RaiseDomainEvent(new SendEmailEvent(){
+
+            Email=Email,
+            Message=Message,
+            Subject=Subject
+
+        });
+
+    }
     
+
+
     public string Name { get; set; }
     
     public bool Status { get; set; }=true;

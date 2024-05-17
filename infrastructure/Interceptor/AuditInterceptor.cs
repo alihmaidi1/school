@@ -1,3 +1,4 @@
+using Domain.Base.interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Shared.Entity.Interface;

@@ -1,4 +1,5 @@
-using Common.Entity.Entity;
+
+using Domain.Base.Entity;
 using Domain.Base.interfaces;
 using Domain.Entities.Manager.Admin;
 using Domain.Entities.Teacher.Teacher;

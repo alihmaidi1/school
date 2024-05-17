@@ -1,3 +1,4 @@
+using Domain.Event;
 using infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Shared.Constant;
@@ -14,6 +15,7 @@ public class AdminCommandHandler:OperationResult,ICommandHandler<AddAdminCommand
  
  
     private readonly ApplicationDbContext _context;
+    
     private readonly IMailService _mailService;
     public AdminCommandHandler(ApplicationDbContext context, IMailService mailService)
     {
@@ -41,9 +43,9 @@ public class AdminCommandHandler:OperationResult,ICommandHandler<AddAdminCommand
         admin.Hash = image.Hash;
         _context.Images.Remove(image);
         _context.Admins.Add(admin);
+        admin.SendEmail("you are a new admin",$"you can login to dashboard by this password:{request.Password}");    
         await _context.SaveChangesAsync(cancellationToken);
         image.Url.MoveFile(image.Url.GetNewPath(FolderName.Admin).localPath);
-        _mailService.SendMail(request.Email,"you are a new admin",$"you can login to dashboard by this password:{request.Password}");
         return Success("admin was created successfully");
         
     

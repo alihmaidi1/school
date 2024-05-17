@@ -1,10 +1,5 @@
-using Common.Entity.Entity;
+using Domain.Base.Entity;
 using Domain.Base.interfaces;
-using Domain.Entities.Student.Audience;
-using Domain.Entities.Student.Parent;
-using Domain.Entities.Student.StudentSubject;
-using EntityFrameworkCore.EncryptColumn.Attribute;
-using Shared.Entity.Entity;
 
 namespace Domain.Entities.Student.Student;
 

@@ -3,7 +3,6 @@ using Dto.Student.Parent;
 using infrastructure;
 using Repository.Base;
 using Shared.Entity.EntityOperation;
-using Shared.Repository;
 
 namespace Repository.Student.Parent;
 
@@ -16,14 +15,15 @@ public class ParentRepository:GenericRepository<Domain.Entities.Student.Parent.P
     public PageList<GetAllParentResponse> GetAllParent(string? OrderBy, int? pageNumber, int? pageSize)
     {
 
-        var Result = DbContext.Parents
-            .Sort<Domain.Entities.Student.Parent.Parent>(OrderBy, ParentSorting.switchOrdering)
-            .Select(ParentQuery.ToGetAllParent)
-            .ToPagedList(pageNumber,pageSize);
+        // var Result = DbContext.Parents
+        //     .Sort<Domain.Entities.Student.Parent.Parent>(OrderBy, ParentSorting.switchOrdering)
+        //     .Select(ParentQuery.ToGetAllParent)
+        //     .ToPagedList(pageNumber,pageSize);
         
 
-        return Result;
+        // return Result;
 
+        return null;
     }
 
 

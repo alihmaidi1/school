@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using Domain.Base.Entity;
 using Shared.Entity.Entity;
 
 namespace Domain.Entities.Student.StudentBill;

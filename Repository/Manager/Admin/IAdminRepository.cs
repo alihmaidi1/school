@@ -12,6 +12,8 @@ public interface IAdminRepository:IGenericRepository<Domain.Entities.Manager.Adm
     public bool Delete(Guid id);
 
 
+
+
     public List<Guid> GetIds(string permission);
     
     

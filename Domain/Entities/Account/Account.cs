@@ -1,4 +1,4 @@
-using Shared.Entity.Entity;
+using Domain.Base.Entity;
 
 namespace Domain.Entities.Account;
 

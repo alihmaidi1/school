@@ -1,4 +1,4 @@
-using Common.Entity.Entity;
+using Domain.Base.Entity;
 using Microsoft.EntityFrameworkCore.Storage;
 using Shared.Entity.Entity;
 using Shared.Entity.Interface;

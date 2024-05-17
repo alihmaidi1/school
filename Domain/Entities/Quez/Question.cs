@@ -1,3 +1,4 @@
+using Domain.Base.Entity;
 using Domain.Base.interfaces;
 using Shared.Entity.Entity;
 

@@ -1,9 +1,5 @@
-using Common.Entity.Entity;
 using Domain.Base.interfaces;
-using Domain.Entities.Account;
 using Domain.Entities.ClassRoom;
-using EntityFrameworkCore.EncryptColumn.Attribute;
-using Shared.Entity.Entity;
 
 namespace Domain.Entities.Teacher.Teacher;
 

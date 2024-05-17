@@ -1,5 +1,4 @@
 using System.Reflection;
-using Admin;
 using Common;
 using FluentValidation;
 using Hangfire;
@@ -25,6 +24,9 @@ builder.Services.AddControllers().AddNewtonsoftJson(options =>
 {
     options.SerializerSettings.Converters.Add(new StringEnumConverter());
 });
+builder.Services.AddResponseCompression(option => { option.MimeTypes = new[] { "application/json" }; });
+
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
@@ -36,7 +38,6 @@ builder.Services.AddHangfireServer();
 #region CommonConfiguration
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-
 
 builder.Services.Scan(selector =>
     selector
@@ -53,6 +54,8 @@ builder.Services.Scan(selector =>
 
 builder.Services.AddMediatR(c => c.RegisterServicesFromAssemblies(AppDomain.CurrentDomain.GetAssemblies()));
 builder.Services.AddValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
+ValidatorOptions.Global.DefaultClassLevelCascadeMode = CascadeMode.Stop;
+ValidatorOptions.Global.DefaultRuleLevelCascadeMode = CascadeMode.Stop;
 
 
 
@@ -129,12 +132,6 @@ builder.Services.AddInfrustucture(builder.Configuration);
 
 
 
-
-// admin area
-
-builder.Services.AddAdmindependency();
-
-// end admin area
 
 
 // shared area

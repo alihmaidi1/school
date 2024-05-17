@@ -4,12 +4,6 @@ namespace Repository.Manager.Admin;
 
 public static class AdminSorting
 {
-    // public static List<string> OrderBy = new()
-    // {
-    //     "Name",
-    //     "Email",
-    //     "DateCreated"
-    // };
 
     public enum OrderBy
     {

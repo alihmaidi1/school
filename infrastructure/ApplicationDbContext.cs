@@ -1,6 +1,7 @@
 using System.Linq.Expressions;
 using System.Reflection;
 using Domain.Base.Entity;
+using Domain.Base.interfaces;
 using Domain.Entities.Account;
 using Domain.Entities.ClassRoom;
 using Domain.Entities.Manager.Admin;
@@ -16,10 +17,7 @@ using infrastructure.Convertor;
 using infrastructure.Interceptor;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
-using Org.BouncyCastle.Crypto;
-using Org.BouncyCastle.Math.EC.Rfc7748;
 using Shared.Entity.Entity;
-using Shared.Entity.Interface;
 using Shared.Services.User;
 
 namespace infrastructure;
@@ -35,7 +33,8 @@ public class ApplicationDbContext:DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.AddInterceptors(new SoftDeleteInterceptor(_currentUserService))
-                      .AddInterceptors(new AuditInterceptor(_currentUserService));
+                      .AddInterceptors(new AuditInterceptor(_currentUserService))
+                      .AddInterceptors(new ConvertDomainEventToOutBoxMessageInterceptor());
         base.OnConfiguring(optionsBuilder);
     }
 

@@ -4,7 +4,6 @@ using infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Repository.Base;
 using Shared.Entity.EntityOperation;
-using Shared.Repository;
 
 namespace Repository.Teacher.Teacher;
 

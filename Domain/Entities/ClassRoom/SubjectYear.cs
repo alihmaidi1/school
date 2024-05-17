@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Domain.Base.Entity;
 using Domain.Base.interfaces;
 using Domain.Entities.Student.Audience;
 using Domain.Entities.Student.StudentSubject;

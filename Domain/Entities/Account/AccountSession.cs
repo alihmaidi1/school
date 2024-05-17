@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Shared.Entity.Entity;
+using Domain.Base.Entity;
 
 namespace Domain.Entities.Account;
 

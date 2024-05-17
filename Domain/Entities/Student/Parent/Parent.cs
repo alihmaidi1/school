@@ -1,4 +1,5 @@
-using Common.Entity.Entity;
+
+using Domain.Base.Entity;
 using Domain.Base.interfaces;
 using EntityFrameworkCore.EncryptColumn.Attribute;
 using Shared.Entity.Entity;

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Shared.Entity.Entity;
+using Domain.Base.Entity;
 
 namespace Domain.Entities.ClassRoom;
 

@@ -1,22 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using Admin.Manager.Auth.Command.Login;
 using Admin.Manager.Auth.Command.Logout;
 using Admin.Manager.Auth.Command.RefreshToken;
 using Dto.Admin.Auth.Dto;
 using infrastructure;
 using infrastructure.Attribute;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using schoolManagement.Base;
-using Shared.Helper;
 using Shared.OperationResult.Base;
 using Shared.Swagger;
-using Shared.test.DataBases.Upsert;
 
 namespace schoolmanagment.Controllers.Admin;
 

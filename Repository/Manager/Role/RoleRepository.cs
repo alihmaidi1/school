@@ -6,7 +6,6 @@ using infrastructure;
 using Repository.Base;
 using Repository.Manager.Admin;
 using Shared.Entity.EntityOperation;
-using Shared.Repository;
 
 namespace Repository.Manager.Role;
 

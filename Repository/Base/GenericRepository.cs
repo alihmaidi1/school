@@ -1,6 +1,5 @@
 using System.Linq.Expressions;
-using Common.Entity.Entity;
-using Common.Entity.ValueObject;
+using Domain.Base.Entity;
 using infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;

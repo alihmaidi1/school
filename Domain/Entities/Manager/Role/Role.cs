@@ -1,5 +1,5 @@
-using Common.Entity.Entity;
-using Shared.Entity.Entity;
+
+using Domain.Base.Entity;
 
 namespace Domain.Entities.Role;
 

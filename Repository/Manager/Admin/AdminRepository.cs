@@ -6,8 +6,6 @@ using infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Repository.Base;
 using Shared.Entity.EntityOperation;
-using Shared.Repository;
-
 namespace Repository.Manager.Admin;
 
 public class AdminRepository:GenericRepository<Domain.Entities.Manager.Admin.Admin>,IAdminRepository
@@ -31,7 +29,6 @@ public class AdminRepository:GenericRepository<Domain.Entities.Manager.Admin.Adm
     {
         var result = DbContext
             .Admins
-            .Include(x=>x.Role)
             .Where(x=>x.Name.Contains(search??"")||x.Email.Contains(search??"")||x.Role.Name.Contains(search??""))
             .OrderBy(AdminSorting.SwitchOrdering(orderBy))
             .Select(AdminQuery.ToGetAllAdmin)
@@ -53,7 +50,6 @@ public class AdminRepository:GenericRepository<Domain.Entities.Manager.Admin.Adm
 
         return DbContext
             .Admins
-            .Include(x=>x.Role)
             .Where(x=>x.Id.Equals(id))
             .Select(x=>new GetAdminInfo()
             {

@@ -1,5 +1,4 @@
 using System.Linq.Expressions;
-using Common.Entity.Entity;
 
 namespace Shared.Entity.EntityOperation;
 
