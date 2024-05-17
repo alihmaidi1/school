@@ -16,14 +16,12 @@ public static class DatabaseSeed
     {
         var context = services.GetRequiredService<ApplicationDbContext>();
 
-        await context.Database.EnsureDeletedAsync();
-        await context.Database.EnsureCreatedAsync();
-        // var pendingMigration = await context.Database.GetPendingMigrationsAsync();
-        // if (!pendingMigration.Any())
-        // {
-        //     await context.Database.MigrateAsync();
-        //     
-        // }
+        var pendingMigration = await context.Database.GetPendingMigrationsAsync();
+        if (!pendingMigration.Any())
+        {
+            await context.Database.MigrateAsync();
+            
+        }
         var transaction = await context.Database.BeginTransactionAsync();
 
         try

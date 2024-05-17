@@ -4,9 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Shared.Constant;
 using Shared.Exceptions;
 using Shared.Extension;
-
 namespace Shared.File;
-
 public static class FileExtension
 {
     public static string UploadImage(this IFormFile image)

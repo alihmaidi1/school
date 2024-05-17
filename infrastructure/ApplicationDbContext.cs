@@ -12,10 +12,12 @@ using Domain.Entities.Student.StudentSubject;
 using Domain.Entities.Teacher.Teacher;
 using Domain.Entities.Teacher.Vacation;
 using Domain.Entities.Teacher.Warning;
+using infrastructure.Convertor;
 using infrastructure.Interceptor;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Query;
+using Org.BouncyCastle.Crypto;
+using Org.BouncyCastle.Math.EC.Rfc7748;
 using Shared.Entity.Entity;
 using Shared.Entity.Interface;
 using Shared.Services.User;
@@ -37,6 +39,15 @@ public class ApplicationDbContext:DbContext
         base.OnConfiguring(optionsBuilder);
     }
 
+
+    protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
+    {
+
+        configurationBuilder.Properties<TimeOnly>().HaveConversion<TimeOnlyConverter>();
+        configurationBuilder.Properties<DateOnly>().HaveConversion<DateOnlyConverter>();
+        
+        base.ConfigureConventions(configurationBuilder);
+    }
     protected override void OnModelCreating(ModelBuilder builder)
      {
          builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());

@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using Common.Entity.Entity;
 using Shared.Entity.Interface;
 
@@ -12,5 +13,6 @@ public class BaseEntity : BaseEntityWithoutId, IBaseEntity
         Id=Guid.NewGuid();
         
     }
+    
     public Guid Id { get; set; }
 }

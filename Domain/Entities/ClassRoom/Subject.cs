@@ -2,12 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Domain.Base.interfaces;
 using Domain.Entities.Teacher.Teacher;
 using Shared.Entity.Entity;
 
 namespace Domain.Entities.ClassRoom;
 
-    public class Subject:BaseEntity
+    public class Subject:BaseEntity,ISoftDelete
     {
 
 

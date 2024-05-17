@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Domain.Base.interfaces;
 using Domain.Entities.ClassRoom;
 using Domain.Entities.Quez;
 using Domain.Entities.Student.Student;
@@ -9,7 +10,7 @@ using Shared.Entity.Entity;
 
 namespace Domain.Entities.Student.StudentSubject;
 
-public class StudentSubject: BaseEntity
+public class StudentSubject: BaseEntity,ISoftDelete 
 {
 
     public StudentSubject(){

@@ -162,5 +162,10 @@
             Create a new leson to specific subject in currect year
             </summary>
         </member>
+        <member name="M:schoolmanagment.Controllers.Teacher.LesonController.delete(Teacher.Leson.Command.Add.AddLesonCommand,System.Threading.CancellationToken)">
+            <summary>
+            delete a leson to specific subject in currect year
+            </summary>
+        </member>
     </members>
 </doc>

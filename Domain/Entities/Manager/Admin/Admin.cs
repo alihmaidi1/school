@@ -1,4 +1,5 @@
 using Domain.Base.Entity;
+using Domain.Base.interfaces;
 using Domain.Entities.Account;
 using Domain.Entities.Teacher.Vacation;
 using Domain.Entities.Teacher.Warning;
@@ -6,7 +7,7 @@ using Shared.Entity.Entity;
 
 namespace Domain.Entities.Manager.Admin;
 
-public class Admin: Account.Account
+public class Admin: Account.Account, ISoftDelete
 {
 
     
@@ -21,7 +22,7 @@ public class Admin: Account.Account
     
     public string Name { get; set; }
     
-    public bool Status { get; set; }
+    public bool Status { get; set; }=true;
     
     public Guid RoleId { get; set; }
     public  Role.Role Role { set; get; }

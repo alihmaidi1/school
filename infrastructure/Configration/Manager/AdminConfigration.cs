@@ -12,9 +12,6 @@ public class AdminConfigration:IEntityTypeConfiguration<Admin>
     {
 
 
-        builder.Property(x => x.Status)
-            .HasDefaultValue(true);
-
         
         
         builder.HasOne<Role>(admin => admin.Role)
@@ -27,6 +24,8 @@ public class AdminConfigration:IEntityTypeConfiguration<Admin>
             .WithOne(x => x.Admin)
             .HasForeignKey(x => x.AdminId)
             .OnDelete(DeleteBehavior.Restrict);
+
+            
         builder.HasMany(x => x.Warnings)
             .WithOne(x => x.Admin)
             .HasForeignKey(x => x.AdminId)

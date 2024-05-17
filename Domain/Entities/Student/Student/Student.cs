@@ -1,4 +1,6 @@
 using Common.Entity.Entity;
+using Domain.Base.interfaces;
+using Domain.Entities.Student.Audience;
 using Domain.Entities.Student.Parent;
 using Domain.Entities.Student.StudentSubject;
 using EntityFrameworkCore.EncryptColumn.Attribute;
@@ -6,7 +8,7 @@ using Shared.Entity.Entity;
 
 namespace Domain.Entities.Student.Student;
 
-public class Student:BaseEntity
+public class Student:BaseEntity,ISoftDelete
 {
     public Student()
     {
@@ -14,8 +16,9 @@ public class Student:BaseEntity
         Id = Guid.NewGuid();
 
         StudentSubjects=new HashSet<StudentSubject.StudentSubject>();
-        // StudentClasses = new HashSet<StudentClass>();
-        // ClassYears = new HashSet<ClassYear>();
+        Audiences=new HashSet<Audience.Audience>();        
+        StudentBills=new List<StudentBill.StudentBill>();
+
     }
     public string Name { get; set; }
     
@@ -41,8 +44,10 @@ public class Student:BaseEntity
     public Parent.Parent Parent { get; set; }
 
     public ICollection<StudentSubject.StudentSubject> StudentSubjects{get;set;}
+
+
+    public ICollection<Audience.Audience> Audiences{get;set;}
+
+    public List<StudentBill.StudentBill> StudentBills{get;set;}
     
-    // public ICollection<ClassYear> ClassYears { get; set; }
-    
-    // public ICollection<StudentClass> StudentClasses { get; set; }
 }

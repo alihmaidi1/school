@@ -17,7 +17,7 @@ public interface IGenericRepository<T> :IBaseSuper where T : BaseEntity
 
     bool IsUnique(Guid id,string property,object value);
 
-
+    
     T? GetByProperty(string property,object value);
 
     Task<T> GetByIdAsync(Guid id);

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "0vlQzJMNaqKVG/V9468lEIr9YPyfPhApNNvneBpY5O4=",
+  "Hash": "4PgvC68/gPtOuH2HS2u7zbROR0oifrrPo07suNTSM7A=",
   "Source": "api",
   "BasePath": "_content/api",
   "Mode": "Default",
@@ -338,6 +338,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/Admins/e746586c-5109-4136-9ba5-c2a79dd5ccb5.png"
+    },
+    {
+      "Identity": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Lesons/dd766b75-9073-42d0-9d5e-b0b791eb07e4.pdf",
+      "SourceId": "api",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/",
+      "BasePath": "_content/api",
+      "RelativePath": "Lesons/dd766b75-9073-42d0-9d5e-b0b791eb07e4.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/Lesons/dd766b75-9073-42d0-9d5e-b0b791eb07e4.pdf"
     },
     {
       "Identity": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Parent/30a22d9c-9059-40a0-b00a-4563f790de38.png",

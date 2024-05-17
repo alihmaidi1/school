@@ -1,11 +1,12 @@
 using Common.Entity.Entity;
+using Domain.Base.interfaces;
 using Domain.Entities.Manager.Admin;
 using Domain.Entities.Teacher.Teacher;
 using Shared.Entity.Entity;
 
 namespace Domain.Entities.Teacher.Warning;
 
-public class Warning:BaseEntity
+public class Warning:BaseEntity,ISoftDelete
 {
 
     public Warning()

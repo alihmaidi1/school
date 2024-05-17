@@ -1,4 +1,5 @@
 using Common.Entity.Entity;
+using Domain.Base.interfaces;
 using Domain.Entities.Account;
 using Domain.Entities.ClassRoom;
 using EntityFrameworkCore.EncryptColumn.Attribute;
@@ -6,7 +7,7 @@ using Shared.Entity.Entity;
 
 namespace Domain.Entities.Teacher.Teacher;
 
-public class Teacher: Account.Account
+public class Teacher: Account.Account,ISoftDelete
 {
     public Teacher()
     {
@@ -24,13 +25,8 @@ public class Teacher: Account.Account
     public string? ResetCode { get; set; }
     
     
-    
-    
-    public bool Status { get; set; }
-    
-    
-    public string ? Image { get; set; }
-    
+    public bool Status { get; set; }=true;    
+    public string ? Image { get; set; }    
     public string ? Hash { get; set; }
     
     public ICollection<Vacation.Vacation> Vacations { get; set; }

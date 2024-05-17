@@ -1,10 +1,11 @@
 using Common.Entity.Entity;
+using Domain.Base.interfaces;
 using EntityFrameworkCore.EncryptColumn.Attribute;
 using Shared.Entity.Entity;
 
 namespace Domain.Entities.Student.Parent;
 
-public class Parent:BaseEntity
+public class Parent:BaseEntity,ISoftDelete
 {
 
     public Parent()

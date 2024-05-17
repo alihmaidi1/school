@@ -15,5 +15,11 @@ public class AccountConfiguration: IEntityTypeConfiguration<Domain.Entities.Acco
 
         builder.HasQueryFilter(x=>x.DateDeleted==null);
 
+
+        builder.HasMany(x=>x.AccountNotifications)
+        .WithOne(x=>x.Account)
+        .HasForeignKey(x=>x.AccountId)
+        .OnDelete(DeleteBehavior.Restrict);
+
     }
 }

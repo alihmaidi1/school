@@ -2,11 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Domain.Base.interfaces;
 using Shared.Entity.Entity;
 
 namespace Domain.Entities.ClassRoom;
 
-    public class Year: BaseEntity
+    public class Year: BaseEntity,ISoftDelete
     {
 
         public Year(){

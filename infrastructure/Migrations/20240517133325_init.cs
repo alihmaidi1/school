@@ -25,6 +25,25 @@ namespace infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Notification",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Body = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DateDeleted = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    UpdatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    DeletedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Notification", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Parents",
                 columns: table => new
                 {
@@ -143,7 +162,7 @@ namespace infrastructure.Migrations
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Status = table.Column<bool>(type: "bit", nullable: true, defaultValue: true),
+                    Status = table.Column<bool>(type: "bit", nullable: true),
                     RoleId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Hash = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -191,6 +210,65 @@ namespace infrastructure.Migrations
                         name: "FK_Classes_Stages_StageId",
                         column: x => x.StageId,
                         principalTable: "Stages",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "StudentBill",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    StudentId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Money = table.Column<float>(type: "real", nullable: false),
+                    PaiedMoney = table.Column<float>(type: "real", nullable: false),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DateDeleted = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    UpdatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    DeletedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_StudentBill", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_StudentBill_Students_StudentId",
+                        column: x => x.StudentId,
+                        principalTable: "Students",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AccountNotification",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IsRead = table.Column<bool>(type: "bit", nullable: false),
+                    AccountId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    NotificationId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DateDeleted = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    UpdatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    DeletedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AccountNotification", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AccountNotification_Account_AccountId",
+                        column: x => x.AccountId,
+                        principalTable: "Account",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_AccountNotification_Notification_NotificationId",
+                        column: x => x.NotificationId,
+                        principalTable: "Notification",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -387,6 +465,40 @@ namespace infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Audience",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsExists = table.Column<bool>(type: "bit", nullable: false),
+                    StudentId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    SessionNumber = table.Column<int>(type: "int", nullable: false),
+                    SubjectYearId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DateDeleted = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    UpdatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    DeletedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Audience", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Audience_Students_StudentId",
+                        column: x => x.StudentId,
+                        principalTable: "Students",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Audience_SubjectYears_SubjectYearId",
+                        column: x => x.SubjectYearId,
+                        principalTable: "SubjectYears",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Lesons",
                 columns: table => new
                 {
@@ -410,6 +522,33 @@ namespace infrastructure.Migrations
                         principalTable: "SubjectYears",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Program",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Day = table.Column<int>(type: "int", nullable: false),
+                    StartAt = table.Column<TimeSpan>(type: "time", nullable: false),
+                    EndAt = table.Column<TimeSpan>(type: "time", nullable: false),
+                    SubjectYearId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DateDeleted = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    UpdatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    DeletedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Program", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Program_SubjectYears_SubjectYearId",
+                        column: x => x.SubjectYearId,
+                        principalTable: "SubjectYears",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -441,7 +580,7 @@ namespace infrastructure.Migrations
                         column: x => x.SubjectYearId,
                         principalTable: "SubjectYears",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -559,6 +698,16 @@ namespace infrastructure.Migrations
                 column: "RoleId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_AccountNotification_AccountId",
+                table: "AccountNotification",
+                column: "AccountId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AccountNotification_NotificationId",
+                table: "AccountNotification",
+                column: "NotificationId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_AccountSessions_AccountId",
                 table: "AccountSessions",
                 column: "AccountId");
@@ -567,6 +716,16 @@ namespace infrastructure.Migrations
                 name: "IX_Answers_QuestionId",
                 table: "Answers",
                 column: "QuestionId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Audience_StudentId",
+                table: "Audience",
+                column: "StudentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Audience_SubjectYearId",
+                table: "Audience",
+                column: "SubjectYearId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Bills_ClassId",
@@ -589,6 +748,11 @@ namespace infrastructure.Migrations
                 column: "SubjectYearId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Program_SubjectYearId",
+                table: "Program",
+                column: "SubjectYearId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Questions_QuezId",
                 table: "Questions",
                 column: "QuezId");
@@ -602,6 +766,11 @@ namespace infrastructure.Migrations
                 name: "IX_StudentAnswers_StudentQuizId",
                 table: "StudentAnswers",
                 column: "StudentQuizId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_StudentBill_StudentId",
+                table: "StudentBill",
+                column: "StudentId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_StudentQuezs_StudentSubjectId",
@@ -668,7 +837,13 @@ namespace infrastructure.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "AccountNotification");
+
+            migrationBuilder.DropTable(
                 name: "AccountSessions");
+
+            migrationBuilder.DropTable(
+                name: "Audience");
 
             migrationBuilder.DropTable(
                 name: "Bills");
@@ -680,13 +855,22 @@ namespace infrastructure.Migrations
                 name: "Lesons");
 
             migrationBuilder.DropTable(
+                name: "Program");
+
+            migrationBuilder.DropTable(
                 name: "StudentAnswers");
+
+            migrationBuilder.DropTable(
+                name: "StudentBill");
 
             migrationBuilder.DropTable(
                 name: "Vacations");
 
             migrationBuilder.DropTable(
                 name: "Warnings");
+
+            migrationBuilder.DropTable(
+                name: "Notification");
 
             migrationBuilder.DropTable(
                 name: "Answers");

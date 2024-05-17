@@ -2,11 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Domain.Base.interfaces;
 using Shared.Entity.Entity;
 
 namespace Domain.Entities.Quez;
 
-public class Answer: BaseEntity
+public class Answer: BaseEntity,ISoftDelete
 {
 
 

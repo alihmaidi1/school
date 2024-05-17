@@ -1,3 +1,4 @@
+using Domain.Base.interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Shared.Entity.Entity;
@@ -23,7 +24,7 @@ public class SoftDeleteInterceptor : SaveChangesInterceptor
         foreach (var entry in eventData.Context.ChangeTracker.Entries())
         {
 
-            if (entry is not { State: EntityState.Deleted, Entity: IRemovable delete }) continue;
+            if (entry is not { State: EntityState.Deleted, Entity: ISoftDelete delete }) continue;
             entry.State = EntityState.Modified;
             delete.DateDeleted=DateTime.Now;
             delete.DeletedBy = _currentUserService.UserId;

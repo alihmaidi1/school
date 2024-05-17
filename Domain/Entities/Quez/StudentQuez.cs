@@ -2,12 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Domain.Base.interfaces;
 using Domain.Entities.Student.StudentSubject;
 using Shared.Entity.Entity;
 
 namespace Domain.Entities.Quez;
 
-public class StudentQuez: BaseEntity
+public class StudentQuez: BaseEntity,ISoftDelete
 {
 
     public StudentQuez(){

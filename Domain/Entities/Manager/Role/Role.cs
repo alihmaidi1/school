@@ -16,7 +16,7 @@ public class Role:BaseEntity
 
     public string Name { get; set; }
 
-    public  ICollection<Manager.Admin.Admin>? Admins { get; set; }
+    public  ICollection<Manager.Admin.Admin> Admins { get; set; }
     public List<string> Permissions { get; set; }
 
 }

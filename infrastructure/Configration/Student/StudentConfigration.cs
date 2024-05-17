@@ -12,6 +12,21 @@ public class StudentConfigration:IEntityTypeConfiguration<Domain.Entities.Studen
         builder.HasKey(x => x.Id);
         
 
+        builder.HasMany(x=>x.Audiences)
+        .WithOne(x=>x.Student)
+        .HasForeignKey(x=>x.StudentId)
+        .OnDelete(DeleteBehavior.Restrict);
+
+        builder.HasMany(x=>x.StudentBills)
+        .WithOne(x=>x.Student)
+        .HasForeignKey(x=>x.StudentId)
+        .OnDelete(DeleteBehavior.Restrict);
+
+        builder.HasMany(x=>x.StudentSubjects)
+        .WithOne(x=>x.Student)
+        .HasForeignKey(x=>x.StudentId)
+        .OnDelete(DeleteBehavior.Cascade);
+
         
     }
 }

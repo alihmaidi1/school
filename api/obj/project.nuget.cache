@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "OIq91zQP9sn9KCjxQcWkDgwPV7PWEc2QxIAKZnh4UhsKWqEhg4c4304i+s9Udwe6tOJYd4L9zeuRh1gatQByyw==",
+  "dgSpecHash": "ZUA2VY8USCZPEuc14IcMv/Oj3IIQ/7Qi+Azap0yoyMzK6Ttp5iE3FiPKw5YU8B22JHPBXuXz2V1QSyEjkNpOEw==",
   "success": true,
   "projectFilePath": "/home/alihmaidi/Desktop/schhol1/api/api.csproj",
   "expectedPackageFiles": [
@@ -229,7 +229,7 @@
     "/home/alihmaidi/.nuget/packages/system.xml.xmldocument/4.3.0/system.xml.xmldocument.4.3.0.nupkg.sha512",
     "/home/alihmaidi/.nuget/packages/system.xml.xpath/4.3.0/system.xml.xpath.4.3.0.nupkg.sha512",
     "/home/alihmaidi/.nuget/packages/system.xml.xpath.xdocument/4.3.0/system.xml.xpath.xdocument.4.3.0.nupkg.sha512",
-    "/home/alihmaidi/.nuget/packages/microsoft.netcore.app.host.linux-x64/7.0.17/microsoft.netcore.app.host.linux-x64.7.0.17.nupkg.sha512"
+    "/home/alihmaidi/.nuget/packages/microsoft.netcore.app.host.linux-x64/7.0.19/microsoft.netcore.app.host.linux-x64.7.0.19.nupkg.sha512"
   ],
   "logs": []
 }
