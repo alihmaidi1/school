@@ -58,10 +58,9 @@ public class UpdateAdminHandler:OperationResult,ICommandHandler<UpdateAdminComma
             _context.Images.Remove(image);
         }
         _context.Admins.Update(Admin);
+        Admin.SendEmail("update admin info",$"this is your new password{request.Password}");
         await _context.SaveChangesAsync(cancellationToken);
         if(request.Image is not null) image!.Url.MoveFile(image.Url.GetNewPath(FolderName.Admin).localPath);
-
-
         return Success("admin was updated successfully");
 
     }

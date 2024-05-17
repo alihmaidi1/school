@@ -6,7 +6,7 @@ using Shared.Entity.Entity;
 
 namespace Domain.Entities.Student.Parent;
 
-public class Parent:BaseEntity,ISoftDelete
+public class Parent:BaseEntity
 {
 
     public Parent()

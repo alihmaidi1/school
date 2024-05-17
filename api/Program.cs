@@ -16,6 +16,7 @@ using Shared.Entity.Interface;
 using Shared.Jwt;
 using Shared.Services.Email;
 using Shared.Swagger;
+using infrastructure.BackgroundJob;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -160,7 +161,13 @@ using(var scope= app.Services.CreateScope()){
     await DatabaseSeed.InitializeAsync(scope.ServiceProvider);
 
 
+
 }
+
+app
+.Services
+.GetRequiredService<IRecurringJobManager>()
+.AddOrUpdate<ProcessOutboxMessageJob>("outbox-message",x=>x.Process(),Cron.Minutely());
 
 app.UseMiddleware<ErrorHandling>();
 

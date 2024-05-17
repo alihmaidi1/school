@@ -3,7 +3,7 @@ using Domain.Base.interfaces;
 
 namespace Domain.Entities.Student.Student;
 
-public class Student:BaseEntity,ISoftDelete
+public class Student:BaseEntity
 {
     public Student()
     {

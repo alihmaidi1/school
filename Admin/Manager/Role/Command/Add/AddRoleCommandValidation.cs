@@ -12,7 +12,7 @@ public class AddRoleCommandValidation:AbstractValidator<AddRoleCommand>
         RuleFor(x => x.Name)
             .NotEmpty()
             .NotNull()
-            .Must(name => roleRepository.IsExistsByProperty("Name",name))
+            .Must(name => !roleRepository.IsExistsByProperty("Name",name))
             .WithMessage("this role is already exists");
 
 

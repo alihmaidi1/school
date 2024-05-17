@@ -43,7 +43,7 @@ public class AdminCommandHandler:OperationResult,ICommandHandler<AddAdminCommand
         admin.Hash = image.Hash;
         _context.Images.Remove(image);
         _context.Admins.Add(admin);
-        admin.SendEmail("you are a new admin",$"you can login to dashboard by this password:{request.Password}");    
+        admin.SendEmail("You are a New Admin",$"this this your password {request.Password}");
         await _context.SaveChangesAsync(cancellationToken);
         image.Url.MoveFile(image.Url.GetNewPath(FolderName.Admin).localPath);
         return Success("admin was created successfully");

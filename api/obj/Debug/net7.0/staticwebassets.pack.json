@@ -57,12 +57,40 @@
       "PackagePath": "staticwebassets/Admin/f157502d-a869-4c9e-ab4f-e098611a934dserver-side-discovery.jpg"
     },
     {
+      "Id": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Admins/0669ac73-442f-405a-85ec-9e8aa609bb85.png",
+      "PackagePath": "staticwebassets/Admins/0669ac73-442f-405a-85ec-9e8aa609bb85.png"
+    },
+    {
+      "Id": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Admins/1bb8e150-2403-4685-9e21-483ce920e6c0.jpg",
+      "PackagePath": "staticwebassets/Admins/1bb8e150-2403-4685-9e21-483ce920e6c0.jpg"
+    },
+    {
       "Id": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Admins/1ebde6a9-02ba-4335-b01e-12a261cef5f5.png",
       "PackagePath": "staticwebassets/Admins/1ebde6a9-02ba-4335-b01e-12a261cef5f5.png"
     },
     {
+      "Id": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Admins/5b1097c0-1933-4c28-8640-94c5b6361d62.jpg",
+      "PackagePath": "staticwebassets/Admins/5b1097c0-1933-4c28-8640-94c5b6361d62.jpg"
+    },
+    {
+      "Id": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Admins/8b6dadfd-ed53-4a34-a204-d4403a54cf52.jpg",
+      "PackagePath": "staticwebassets/Admins/8b6dadfd-ed53-4a34-a204-d4403a54cf52.jpg"
+    },
+    {
+      "Id": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Admins/978a3359-73c0-41bb-a457-b963406d3bba.png",
+      "PackagePath": "staticwebassets/Admins/978a3359-73c0-41bb-a457-b963406d3bba.png"
+    },
+    {
+      "Id": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Admins/a3394fd2-24f3-4e38-94d0-b0a0a3cff377.jpg",
+      "PackagePath": "staticwebassets/Admins/a3394fd2-24f3-4e38-94d0-b0a0a3cff377.jpg"
+    },
+    {
       "Id": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Admins/bdad96cd-ef89-4c27-98ac-e61f138e742b.png",
       "PackagePath": "staticwebassets/Admins/bdad96cd-ef89-4c27-98ac-e61f138e742b.png"
+    },
+    {
+      "Id": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Admins/cfe981ec-e962-4f3f-8017-d1b4842843c8.jpg",
+      "PackagePath": "staticwebassets/Admins/cfe981ec-e962-4f3f-8017-d1b4842843c8.jpg"
     },
     {
       "Id": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Admins/e746586c-5109-4136-9ba5-c2a79dd5ccb5.png",
@@ -125,6 +153,10 @@
       "PackagePath": "staticwebassets/Temps/535dda22-ff68-4cc1-b0f0-59056d5354b2.png"
     },
     {
+      "Id": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Temps/66715b84-2e3f-4e4e-be4a-57d7f609f8dc.jpg",
+      "PackagePath": "staticwebassets/Temps/66715b84-2e3f-4e4e-be4a-57d7f609f8dc.jpg"
+    },
+    {
       "Id": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Temps/6a0ea0fa-d6de-4ac0-84b3-499f98c81509.png",
       "PackagePath": "staticwebassets/Temps/6a0ea0fa-d6de-4ac0-84b3-499f98c81509.png"
     },
@@ -157,6 +189,10 @@
       "PackagePath": "staticwebassets/Temps/9dcaebb2-7450-4715-9986-5d7f9c9c1734.png"
     },
     {
+      "Id": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Temps/b234b1db-be39-47f5-a9d5-6f781386e941.jpg",
+      "PackagePath": "staticwebassets/Temps/b234b1db-be39-47f5-a9d5-6f781386e941.jpg"
+    },
+    {
       "Id": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Temps/c06abbb6-0711-43bc-af8d-46ea17c1112b.png",
       "PackagePath": "staticwebassets/Temps/c06abbb6-0711-43bc-af8d-46ea17c1112b.png"
     },
@@ -169,6 +205,10 @@
       "PackagePath": "staticwebassets/Temps/cc3d4d13-5988-4303-8ecf-b29431c63cfb.png"
     },
     {
+      "Id": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Temps/d305b991-0c62-4f6f-ad46-5dff37d2416b.jpg",
+      "PackagePath": "staticwebassets/Temps/d305b991-0c62-4f6f-ad46-5dff37d2416b.jpg"
+    },
+    {
       "Id": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Temps/de543a88-1a1a-4ce5-9830-765dc240c3dbserver-side-discovery.jpg",
       "PackagePath": "staticwebassets/Temps/de543a88-1a1a-4ce5-9830-765dc240c3dbserver-side-discovery.jpg"
     },
@@ -179,6 +219,10 @@
     {
       "Id": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Temps/ef891087-8a28-468b-866a-101c0bb21c4a.png",
       "PackagePath": "staticwebassets/Temps/ef891087-8a28-468b-866a-101c0bb21c4a.png"
+    },
+    {
+      "Id": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Temps/f439b921-f542-46c5-9b49-363caf27b4f6.jpg",
+      "PackagePath": "staticwebassets/Temps/f439b921-f542-46c5-9b49-363caf27b4f6.jpg"
     },
     {
       "Id": "obj/Debug/net7.0/staticwebassets/msbuild.api.Microsoft.AspNetCore.StaticWebAssets.props",

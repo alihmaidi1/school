@@ -10,7 +10,7 @@ using Shared.Entity.Entity;
 
 namespace Domain.Entities.Manager.Admin;
 
-public class Admin: Account.Account, ISoftDelete
+public class Admin: Account.Account
 {
 
     
@@ -21,22 +21,23 @@ public class Admin: Account.Account, ISoftDelete
         Vacations = new HashSet<Vacation>();
         Warnings = new HashSet<Warning>();
 
+
     }
 
-
-    public void SendEmail(string Message,string Subject){
+ 
+    public void SendEmail(string Subject,string Message){
 
         RaiseDomainEvent(new SendEmailEvent(){
 
             Email=Email,
-            Message=Message,
-            Subject=Subject
+            Subject=Subject,
+            Message=Message
 
+
+            
         });
 
     }
-    
-
 
     public string Name { get; set; }
     

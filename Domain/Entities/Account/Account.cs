@@ -1,8 +1,9 @@
 using Domain.Base.Entity;
+using Domain.Base.interfaces;
 
 namespace Domain.Entities.Account;
 
-public class Account :BaseEntity 
+public class Account :BaseEntity ,ISoftDelete
 {
 
     public Account()

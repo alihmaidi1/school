@@ -1,5 +1,6 @@
 using System.Linq.Expressions;
 using System.Reflection;
+using AutoMapper.Internal;
 using Domain.Base.Entity;
 using Domain.Base.interfaces;
 using Domain.Entities.Account;
@@ -17,6 +18,7 @@ using infrastructure.Convertor;
 using infrastructure.Interceptor;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
+using Org.BouncyCastle.Math.EC.Rfc7748;
 using Shared.Entity.Entity;
 using Shared.Services.User;
 
@@ -54,11 +56,13 @@ public class ApplicationDbContext:DbContext
          var entities = builder
              .Model
              .GetEntityTypes()
-             .Where(e => e.ClrType.GetInterface(typeof(IRemovable).Name) != null)
+             .Where(e => e.ClrType.GetInterface(typeof(ISoftDelete).Name) != null&&e.GetMappingStrategy()==null)
              .Select(x => x.ClrType);
+
 
          foreach (var entity in entities)
          {
+            
              builder.Entity(entity).HasIndex(nameof(IRemovable.DateDeleted));
              Expression<Func<IBaseEntity, bool>> expression = b => !b.DateDeleted.HasValue;
              var newParam = Expression.Parameter(entity);
@@ -112,6 +116,8 @@ public class ApplicationDbContext:DbContext
 
     public DbSet<Answer> Answers{get;init;}
 
+
+    public DbSet<OutBoxMessage> OutBoxMessages{get;init;}
 
     public DbSet<StudentAnswer> StudentAnswers{get;init;}
 

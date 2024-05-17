@@ -3,7 +3,7 @@ using Domain.Entities.ClassRoom;
 
 namespace Domain.Entities.Teacher.Teacher;
 
-public class Teacher: Account.Account,ISoftDelete
+public class Teacher: Account.Account
 {
     public Teacher()
     {
