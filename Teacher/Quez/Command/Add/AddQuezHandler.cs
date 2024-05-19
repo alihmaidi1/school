@@ -25,25 +25,22 @@ public class AddQuezHandler : OperationResult, ICommandHandler<AddQuezCommand>
     public async Task<JsonResult> Handle(AddQuezCommand request, CancellationToken cancellationToken)
     {
 
-        var StudentQuezs=_context
-        .StudentSubjects
-        .Include(x=>x.SubjectYear)
-        .Where(x=>x.SubjectYear.SubjectId==request.SubjectId)
-        .Select(x=>new StudentQuez(){
-
+        var Quez=new Domain.Entities.Quez.Quez(){
 
             Name=request.Name,
-            StartAt=request.StartAt,
-            StudentSubjectId=x.Id
-
-        })
-        .ToList();
-        
-        var Quez=new StudentQuez(){
-
-
+            StartAt=request.StartAt
         };
+        var StudentSubjects=_context.SubjectYears.Where(x=>x.SubjectId==request.SubjectId&&x.Year.Date==DateTime.Now.Date)
+        .SelectMany(x=>x.StudentSubjects)
+        .ToList();
 
+        Quez.StudentQuezs=StudentSubjects.Select(x=>new StudentQuez(){
+
+            StudentSubjectId=x.Id,
+            QuezId=Quez.Id
+        }).ToList();
+        _context.Quezs.AddRange(Quez);
+        _context.SaveChanges();
 
         return Success("quez was added successfully");
     }

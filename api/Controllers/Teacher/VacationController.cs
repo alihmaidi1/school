@@ -1,21 +1,45 @@
 using Admin.Teacher.Vacation.Command.Add;
 using Domain.AppMetaData.Teacher;
+using infrastructure.Attribute;
 using Microsoft.AspNetCore.Mvc;
 using schoolManagement.Base;
+using Shared.OperationResult.Base;
 using Shared.Swagger;
+using Teacher.Vacation.Command.Request;
 
 namespace schoolmanagment.Controllers.Teacher;
 
 
-[ApiGroup(ApiGroupName.All, ApiGroupName.Teacher)]
 
+[ApiGroup(ApiGroupName.All, ApiGroupName.Teacher)]
+[Microsoft.AspNetCore.Mvc.Route("Api/Teacher/[controller]/[action]")]
+[CheckTokenSession()]
 public class VacationController:ApiController
 {
     
-    [HttpPost(VacationRouter.prefix)]
-    public async Task<IActionResult> GetAllTeacher([FromBody] AddVacationCommand request,CancellationToken Token)
+
+    // /// <summary>
+    // /// Get All Teacher Vacation
+    // /// </summary>
+    // [Produces(typeof(OperationResultBase<Boolean>))]
+    // [HttpPost]
+    // public async Task<IActionResult> GetAllTeacher([FromBody] AddVacationCommand request,CancellationToken Token)
+    // {
+    //     var response = await this.Mediator.Send(request,Token);
+    //     return response;
+
+    // }
+
+
+
+    /// <summary>
+    /// request a new vacation from admin
+    /// </summary>
+    [Produces(typeof(OperationResultBase<Boolean>))]
+    [HttpPost]
+    public async Task<IActionResult> Add([FromForm] RequestVacationCommand command,CancellationToken token)
     {
-        var response = await this.Mediator.Send(request,Token);
+        var response = await this.Mediator.Send(command,token);
         return response;
 
     }

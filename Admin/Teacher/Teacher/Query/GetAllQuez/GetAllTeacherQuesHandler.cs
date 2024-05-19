@@ -29,10 +29,6 @@ public class GetAllTeacherQuesHandler : OperationResult, IQueryHandler<GetAllTea
 
         var Result=_context
         .SubjectYears
-        .Include(x=>x.Subject)
-        .Include(x=>x.StudentSubjects)        
-        .ThenInclude(x=>x.StudentQuezs)
-        .ThenInclude(x=>x.Questions)
         .Where(x=>x.TeacherId==request.Id)
         .Where(x=>x.YearId==request.YearId)
         .Where(x=>x.Subject.Name.Contains(request.Search??""))
@@ -40,14 +36,15 @@ public class GetAllTeacherQuesHandler : OperationResult, IQueryHandler<GetAllTea
 
             Id=x.Subject.Id,
             Name=x.Subject.Name,
-            Quezies=x.StudentSubjects.SelectMany(x=>x.StudentQuezs).Select(y=>new GetAllTeacherQuezDto.Quez(){
+            
+            Quezies=x.StudentSubjects.SelectMany(y=>y.StudentQuezs.Select(z=>z.Quez)).Select(y=>new GetAllTeacherQuezDto.Quez(){
 
                 Id=y.Id,
                 Name=y.Name,
                 StartAt=y.StartAt.ToString("G"),
-                EndAt=y.EndAt.ToString("G"),
+                // EndAt=y.EndAt.ToString("G"),
                 QuestionNumber=y.Questions.Count(),
-                Student=x.StudentSubjects.SelectMany(x=>x.StudentQuezs).Count()
+                Student=y.StudentQuezs.Count()
 
 
 

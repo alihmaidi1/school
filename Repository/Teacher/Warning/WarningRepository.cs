@@ -1,8 +1,9 @@
 using Domain.Entities.Teacher.Teacher;
 using Dto.Teacher.Warning;
 using infrastructure;
+using infrastructure.Repository.Base;
 using Microsoft.EntityFrameworkCore;
-using Repository.Base;
+
 using Shared.Entity.EntityOperation;
 
 namespace Repository.Teacher.Warning;

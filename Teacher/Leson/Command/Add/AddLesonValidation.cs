@@ -5,13 +5,14 @@ using System.Threading.Tasks;
 using FluentValidation;
 using infrastructure;
 using Shared.Rule;
+using Shared.Services.User;
 
 namespace Teacher.Leson.Command.Add;
 
 public class AddLesonValidation: AbstractValidator<AddLesonCommand>
 {
 
-    public AddLesonValidation(ApplicationDbContext context){
+    public AddLesonValidation(ApplicationDbContext context,ICurrentUserService currentUserService){
 
 
         RuleFor(x=>x.Name)
@@ -29,8 +30,8 @@ public class AddLesonValidation: AbstractValidator<AddLesonCommand>
         RuleFor(x=>x.SubjectId)
         .NotNull()
         .NotEmpty()
-        .Must(id=>context.Subjects.Any(x=>x.Id==id))
-        .WithMessage("this subject is not exists in our data");
+        .Must(id=>context.SubjectYears.Any(x=>x.SubjectId==id&&x.Year.Date.Year==DateTime.Now.Year&&x.TeacherId==currentUserService.UserId))
+        .WithMessage("this subject is not exists or not belongs to this teacher");
         
     }
 

@@ -5,8 +5,8 @@ using Admin.Manager.Admin.Command.Update;
 using Admin.Manager.Admin.Query.Get;
 using Admin.Manager.Admin.Query.GetAll;
 using Domain.AppMetaData.Admin;
+using Domain.Dto.Manager.Admin;
 using Domain.Enum;
-using Dto.Admin.Admin;
 using infrastructure.Attribute;
 using Microsoft.AspNetCore.Mvc;
 using schoolManagement.Base;
@@ -27,7 +27,7 @@ public class AdminController:ApiController
     /// Get All Admin With Role Name
     /// </summary>
     [HttpGet]
-    [Produces(typeof(OperationResultBase<PageList<GetAllAdmin>>))]
+    [Produces(typeof(OperationResultBase<PageList<GetAllAdminDto>>))]
 
     public async Task<IActionResult> GetAllAdmin(GetAllAdminQuery command,CancellationToken token)
     {
@@ -43,7 +43,7 @@ public class AdminController:ApiController
     /// </summary>    
     [HttpGet]
 
-    [Produces(typeof(OperationResultBase<GetAdminInfo>))]
+    [Produces(typeof(OperationResultBase<GetAdminInfoDto>))]
 
     public async Task<IActionResult> GetAdmin( Guid id,CancellationToken token)
     {

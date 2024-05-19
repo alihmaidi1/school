@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using Dto.Admin.Auth.Dto;
 using infrastructure.Attribute;
 using Microsoft.AspNetCore.Mvc;
 using schoolManagement.Base;
+using Shared.Enum;
 using Shared.OperationResult.Base;
 using Shared.Swagger;
 using Teacher.Auth.Login;
@@ -42,7 +44,7 @@ public class AuthController: ApiController
     /// logout teacher from dashboard
     /// </summary>
     [HttpPost]
-    [CheckTokenSession]
+    [CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema))]
 
     [Produces(typeof(OperationResultBase<Boolean>))]
 

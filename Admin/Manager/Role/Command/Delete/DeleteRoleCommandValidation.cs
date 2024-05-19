@@ -14,6 +14,7 @@ public class DeleteRoleCommandValidation:AbstractValidator<DeleteRoleCommand>
             .NotNull()
             .Must(Id => roleRepository.IsExists(Id).GetAwaiter().GetResult())
             .WithMessage("id is not exists in our data");
+
     }
     
 }

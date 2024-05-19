@@ -1,7 +1,8 @@
 using FluentValidation;
+using infrastructure;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Repository.Student.Parent;
+using Microsoft.Identity.Client;
 using Shared.Rule;
 
 namespace Admin.Student.Parent.Command.Add;
@@ -9,37 +10,35 @@ namespace Admin.Student.Parent.Command.Add;
 public class AddParentValidation:AbstractValidator<AddParentCommand>
 {
     
-    public AddParentValidation(IParentRepository parentRepository,IWebHostEnvironment webHostEnvironment)
+    public AddParentValidation(ApplicationDbContext context)
     {
 
         RuleFor(x => x.Name)
             .NotEmpty()
-            .WithMessage("parent name should be not empty")
-            .NotNull()
-            .WithMessage("parent name should be not null");
+            .NotNull();
 
 
         
         RuleFor(x => x.Email)
             .NotEmpty()
-            .WithMessage("parent email should be not empty")
             .NotNull()
-            .WithMessage("parent email should be not null")
-            .Must(Email=>!parentRepository.IsExists(Email))
+            .EmailAddress()
+            .Must(Email=>!context.Parents.Any(x=>x.Email.Equals(Email)))
             .WithMessage("this email was already exists in our data");
 
         
         
         RuleFor(x => x.Password)
             .NotEmpty()
-            .WithMessage("parent password should be not empty")
             .NotNull()
-            .WithMessage("parent password should be not null")
-            .MinimumLength(8)
-            .WithMessage("password length should be at least 8 charecter");
+            .MinimumLength(8);
 
-        RuleFor(x => x.Url)
-            .Must(url=>FileRule.IsFileExists(url,webHostEnvironment.WebRootPath));
+
+        RuleFor(x=>x.Image)
+        .NotEmpty()
+        .NotNull()
+        .Must(id=>context.Images.Any(x=>x.Id==id))
+        .WithMessage("this image is not exists in our data");
 
 
     }

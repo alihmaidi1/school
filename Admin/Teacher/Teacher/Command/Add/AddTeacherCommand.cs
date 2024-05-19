@@ -12,7 +12,6 @@ public class AddTeacherCommand:ICommand
 
     public string Password { get; set; }
     
-    public bool Status { get; set; }
 
     public Guid Image { get; set; }
     

@@ -4,10 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Bogus.DataSets;
 using Common.CQRS;
+using Shared.Abstraction;
 
 namespace Admin.Teacher.Teacher.Query.GetAllQuez;
 
-public class GetAllTeacherQuezQuery: IQuery
+public class GetAllTeacherQuezQuery: PaginationRequest, IQuery
 {
 
     public Guid Id {get;set;} 
@@ -16,10 +17,6 @@ public class GetAllTeacherQuezQuery: IQuery
     
 
 
-    
-    public int? PageNumber { get; set; }
-    
-    public int? PageSize { get; set; }
 
     public string? Search{get;set;}   
 

@@ -20,6 +20,11 @@ namespace Domain.Entities.ClassRoom;
             Teachers=new HashSet<Teacher.Teacher.Teacher>();
         }
 
+
+        public float MinDegree{get;set;}
+
+
+        public float Degree{get;set;}
         public string Name{get;set;}
 
         public Guid ClassId{get;set;}

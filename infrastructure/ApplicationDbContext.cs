@@ -111,6 +111,7 @@ public class ApplicationDbContext:DbContext
 
     public DbSet<StudentQuez> StudentQuezs{get;init;}
 
+    public DbSet<Quez> Quezs{get;init;}
     public DbSet<Question> Questions{get;init;}
 
 

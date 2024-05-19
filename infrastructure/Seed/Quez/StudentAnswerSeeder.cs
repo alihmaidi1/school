@@ -17,18 +17,18 @@ public class StudentAnswerSeeder
         if(!context.StudentAnswers.Any()){
 
             
-            var Quez=context
-            .StudentQuezs
-            .Include(x=>x.Questions)
-            .ThenInclude(x=>x.Answers)
-            .Select(x=>new GetQuezWithAnswerIds{
-                Id=x.Id,
-                Answers=x.Questions.SelectMany(y=>y.Answers.Select(z=>z.Id).ToList()).ToList()
-                })
-            .ToList();
+            // var Quez=context
+            // .StudentQuezs
+            // .Include(x=>x.Questions)
+            // .ThenInclude(x=>x.Answers)
+            // .Select(x=>new GetQuezWithAnswerIds{
+            //     Id=x.Id,
+            //     Answers=x.Questions.SelectMany(y=>y.Answers.Select(z=>z.Id).ToList()).ToList()
+            //     })
+            // .ToList();
 
-            var StudentAnswer=StudentAnswerFaker.GetFaker(Quez).Generate(100).DistinctBy(x=>new {x.StudentQuizId,x.AnswerId});
-            context.SaveChanges();
+            // var StudentAnswer=StudentAnswerFaker.GetFaker(Quez).Generate(100).DistinctBy(x=>new {x.StudentQuizId,x.AnswerId});
+            // context.SaveChanges();
         }
 
 

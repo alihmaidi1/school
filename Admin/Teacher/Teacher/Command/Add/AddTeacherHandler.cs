@@ -1,6 +1,4 @@
-using Common.CQRS;
 using TeacherEntity=Domain.Entities.Teacher.Teacher;
-using Hangfire;
 using infrastructure;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -43,9 +41,9 @@ public class AddTeacherHandler:OperationResult,ICommandHandler<AddTeacherCommand
         };
         _context.Teachers.Add(teacher);
         _context.Images.Remove(image);
+        teacher.SendEmail("new teacher in school",$"you are a new teacher and this is your password{request.Password}");
         await _context.SaveChangesAsync(cancellationToken);
         image.Url.MoveFile(image.Url.GetNewPath(FolderName.Teacher).localPath);
-        BackgroundJob.Enqueue(()=>_mailService.SendMail(request.Email,"you are a new teacher",$"you can login to dashboard by this password:{request.Password}"));
         return Success("teacher was created successfully");
     }
 }

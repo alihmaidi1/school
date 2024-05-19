@@ -16,23 +16,19 @@ public class StudentQuez: BaseEntity,ISoftDelete
 
         Id=Guid.NewGuid();
 
-        Questions=new HashSet<Question>();
 
         StudentAnswers=new HashSet<StudentAnswer>();
     }
 
-    public string Name{get;set;}
-
 
     public Guid StudentSubjectId{get;set;}
 
-    public DateTime StartAt{get;set;}
+    public Guid QuezId{get;set;}
 
-    public DateTime EndAt{get;set;}
+    public Quez Quez{get;set;}
 
     public StudentSubject StudentSubject{get;set;}
 
-    public ICollection<Question> Questions{get;set;}
 
     public ICollection<StudentAnswer> StudentAnswers{get;set;}
 

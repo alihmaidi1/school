@@ -13,7 +13,7 @@ public static class VacationFaker
         var Vacation= new Faker<Vacation>();
 
         Vacation.RuleFor(x => x.Reason, setter => setter.Random.Words(100));
-        Vacation.RuleFor(x => x.Date, setter =>setter.Date.Between(DateTime.Now.AddYears(-14),DateTime.Now).ToString("YYYY"));
+        Vacation.RuleFor(x => x.Date, setter =>setter.Date.Between(DateTime.Now.AddYears(-14),DateTime.Now));
         Vacation.RuleFor(x => x.TeacherId, setter => setter.PickRandom(teachers).Id);
         Vacation.RuleFor(x => x.AdminId, setter => setter.PickRandom(managers).Id);
         Vacation.RuleFor(x => x.Status, setter => setter.Random.Bool());

@@ -29,7 +29,6 @@ public class SubjectYearConfiguration : IEntityTypeConfiguration<SubjectYear>
         .HasForeignKey(x=>x.SubjectYearId)
         .OnDelete(DeleteBehavior.Restrict);
 
-
         builder.HasMany(x=>x.Audiences)
         .WithOne(x=>x.SubjectYear)
         .HasForeignKey(x=>x.SubjectYearId)

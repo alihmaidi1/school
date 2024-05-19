@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "EdXjvn+7bk7uEhUWIjhohHV+9AN7dZl5GQgV9jaRvtE=",
+  "Hash": "tGLHnJhJZ27C6Y13widERDeJviuWA64S8XViaZSwM84=",
   "Source": "api",
   "BasePath": "_content/api",
   "Mode": "Default",
@@ -530,6 +530,25 @@
       "OriginalItemSpec": "wwwroot/Parent/35fb7c66-5735-4806-94bf-5bbf3086fc89school12 (1).jpg"
     },
     {
+      "Identity": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Teachers/0d897e34-9e93-4ac2-a004-1c08ea1987d1.png",
+      "SourceId": "api",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/",
+      "BasePath": "_content/api",
+      "RelativePath": "Teachers/0d897e34-9e93-4ac2-a004-1c08ea1987d1.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/Teachers/0d897e34-9e93-4ac2-a004-1c08ea1987d1.png"
+    },
+    {
       "Identity": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Teachers/33b0f5be-a5d0-4a02-bc48-2b1e7ef07a6e.png",
       "SourceId": "api",
       "SourceType": "Discovered",
@@ -547,6 +566,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/Teachers/33b0f5be-a5d0-4a02-bc48-2b1e7ef07a6e.png"
+    },
+    {
+      "Identity": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Teachers/fd2934f3-8d84-463d-9b06-e22c2b6f8b1a.png",
+      "SourceId": "api",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/",
+      "BasePath": "_content/api",
+      "RelativePath": "Teachers/fd2934f3-8d84-463d-9b06-e22c2b6f8b1a.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/Teachers/fd2934f3-8d84-463d-9b06-e22c2b6f8b1a.png"
     },
     {
       "Identity": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Temps/18d25d3f-c401-49d8-bd05-e86b3870c85b.png",

@@ -20,9 +20,6 @@ public class AddTeacherValidation:AbstractValidator<AddTeacherCommand>
             .NotNull()
             .Must(email=>!teacherRepository.IsExistsByProperty("Email",email));
 
-        RuleFor(x => x.Status)
-            .NotEmpty()
-            .NotNull();
 
         RuleFor(x => x.Password)
             .NotEmpty()

@@ -1,8 +1,9 @@
 
 using Dto.Teacher.Vacation;
 using infrastructure;
+using infrastructure.Repository.Base;
 using Microsoft.EntityFrameworkCore;
-using Repository.Base;
+
 using Shared.Entity.EntityOperation;
 namespace Repository.Teacher.Vacation;
 public class VacationRepository:GenericRepository<Domain.Entities.Teacher.Vacation.Vacation>,IVacationRepository
@@ -44,7 +45,7 @@ public class VacationRepository:GenericRepository<Domain.Entities.Teacher.Vacati
                 Teacher = x.Teacher.Name,
                 Status = x.Status,
                 Reason = x.Reason,
-                Year = x.Date
+                Year = x.Date.ToString()
             })
             .ToPagedList(pageNumber,pageSize);
         return Result;

@@ -24,7 +24,7 @@ public class Answer: BaseEntity,ISoftDelete
     public string Name{get;set;}
 
 
-    public bool IsCorrect{get;set;}
+    public bool IsCorrect{get;set;}=false;
 
     public Guid QuestionId{get;set;}
 

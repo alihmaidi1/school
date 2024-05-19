@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Repository.Jwt;
 using Shared.CQRS;
+using Shared.Enum;
 using Shared.OperationResult;
 
 namespace Teacher.Auth.RefreshToken;
@@ -39,7 +40,7 @@ public class RefreshTokenTeacherHandler : OperationResult, ICommandHandler<Refre
             return ValidationError(nameof(request.RefreshToken),"refresh token is not correct");
         }
         var teacher = _dbContext.Teachers.IgnoreQueryFilters().First(x => x.Id == userSession.AccountId);
-        var tokensInfo =await _jwtRepository.GetTokensInfo(userSession.AccountId,teacher.Email,null);
+        var tokensInfo =await _jwtRepository.GetTokensInfo(userSession.AccountId,teacher.Email,nameof(JwtSchema.Admin),null);
         userSession.RefreshToken = tokensInfo.RefreshToken;
         userSession.Token = tokensInfo.Token;
         userSession.ExpireAt = userSession.ExpireAt;

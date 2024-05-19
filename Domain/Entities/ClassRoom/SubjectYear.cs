@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Domain.Base.Entity;
 using Domain.Base.interfaces;
+using Domain.Entities.Quez;
 using Domain.Entities.Student.Audience;
 using Domain.Entities.Student.StudentSubject;
 using Shared.Entity.Entity;
@@ -20,7 +21,6 @@ namespace Domain.Entities.ClassRoom;
             Audiences=new HashSet<Audience>();
         
             Lesons=new HashSet<Leson>();
-
             Programs=new HashSet<Program>();
         }
 
@@ -38,6 +38,7 @@ namespace Domain.Entities.ClassRoom;
         public Guid TeacherId{get;set;}
 
         public ICollection<Audience> Audiences{get;set;}
+
 
 
         public ICollection<StudentSubject> StudentSubjects{get;set;}

@@ -23,7 +23,7 @@ public class Vacation:BaseEntity,ISoftDelete
 
     public int Days { get; set; }
 
-    public string Date { get; set; }
+    public DateTime Date { get; set; }
     
     public Guid? AdminId { get; set; }
     public Manager.Admin.Admin? Admin { get; set; }

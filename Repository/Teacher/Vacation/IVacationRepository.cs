@@ -1,9 +1,9 @@
 using System.Data.Common;
+using Domain.Abstraction;
 using Domain.Entities.Manager.Admin;
 using Domain.Entities.Teacher.Teacher;
 using Domain.Entities.Teacher.Vacation;
 using Dto.Teacher.Vacation;
-using Repository.Base;
 using Shared.Entity.EntityOperation;
 
 namespace Repository.Teacher.Vacation;

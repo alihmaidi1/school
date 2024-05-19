@@ -10,7 +10,7 @@ using Shared.Entity.Entity;
 
 namespace Domain.Entities.Manager.Admin;
 
-public class Admin: Account.Account
+public class Admin: Account.Account,ISoftDelete
 {
 
     

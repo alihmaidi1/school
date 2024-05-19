@@ -12,7 +12,7 @@ public class AddParentCommand:ICommand
     
     public string Password { get; set; }
     
-    public string? Url { get; set; }
+    public Guid Image { get; set; }
 
     
 

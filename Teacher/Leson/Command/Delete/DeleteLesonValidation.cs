@@ -9,7 +9,7 @@ using Shared.Services.User;
 
 namespace Teacher.Leson.Command.Delete;
 
-public class DeleteLesonValidation: AbstractValidator<deleteLesonCommand>
+public class DeleteLesonValidation: AbstractValidator<DeleteLesonCommand>
 {
 
     public DeleteLesonValidation(ApplicationDbContext context,ICurrentUserService currentUserService){
@@ -17,7 +17,7 @@ public class DeleteLesonValidation: AbstractValidator<deleteLesonCommand>
         RuleFor(x=>x.Id)
         .NotNull()
         .NotEmpty()
-        .Must(id=>context.Lesons.Include(x=>x.SubjectYear).Any(x=>x.Id==id&&x.SubjectYear.TeacherId==currentUserService.UserId))
+        .Must(id=>context.Lesons.Any(x=>x.Id==id&&x.SubjectYear.TeacherId==currentUserService.UserId))
         .WithMessage("this leson is not exists in our data");
 
     }

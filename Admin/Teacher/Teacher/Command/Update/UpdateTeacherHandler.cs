@@ -52,12 +52,9 @@ public class UpdateTeacherHandler:OperationResult,ICommandHandler<UpdateTeacherC
             _context.Images.Remove(image);
         }
         _context.Teachers.Update(teacher);
+        teacher.SendEmail("Update Teacher Info In School",$"this is your email In School and this is your password {request.Password}");
         await _context.SaveChangesAsync(cancellationToken);
-
         if(request.Image is not null) image!.Url.MoveFile(image.Url.GetNewPath(FolderName.Teacher).localPath);
-    
-        BackgroundJob.Enqueue(()=>_mailService.SendMail(request.Email, "Update Teacher Info In School",$"this is your email In School and this is your password {request.Password}"));
-
         return Success("admin was updated successfully");
     }
 }

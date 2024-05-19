@@ -22,11 +22,11 @@ public class JwtRepository:IJwtRepository
         this._jwtOption = setting.Value;
     }
     
-    public Task<AccountSession> GetTokensInfo(Guid id,string email,List<string>? permissions)  
+    public Task<AccountSession> GetTokensInfo(Guid id,string email,string type,List<string>? permissions)  
     {
         
         
-        string token = GetToken(id,email,permissions);
+        string token = GetToken(id,email,type,permissions);
         string refreshToken = GenerateRefreshToken();
         return Task.FromResult(new AccountSession()
         {
@@ -44,11 +44,11 @@ public class JwtRepository:IJwtRepository
     
     
     
-    public string GetToken(Guid id,string email,List<string>? permissions)
+    public string GetToken(Guid id,string email,string type,List<string>? permissions)
     {
         var claims = CreateClaim(id,email,permissions);
         var signingCredentials = GetSigningCredentials(_jwtOption);
-        var jwtToken = GetJwtToken(_jwtOption, claims, signingCredentials);
+        var jwtToken = GetJwtToken(_jwtOption, claims, signingCredentials,type);
         var token = new JwtSecurityTokenHandler().WriteToken(jwtToken);
         return token;
 
@@ -92,12 +92,12 @@ public class JwtRepository:IJwtRepository
 
     }
     
-    private JwtSecurityToken GetJwtToken(JwtSetting jwtOption, List<Claim> claims, SigningCredentials SigningCredentials)
+    private JwtSecurityToken GetJwtToken(JwtSetting jwtOption, List<Claim> claims, SigningCredentials SigningCredentials,string type)
     {
 
         return new JwtSecurityToken(
-            issuer: jwtOption.Issuer,
-            audience: jwtOption.Audience,
+            issuer: type,
+            audience: type,
             claims: claims,
             expires: DateTime.Now.AddMinutes(jwtOption.DurationInMinute),
             signingCredentials: SigningCredentials

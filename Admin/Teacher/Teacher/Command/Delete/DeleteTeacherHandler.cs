@@ -25,7 +25,7 @@ public class DeleteTeacherHandler : OperationResult, ICommandHandler<DeleteTeach
     public async Task<JsonResult> Handle(DeleteTeacherCommand request, CancellationToken cancellationToken)
     {
 
-        await _context.Teachers.Where(x=>x.Id==request.Id).ExecuteUpdateAsync(setter=>setter.SetProperty(x=>x.DateDeleted,DateTime.Now),cancellationToken);
+        await _context.Teachers.Where(x=>x.Id==request.Id).ExecuteDeleteAsync();
         await _context.SaveChangesAsync(cancellationToken);
         return Deleted();
     }

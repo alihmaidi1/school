@@ -1,5 +1,5 @@
+using Domain.Abstraction;
 using Dto.Teacher.Warning;
-using Repository.Base;
 using Shared.Entity.EntityOperation;
 
 namespace Repository.Teacher.Warning;

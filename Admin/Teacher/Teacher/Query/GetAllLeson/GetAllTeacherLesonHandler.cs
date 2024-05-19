@@ -7,6 +7,7 @@ using Dto.Admin.Teacher;
 using infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Shared.Entity.EntityOperation;
 using Shared.OperationResult;
 
 namespace Admin.Teacher.Teacher.Query.GetAllLeson;
@@ -28,12 +29,10 @@ public class GetAllTeacherLesonHandler : OperationResult,IQueryHandler<GetAllTea
         var Lesons=_context
         .SubjectYears
         .AsNoTracking()
-        .Include(x=>x.Subject)
-        .Include(x=>x.Lesons)
         .Where(x=>x.YearId==request.YearId)
         .Where(x=>x.TeacherId==request.Id)
         .Select(x=>new GetAllTeacherLesonDto(){
-
+            
             Id=x.Subject.Id,
             Name=x.Subject.Name,
             Lesons=x.Lesons.Select(y=>new GetAllTeacherLesonDto.Leson(){
@@ -46,7 +45,7 @@ public class GetAllTeacherLesonHandler : OperationResult,IQueryHandler<GetAllTea
 
 
         })
-        .ToList();
+        .ToPagedList(request.PageNumber,request.PageSize);
 
         return Success(Lesons,"this is all your data");
 

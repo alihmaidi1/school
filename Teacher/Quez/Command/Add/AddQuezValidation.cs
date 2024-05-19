@@ -22,7 +22,8 @@ public class AddQuezValidation: AbstractValidator<AddQuezCommand>
 
         RuleFor(x=>x.StartAt)
         .NotEmpty()
-        .NotNull();
+        .NotNull()
+        .Must(startAt=>startAt>=DateTime.Now);
 
 
         RuleFor(x=>x.SubjectId)

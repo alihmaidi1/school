@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Repository.Jwt;
 using Shared.CQRS;
+using Shared.Enum;
 using Shared.OperationResult;
 
 namespace Admin.Manager.Auth.Command.RefreshToken;
@@ -32,7 +33,7 @@ public class RefreshAdminTokenHandler:OperationResult,ICommandHandler<RefreshAdm
             return ValidationError(nameof(request.RefreshToken),"refresh token is not correct");
         }
         var admin = _dbContext.Admins.IgnoreQueryFilters().Include(admin => admin.Role).First(x => x.Id == userSession.AccountId);
-        var tokensInfo =await _jwtRepository.GetTokensInfo(userSession.AccountId, admin.Email,admin.Role.Permissions);
+        var tokensInfo =await _jwtRepository.GetTokensInfo(userSession.AccountId, admin.Email,nameof(JwtSchema.Admin),admin.Role.Permissions);
         userSession.RefreshToken = tokensInfo.RefreshToken;
         userSession.Token = tokensInfo.Token;
         userSession.ExpireAt = userSession.ExpireAt;

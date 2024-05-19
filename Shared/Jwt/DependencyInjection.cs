@@ -20,44 +20,54 @@ public static class DependencyInjection
         services.Configure<JwtSetting>(iJwtOption);
         var authentication = services.AddAuthentication(options =>
         {
-            options.DefaultAuthenticateScheme = "school";
-            options.DefaultChallengeScheme = "school";
-            options.DefaultScheme = "school";
-        }).AddJwtBearer("school", options =>
+            options.DefaultAuthenticateScheme = nameof(JwtSchema.Admin);
+            options.DefaultChallengeScheme = nameof(JwtSchema.Admin);
+            options.DefaultScheme = nameof(JwtSchema.Admin);
+        });
+
+        foreach (var item in  System.Enum.GetNames(typeof(JwtSchema)))
         {
 
-            options.SaveToken = true;
-            options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+            authentication.AddJwtBearer(item, options =>
             {
 
-                ValidateIssuerSigningKey = true,
-                ValidateIssuer = true,
-                ValidateAudience = true,
-                ValidateLifetime = true,
-                ValidIssuer = iJwtOption["Issuer"],
-                ValidAudience = iJwtOption["Audience"],
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(iJwtOption["Key"]??""))
+                    options.SaveToken = true;                    
+                    options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                    {
+
+                        ValidateIssuerSigningKey = true,
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ClockSkew=TimeSpan.Zero,
+                        ValidIssuer = item,
+                        ValidAudience = item,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(iJwtOption["Key"]??""))
 
 
-            };
-            options.Events = new JwtBearerEvents
-            {
-                    
-                OnChallenge = context =>
-                {
-                    context.HandleResponse();
-                    throw new UnAuthenticationException();
-                    
-                },
-                    
-                OnForbidden = context => throw new UnAuthorizationException()
-            };
+                    };
+                    options.Events = new JwtBearerEvents
+                    {
+                            
+                        OnChallenge = context =>
+                        {
+                            context.HandleResponse();
+                            throw new UnAuthenticationException();
+                            
+                        },
+                            
+                        OnForbidden = context => throw new UnAuthorizationException()
+                    };
 
 
 
 
         });
+         
+            
+        }
         
+              
         return services;
 
     }

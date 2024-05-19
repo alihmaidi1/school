@@ -31,7 +31,7 @@ public class StudentSubject: BaseEntity,ISoftDelete
     public SubjectYear SubjectYear{get;set;}
 
 
-    public float Mark{get;set;}
+    public float? Mark{get;set;}
 
     public ICollection<StudentQuez> StudentQuezs{get;set;}
 

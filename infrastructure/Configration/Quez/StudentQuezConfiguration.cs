@@ -13,11 +13,6 @@ public class StudentQuezConfiguration:IEntityTypeConfiguration<StudentQuez>
     public void Configure(EntityTypeBuilder<StudentQuez> builder)
     {
 
-        builder.HasMany(x=>x.Questions)
-        .WithOne(x=>x.Quez)
-        .HasForeignKey(x=>x.QuezId)
-        .OnDelete(DeleteBehavior.Restrict);
-
         builder.HasMany(x=>x.StudentAnswers)
         .WithOne(x=>x.StudentQuez)
         .HasForeignKey(x=>x.StudentQuizId)

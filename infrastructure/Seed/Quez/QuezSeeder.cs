@@ -12,13 +12,13 @@ public static class QuezSeeder
     public static async Task seedData(ApplicationDbContext context){
 
 
-        if(!context.StudentQuezs.Any()){
+        if(!context.Quezs.Any()){
 
 
 
             List<Guid> StudentSubjects=context.StudentSubjects.Select(x=>x.Id).ToList();
-            var Quezes=StudentQuezFaker.GetFaker(StudentSubjects).Generate(200);
-            context.StudentQuezs.AddRange(Quezes);
+            var Quezes=QuezFaker.GetFaker(StudentSubjects).Generate(40);
+            context.Quezs.AddRange(Quezes);
             context.SaveChanges();
 
 

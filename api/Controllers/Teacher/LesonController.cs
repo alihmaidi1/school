@@ -1,13 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 using infrastructure.Attribute;
 using Microsoft.AspNetCore.Mvc;
 using schoolManagement.Base;
 using Shared.OperationResult.Base;
 using Shared.Swagger;
 using Teacher.Leson.Command.Add;
+using Teacher.Leson.Command.Delete;
 
 namespace schoolmanagment.Controllers.Teacher;
 
@@ -39,7 +37,7 @@ public class LesonController: ApiController
     /// </summary>
     [Produces(typeof(OperationResultBase<Boolean>))]
     [HttpDelete]
-    public async Task<IActionResult> delete([FromForm] AddLesonCommand command,CancellationToken token)
+    public async Task<IActionResult> Delete([FromQuery] DeleteLesonCommand command,CancellationToken token)
     {
         var response = await this.Mediator.Send(command,token);
         return response;

@@ -1,44 +1,45 @@
-using Domain.Entities.Student.Parent;
-using Dto.Student.Parent;
-using infrastructure;
-using Repository.Base;
-using Shared.Entity.EntityOperation;
+// using Domain.Entities.Student.Parent;
+// using Dto.Student.Parent;
+// using infrastructure;
+// using infrastructure.Repository.Base;
 
-namespace Repository.Student.Parent;
+// using Shared.Entity.EntityOperation;
 
-public class ParentRepository:GenericRepository<Domain.Entities.Student.Parent.Parent>,IParentRepository
-{
-    public ParentRepository(ApplicationDbContext DbContext) : base(DbContext)
-    {
-    }
+// namespace Repository.Student.Parent;
 
-    public PageList<GetAllParentResponse> GetAllParent(string? OrderBy, int? pageNumber, int? pageSize)
-    {
+// public class ParentRepository:GenericRepository<Domain.Entities.Student.Parent.Parent>,IParentRepository
+// {
+//     public ParentRepository(ApplicationDbContext DbContext) : base(DbContext)
+//     {
+//     }
 
-        // var Result = DbContext.Parents
-        //     .Sort<Domain.Entities.Student.Parent.Parent>(OrderBy, ParentSorting.switchOrdering)
-        //     .Select(ParentQuery.ToGetAllParent)
-        //     .ToPagedList(pageNumber,pageSize);
+//     public PageList<GetAllParentResponse> GetAllParent( int? pageNumber, int? pageSize)
+//     {
+
+//         // var Result = DbContext.Parents
+//         //     .Sort<Domain.Entities.Student.Parent.Parent>(OrderBy, ParentSorting.switchOrdering)
+//         //     .Select(ParentQuery.ToGetAllParent)
+//         //     .ToPagedList(pageNumber,pageSize);
         
 
-        // return Result;
+//         // return Result;
 
-        return null;
-    }
-
-
-    public bool IsExists(Guid id)
-    {
-
-        return DbContext.Parents.Any(x=>x.Id.Equals(id));
-    }
+//         return null;
+//     }
 
 
+//     public bool IsExists(Guid id)
+//     {
 
-    public bool IsExists(string Email)
-    {
+//         return DbContext.Parents.Any(x=>x.Id.Equals(id));
+//     }
 
-        return DbContext.Parents.Any(x=>x.Email.Equals(Email));
-    }
 
-}
+
+//     public bool IsExists(string Email)
+//     {
+
+//         return DbContext.Parents.Any(x=>x.Email.Equals(Email));
+//     }
+
+// }

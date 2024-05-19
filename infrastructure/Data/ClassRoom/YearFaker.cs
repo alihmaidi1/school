@@ -15,7 +15,7 @@ namespace infrastructure.Data.ClassRoom;
 
 
             var Year=new Faker<Year>();
-            Year.RuleFor(x=>x.Date,setter=>DateTime.Now.AddYears(setter.Random.Int(-10,0)));
+            Year.RuleFor(x=>x.Date,setter=>DateTime.Now);
             return Year;
 
         }

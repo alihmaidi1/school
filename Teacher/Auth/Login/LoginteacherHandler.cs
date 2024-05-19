@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Repository.Jwt;
 using Shared.CQRS;
+using Shared.Enum;
 using Shared.Helper;
 using Shared.OperationResult;
 
@@ -37,7 +38,7 @@ public class LoginteacherHandler : OperationResult, ICommandHandler<LoginTeacher
         {
             return ValidationError(nameof(request.Password),"password is not correct");
         }
-        AccountSession accountSession =await _jwtRepository.GetTokensInfo(teacher.Id, teacher.Email,null);
+        AccountSession accountSession =await _jwtRepository.GetTokensInfo(teacher.Id, teacher.Email,nameof(JwtSchema.Admin),null);
         _dbContext.AccountSessions.Add(accountSession);
         _dbContext.SaveChanges();
         return Success(_mapper.Map<AdminRefreshTokenDto>(accountSession),"this this your login info");

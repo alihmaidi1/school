@@ -18,7 +18,6 @@ public static class StudentFaker
         Student.RuleFor(x => x.Gender, setter => setter.Random.Bool());
         Student.RuleFor(x => x.Number, setter => setter.Random.Number(1000, 100000));
         Student.RuleFor(x => x.Image,setter=>setter.Internet.Avatar());
-        Student.RuleFor(x => x.Resize,setter=>setter.Internet.Avatar());
         Student.RuleFor(x => x.Hash, setter => setter.Random.String2(27,AlphaNumericWithSpicial.AlphaNumeric));
         return Student;
     }

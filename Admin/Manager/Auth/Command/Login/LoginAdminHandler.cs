@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Repository.Jwt;
 using Shared.CQRS;
+using Shared.Enum;
 using Shared.Helper;
 using Shared.OperationResult;
 
@@ -35,7 +36,7 @@ public class LoginAdminHandler:OperationResult,ICommandHandler<LoginAdminCommand
         {
             return ValidationError(nameof(request.Password),"password is not correct");
         }
-        AccountSession accountSession =await _jwtRepository.GetTokensInfo(admin.Id, admin.Email,admin.Role.Permissions);
+        AccountSession accountSession =await _jwtRepository.GetTokensInfo(admin.Id, admin.Email,nameof(JwtSchema.Admin),admin.Role.Permissions);
         _dbContext.AccountSessions.Add(accountSession);
         _dbContext.SaveChanges();
         return Success(_mapper.Map<AdminRefreshTokenDto>(accountSession),"this this your login info");

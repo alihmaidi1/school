@@ -32,5 +32,6 @@ public class TeacherConfigration:IEntityTypeConfiguration<Domain.Entities.Teache
         .WithMany(x=>x.Teachers)
         .UsingEntity<SubjectYear>();
 
+
     }
 }

@@ -9,7 +9,7 @@ public class CurrentUserService : ICurrentUserService
     public CurrentUserService(IHttpContextAccessor httpContextAccessor)
     {
         _httpContextAccessor = httpContextAccessor;
-        var value = httpContextAccessor.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        var value = httpContextAccessor.HttpContext?.User?.Claims?.FirstOrDefault(x=>x.Type==ClaimTypes.NameIdentifier)?.Value;
         if (value != null)
             UserId = Guid.Parse(value);
         

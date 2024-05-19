@@ -1,64 +1,52 @@
 using Common.CQRS;
+using infrastructure;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using Repository.Student.Parent;
+using Shared.Constant;
 using Shared.CQRS;
 using Shared.Enum;
 using Shared.File;
+using Shared.Helper;
 using Shared.OperationResult;
 
 namespace Admin.Student.Parent.Command.Add;
 
-public class AddParentHandler:OperationResult,
-    ICommandHandler<AddParentCommand>
+public class AddParentHandler:OperationResult,ICommandHandler<AddParentCommand>
 {
 
-    private IParentRepository ParentRepository;
 
-    private IWebHostEnvironment WebHostEnvironment;
-
-    
-    private string uri;
-    public AddParentHandler(IConfiguration configuration,IParentRepository ParentRepository,IWebHostEnvironment WebHostEnvironment)
+    private ApplicationDbContext _context;
+    public AddParentHandler(ApplicationDbContext context)
     {
 
-        this.WebHostEnvironment = WebHostEnvironment;
+        _context=context;
 
-        this.uri = configuration["Url"];
-        this.ParentRepository = ParentRepository;
     }
     public async Task<JsonResult> Handle(AddParentCommand request, CancellationToken cancellationToken)
     {
 
+        var image = _context.Images.FirstOrDefault(x => x.Id == request.Image);
         
-        // var Parent = new Domain.Entities.Student.Parent.Parent()
-        // {
-        //
-        //     Name = request.Name,
-        //     Email = request.Email,
-        //     Password = request.Password,
-        //     
-        //
-        // };
-        //
-        //
-        // if (request.Url is not null)
-        // {
-        //
-        //     var ImageResponse = request.Url.OptimizeFile(FileName.Parent.ToString(),WebHostEnvironment.WebRootPath,uri);
-        //
-        //     Parent.Image = ImageResponse.Url;
-        //     Parent.Resize = ImageResponse.Resized;
-        //     Parent.Hash = ImageResponse.Hash;
-        //
-        // }
-        //
-        //
-        // await ParentRepository.AddAsync(Parent);
-        //
-        // return Success("paernt was added successfully");
+        var Parent = new Domain.Entities.Student.Parent.Parent()
+        {
+        
+            Name = request.Name,
+            Email = request.Email,
+            Password = PasswordHelper.HashPassword(request.Password),
+            Image = image.Url.GetNewPath(FolderName.Parent).httpPath,
+            Hash=image.Hash
+            
+        
+        };
 
-        return null;
+        Parent.SendEmail("You are a New Parent",$"this this your password {request.Password}");
+        _context.Images.Remove(image);
+        _context.Parents.Add(Parent);
+        await _context.SaveChangesAsync(cancellationToken);
+        image.Url.MoveFile(image.Url.GetNewPath(FolderName.Parent).localPath);
+        return Success("Parent was created successfully");
+
+
     }
 }

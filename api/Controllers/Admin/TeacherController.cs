@@ -6,7 +6,9 @@ using Admin.Teacher.Teacher.Query.GetAll;
 using Admin.Teacher.Teacher.Query.GetAllLeson;
 using Admin.Teacher.Teacher.Query.GetAllQuez;
 using Admin.Teacher.Teacher.Query.GetAllSubjectAndStudent;
-using Domain.AppMetaData.Admin;
+using Admin.Teacher.Teacher.Query.GetAllTeacherYear;
+using Domain.Dto.ClassRoom;
+using Domain.Dto.Teacher;
 using Domain.Enum;
 using Dto.Admin.Teacher;
 using infrastructure.Attribute;
@@ -21,7 +23,7 @@ namespace schoolmanagment.Controllers.Admin;
 
 [Route("Api/SuperAdmin/[controller]/[action]")]
 [ApiGroup(ApiGroupName.All, ApiGroupName.Admin)]
-[CheckTokenSession(Policy = nameof(PermissionEnum.Admin))]
+[CheckTokenSession(Policy = nameof(PermissionEnum.Teacher))]
 public class TeacherController:ApiController
 {
     
@@ -32,7 +34,7 @@ public class TeacherController:ApiController
     /// get all Teacher with subject count in this year 
     /// </summary>
     /// <returns>return all role in pagination</returns>
-    [Produces(typeof(OperationResultBase<PageList<GetAllTeacher>>))]
+    [Produces(typeof(OperationResultBase<PageList<GetAllTeacherDto>>))]
    
     [HttpGet]
     public async Task<IActionResult> GetAllTeacher([FromQuery] GetAllTeacherQuery request,CancellationToken Token)
@@ -42,6 +44,20 @@ public class TeacherController:ApiController
 
     }
 
+
+    /// <summary>
+    /// get all Teacher year in this school 
+    /// </summary>
+    /// <returns>return all </returns>
+    [Produces(typeof(OperationResultBase<List<GetAllYearDto>>))]
+   
+    [HttpGet]
+    public async Task<IActionResult> GetAllTeacherYear([FromQuery] GetAllTeacherYearQuery request,CancellationToken Token)
+    {
+        var response = await this.Mediator.Send(request,Token);
+        return response;
+
+    }
 
 
     /// <summary>

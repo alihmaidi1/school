@@ -17,6 +17,8 @@ namespace infrastructure.Data.ClassRoom
             var subject=new Faker<Subject>();
             subject.RuleFor(x=>x.Name,setter=>setter.Random.Words(1));
             subject.RuleFor(x=>x.ClassId,setter=>setter.PickRandom(Subjects));
+            subject.RuleFor(x=>x.Degree,setter=>100);
+            subject.RuleFor(x=>x.MinDegree,setter=>50);
             return subject;
             
         }

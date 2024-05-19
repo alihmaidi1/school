@@ -5,8 +5,9 @@ using Admin.Manager.Role.Query.Get;
 using Admin.Manager.Role.Query.GetAll;
 using Admin.Manager.Role.Query.GetPermissions;
 using Domain.AppMetaData.Admin;
+using Domain.Dto.Manager.Admin;
+using Domain.Dto.Manager.Role;
 using Domain.Enum;
-using Dto.Admin.Role;
 using infrastructure.Attribute;
 using Microsoft.AspNetCore.Mvc;
 using schoolManagement.Base;
@@ -19,7 +20,7 @@ namespace schoolmanagment.Controllers.Admin;
 
 [Route("Api/SuperAdmin/[controller]/[action]")]
 [ApiGroup(ApiGroupName.All, ApiGroupName.Admin)]
-[CheckTokenSession(Policy = nameof(PermissionEnum.Admin))]
+[CheckTokenSession(Policy = nameof(PermissionEnum.Role))]
 public class RoleController:ApiController
 {
     /// <summary>
@@ -27,7 +28,7 @@ public class RoleController:ApiController
     /// </summary>
     /// <returns>return all role in pagination</returns>
    
-    [Produces(typeof(OperationResultBase<PageList<GetAllRole>>))]
+    [Produces(typeof(OperationResultBase<PageList<GetAllRoleDto>>))]
 
     [HttpGet]
     public async Task<IActionResult> GetAll([FromQuery] GetRolesQuery command,CancellationToken Token)
@@ -41,7 +42,7 @@ public class RoleController:ApiController
     /// get all admin by role id 
     /// </summary>
     /// <returns>return all admin in pagination</returns>
-    [Produces(typeof(OperationResultBase<PageList<GetAllAdminByRole>>))]
+    [Produces(typeof(OperationResultBase<PageList<GetAllAdminByRoleDto>>))]
    
     [HttpGet]
     public async Task<IActionResult> GetAllAdminByRole([FromQuery] GetManagerByRoleQuery command,CancellationToken Token)

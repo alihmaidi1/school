@@ -1,16 +1,12 @@
 using Common.CQRS;
+using Shared.Abstraction;
 
 namespace Admin.Student.Parent.Query.GetAll;
 
-public class GetAllParentsQuery:IQuery 
+public class GetAllParentsQuery: PaginationRequest ,IQuery 
 {  
 
     
-    public string? OrderBy { get; set; }
-    
-    public int? PageNumber { get; set; }
-    
-    public int? PageSize { get; set; }
 
     
     

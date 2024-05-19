@@ -7,9 +7,9 @@ namespace Repository.Jwt;
 
 public interface IJwtRepository : IBaseSuperTransient
 {
-    public Task<AccountSession> GetTokensInfo(Guid id,string email,List<string>? permissions);
+    public Task<AccountSession> GetTokensInfo(Guid id,string email,string type,List<string>? permissions);
 
-    public string GetToken(Guid id,string email,List<string>? permissions);
+    public string GetToken(Guid id,string email,string type,List<string>? permissions);
 
     
 }

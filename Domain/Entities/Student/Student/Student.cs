@@ -1,5 +1,6 @@
 using Domain.Base.Entity;
 using Domain.Base.interfaces;
+using Domain.Event;
 
 namespace Domain.Entities.Student.Student;
 
@@ -15,6 +16,21 @@ public class Student:BaseEntity
         StudentBills=new List<StudentBill.StudentBill>();
 
     }
+
+        public void SendEmail(string Subject,string Message){
+
+        RaiseDomainEvent(new SendEmailEvent(){
+
+            Email=Email,
+            Subject=Subject,
+            Message=Message
+
+
+            
+        });
+
+    }
+
     public string Name { get; set; }
     
     public string Email { get; set; }
@@ -29,8 +45,6 @@ public class Student:BaseEntity
     
     
     public string? Image { get; set; }
-    
-    public string? Resize { get; set; }
     
     
     public string? Hash { get; set; }

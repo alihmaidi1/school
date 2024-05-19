@@ -28,6 +28,6 @@ public class StudentBill:BaseEntity
     public DateTime Date{get;set;}
     public float Money{get;set;}
 
-    public float PaiedMoney{get;set;}
+    public float PaiedMoney{get;set;}=0;
 
 }

@@ -10,7 +10,7 @@ using Shared.OperationResult;
 
 namespace Teacher.Leson.Command.Delete;
 
-public class DeleteLesonHandler : OperationResult, ICommandHandler<deleteLesonCommand>
+public class DeleteLesonHandler : OperationResult, ICommandHandler<DeleteLesonCommand>
 {
 
     private readonly ApplicationDbContext _context;
@@ -19,12 +19,11 @@ public class DeleteLesonHandler : OperationResult, ICommandHandler<deleteLesonCo
         _context=context;
 
     }
-    public async Task<JsonResult> Handle(deleteLesonCommand request, CancellationToken cancellationToken)
+    public async Task<JsonResult> Handle(DeleteLesonCommand request, CancellationToken cancellationToken)
     {
 
-        await _context.Lesons.Where(x=>x.Id==request.Id).ExecuteUpdateAsync(setter=>setter.SetProperty(x=>x.DateDeleted,DateTime.Now),cancellationToken);
+        await _context.Lesons.Where(x=>x.Id==request.Id).ExecuteDeleteAsync(cancellationToken);
         await _context.SaveChangesAsync(cancellationToken);
-
         return Success("leson was deleted successfully");
     }
 }
