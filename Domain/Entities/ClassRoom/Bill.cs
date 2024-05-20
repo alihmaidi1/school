@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Domain.Base.Entity;
+using Domain.Entities.Student.StudentBill;
 using Shared.Entity.Entity;
 
 namespace Domain.Entities.ClassRoom;
@@ -13,18 +14,15 @@ namespace Domain.Entities.ClassRoom;
         public Bill(){
 
             Id=Guid.NewGuid();
+            StudentBills=new HashSet<StudentBill>();
         }
 
         public DateTime Date{get;set;}
         public float Money{get;set;}
 
+        public ClassYear ClassYear{get;set;}
 
-        public Guid YearId{get;set;}
+        public Guid ClassYearId{get;set;}
 
-        public Year Year{get;set;}
-
-        public Guid ClassId{get;set;}
-
-
-        public Class Class{get;set;}
+        public ICollection<StudentBill> StudentBills{get;set;}
     }

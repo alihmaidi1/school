@@ -22,6 +22,8 @@ public class Account :BaseEntity ,ISoftDelete
     public List<AccountSession> AccountSessions { get; set; }
 
 
+    public bool Status{get;set;}=true;
+
     public ICollection<AccountNotification> AccountNotifications{get;set;}
     
 

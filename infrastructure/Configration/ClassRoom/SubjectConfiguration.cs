@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Domain.Entities.ClassRoom;
+using Domain.Entities.Teacher.Teacher;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -13,8 +14,10 @@ public class SubjectConfiguration : IEntityTypeConfiguration<Subject>
     public void Configure(EntityTypeBuilder<Subject> builder)
     {
 
-        builder.HasMany(x=>x.SubjectYears)
+
+        builder.HasMany(x=>x.Teachers)
         .WithOne(x=>x.Subject)
-        .HasForeignKey(x=>x.SubjectId);
+        .HasForeignKey(x=>x.SubjectId)
+        .OnDelete(DeleteBehavior.Restrict);
     }
 }

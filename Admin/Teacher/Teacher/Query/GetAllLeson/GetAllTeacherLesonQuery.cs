@@ -7,7 +7,7 @@ using Shared.Abstraction;
 
 namespace Admin.Teacher.Teacher.Query.GetAllLeson;
 
-public class GetAllTeacherLesonQuery: PaginationRequest, IQuery
+public class GetAllTeacherLesonQuery: IQuery
 {
 
     public Guid Id{get;set;}

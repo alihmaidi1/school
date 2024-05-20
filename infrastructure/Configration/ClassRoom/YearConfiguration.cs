@@ -14,15 +14,9 @@ public class YearConfiguration : IEntityTypeConfiguration<Year>
 
 
     public void Configure(EntityTypeBuilder<Year> builder)
-    {
-
-        builder.HasMany(x=>x.Bills)
-        .WithOne(x=>x.Year)
-        .HasForeignKey(x=>x.YearId)
-        .OnDelete(DeleteBehavior.Restrict);
+    {    
         
-        
-        builder.HasMany(x=>x.SubjectYears)
+        builder.HasMany(x=>x.ClassYears)
         .WithOne(x=>x.Year)
         .HasForeignKey(x=>x.YearId)
         .OnDelete(DeleteBehavior.Restrict);

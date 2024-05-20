@@ -24,11 +24,10 @@ public class YearController: ApiController
     /// </summary>
     /// <returns>return all role in pagination</returns>
     [Produces(typeof(OperationResultBase<List<GetAllYearDto>>))]
-   
     [HttpGet]
-    public async Task<IActionResult> GetAllYear([FromQuery] GetAllYearQuery request,CancellationToken Token)
+    public async Task<IActionResult> GetAllYear(CancellationToken Token)
     {
-        var response = await this.Mediator.Send(request,Token);
+        var response = await this.Mediator.Send(new GetAllYearQuery(),Token);
         return response;
 
     }

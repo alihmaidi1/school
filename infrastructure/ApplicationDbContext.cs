@@ -82,12 +82,15 @@ public class ApplicationDbContext:DbContext
      public DbSet<Teacher> Teachers { get; init; }
      public DbSet<Warning> Warnings { get; init; }
      public DbSet<Vacation> Vacations { get; init; }
+
+     public DbSet<Program> Programs{get;init;}
      
      
      public DbSet<Parent> Parents { get; init; }
      public DbSet<Student> Students { get; init; }
      public DbSet<Image> Images { get; init; }
 
+    public DbSet<ClassYear> ClassYears{get;init;}
 
      public DbSet<Stage> Stages{get;init;}
 
@@ -117,6 +120,13 @@ public class ApplicationDbContext:DbContext
 
     public DbSet<Answer> Answers{get;init;}
 
+
+    public DbSet<Notification> Notifications{get;init;}
+
+
+    public DbSet<AccountNotification> AccountNotifications{get;init;}
+
+    public DbSet<Account> Accounts{get;set;}
 
     public DbSet<OutBoxMessage> OutBoxMessages{get;init;}
 

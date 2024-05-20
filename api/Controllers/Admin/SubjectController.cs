@@ -1,6 +1,8 @@
 using Admin.ClassRoom.Subject.Query.Get;
 using Admin.ClassRoom.Subject.Query.GetAll;
 using Admin.ClassRoom.Subject.Query.GetAllByYear;
+using Admin.ClassRoom.Subject.Query.GetAllName;
+using Domain.Dto.ClassRoom;
 using Domain.Dto.ClassRoom.Subject;
 using Domain.Enum;
 using infrastructure.Attribute;
@@ -34,6 +36,20 @@ public class SubjectController: ApiController
 
     }
 
+
+    /// <summary>
+    /// get all Subject Name 
+    /// </summary>
+    /// <returns>return all role in pagination</returns>
+    [Produces(typeof(OperationResultBase<List<GetAllSubjectNameDto>>))]
+   
+    [HttpGet]
+    public async Task<IActionResult> GetAllSubjectName(CancellationToken Token)
+    {
+        var response = await this.Mediator.Send(new GetAllSubjectNameQuery(),Token);
+        return response;
+
+    }
 
 
     /// <summary>

@@ -6,6 +6,7 @@ using Admin.Teacher.Teacher.Query.GetAll;
 using Admin.Teacher.Teacher.Query.GetAllLeson;
 using Admin.Teacher.Teacher.Query.GetAllQuez;
 using Admin.Teacher.Teacher.Query.GetAllSubjectAndStudent;
+using Admin.Teacher.Teacher.Query.GetAllTeacherStudentSubject;
 using Admin.Teacher.Teacher.Query.GetAllTeacherYear;
 using Domain.Dto.ClassRoom;
 using Domain.Dto.Teacher;
@@ -76,10 +77,25 @@ public class TeacherController:ApiController
 
 
     /// <summary>
+    /// get all subject with student in specific year 
+    /// </summary>
+    /// <returns>return all role in pagination</returns>
+    [Produces(typeof(OperationResultBase<List<GetAllSubjectWithStudentTeacherDto>>))]
+   
+    [HttpGet]
+    public async Task<IActionResult> GetAllSubjectWithStudentInSpecificYear([FromQuery] GetAllTeacherStudentSubjectQuery request,CancellationToken Token)
+    {
+        var response = await this.Mediator.Send(request,Token);
+        return response;
+
+    }
+
+
+    /// <summary>
     /// get all Teacher  subject  and leson  in specific year 
     /// </summary>
     /// <returns>return all role in pagination</returns>
-    [Produces(typeof(OperationResultBase<PageList<GetAllSubjectAndStudentDto>>))]
+    [Produces(typeof(OperationResultBase<PageList<GetAllTeacherLesonDto>>))]
    
     [HttpGet]
     public async Task<IActionResult> GetAllSubjectAndLeson([FromQuery] GetAllTeacherLesonQuery request,CancellationToken Token)
@@ -127,7 +143,7 @@ public class TeacherController:ApiController
     /// <returns>return if the operation successed</returns>
    
     
-    [HttpDelete]
+    [HttpPut]
     public async Task<IActionResult> UpdateTeacher([FromBody] UpdateTeacherCommand request,CancellationToken Token)
     {
         var response = await this.Mediator.Send(request,Token);
@@ -141,7 +157,7 @@ public class TeacherController:ApiController
     /// <returns>return if the operation successed</returns>
    
     
-    [HttpPut]
+    [HttpDelete]
     public async Task<IActionResult> DeleteTeacher(DeleteTeacherCommand request,CancellationToken Token)
     {
         var response = await this.Mediator.Send(request,Token);

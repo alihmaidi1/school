@@ -12,6 +12,8 @@ public class GetAllSubjectAndStudentQuery: IQuery
 
     public Guid Id {get;set;}
 
+    
+
 
 
 }

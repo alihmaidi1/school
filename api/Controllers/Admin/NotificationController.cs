@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Admin.Notification.Command.Send;
 using Admin.Notification.Query.ReadAll;
 using Domain.Dto.Notification;
 using Domain.Enum;
@@ -29,6 +30,20 @@ public class NotificationController: ApiController
     [Produces(typeof(OperationResultBase<PageList<GetAllNotificationDto>>))]   
     [HttpGet]
     public async Task<IActionResult> GetAllStudentByParent([FromQuery] ReadAllAdminNotificationCommand command,CancellationToken Token)
+    {
+        var response = await this.Mediator.Send(command,Token);
+        return response;
+    
+    }
+
+
+   /// <summary>
+    /// Send Notification to Another User  
+    /// </summary>
+    /// <returns>return all role in pagination</returns>
+    [Produces(typeof(OperationResultBase<Boolean>))]   
+    [HttpPost]
+    public async Task<IActionResult> Send([FromBody] SendNotificationCommand command,CancellationToken Token)
     {
         var response = await this.Mediator.Send(command,Token);
         return response;

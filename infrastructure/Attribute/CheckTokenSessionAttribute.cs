@@ -14,7 +14,7 @@ public class CheckTokenSessionAttribute: AuthorizeAttribute,IAuthorizationFilter
     {
         ApplicationDbContext dbContext = context.HttpContext.RequestServices.GetRequiredService<ApplicationDbContext>();
         ICurrentUserService currentUserService = context.HttpContext.RequestServices.GetRequiredService<ICurrentUserService>();
-        var accountSession = dbContext.AccountSessions.FirstOrDefault(x => x.Token ==currentUserService.Token);
+        var accountSession = dbContext.AccountSessions.FirstOrDefault(x => x.Token ==currentUserService.Token&&x.Account.Status);
         if (accountSession is not null)
         {
             return;

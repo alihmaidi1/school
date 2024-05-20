@@ -12,7 +12,7 @@ public class StudentSeed
         {
 
             List<Guid> parents = context.Parents.Select(x=>x.Id).ToList();
-            var Students = StudentFaker.GetBillFaker(parents).Generate(30);
+            var Students = StudentFaker.GetBillFaker(parents).Generate(20);
             context.Students.AddRange(Students);
             context.SaveChanges();
         }

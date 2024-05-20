@@ -37,7 +37,8 @@ public class AddTeacherHandler:OperationResult,ICommandHandler<AddTeacherCommand
             Email=request.Email,
             Password=PasswordHelper.HashPassword(request.Password),
             Image=image.Url,
-            Hash=image.Hash
+            Hash=image.Hash,
+            SubjectId=request.SubjectId
         };
         _context.Teachers.Add(teacher);
         _context.Images.Remove(image);

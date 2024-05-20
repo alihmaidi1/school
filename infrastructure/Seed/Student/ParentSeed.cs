@@ -10,7 +10,7 @@ public static class ParentSeed
         if (!context.Parents.Any())
         {
 
-            var Parents = ParentFaker.GetBillFaker().Generate(15);
+            var Parents = ParentFaker.GetBillFaker().Generate(5);
             context.Parents.AddRange(Parents);
             context.SaveChanges();
         }

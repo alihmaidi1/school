@@ -24,20 +24,22 @@ public class GetAllTeacherQuezHandler : OperationResult, IQueryHandler<GetAllTea
     public async Task<JsonResult> Handle(GetAllTeacherQuezQuery request, CancellationToken cancellationToken)
     {
 
-        var Quezes=_context
-        .SubjectYears
-        .Where(x=>x.YearId==request.YearId)
-        .SelectMany(x=>x.StudentSubjects)
-        .SelectMany(x=>x.StudentQuezs)    
-        .Select(x=>x.Quez)    
-        .Distinct()
-        .Select(x=>new GetAllQuezTeacherDto{
+        // var Quezes=_context
+        // .SubjectYears
+        // .Where(x=>x.YearId==request.YearId)
+        // .SelectMany(x=>x.StudentSubjects)
+        // .SelectMany(x=>x.StudentQuezs)    
+        // .Select(x=>x.Quez)    
+        // .Distinct()
+        // .Select(x=>new GetAllQuezTeacherDto{
 
-            Id=x.Id,
-            Name=x.Name,
-            StartAt=x.StartAt.ToString()
-        })        
-        .ToPagedList(request.PageNumber,request.PageSize);
-        return Success(Quezes,"this is all quezes");
+        //     Id=x.Id,
+        //     Name=x.Name,
+        //     StartAt=x.StartAt.ToString()
+        // })        
+        // .ToPagedList(request.PageNumber,request.PageSize);
+        // return Success(Quezes,"this is all quezes");
+
+        return null;
     }
 }

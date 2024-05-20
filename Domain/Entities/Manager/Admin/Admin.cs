@@ -41,8 +41,6 @@ public class Admin: Account.Account,ISoftDelete
 
     public string Name { get; set; }
     
-    public bool Status { get; set; }=true;
-    
     public Guid RoleId { get; set; }
     public  Role.Role Role { set; get; }
     

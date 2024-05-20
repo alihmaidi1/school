@@ -1,13 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Domain.Base.Entity;
 using Domain.Base.interfaces;
-using Domain.Entities.Quez;
 using Domain.Entities.Student.Audience;
 using Domain.Entities.Student.StudentSubject;
-using Shared.Entity.Entity;
 
 namespace Domain.Entities.ClassRoom;
 
@@ -18,26 +12,25 @@ namespace Domain.Entities.ClassRoom;
 
             Id=Guid.NewGuid();
             StudentSubjects=new HashSet<StudentSubject>();
-            Audiences=new HashSet<Audience>();
-        
+            Audiences=new HashSet<Audience>();        
             Lesons=new HashSet<Leson>();
             Programs=new HashSet<Program>();
         }
 
-        public Guid SubjectId{get;set;}
-
-        public Subject Subject {get;set;}
 
 
-        public Guid YearId{get;set;}
-
-        public Year Year{get;set;}
-
+        
         public Teacher.Teacher.Teacher Teacher{get;set;}
 
         public Guid TeacherId{get;set;}
 
+
+        public ClassYear ClassYear{get;set;}
+
+        public Guid ClassYearId{get;set;}
+    
         public ICollection<Audience> Audiences{get;set;}
+
 
 
 
@@ -47,4 +40,4 @@ namespace Domain.Entities.ClassRoom;
 
         public ICollection<Program> Programs{get;set;}
 
-    }
+}

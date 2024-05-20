@@ -26,9 +26,7 @@ public class GetAllTeacherQuezDto
 
             public int QuestionNumber{get;set;}
 
-            public string StartAt{get;set;}
-            public string EndAt{get;set;}
-
+            public string StartAt{get;set;}      
 
             public int Student{get;set;}
         }

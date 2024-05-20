@@ -10,7 +10,8 @@ public enum PermissionEnum
     Parent,
     Subject,
     Student,
-    Notification
+    Notification,
+    Programm
     
     
 }

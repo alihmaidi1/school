@@ -49,6 +49,18 @@
             Refresh Admin token and refresh token  for use at one time
             </summary>
         </member>
+        <member name="M:schoolmanagment.Controllers.Admin.NotificationController.GetAllStudentByParent(Admin.Notification.Query.ReadAll.ReadAllAdminNotificationCommand,System.Threading.CancellationToken)">
+            <summary>
+            get all Notification  
+            </summary>
+            <returns>return all role in pagination</returns>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Admin.NotificationController.Send(Admin.Notification.Command.Send.SendNotificationCommand,System.Threading.CancellationToken)">
+            <summary>
+            Send Notification to Another User  
+            </summary>
+            <returns>return all role in pagination</returns>
+        </member>
         <member name="M:schoolmanagment.Controllers.Admin.ParentController.GetAllParent(Admin.Student.Parent.Query.GetAll.GetAllParentsQuery,System.Threading.CancellationToken)">
             <summary>
             get all Parent  
@@ -76,6 +88,18 @@
         <member name="M:schoolmanagment.Controllers.Admin.ParentController.UpdateParent(Admin.Student.Parent.Command.Update.UpdateParentCommand,System.Threading.CancellationToken)">
             <summary>
             Update Parent info in this school  
+            </summary>
+            <returns>return all role in pagination</returns>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Admin.ProgrammController.GetAll(Admin.ClassRoom.Programm.Query.GetAll.GetAllProgrammQuery,System.Threading.CancellationToken)">
+            <summary>
+            get all programm 
+            </summary>
+            <returns>return all role in pagination</returns>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Admin.ProgrammController.Add(Admin.ClassRoom.Programm.Command.Add.AddProgrammCommand,System.Threading.CancellationToken)">
+            <summary>
+            Add programm to Class In This Year 
             </summary>
             <returns>return all role in pagination</returns>
         </member>
@@ -151,6 +175,12 @@
             </summary>
             <returns>return all role in pagination</returns>
         </member>
+        <member name="M:schoolmanagment.Controllers.Admin.SubjectController.GetAllSubjectName(System.Threading.CancellationToken)">
+            <summary>
+            get all Subject Name 
+            </summary>
+            <returns>return all role in pagination</returns>
+        </member>
         <member name="M:schoolmanagment.Controllers.Admin.SubjectController.GetAllSubjectByYear(Admin.ClassRoom.Subject.Query.GetAllByYear.GetAllSubjectByYearQuery,System.Threading.CancellationToken)">
             <summary>
             get all Subject in specific year 
@@ -178,6 +208,12 @@
         <member name="M:schoolmanagment.Controllers.Admin.TeacherController.GetAllSubjectWithStudent(Admin.Teacher.Teacher.Query.GetAllSubjectAndStudent.GetAllSubjectAndStudentQuery,System.Threading.CancellationToken)">
             <summary>
             get all Teacher with subject and student in all year 
+            </summary>
+            <returns>return all role in pagination</returns>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Admin.TeacherController.GetAllSubjectWithStudentInSpecificYear(Admin.Teacher.Teacher.Query.GetAllTeacherStudentSubject.GetAllTeacherStudentSubjectQuery,System.Threading.CancellationToken)">
+            <summary>
+            get all subject with student in specific year 
             </summary>
             <returns>return all role in pagination</returns>
         </member>
@@ -217,7 +253,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:schoolmanagment.Controllers.Admin.YearController.GetAllYear(Admin.ClassRoom.Year.Query.GetAll.GetAllYearQuery,System.Threading.CancellationToken)">
+        <member name="M:schoolmanagment.Controllers.Admin.YearController.GetAllYear(System.Threading.CancellationToken)">
             <summary>
             get all year 
             </summary>
@@ -253,6 +289,12 @@
             Refresh Teacher token and refresh token  for use at one time
             </summary>
         </member>
+        <member name="M:schoolmanagment.Controllers.Teacher.LesonController.GetAllSubjectAndLeson(Teacher.Leson.Teacher.Leson.Query.GetAllLeson.GetAllLesonQuery,System.Threading.CancellationToken)">
+            <summary>
+            get all Teacher  subject  and leson  in specific year 
+            </summary>
+            <returns>return all role in pagination</returns>
+        </member>
         <member name="M:schoolmanagment.Controllers.Teacher.LesonController.Add(Teacher.Leson.Command.Add.AddLesonCommand,System.Threading.CancellationToken)">
             <summary>
             Create a new leson to specific subject in currect year
@@ -261,6 +303,11 @@
         <member name="M:schoolmanagment.Controllers.Teacher.LesonController.Delete(Teacher.Leson.Command.Delete.DeleteLesonCommand,System.Threading.CancellationToken)">
             <summary>
             delete a leson to specific subject in currect year
+            </summary>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Teacher.NotificationController.ReadAll(Teacher.Notification.Query.GetAll.ReadAllTeacherNotificationCommand,System.Threading.CancellationToken)">
+            <summary>
+            Create a new question to specific quez in currect year
             </summary>
         </member>
         <member name="M:schoolmanagment.Controllers.Teacher.QuestionController.Add(Teacher.Question.Command.Add.AddQuestionCommand,System.Threading.CancellationToken)">
@@ -318,10 +365,27 @@
             Get All Audience Detail 
             </summary>
         </member>
+        <member name="M:schoolmanagment.Controllers.Teacher.SubjectController.GetAllTeacherQuezInSpecificYear(Teacher.Quez.Query.GetAllQuez.GetAllQuezQuery,System.Threading.CancellationToken)">
+            <summary>
+            get all Teacher  subject  and quez  in specific year 
+            </summary>
+            <returns>return all role in pagination</returns>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Teacher.SubjectController.GetAllSubjectAndStudent(Teacher.Subject.Query.GetWithStudent.GetAllSubjectWithStudentQuery,System.Threading.CancellationToken)">
+            <summary>
+            Get All Audience Detail 
+            </summary>
+        </member>
         <member name="M:schoolmanagment.Controllers.Teacher.VacationController.Add(Teacher.Vacation.Command.Request.RequestVacationCommand,System.Threading.CancellationToken)">
             <summary>
             request a new vacation from admin
             </summary>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Teacher.YearController.GetAllTeacherYear(System.Threading.CancellationToken)">
+            <summary>
+            get all year 
+            </summary>
+            <returns>return all role in pagination</returns>
         </member>
     </members>
 </doc>

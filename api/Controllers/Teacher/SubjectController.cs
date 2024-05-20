@@ -3,13 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Domain.Dto.ClassRoom;
+using Domain.Dto.Teacher;
+using Dto.Admin.Teacher;
 using infrastructure.Attribute;
 using Microsoft.AspNetCore.Mvc;
 using schoolManagement.Base;
+using Shared.Entity.EntityOperation;
 using Shared.OperationResult.Base;
 using Shared.Swagger;
+using Teacher.Quez.Query.GetAllQuez;
 using Teacher.Subject.Query.GetAllAudience;
 using Teacher.Subject.Query.GetAudienceDetail;
+using Teacher.Subject.Query.GetWithStudent;
 
 namespace schoolmanagment.Controllers.Teacher;
 
@@ -47,4 +52,33 @@ public class SubjectController: ApiController
         return response;
 
     }
+
+
+    /// <summary>
+    /// get all Teacher  subject  and quez  in specific year 
+    /// </summary>
+    /// <returns>return all role in pagination</returns>
+    [Produces(typeof(OperationResultBase<PageList<GetAllTeacherQuezDto>>))]
+   
+    [HttpGet]
+    public async Task<IActionResult> GetAllTeacherQuezInSpecificYear([FromQuery] GetAllQuezQuery request,CancellationToken Token)
+    {
+        var response = await this.Mediator.Send(request,Token);
+        return response;
+
+    }
+
+    /// <summary>
+    /// Get All Audience Detail 
+    /// </summary>
+    [Produces(typeof(OperationResultBase<List<GetAllSubjectWithStudentTeacherDto>>))]
+    [HttpGet]
+    public async Task<IActionResult> GetAllSubjectAndStudent([FromQuery] GetAllSubjectWithStudentQuery command,CancellationToken token)
+    {
+        var response = await this.Mediator.Send(command,token);
+        return response;
+
+    }
+
 }
+

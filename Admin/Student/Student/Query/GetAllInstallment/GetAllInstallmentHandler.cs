@@ -23,20 +23,24 @@ public class GetAllInstallmentHandler : OperationResult ,IQueryHandler<GetAllIns
     public async Task<JsonResult> Handle(GetAllInstallmentQuery request, CancellationToken cancellationToken)
     {
 
-        var Installments=_context
-        .Classes
-        .AsNoTracking()
-        .Select(x=>new GetAllInstallmentDto{
+        // var Installments=_context
+        // .SubjectYears
+        // .AsNoTracking()
+        // .Select(x=>new GetAllInstallmentDto{
 
-            // Id=x.Id,
-            // Name=x.Name,
-            // Year=x.SubjectYear.Year.Date.Year.ToString(),
-            
-            
+        //     Id=x.Subject.ClassId,
+        //     Name=x.Subject.Class.Name,
+        //     Year=x.Year.Date.Year.ToString(),
+        //     Mark=(x.StudentSubjects
+        //     .Where(x=>x.StudentId==request.Id)
+        //     .Sum(x=>x.Mark??0)/x.StudentSubjects
+        //     .Where(x=>x.StudentId==request.Id)
+        //     .Count())
+        // })
+        // .ToList();
 
-        })
-        .ToList();
+        // return Success(Installments,"this is all installment");
 
-        return Success(Installments,"this is all installment");
+        return null;
     }
 }

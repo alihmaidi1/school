@@ -15,14 +15,13 @@ namespace Domain.Entities.ClassRoom;
 
 
             Id=Guid.NewGuid();
-            Bills=new HashSet<Bill>();
-            SubjectYears=new HashSet<SubjectYear>();
+
+            ClassYears=new HashSet<ClassYear>();
         }
 
-        public DateTime Date{get;set;}
+        public string Date{get;set;}
 
-        public ICollection<Bill> Bills{get;set;}  
+        public ICollection<ClassYear> ClassYears{get;set;}
 
-        public ICollection<SubjectYear> SubjectYears{get;set;}      
 
     }

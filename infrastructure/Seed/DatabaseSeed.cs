@@ -32,16 +32,15 @@ public static class DatabaseSeed
             await SuperAdminSeed.SeedData(context);
             await RoleSeed.SeedData(context);
             await AdminSeed.SeedData(context);
-            await TeacherSeeder.seedData(context);
-            await VacationSeeder.seedData(context);
-            await WarningSeed.seedData(context);
 
             await YearSeeder.SeedData(context);
             await StageSeeder.SeedData(context);
             await SubjectSeeder.SeedData(context);
-            await SubjectYearSeeder.SeedData(context);
+            await VacationSeeder.seedData(context);
+            await WarningSeed.seedData(context);
             await ParentSeed.seedData(context);
             await StudentSeed.seedData(context);
+            await ClassYearSeeder.SeedData(context);
             await StudentSubjectSeeder.seedData(context);
             await LesonSeeder.SeedData(context);
             await QuezSeeder.seedData(context);

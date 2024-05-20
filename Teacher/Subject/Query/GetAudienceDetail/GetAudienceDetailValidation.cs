@@ -13,14 +13,14 @@ public class GetAudienceDetailValidation: AbstractValidator<GetAudienceDetailQue
 
     public GetAudienceDetailValidation(ApplicationDbContext context,ICurrentUserService currentUserService){
 
-        RuleFor(x=>x.Date)
-        .NotEmpty()
-        .NotNull();
-        RuleFor(x=>x.SubjectId)
-        .NotEmpty()
-        .Null()
-        .Must((request,id)=>context.SubjectYears.Any(x=>x.SubjectId==id&&x.TeacherId==currentUserService.UserId&&x.Audiences.Any(y=>y.Date==request.Date)))
-        .WithMessage("this subject does not have any leson in this date");
+        // RuleFor(x=>x.Date)
+        // .NotEmpty()
+        // .NotNull();
+        // RuleFor(x=>x.SubjectId)
+        // .NotEmpty()
+        // .Null()
+        // .Must((request,id)=>context.SubjectYears.Any(x=>x.SubjectId==id&&x.TeacherId==currentUserService.UserId&&x.Audiences.Any(y=>y.Date==request.Date)))
+        // .WithMessage("this subject does not have any leson in this date");
 
     }
 

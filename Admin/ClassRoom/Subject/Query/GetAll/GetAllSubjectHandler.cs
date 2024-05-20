@@ -23,21 +23,22 @@ public class GetAllSubjectHandler : OperationResult, ICommandHandler<GetAllSubje
     public async Task<JsonResult> Handle(GetAllSubjectCommand request, CancellationToken cancellationToken)
     {
 
-        
-        var Subjects=_context
-        .Subjects
-        .Where(x=>x.Name.Equals(request.Search??"")||x.Class.Name.Equals(request.Search??""))
-        .Select(x=>new GetAllSubjectDto{
 
-            Id=x.Id,
-            SubjectName=x.Name,
-            Year=x.Class.Name,
-            Degree=x.Degree,
-            MinDegree=x.MinDegree,
-            Status=x.SubjectYears.Any(x=>x.Year.Date==DateTime.Now)
+        return null;
+        // var Subjects=_context
+        // .Subjects
+        // .Where(x=>x.Name.Equals(request.Search??"")||x.Class.Name.Equals(request.Search??""))
+        // .Select(x=>new GetAllSubjectDto{
 
-        }).ToPagedList(request.PageNumber,request.PageSize);
+        //     Id=x.Id,
+        //     SubjectName=x.Name,
+        //     Year=x.Class.Name,
+        //     Degree=x.Degree,
+        //     MinDegree=x.MinDegree,
+        //     Status=x.SubjectYears.Any(x=>x.Year.Date==DateTime.Now)
 
-        return Success(Subjects,"this is all subject");   
+        // }).ToPagedList(request.PageNumber,request.PageSize);
+
+        // return Success(Subjects,"this is all subject");   
     }
 }

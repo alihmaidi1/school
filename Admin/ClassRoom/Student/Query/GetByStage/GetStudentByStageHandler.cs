@@ -22,25 +22,26 @@ public class GetStudentByStageHandler : OperationResult,IQueryHandler<GetStudent
     public async Task<JsonResult> Handle(GetStudentByStageQuery request, CancellationToken cancellationToken)
     {
 
-        var Students=_context
-        .Classes
-        .Where(x=>x.StageId==request.Id)
+        return null;
+        // var Students=_context
+        // .Classes
+        // .Where(x=>x.StageId==request.Id)
         
-        .SelectMany(x=>x.Subjects)
-        .SelectMany(x=>x.SubjectYears.Where(y=>y.Year.Date.Year==DateTime.Now.Year))
-        .SelectMany(x=>x.StudentSubjects)
-        .Select(x=>x.Student)
-        .Select(x=>new GetAllStudentStageDto{
+        // .SelectMany(x=>x.Subjects)
+        // .SelectMany(x=>x.SubjectYears.Where(y=>y.Year.Date.Year==DateTime.Now.Year))
+        // .SelectMany(x=>x.StudentSubjects)
+        // .Select(x=>x.Student)
+        // .Select(x=>new GetAllStudentStageDto{
 
-            Id=x.Id,
-            Name=x.Name,
-            Email=x.Email,
-            Image=x.Image,
-            Hash=x.Hash
-        })
-        .ToPagedList(request.PageNumber,request.PageSize);
+        //     Id=x.Id,
+        //     Name=x.Name,
+        //     Email=x.Email,
+        //     Image=x.Image,
+        //     Hash=x.Hash
+        // })
+        // .ToPagedList(request.PageNumber,request.PageSize);
    
-        return Success(Students,"this is all student");
+        // return Success(Students,"this is all student");
     }
 
 

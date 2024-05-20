@@ -28,9 +28,6 @@ public class TeacherConfigration:IEntityTypeConfiguration<Domain.Entities.Teache
             .OnDelete(DeleteBehavior.Restrict);
 
         
-        builder.HasMany(x=>x.Subjects)
-        .WithMany(x=>x.Teachers)
-        .UsingEntity<SubjectYear>();
 
 
     }

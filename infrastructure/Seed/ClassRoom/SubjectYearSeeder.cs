@@ -16,12 +16,12 @@ namespace infrastructure.Seed.ClassRoom;
                 if(!context.SubjectYears.Any()){
 
 
-                var Teachers=context.Teachers.Where(x=>x.Email=="teacher@gmail.com").Select(x=>x.Id).ToList();
-                var Years=context.Years.Select(x=>x.Id).ToList();
-                var Subjects=context.Subjects.Select(x=>x.Id).ToList();
-                var SubjectYears=SubjectYearFaker.GetFaker(Years,Subjects,Teachers).Generate(200).DistinctBy(x=>new {x.SubjectId,x.YearId,x.TeacherId});
-                context.SubjectYears.AddRange(SubjectYears);
-                context.SaveChanges();
+                // var Teachers=context.Teachers.Where(x=>x.Email=="teacher@gmail.com").Select(x=>x.Id).ToList();
+                // var Years=context.Years.Select(x=>x.Id).ToList();
+                // var Subjects=context.Subjects.Select(x=>x.Id).ToList();
+                // // var SubjectYears=SubjectYearFaker.GetFaker(Years,Subjects,Teachers).Generate(200).DistinctBy(x=>new {x.SubjectId,x.YearId,x.TeacherId});
+                // context.SubjectYears.AddRange(SubjectYears);
+                // context.SaveChanges();
 
                 }
                                 

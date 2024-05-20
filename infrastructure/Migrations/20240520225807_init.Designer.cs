@@ -12,8 +12,8 @@ using infrastructure;
 namespace infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240517185442_outboxmessage")]
-    partial class outboxmessage
+    [Migration("20240520225807_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -105,12 +105,15 @@ namespace infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
                     b.Property<Guid?>("UpdatedBy")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Account");
+                    b.ToTable("Accounts");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("Account");
 
@@ -156,7 +159,7 @@ namespace infrastructure.Migrations
 
                     b.HasIndex("NotificationId");
 
-                    b.ToTable("AccountNotification");
+                    b.ToTable("AccountNotifications");
                 });
 
             modelBuilder.Entity("Domain.Entities.Account.AccountSession", b =>
@@ -185,6 +188,10 @@ namespace infrastructure.Migrations
 
                     b.Property<DateTime>("ExpireAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("FcmToken")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RefreshToken")
                         .IsRequired()
@@ -238,7 +245,7 @@ namespace infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Notification");
+                    b.ToTable("Notifications");
                 });
 
             modelBuilder.Entity("Domain.Entities.ClassRoom.Bill", b =>
@@ -247,7 +254,10 @@ namespace infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("ClassId")
+                    b.Property<Guid?>("ClassId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ClassYearId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("CreatedBy")
@@ -274,14 +284,11 @@ namespace infrastructure.Migrations
                     b.Property<Guid?>("UpdatedBy")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("YearId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("Id");
 
                     b.HasIndex("ClassId");
 
-                    b.HasIndex("YearId");
+                    b.HasIndex("ClassYearId");
 
                     b.ToTable("Bills");
                 });
@@ -319,9 +326,53 @@ namespace infrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("DateDeleted");
+
                     b.HasIndex("StageId");
 
                     b.ToTable("Classes");
+                });
+
+            modelBuilder.Entity("Domain.Entities.ClassRoom.ClassYear", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ClassId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateDeleted")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("DeletedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid?>("UpdatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("YearId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClassId");
+
+                    b.HasIndex("YearId");
+
+                    b.ToTable("ClassYears");
                 });
 
             modelBuilder.Entity("Domain.Entities.ClassRoom.Leson", b =>
@@ -406,7 +457,7 @@ namespace infrastructure.Migrations
 
                     b.HasIndex("SubjectYearId");
 
-                    b.ToTable("Program");
+                    b.ToTable("Programs");
                 });
 
             modelBuilder.Entity("Domain.Entities.ClassRoom.Stage", b =>
@@ -439,6 +490,8 @@ namespace infrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("DateDeleted");
+
                     b.ToTable("Stages");
                 });
 
@@ -463,8 +516,14 @@ namespace infrastructure.Migrations
                     b.Property<DateTime?>("DateUpdated")
                         .HasColumnType("datetime2");
 
+                    b.Property<float>("Degree")
+                        .HasColumnType("real");
+
                     b.Property<Guid?>("DeletedBy")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<float>("MinDegree")
+                        .HasColumnType("real");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -477,6 +536,8 @@ namespace infrastructure.Migrations
 
                     b.HasIndex("ClassId");
 
+                    b.HasIndex("DateDeleted");
+
                     b.ToTable("Subjects");
                 });
 
@@ -484,6 +545,9 @@ namespace infrastructure.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ClassYearId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("CreatedBy")
@@ -501,25 +565,19 @@ namespace infrastructure.Migrations
                     b.Property<Guid?>("DeletedBy")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("SubjectId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<Guid>("TeacherId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UpdatedBy")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("YearId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("SubjectId");
+                    b.HasIndex("ClassYearId");
+
+                    b.HasIndex("DateDeleted");
 
                     b.HasIndex("TeacherId");
-
-                    b.HasIndex("YearId");
 
                     b.ToTable("SubjectYears");
                 });
@@ -533,8 +591,9 @@ namespace infrastructure.Migrations
                     b.Property<Guid?>("CreatedBy")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("Date")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
@@ -552,6 +611,8 @@ namespace infrastructure.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("DateDeleted");
 
                     b.ToTable("Years");
                 });
@@ -592,6 +653,8 @@ namespace infrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("DateDeleted");
+
                     b.HasIndex("QuestionId");
 
                     b.ToTable("Answers");
@@ -618,21 +681,69 @@ namespace infrastructure.Migrations
                     b.Property<Guid?>("DeletedBy")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("QuezId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<float>("Score")
+                        .HasColumnType("real");
+
+                    b.Property<int>("Time")
+                        .HasColumnType("int");
 
                     b.Property<Guid?>("UpdatedBy")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("DateDeleted");
+
                     b.HasIndex("QuezId");
 
                     b.ToTable("Questions");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Quez.Quez", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateDeleted")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("DeletedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("StartAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("UpdatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DateDeleted");
+
+                    b.ToTable("Quezs");
                 });
 
             modelBuilder.Entity("Domain.Entities.Quez.StudentAnswer", b =>
@@ -695,15 +806,8 @@ namespace infrastructure.Migrations
                     b.Property<Guid?>("DeletedBy")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("EndAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("StartAt")
-                        .HasColumnType("datetime2");
+                    b.Property<Guid>("QuezId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("StudentSubjectId")
                         .HasColumnType("uniqueidentifier");
@@ -712,6 +816,10 @@ namespace infrastructure.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("DateDeleted");
+
+                    b.HasIndex("QuezId");
 
                     b.HasIndex("StudentSubjectId");
 
@@ -901,9 +1009,6 @@ namespace infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Resize")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<Guid?>("UpdatedBy")
                         .HasColumnType("uniqueidentifier");
 
@@ -918,6 +1023,9 @@ namespace infrastructure.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("BillId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("CreatedBy")
@@ -952,6 +1060,8 @@ namespace infrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("BillId");
+
                     b.HasIndex("StudentId");
 
                     b.ToTable("StudentBill");
@@ -978,7 +1088,7 @@ namespace infrastructure.Migrations
                     b.Property<Guid?>("DeletedBy")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<float>("Mark")
+                    b.Property<float?>("Mark")
                         .HasColumnType("real");
 
                     b.Property<Guid>("StudentId")
@@ -991,6 +1101,8 @@ namespace infrastructure.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("DateDeleted");
 
                     b.HasIndex("StudentId");
 
@@ -1011,9 +1123,8 @@ namespace infrastructure.Migrations
                     b.Property<Guid?>("CreatedBy")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Date")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
@@ -1046,6 +1157,8 @@ namespace infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AdminId");
+
+                    b.HasIndex("DateDeleted");
 
                     b.HasIndex("TeacherId");
 
@@ -1093,6 +1206,8 @@ namespace infrastructure.Migrations
 
                     b.HasIndex("AdminId");
 
+                    b.HasIndex("DateDeleted");
+
                     b.HasIndex("TeacherId");
 
                     b.ToTable("Warnings");
@@ -1117,9 +1232,6 @@ namespace infrastructure.Migrations
                     b.Property<Guid>("RoleId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<bool>("Status")
-                        .HasColumnType("bit");
-
                     b.HasIndex("RoleId");
 
                     b.HasDiscriminator().HasValue("Admin");
@@ -1139,13 +1251,18 @@ namespace infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Reason")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ResetCode")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("Status")
-                        .HasColumnType("bit");
+                    b.Property<Guid>("SubjectId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.ToTable("Account", t =>
+                    b.HasIndex("SubjectId");
+
+                    b.ToTable("Accounts", t =>
                         {
                             t.Property("Hash")
                                 .HasColumnName("Teacher_Hash");
@@ -1155,9 +1272,6 @@ namespace infrastructure.Migrations
 
                             t.Property("Name")
                                 .HasColumnName("Teacher_Name");
-
-                            t.Property("Status")
-                                .HasColumnName("Teacher_Status");
                         });
 
                     b.HasDiscriminator().HasValue("Teacher");
@@ -1195,21 +1309,17 @@ namespace infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Entities.ClassRoom.Bill", b =>
                 {
-                    b.HasOne("Domain.Entities.ClassRoom.Class", "Class")
+                    b.HasOne("Domain.Entities.ClassRoom.Class", null)
                         .WithMany("Bills")
-                        .HasForeignKey("ClassId")
+                        .HasForeignKey("ClassId");
+
+                    b.HasOne("Domain.Entities.ClassRoom.ClassYear", "ClassYear")
+                        .WithMany("Bills")
+                        .HasForeignKey("ClassYearId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Domain.Entities.ClassRoom.Year", "Year")
-                        .WithMany("Bills")
-                        .HasForeignKey("YearId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Class");
-
-                    b.Navigation("Year");
+                    b.Navigation("ClassYear");
                 });
 
             modelBuilder.Entity("Domain.Entities.ClassRoom.Class", b =>
@@ -1221,6 +1331,25 @@ namespace infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("Stage");
+                });
+
+            modelBuilder.Entity("Domain.Entities.ClassRoom.ClassYear", b =>
+                {
+                    b.HasOne("Domain.Entities.ClassRoom.Class", "Class")
+                        .WithMany("ClassYears")
+                        .HasForeignKey("ClassId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.ClassRoom.Year", "Year")
+                        .WithMany("ClassYears")
+                        .HasForeignKey("YearId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Class");
+
+                    b.Navigation("Year");
                 });
 
             modelBuilder.Entity("Domain.Entities.ClassRoom.Leson", b =>
@@ -1258,10 +1387,10 @@ namespace infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Entities.ClassRoom.SubjectYear", b =>
                 {
-                    b.HasOne("Domain.Entities.ClassRoom.Subject", "Subject")
+                    b.HasOne("Domain.Entities.ClassRoom.ClassYear", "ClassYear")
                         .WithMany("SubjectYears")
-                        .HasForeignKey("SubjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasForeignKey("ClassYearId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.Teacher.Teacher.Teacher", "Teacher")
@@ -1270,17 +1399,9 @@ namespace infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Domain.Entities.ClassRoom.Year", "Year")
-                        .WithMany("SubjectYears")
-                        .HasForeignKey("YearId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Subject");
+                    b.Navigation("ClassYear");
 
                     b.Navigation("Teacher");
-
-                    b.Navigation("Year");
                 });
 
             modelBuilder.Entity("Domain.Entities.Quez.Answer", b =>
@@ -1296,7 +1417,7 @@ namespace infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Entities.Quez.Question", b =>
                 {
-                    b.HasOne("Domain.Entities.Quez.StudentQuez", "Quez")
+                    b.HasOne("Domain.Entities.Quez.Quez", "Quez")
                         .WithMany("Questions")
                         .HasForeignKey("QuezId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -1326,11 +1447,19 @@ namespace infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Entities.Quez.StudentQuez", b =>
                 {
+                    b.HasOne("Domain.Entities.Quez.Quez", "Quez")
+                        .WithMany("StudentQuezs")
+                        .HasForeignKey("QuezId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("Domain.Entities.Student.StudentSubject.StudentSubject", "StudentSubject")
                         .WithMany("StudentQuezs")
                         .HasForeignKey("StudentSubjectId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.Navigation("Quez");
 
                     b.Navigation("StudentSubject");
                 });
@@ -1367,11 +1496,19 @@ namespace infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Entities.Student.StudentBill.StudentBill", b =>
                 {
+                    b.HasOne("Domain.Entities.ClassRoom.Bill", "Bill")
+                        .WithMany("StudentBills")
+                        .HasForeignKey("BillId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("Domain.Entities.Student.Student.Student", "Student")
                         .WithMany("StudentBills")
                         .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.Navigation("Bill");
 
                     b.Navigation("Student");
                 });
@@ -1443,6 +1580,17 @@ namespace infrastructure.Migrations
                     b.Navigation("Role");
                 });
 
+            modelBuilder.Entity("Domain.Entities.Teacher.Teacher.Teacher", b =>
+                {
+                    b.HasOne("Domain.Entities.ClassRoom.Subject", "Subject")
+                        .WithMany("Teachers")
+                        .HasForeignKey("SubjectId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Subject");
+                });
+
             modelBuilder.Entity("Domain.Entities.Account.Account", b =>
                 {
                     b.Navigation("AccountNotifications");
@@ -1455,11 +1603,25 @@ namespace infrastructure.Migrations
                     b.Navigation("AccountNotifications");
                 });
 
+            modelBuilder.Entity("Domain.Entities.ClassRoom.Bill", b =>
+                {
+                    b.Navigation("StudentBills");
+                });
+
             modelBuilder.Entity("Domain.Entities.ClassRoom.Class", b =>
                 {
                     b.Navigation("Bills");
 
+                    b.Navigation("ClassYears");
+
                     b.Navigation("Subjects");
+                });
+
+            modelBuilder.Entity("Domain.Entities.ClassRoom.ClassYear", b =>
+                {
+                    b.Navigation("Bills");
+
+                    b.Navigation("SubjectYears");
                 });
 
             modelBuilder.Entity("Domain.Entities.ClassRoom.Stage", b =>
@@ -1469,7 +1631,7 @@ namespace infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Entities.ClassRoom.Subject", b =>
                 {
-                    b.Navigation("SubjectYears");
+                    b.Navigation("Teachers");
                 });
 
             modelBuilder.Entity("Domain.Entities.ClassRoom.SubjectYear", b =>
@@ -1485,9 +1647,7 @@ namespace infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Entities.ClassRoom.Year", b =>
                 {
-                    b.Navigation("Bills");
-
-                    b.Navigation("SubjectYears");
+                    b.Navigation("ClassYears");
                 });
 
             modelBuilder.Entity("Domain.Entities.Quez.Answer", b =>
@@ -1500,10 +1660,15 @@ namespace infrastructure.Migrations
                     b.Navigation("Answers");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Quez.StudentQuez", b =>
+            modelBuilder.Entity("Domain.Entities.Quez.Quez", b =>
                 {
                     b.Navigation("Questions");
 
+                    b.Navigation("StudentQuezs");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Quez.StudentQuez", b =>
+                {
                     b.Navigation("StudentAnswers");
                 });
 

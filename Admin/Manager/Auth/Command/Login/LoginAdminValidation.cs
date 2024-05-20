@@ -21,7 +21,9 @@ public class LoginAdminValidation:AbstractValidator<LoginAdminCommand>
             .NotNull()
             .MinimumLength(8);
 
-
+        RuleFor(x=>x.FcmToken)
+        .NotEmpty()
+        .NotNull();
 
 
     }

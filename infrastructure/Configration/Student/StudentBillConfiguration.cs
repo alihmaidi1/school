@@ -14,5 +14,9 @@ public class StudentBillConfiguration : IEntityTypeConfiguration<StudentBill>
     {
 
         builder.HasKey(x=>x.Id);
+        builder.HasOne(x=>x.Bill)
+        .WithMany(x=>x.StudentBills)
+        .HasForeignKey(x=>x.BillId)
+        .OnDelete(DeleteBehavior.Restrict);
     }
 }

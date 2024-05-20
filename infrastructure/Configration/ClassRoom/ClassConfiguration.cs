@@ -19,7 +19,9 @@ public class ClassConfiguration : IEntityTypeConfiguration<Class>
         .WithOne(x=>x.Class)
         .OnDelete(DeleteBehavior.Restrict);
 
-        builder.HasMany(x=>x.Bills)
+
+
+        builder.HasMany(x=>x.ClassYears)
         .WithOne(x=>x.Class)
         .HasForeignKey(x=>x.ClassId)
         .OnDelete(DeleteBehavior.Restrict);

@@ -1,3 +1,4 @@
+using System.Data;
 using FluentValidation;
 using infrastructure;
 using Repository.Teacher.Teacher;
@@ -33,6 +34,10 @@ public class AddTeacherValidation:AbstractValidator<AddTeacherCommand>
         .Must(id=>context.Images.Any(x=>x.Id==id))
         .WithMessage("image is not exists in our data");
 
+        RuleFor(x=>x.SubjectId)
+        .NotEmpty()
+        .NotNull()
+        .Must(id=>context.Subjects.Any());
         
 
     }

@@ -11,7 +11,6 @@ public class Teacher: Account.Account,ISoftDelete
         Id = Guid.NewGuid();
         Vacations = new HashSet<Vacation.Vacation>();
         Warnings = new HashSet<Warning.Warning>();
-        Subjects=new HashSet<Subject>();
         SubjectYears=new HashSet<SubjectYear>();
     }
     
@@ -32,17 +31,17 @@ public class Teacher: Account.Account,ISoftDelete
     public string? ResetCode { get; set; }
     
     
-    public bool Status { get; set; }=true;    
     public string ? Image { get; set; }    
     public string ? Hash { get; set; }
 
+    public Guid SubjectId{get;set;}
+
+    public Subject Subject{get;set;}
 
     public string? Reason{get;set;}
     public ICollection<Vacation.Vacation> Vacations { get; set; }
     public ICollection<Warning.Warning> Warnings { get; set; }
-
     public ICollection<SubjectYear> SubjectYears{get;set;} 
-    public ICollection<Subject> Subjects{get;set;}
 
 
 }

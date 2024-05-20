@@ -14,7 +14,6 @@ public class UpdateAdminValidation:AbstractValidator<UpdateAdminCommand>
     {
 
         RuleFor(x => x.Status)
-            .NotEmpty()
             .NotNull();
 
 

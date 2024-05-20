@@ -11,4 +11,6 @@ public class LoginAdminCommand: ICommand
 
     public string Password { get; init; }
 
+    public string FcmToken{get;set;}
+
 }

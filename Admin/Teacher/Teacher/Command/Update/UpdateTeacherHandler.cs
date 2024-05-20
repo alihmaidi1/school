@@ -2,6 +2,7 @@ using Hangfire;
 using infrastructure;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Repository.Teacher.Teacher;
 using Shared.Constant;
@@ -33,16 +34,14 @@ public class UpdateTeacherHandler:OperationResult,ICommandHandler<UpdateTeacherC
     public async Task<JsonResult> Handle(UpdateTeacherCommand request, CancellationToken cancellationToken)
     {
         
-        var image=_context.Images.First(x=>x.Id==request.Image);
+        var image=_context.Images.FirstOrDefault(x=>x.Id==request.Image);
         
-        var teacher = new Domain.Entities.Teacher.Teacher.Teacher()
-        {
+        var teacher=_context.Teachers.First(x=>x.Id==request.Id);
         
-            Id = request.Id,
-            Email = request.Email,
-            Password = PasswordHelper.HashPassword(request.Password),
-            Name = request.Name
-        };
+        
+            teacher.Email = request.Email;
+            teacher.Password = PasswordHelper.HashPassword(request.Password);
+            teacher.Name = request.Name;
 
         
         if (request.Image is not null){

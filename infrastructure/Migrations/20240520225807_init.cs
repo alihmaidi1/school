@@ -25,7 +25,7 @@ namespace infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Notification",
+                name: "Notifications",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -40,7 +40,23 @@ namespace infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Notification", x => x.Id);
+                    table.PrimaryKey("PK_Notifications", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "OutBoxMessages",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Type = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Content = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreateAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ProcessedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Error = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OutBoxMessages", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -64,6 +80,25 @@ namespace infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Parents", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Quezs",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    StartAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DateDeleted = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    UpdatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    DeletedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Quezs", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -108,7 +143,7 @@ namespace infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Date = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DateDeleted = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -132,7 +167,6 @@ namespace infrastructure.Migrations
                     Number = table.Column<int>(type: "int", nullable: false),
                     Gender = table.Column<bool>(type: "bit", nullable: false),
                     Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Resize = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Hash = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ParentId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -154,23 +188,15 @@ namespace infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Account",
+                name: "Questions",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Status = table.Column<bool>(type: "bit", nullable: true),
-                    RoleId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    Time = table.Column<int>(type: "int", nullable: false),
+                    Score = table.Column<float>(type: "real", nullable: false),
                     Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Hash = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Teacher_Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ResetCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Teacher_Status = table.Column<bool>(type: "bit", nullable: true),
-                    Teacher_Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Teacher_Hash = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    QuezId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DateDeleted = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -180,11 +206,11 @@ namespace infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Account", x => x.Id);
+                    table.PrimaryKey("PK_Questions", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Account_Roles_RoleId",
-                        column: x => x.RoleId,
-                        principalTable: "Roles",
+                        name: "FK_Questions_Quezs_QuezId",
+                        column: x => x.QuezId,
+                        principalTable: "Quezs",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -215,11 +241,172 @@ namespace infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Answers",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsCorrect = table.Column<bool>(type: "bit", nullable: false),
+                    QuestionId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DateDeleted = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    UpdatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    DeletedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Answers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Answers_Questions_QuestionId",
+                        column: x => x.QuestionId,
+                        principalTable: "Questions",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ClassYears",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ClassId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    YearId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Status = table.Column<bool>(type: "bit", nullable: false),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DateDeleted = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    UpdatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    DeletedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ClassYears", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ClassYears_Classes_ClassId",
+                        column: x => x.ClassId,
+                        principalTable: "Classes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_ClassYears_Years_YearId",
+                        column: x => x.YearId,
+                        principalTable: "Years",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Subjects",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    MinDegree = table.Column<float>(type: "real", nullable: false),
+                    Degree = table.Column<float>(type: "real", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ClassId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DateDeleted = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    UpdatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    DeletedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Subjects", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Subjects_Classes_ClassId",
+                        column: x => x.ClassId,
+                        principalTable: "Classes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Bills",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Money = table.Column<float>(type: "real", nullable: false),
+                    ClassYearId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ClassId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DateDeleted = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    UpdatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    DeletedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Bills", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Bills_ClassYears_ClassYearId",
+                        column: x => x.ClassYearId,
+                        principalTable: "ClassYears",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Bills_Classes_ClassId",
+                        column: x => x.ClassId,
+                        principalTable: "Classes",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Accounts",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Status = table.Column<bool>(type: "bit", nullable: false),
+                    Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RoleId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Hash = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Teacher_Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ResetCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Teacher_Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Teacher_Hash = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SubjectId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    Reason = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DateDeleted = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    UpdatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    DeletedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Accounts", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Accounts_Roles_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "Roles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Accounts_Subjects_SubjectId",
+                        column: x => x.SubjectId,
+                        principalTable: "Subjects",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "StudentBill",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     StudentId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    BillId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Money = table.Column<float>(type: "real", nullable: false),
                     PaiedMoney = table.Column<float>(type: "real", nullable: false),
@@ -234,6 +421,12 @@ namespace infrastructure.Migrations
                 {
                     table.PrimaryKey("PK_StudentBill", x => x.Id);
                     table.ForeignKey(
+                        name: "FK_StudentBill_Bills_BillId",
+                        column: x => x.BillId,
+                        principalTable: "Bills",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
                         name: "FK_StudentBill_Students_StudentId",
                         column: x => x.StudentId,
                         principalTable: "Students",
@@ -242,7 +435,7 @@ namespace infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AccountNotification",
+                name: "AccountNotifications",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -258,17 +451,17 @@ namespace infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AccountNotification", x => x.Id);
+                    table.PrimaryKey("PK_AccountNotifications", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_AccountNotification_Account_AccountId",
+                        name: "FK_AccountNotifications_Accounts_AccountId",
                         column: x => x.AccountId,
-                        principalTable: "Account",
+                        principalTable: "Accounts",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_AccountNotification_Notification_NotificationId",
+                        name: "FK_AccountNotifications_Notifications_NotificationId",
                         column: x => x.NotificationId,
-                        principalTable: "Notification",
+                        principalTable: "Notifications",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -279,6 +472,7 @@ namespace infrastructure.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Token = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FcmToken = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     RefreshToken = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ExpireAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     AccountId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -293,11 +487,42 @@ namespace infrastructure.Migrations
                 {
                     table.PrimaryKey("PK_AccountSessions", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_AccountSessions_Account_AccountId",
+                        name: "FK_AccountSessions_Accounts_AccountId",
                         column: x => x.AccountId,
-                        principalTable: "Account",
+                        principalTable: "Accounts",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SubjectYears",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    TeacherId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ClassYearId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DateDeleted = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    UpdatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    DeletedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SubjectYears", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_SubjectYears_Accounts_TeacherId",
+                        column: x => x.TeacherId,
+                        principalTable: "Accounts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_SubjectYears_ClassYears_ClassYearId",
+                        column: x => x.ClassYearId,
+                        principalTable: "ClassYears",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -308,7 +533,7 @@ namespace infrastructure.Migrations
                     Reason = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Status = table.Column<bool>(type: "bit", nullable: true),
                     Days = table.Column<int>(type: "int", nullable: false),
-                    Date = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     AdminId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     TeacherId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -322,15 +547,15 @@ namespace infrastructure.Migrations
                 {
                     table.PrimaryKey("PK_Vacations", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Vacations_Account_AdminId",
+                        name: "FK_Vacations_Accounts_AdminId",
                         column: x => x.AdminId,
-                        principalTable: "Account",
+                        principalTable: "Accounts",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Vacations_Account_TeacherId",
+                        name: "FK_Vacations_Accounts_TeacherId",
                         column: x => x.TeacherId,
-                        principalTable: "Account",
+                        principalTable: "Accounts",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -355,111 +580,15 @@ namespace infrastructure.Migrations
                 {
                     table.PrimaryKey("PK_Warnings", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Warnings_Account_AdminId",
+                        name: "FK_Warnings_Accounts_AdminId",
                         column: x => x.AdminId,
-                        principalTable: "Account",
+                        principalTable: "Accounts",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Warnings_Account_TeacherId",
+                        name: "FK_Warnings_Accounts_TeacherId",
                         column: x => x.TeacherId,
-                        principalTable: "Account",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Bills",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Money = table.Column<float>(type: "real", nullable: false),
-                    YearId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ClassId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DateDeleted = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    UpdatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    DeletedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Bills", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Bills_Classes_ClassId",
-                        column: x => x.ClassId,
-                        principalTable: "Classes",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Bills_Years_YearId",
-                        column: x => x.YearId,
-                        principalTable: "Years",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Subjects",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ClassId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DateDeleted = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    UpdatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    DeletedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Subjects", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Subjects_Classes_ClassId",
-                        column: x => x.ClassId,
-                        principalTable: "Classes",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "SubjectYears",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    SubjectId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    YearId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    TeacherId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DateDeleted = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    UpdatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    DeletedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_SubjectYears", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_SubjectYears_Account_TeacherId",
-                        column: x => x.TeacherId,
-                        principalTable: "Account",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_SubjectYears_Subjects_SubjectId",
-                        column: x => x.SubjectId,
-                        principalTable: "Subjects",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_SubjectYears_Years_YearId",
-                        column: x => x.YearId,
-                        principalTable: "Years",
+                        principalTable: "Accounts",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -525,7 +654,7 @@ namespace infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Program",
+                name: "Programs",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -542,9 +671,9 @@ namespace infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Program", x => x.Id);
+                    table.PrimaryKey("PK_Programs", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Program_SubjectYears_SubjectYearId",
+                        name: "FK_Programs_SubjectYears_SubjectYearId",
                         column: x => x.SubjectYearId,
                         principalTable: "SubjectYears",
                         principalColumn: "Id",
@@ -558,7 +687,7 @@ namespace infrastructure.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     StudentId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     SubjectYearId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Mark = table.Column<float>(type: "real", nullable: false),
+                    Mark = table.Column<float>(type: "real", nullable: true),
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DateDeleted = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -588,10 +717,8 @@ namespace infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     StudentSubjectId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    StartAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    EndAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    QuezId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DateDeleted = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -603,60 +730,15 @@ namespace infrastructure.Migrations
                 {
                     table.PrimaryKey("PK_StudentQuezs", x => x.Id);
                     table.ForeignKey(
+                        name: "FK_StudentQuezs_Quezs_QuezId",
+                        column: x => x.QuezId,
+                        principalTable: "Quezs",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
                         name: "FK_StudentQuezs_StudentSubjects_StudentSubjectId",
                         column: x => x.StudentSubjectId,
                         principalTable: "StudentSubjects",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Questions",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    QuezId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DateDeleted = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    UpdatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    DeletedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Questions", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Questions_StudentQuezs_QuezId",
-                        column: x => x.QuezId,
-                        principalTable: "StudentQuezs",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Answers",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IsCorrect = table.Column<bool>(type: "bit", nullable: false),
-                    QuestionId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DateDeleted = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    UpdatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    DeletedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Answers", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Answers_Questions_QuestionId",
-                        column: x => x.QuestionId,
-                        principalTable: "Questions",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -693,24 +775,34 @@ namespace infrastructure.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Account_RoleId",
-                table: "Account",
-                column: "RoleId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_AccountNotification_AccountId",
-                table: "AccountNotification",
+                name: "IX_AccountNotifications_AccountId",
+                table: "AccountNotifications",
                 column: "AccountId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AccountNotification_NotificationId",
-                table: "AccountNotification",
+                name: "IX_AccountNotifications_NotificationId",
+                table: "AccountNotifications",
                 column: "NotificationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Accounts_RoleId",
+                table: "Accounts",
+                column: "RoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Accounts_SubjectId",
+                table: "Accounts",
+                column: "SubjectId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AccountSessions_AccountId",
                 table: "AccountSessions",
                 column: "AccountId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Answers_DateDeleted",
+                table: "Answers",
+                column: "DateDeleted");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Answers_QuestionId",
@@ -733,9 +825,14 @@ namespace infrastructure.Migrations
                 column: "ClassId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Bills_YearId",
+                name: "IX_Bills_ClassYearId",
                 table: "Bills",
-                column: "YearId");
+                column: "ClassYearId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Classes_DateDeleted",
+                table: "Classes",
+                column: "DateDeleted");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Classes_StageId",
@@ -743,19 +840,44 @@ namespace infrastructure.Migrations
                 column: "StageId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ClassYears_ClassId",
+                table: "ClassYears",
+                column: "ClassId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ClassYears_YearId",
+                table: "ClassYears",
+                column: "YearId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Lesons_SubjectYearId",
                 table: "Lesons",
                 column: "SubjectYearId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Program_SubjectYearId",
-                table: "Program",
+                name: "IX_Programs_SubjectYearId",
+                table: "Programs",
                 column: "SubjectYearId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Questions_DateDeleted",
+                table: "Questions",
+                column: "DateDeleted");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Questions_QuezId",
                 table: "Questions",
                 column: "QuezId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Quezs_DateDeleted",
+                table: "Quezs",
+                column: "DateDeleted");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Stages_DateDeleted",
+                table: "Stages",
+                column: "DateDeleted");
 
             migrationBuilder.CreateIndex(
                 name: "IX_StudentAnswers_AnswerId",
@@ -768,9 +890,24 @@ namespace infrastructure.Migrations
                 column: "StudentQuizId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_StudentBill_BillId",
+                table: "StudentBill",
+                column: "BillId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_StudentBill_StudentId",
                 table: "StudentBill",
                 column: "StudentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_StudentQuezs_DateDeleted",
+                table: "StudentQuezs",
+                column: "DateDeleted");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_StudentQuezs_QuezId",
+                table: "StudentQuezs",
+                column: "QuezId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_StudentQuezs_StudentSubjectId",
@@ -781,6 +918,11 @@ namespace infrastructure.Migrations
                 name: "IX_Students_ParentId",
                 table: "Students",
                 column: "ParentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_StudentSubjects_DateDeleted",
+                table: "StudentSubjects",
+                column: "DateDeleted");
 
             migrationBuilder.CreateIndex(
                 name: "IX_StudentSubjects_StudentId",
@@ -798,9 +940,19 @@ namespace infrastructure.Migrations
                 column: "ClassId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SubjectYears_SubjectId",
+                name: "IX_Subjects_DateDeleted",
+                table: "Subjects",
+                column: "DateDeleted");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SubjectYears_ClassYearId",
                 table: "SubjectYears",
-                column: "SubjectId");
+                column: "ClassYearId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SubjectYears_DateDeleted",
+                table: "SubjectYears",
+                column: "DateDeleted");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SubjectYears_TeacherId",
@@ -808,14 +960,14 @@ namespace infrastructure.Migrations
                 column: "TeacherId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SubjectYears_YearId",
-                table: "SubjectYears",
-                column: "YearId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Vacations_AdminId",
                 table: "Vacations",
                 column: "AdminId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Vacations_DateDeleted",
+                table: "Vacations",
+                column: "DateDeleted");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Vacations_TeacherId",
@@ -828,16 +980,26 @@ namespace infrastructure.Migrations
                 column: "AdminId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Warnings_DateDeleted",
+                table: "Warnings",
+                column: "DateDeleted");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Warnings_TeacherId",
                 table: "Warnings",
                 column: "TeacherId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Years_DateDeleted",
+                table: "Years",
+                column: "DateDeleted");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "AccountNotification");
+                name: "AccountNotifications");
 
             migrationBuilder.DropTable(
                 name: "AccountSessions");
@@ -846,16 +1008,16 @@ namespace infrastructure.Migrations
                 name: "Audience");
 
             migrationBuilder.DropTable(
-                name: "Bills");
-
-            migrationBuilder.DropTable(
                 name: "Images");
 
             migrationBuilder.DropTable(
                 name: "Lesons");
 
             migrationBuilder.DropTable(
-                name: "Program");
+                name: "OutBoxMessages");
+
+            migrationBuilder.DropTable(
+                name: "Programs");
 
             migrationBuilder.DropTable(
                 name: "StudentAnswers");
@@ -870,19 +1032,25 @@ namespace infrastructure.Migrations
                 name: "Warnings");
 
             migrationBuilder.DropTable(
-                name: "Notification");
+                name: "Notifications");
 
             migrationBuilder.DropTable(
                 name: "Answers");
 
             migrationBuilder.DropTable(
-                name: "Questions");
-
-            migrationBuilder.DropTable(
                 name: "StudentQuezs");
 
             migrationBuilder.DropTable(
+                name: "Bills");
+
+            migrationBuilder.DropTable(
+                name: "Questions");
+
+            migrationBuilder.DropTable(
                 name: "StudentSubjects");
+
+            migrationBuilder.DropTable(
+                name: "Quezs");
 
             migrationBuilder.DropTable(
                 name: "Students");
@@ -894,16 +1062,19 @@ namespace infrastructure.Migrations
                 name: "Parents");
 
             migrationBuilder.DropTable(
-                name: "Account");
+                name: "Accounts");
+
+            migrationBuilder.DropTable(
+                name: "ClassYears");
+
+            migrationBuilder.DropTable(
+                name: "Roles");
 
             migrationBuilder.DropTable(
                 name: "Subjects");
 
             migrationBuilder.DropTable(
                 name: "Years");
-
-            migrationBuilder.DropTable(
-                name: "Roles");
 
             migrationBuilder.DropTable(
                 name: "Classes");

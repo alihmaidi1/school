@@ -23,23 +23,25 @@ public class GetAllSubjectByYearHandler : OperationResult, IQueryHandler<GetAllS
     public async Task<JsonResult> Handle(GetAllSubjectByYearQuery request, CancellationToken cancellationToken)
     {
 
-        var SubjectResponse=new GetAllSubjectByYearDto(){
+        // var SubjectResponse=new GetAllSubjectByYearDto(){
 
 
-        };
-        var Subjects=_context
-        .SubjectYears      
-        .Where(x=>x.YearId==request.YearId)
-        .Select(x=>x.Subject)          
-        .Select(x=>new GetAllSubjectByYearDto.Subject{
-            Id=x.Id,
-            Name=x.Name,
-            Year=x.Class.Name,
-            Degree=x.Degree,
-            MinDegree=x.MinDegree,
-        }).ToPagedList(request.PageNumber,request.PageSize);
-        SubjectResponse.Subjects=Subjects;
-        SubjectResponse.TotalTeacher=_context.Teachers.Where(x=>x.Status).Count();
-        return Success(SubjectResponse,"this is all subject");
+        // };
+        // var Subjects=_context
+        // .SubjectYears      
+        // .Where(x=>x.YearId==request.YearId)
+        // .Select(x=>x.Subject)          
+        // .Select(x=>new GetAllSubjectByYearDto.Subject{
+        //     Id=x.Id,
+        //     Name=x.Name,
+        //     Year=x.Class.Name,
+        //     Degree=x.Degree,
+        //     MinDegree=x.MinDegree,
+        // }).ToPagedList(request.PageNumber,request.PageSize);
+        // SubjectResponse.Subjects=Subjects;
+        // SubjectResponse.TotalTeacher=_context.Teachers.Where(x=>x.Status).Count();
+        // return Success(SubjectResponse,"this is all subject");
+
+        return null;
     }
 }

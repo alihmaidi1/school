@@ -21,18 +21,20 @@ public class GetAudienceDetailHandler : OperationResult, IQueryHandler<GetAudien
     public async Task<JsonResult> Handle(GetAudienceDetailQuery request, CancellationToken cancellationToken)
     {
 
-        var Students=_context
-        .SubjectYears
-        .Where(x=>x.SubjectId==request.SubjectId)
-        .SelectMany(x=>x.Audiences.Where(x=>x.Date==request.Date))
-        .Select(x=>new GetAudienceDetailDto{
+        // var Students=_context
+        // .SubjectYears
+        // .Where(x=>x.SubjectId==request.SubjectId)
+        // .SelectMany(x=>x.Audiences.Where(x=>x.Date==request.Date))
+        // .Select(x=>new GetAudienceDetailDto{
 
-            Id=x.Student.Id,
-            Name=x.Student.Name,
-            Status=x.IsExists
-        })
-        .ToList();
+        //     Id=x.Student.Id,
+        //     Name=x.Student.Name,
+        //     Status=x.IsExists
+        // })
+        // .ToList();
 
-        return Success(Students,"this is your info");
+        // return Success(Students,"this is your info");
+
+        return null;
     }
 }

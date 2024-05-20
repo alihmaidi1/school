@@ -9,6 +9,8 @@ public class AccountSession : BaseEntity
 
     public string Token { get; set; }
     
+
+    public string FcmToken{get;set;}
     public string RefreshToken { get; set; }
 
     public DateTime ExpireAt { get; set; }
