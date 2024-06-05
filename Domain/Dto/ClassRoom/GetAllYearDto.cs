@@ -10,6 +10,6 @@ public class GetAllYearDto
 
     public Guid Id{get;set;}
 
-    public string Name{get;set;}
+    public DateTimeOffset Name{get;set;}
 
 }

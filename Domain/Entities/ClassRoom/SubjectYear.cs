@@ -2,6 +2,7 @@ using Domain.Base.Entity;
 using Domain.Base.interfaces;
 using Domain.Entities.Student.Audience;
 using Domain.Entities.Student.StudentSubject;
+using Domain.Entities.Teacher;
 
 namespace Domain.Entities.ClassRoom;
 
@@ -17,12 +18,9 @@ namespace Domain.Entities.ClassRoom;
             Programs=new HashSet<Program>();
         }
 
+        public TeacherSubject TeacherSubject{get;set;}
 
-
-        
-        public Teacher.Teacher.Teacher Teacher{get;set;}
-
-        public Guid TeacherId{get;set;}
+        public Guid TeacherSubjectId{get;set;}
 
 
         public ClassYear ClassYear{get;set;}
@@ -32,6 +30,8 @@ namespace Domain.Entities.ClassRoom;
         public ICollection<Audience> Audiences{get;set;}
 
 
+
+        public ICollection<Domain.Entities.Quez.Quez> Quezs{get;set;}
 
 
         public ICollection<StudentSubject> StudentSubjects{get;set;}

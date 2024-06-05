@@ -18,6 +18,16 @@ public class SubjectYearConfiguration : IEntityTypeConfiguration<SubjectYear>
         .HasForeignKey(x=>x.SubjectYearId)
         .OnDelete(DeleteBehavior.Cascade);
 
+        builder.HasMany(x=>x.Quezs)
+        .WithOne(x=>x.SubjectYear)
+        .HasForeignKey(x=>x.SubjectYearId)
+        .OnDelete(DeleteBehavior.Restrict);
+
+        builder.HasOne(x=>x.TeacherSubject)
+        .WithMany(x=>x.SubjectYears)
+        .HasForeignKey(x=>x.TeacherSubjectId)
+        .OnDelete(DeleteBehavior.Restrict);
+
         builder.HasMany(x=>x.Programs)
         .WithOne(x=>x.SubjectYear)
         .HasForeignKey(x=>x.SubjectYearId)

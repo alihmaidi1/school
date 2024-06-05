@@ -30,11 +30,10 @@ public class GetAllTeacherLesonHandler : OperationResult,IQueryHandler<GetAllTea
         .SubjectYears
         .AsNoTracking()
         .Where(x=>x.ClassYear.YearId==request.YearId)
-        .Where(x=>x.TeacherId==request.Id)
-        .Select(x=>new GetAllTeacherLesonDto(){
-            
-            Id=x.Teacher.Subject.Id,
-            Name=x.Teacher.Name,
+        .Where(x=>x.TeacherSubject.TeacherId==request.Id)
+        .Select(x=>new GetAllTeacherLesonDto(){            
+            Id=x.TeacherSubject.Subject.Id,
+            Name=x.TeacherSubject.Subject.Name,
             Lesons=x.Lesons.Select(y=>new GetAllTeacherLesonDto.Leson(){
 
                 Id=y.Id,

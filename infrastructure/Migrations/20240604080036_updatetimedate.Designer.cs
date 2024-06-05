@@ -12,8 +12,8 @@ using infrastructure;
 namespace infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240520225807_init")]
-    partial class init
+    [Migration("20240604080036_updatetimedate")]
+    partial class updatetimedate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -565,7 +565,7 @@ namespace infrastructure.Migrations
                     b.Property<Guid?>("DeletedBy")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("TeacherId")
+                    b.Property<Guid>("TeacherSubjectId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UpdatedBy")
@@ -577,7 +577,7 @@ namespace infrastructure.Migrations
 
                     b.HasIndex("DateDeleted");
 
-                    b.HasIndex("TeacherId");
+                    b.HasIndex("TeacherSubjectId");
 
                     b.ToTable("SubjectYears");
                 });
@@ -591,9 +591,8 @@ namespace infrastructure.Migrations
                     b.Property<Guid?>("CreatedBy")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Date")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTimeOffset>("Date")
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
@@ -736,12 +735,17 @@ namespace infrastructure.Migrations
                     b.Property<DateTime>("StartAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid>("SubjectYearId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid?>("UpdatedBy")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
                     b.HasIndex("DateDeleted");
+
+                    b.HasIndex("SubjectYearId");
 
                     b.ToTable("Quezs");
                 });
@@ -809,7 +813,7 @@ namespace infrastructure.Migrations
                     b.Property<Guid>("QuezId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("StudentSubjectId")
+                    b.Property<Guid>("StudentId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UpdatedBy")
@@ -821,7 +825,7 @@ namespace infrastructure.Migrations
 
                     b.HasIndex("QuezId");
 
-                    b.HasIndex("StudentSubjectId");
+                    b.HasIndex("StudentId");
 
                     b.ToTable("StudentQuezs");
                 });
@@ -1111,6 +1115,47 @@ namespace infrastructure.Migrations
                     b.ToTable("StudentSubjects");
                 });
 
+            modelBuilder.Entity("Domain.Entities.Teacher.TeacherSubject", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateDeleted")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("DeletedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("SubjectId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("TeacherId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("UpdatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DateDeleted");
+
+                    b.HasIndex("SubjectId");
+
+                    b.HasIndex("TeacherId");
+
+                    b.ToTable("TeacherSubjects");
+                });
+
             modelBuilder.Entity("Domain.Entities.Teacher.Vacation.Vacation", b =>
                 {
                     b.Property<Guid>("Id")
@@ -1257,11 +1302,6 @@ namespace infrastructure.Migrations
                     b.Property<string>("ResetCode")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("SubjectId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasIndex("SubjectId");
-
                     b.ToTable("Accounts", t =>
                         {
                             t.Property("Hash")
@@ -1393,15 +1433,15 @@ namespace infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Domain.Entities.Teacher.Teacher.Teacher", "Teacher")
+                    b.HasOne("Domain.Entities.Teacher.TeacherSubject", "TeacherSubject")
                         .WithMany("SubjectYears")
-                        .HasForeignKey("TeacherId")
+                        .HasForeignKey("TeacherSubjectId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("ClassYear");
 
-                    b.Navigation("Teacher");
+                    b.Navigation("TeacherSubject");
                 });
 
             modelBuilder.Entity("Domain.Entities.Quez.Answer", b =>
@@ -1424,6 +1464,17 @@ namespace infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("Quez");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Quez.Quez", b =>
+                {
+                    b.HasOne("Domain.Entities.ClassRoom.SubjectYear", "SubjectYear")
+                        .WithMany("Quezs")
+                        .HasForeignKey("SubjectYearId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("SubjectYear");
                 });
 
             modelBuilder.Entity("Domain.Entities.Quez.StudentAnswer", b =>
@@ -1453,15 +1504,15 @@ namespace infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Domain.Entities.Student.StudentSubject.StudentSubject", "StudentSubject")
+                    b.HasOne("Domain.Entities.Student.Student.Student", "Student")
                         .WithMany("StudentQuezs")
-                        .HasForeignKey("StudentSubjectId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Quez");
 
-                    b.Navigation("StudentSubject");
+                    b.Navigation("Student");
                 });
 
             modelBuilder.Entity("Domain.Entities.Student.Audience.Audience", b =>
@@ -1532,6 +1583,25 @@ namespace infrastructure.Migrations
                     b.Navigation("SubjectYear");
                 });
 
+            modelBuilder.Entity("Domain.Entities.Teacher.TeacherSubject", b =>
+                {
+                    b.HasOne("Domain.Entities.ClassRoom.Subject", "Subject")
+                        .WithMany("TeacherSubjects")
+                        .HasForeignKey("SubjectId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.Teacher.Teacher.Teacher", "Teacher")
+                        .WithMany("TeacherSubjects")
+                        .HasForeignKey("TeacherId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Subject");
+
+                    b.Navigation("Teacher");
+                });
+
             modelBuilder.Entity("Domain.Entities.Teacher.Vacation.Vacation", b =>
                 {
                     b.HasOne("Domain.Entities.Manager.Admin.Admin", "Admin")
@@ -1580,17 +1650,6 @@ namespace infrastructure.Migrations
                     b.Navigation("Role");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Teacher.Teacher.Teacher", b =>
-                {
-                    b.HasOne("Domain.Entities.ClassRoom.Subject", "Subject")
-                        .WithMany("Teachers")
-                        .HasForeignKey("SubjectId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Subject");
-                });
-
             modelBuilder.Entity("Domain.Entities.Account.Account", b =>
                 {
                     b.Navigation("AccountNotifications");
@@ -1631,7 +1690,7 @@ namespace infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Entities.ClassRoom.Subject", b =>
                 {
-                    b.Navigation("Teachers");
+                    b.Navigation("TeacherSubjects");
                 });
 
             modelBuilder.Entity("Domain.Entities.ClassRoom.SubjectYear", b =>
@@ -1641,6 +1700,8 @@ namespace infrastructure.Migrations
                     b.Navigation("Lesons");
 
                     b.Navigation("Programs");
+
+                    b.Navigation("Quezs");
 
                     b.Navigation("StudentSubjects");
                 });
@@ -1688,12 +1749,14 @@ namespace infrastructure.Migrations
 
                     b.Navigation("StudentBills");
 
+                    b.Navigation("StudentQuezs");
+
                     b.Navigation("StudentSubjects");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Student.StudentSubject.StudentSubject", b =>
+            modelBuilder.Entity("Domain.Entities.Teacher.TeacherSubject", b =>
                 {
-                    b.Navigation("StudentQuezs");
+                    b.Navigation("SubjectYears");
                 });
 
             modelBuilder.Entity("Domain.Entities.Manager.Admin.Admin", b =>
@@ -1705,7 +1768,7 @@ namespace infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Entities.Teacher.Teacher.Teacher", b =>
                 {
-                    b.Navigation("SubjectYears");
+                    b.Navigation("TeacherSubjects");
 
                     b.Navigation("Vacations");
 

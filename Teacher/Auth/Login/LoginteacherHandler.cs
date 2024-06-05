@@ -39,6 +39,7 @@ public class LoginteacherHandler : OperationResult, ICommandHandler<LoginTeacher
             return ValidationError(nameof(request.Password),"password is not correct");
         }
         AccountSession accountSession =await _jwtRepository.GetTokensInfo(teacher.Id, teacher.Email,nameof(JwtSchema.Admin),null);
+        accountSession.FcmToken=request.FcmToken;
         _dbContext.AccountSessions.Add(accountSession);
         _dbContext.SaveChanges();
         return Success(_mapper.Map<AdminRefreshTokenDto>(accountSession),"this this your login info");

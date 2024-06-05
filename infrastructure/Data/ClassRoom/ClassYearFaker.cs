@@ -18,11 +18,6 @@ public class ClassYearFaker
         ClassYear.RuleFor(x=>x.YearId,setter=>setter.PickRandom(years));
         ClassYear.RuleFor(x=>x.Status,setter=>false);
         ClassYear.RuleFor(x=>x.Bills,setter=>BillFaker.GetFaker().Generate(5));
-        ClassYear.RuleFor(x=>x.SubjectYears,classes.SelectMany(x=>x.Subjects).Select(x=>new SubjectYear{
-
-            TeacherId=x.Teachers.First().Id
-
-        }).ToList());
         return ClassYear;
 
     }

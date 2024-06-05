@@ -16,8 +16,6 @@ public class GetAllTeacherQuezQuery: PaginationRequest, IQuery
     public Guid YearId{get;set;}
     
 
-
-
     public string? Search{get;set;}   
 
 

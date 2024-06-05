@@ -23,7 +23,6 @@ public class DeleteLesonHandler : OperationResult, ICommandHandler<DeleteLesonCo
     {
 
         await _context.Lesons.Where(x=>x.Id==request.Id).ExecuteDeleteAsync(cancellationToken);
-        await _context.SaveChangesAsync(cancellationToken);
         return Success("leson was deleted successfully");
     }
 }

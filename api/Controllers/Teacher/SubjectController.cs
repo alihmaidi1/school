@@ -14,6 +14,7 @@ using Shared.Swagger;
 using Teacher.Quez.Query.GetAllQuez;
 using Teacher.Subject.Query.GetAllAudience;
 using Teacher.Subject.Query.GetAudienceDetail;
+using Teacher.Subject.Query.GetOwned;
 using Teacher.Subject.Query.GetWithStudent;
 
 namespace schoolmanagment.Controllers.Teacher;
@@ -39,6 +40,19 @@ public class SubjectController: ApiController
         return response;
 
     }
+
+    /// <summary>
+    /// Get All subject name 
+    /// </summary>
+    [Produces(typeof(OperationResultBase<List<GetAllSubjectNameDto>>))]
+    [HttpGet]
+    public async Task<IActionResult> GetAllSubjectName([FromQuery] GetAllTeacherSubjectQuery command,CancellationToken token)
+    {
+        var response = await this.Mediator.Send(command,token);
+        return response;
+
+    }
+
 
 
     /// <summary>

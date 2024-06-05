@@ -17,5 +17,6 @@ public class AnswerConfiguration : IEntityTypeConfiguration<Answer>
         .WithOne(x=>x.Answer)
         .HasForeignKey(x=>x.AnswerId)
         .OnDelete(DeleteBehavior.Restrict);
+
     }
 }

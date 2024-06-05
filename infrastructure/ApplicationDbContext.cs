@@ -11,6 +11,7 @@ using Domain.Entities.Role;
 using Domain.Entities.Student.Parent;
 using Domain.Entities.Student.Student;
 using Domain.Entities.Student.StudentSubject;
+using Domain.Entities.Teacher;
 using Domain.Entities.Teacher.Teacher;
 using Domain.Entities.Teacher.Vacation;
 using Domain.Entities.Teacher.Warning;
@@ -63,7 +64,7 @@ public class ApplicationDbContext:DbContext
          foreach (var entity in entities)
          {
             
-             builder.Entity(entity).HasIndex(nameof(IRemovable.DateDeleted));
+             builder.Entity(entity).HasIndex(nameof(ISoftDelete.DateDeleted));
              Expression<Func<IBaseEntity, bool>> expression = b => !b.DateDeleted.HasValue;
              var newParam = Expression.Parameter(entity);
              var newBody = ReplacingExpressionVisitor.Replace(expression.Parameters.Single(), newParam, expression.Body);
@@ -82,6 +83,8 @@ public class ApplicationDbContext:DbContext
      public DbSet<Teacher> Teachers { get; init; }
      public DbSet<Warning> Warnings { get; init; }
      public DbSet<Vacation> Vacations { get; init; }
+
+     public DbSet<VacationType> VacationTypes{get;set;}
 
      public DbSet<Program> Programs{get;init;}
      
@@ -132,7 +135,7 @@ public class ApplicationDbContext:DbContext
 
     public DbSet<StudentAnswer> StudentAnswers{get;init;}
 
-
+    public DbSet<TeacherSubject> TeacherSubjects{get;init;}
 
 
   }

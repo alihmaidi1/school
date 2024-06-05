@@ -13,10 +13,10 @@ public class StudentSubjectConfiguration : IEntityTypeConfiguration<StudentSubje
     public void Configure(EntityTypeBuilder<StudentSubject> builder)
     {
         
-        builder.HasMany(x=>x.StudentQuezs)
-        .WithOne(x=>x.StudentSubject)
-        .HasForeignKey(x=>x.StudentSubjectId)
-        .OnDelete(DeleteBehavior.Restrict);
+        // builder.HasMany(x=>x.StudentQuezs)
+        // .WithOne(x=>x.StudentSubject)
+        // .HasForeignKey(x=>x.StudentSubjectId)
+        // .OnDelete(DeleteBehavior.Restrict);
 
     }
 }

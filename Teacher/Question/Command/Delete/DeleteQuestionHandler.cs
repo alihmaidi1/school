@@ -22,8 +22,8 @@ public class DeleteQuestionHandler : OperationResult, ICommandHandler<DeleteQues
     public async Task<JsonResult> Handle(DeleteQuestionCommand request, CancellationToken cancellationToken)
     {
 
-        await _context.Questions.Where(x=>x.Id==request.Id).ExecuteDeleteAsync(cancellationToken);
-        await _context.SaveChangesAsync(cancellationToken);
+        await _context.Questions.Where(x=>x.Id==request.Id).ExecuteUpdateAsync(setter=>setter.SetProperty(x=>x.DateDeleted,DateTimeOffset.UtcNow));        
+        await _context.Answers.Where(x=>x.QuestionId==request.Id).ExecuteUpdateAsync(setter=>setter.SetProperty(x=>x.DateDeleted,DateTimeOffset.UtcNow));                
         return Deleted();
     }
 }

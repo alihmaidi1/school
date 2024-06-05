@@ -15,4 +15,5 @@ public class AddQuezCommand: ICommand
 
     public Guid SubjectId{get;set;}
 
+
 }

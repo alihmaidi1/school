@@ -31,29 +31,27 @@ public class GetAllTeacherQuesHandler : OperationResult, IQueryHandler<GetAllQue
 
         var Result=_context
         .SubjectYears
-        .Where(x=>x.TeacherId==_currentUserService.UserId)
+        .Where(x=>x.TeacherSubject.TeacherId==_currentUserService.UserId)
         .Where(x=>x.ClassYear.YearId==request.YearId)
-        .Where(x=>x.Teacher.Subject.Name.Contains(request.Search??""))
         .Select(x=>new GetAllTeacherQuezDto(){
 
-            Id=x.Teacher.Subject.Id,
-            Name=x.Teacher.Subject.Name,
+            Id=x.TeacherSubject.Subject.Id,
+            Name=x.TeacherSubject.Subject.Name,
             
-            Quezies=x.StudentSubjects.SelectMany(y=>y.StudentQuezs.Select(z=>z.Quez)).Select(y=>new GetAllTeacherQuezDto.Quez(){
+            Quezies=x.Quezs.Select(y=>new GetAllTeacherQuezDto.Quez(){
 
                 Id=y.Id,
                 Name=y.Name,
-                StartAt=y.StartAt.ToString("G"),
+                StartAt=y.StartAt,
                 QuestionNumber=y.Questions.Count(),
                 Student=y.StudentQuezs.Count()
 
-            }).ToList()
-            
-
+            }).GroupBy(x=>x.Id).Select(x=>x.First()).ToList()            
 
         })
         .ToPagedList(request.PageNumber,request.PageSize);
         return Success(Result,"this is all your data");
+
 
     }
 }

@@ -14,4 +14,7 @@ public class LoginTeacherCommand: ICommand
 
     public string Password{get;set;}
 
+
+    public string FcmToken{get;set;}
+
 }

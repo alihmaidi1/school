@@ -24,9 +24,6 @@ public class UpdateTeacherValidation:AbstractValidator<UpdateTeacherCommand>
             .NotNull()
             .NotEmpty();
 
-        RuleFor(x => x.Status)
-        .NotEmpty()
-        .NotNull();
 
         RuleFor(x => x.Password)
             .NotEmpty()
@@ -40,7 +37,6 @@ public class UpdateTeacherValidation:AbstractValidator<UpdateTeacherCommand>
         .Must((request,email)=>teacherRepository.IsUnique(request.Id,"Email",email))
         .WithMessage("email should be unqiue in our data");
 
-        
         RuleFor(x=>x.Image)
         .Must(id=>context.Images.Any(x=>x.Id==id))
         .WithMessage("image is not exists in our data")

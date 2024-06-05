@@ -1,5 +1,6 @@
 using Domain.Base.Entity;
 using Domain.Base.interfaces;
+using Domain.Entities.Quez;
 using Domain.Event;
 
 namespace Domain.Entities.Student.Student;
@@ -14,6 +15,7 @@ public class Student:BaseEntity
         StudentSubjects=new HashSet<StudentSubject.StudentSubject>();
         Audiences=new HashSet<Audience.Audience>();        
         StudentBills=new List<StudentBill.StudentBill>();
+        StudentQuezs=new HashSet<StudentQuez>();
 
     }
 
@@ -49,6 +51,8 @@ public class Student:BaseEntity
     
     public string? Hash { get; set; }
     
+
+    public ICollection<StudentQuez> StudentQuezs{get;set;}
     public Guid ParentId { get; set; }
     public Parent.Parent Parent { get; set; }
 

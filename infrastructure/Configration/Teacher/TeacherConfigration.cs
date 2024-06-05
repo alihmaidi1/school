@@ -10,8 +10,14 @@ public class TeacherConfigration:IEntityTypeConfiguration<Domain.Entities.Teache
     public void Configure(EntityTypeBuilder<Domain.Entities.Teacher.Teacher.Teacher> builder)
     {
 
-      
 
+        builder.HasMany(x => x.TeacherSubjects)
+            .WithOne(x => x.Teacher)
+            .HasForeignKey(x => x.TeacherId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+      
+        
         builder.HasMany(x => x.Vacations)
             .WithOne(x => x.Teacher)
             .HasForeignKey(x => x.TeacherId)
@@ -22,10 +28,6 @@ public class TeacherConfigration:IEntityTypeConfiguration<Domain.Entities.Teache
             .HasForeignKey(x => x.TeacherId)
             .OnDelete(DeleteBehavior.Restrict);
 
-        builder.HasMany(x=>x.SubjectYears)
-            .WithOne(x=>x.Teacher)
-            .HasForeignKey(x=>x.TeacherId)
-            .OnDelete(DeleteBehavior.Restrict);
 
         
 

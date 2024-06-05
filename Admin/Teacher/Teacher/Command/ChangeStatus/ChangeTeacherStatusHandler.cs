@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Domain.Entities.Teacher.Teacher;
 using infrastructure;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Shared.CQRS;
 using Shared.OperationResult;
 
@@ -22,18 +23,8 @@ public class ChangeTeacherStatusHandler :OperationResult, ICommandHandler<Change
     }
     public async Task<JsonResult> Handle(ChangeTeacherStatusCommand request, CancellationToken cancellationToken)
     {
-        var teacher=new Domain.Entities.Teacher.Teacher.Teacher(){
-
-                Id=request.Id,
-                Status=request.Status,
-                Reason=request.Status?null:request.Reason    
-            
-
-        };
-
-        _context.Teachers.Update(teacher);
-        await _context.SaveChangesAsync(cancellationToken);
-
+        _context.Teachers.Where(x=>x.Id==request.Id).ExecuteUpdate(setter=>setter.SetProperty(x=>x.Status,request.Status).SetProperty(x=>x.Reason,request.Status?null:request.Reason));
+        
         return Success("teacher status was updated successfully");
     }
 }

@@ -17,8 +17,6 @@ public class GetAllQuezQuery: PaginationRequest, IQuery
 
 
 
-    public string? Search{get;set;}   
-
 
 
 }

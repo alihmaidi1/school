@@ -17,7 +17,8 @@ public class DeleteQuestionValidation:AbstractValidator<DeleteQuestionCommand>
         RuleFor(x=>x.Id)
         .NotEmpty()
         .NotNull()
-        .Must(id=>context.Questions.Any(x=>x.Id==id&&x.Quez.IsPending()&&x.Quez.IsBelongForId((Guid)currentUserService.UserId!)));
+        .Must(id=>context.Questions.Any(x=>x.Id==id&&x.Quez.StartAt>DateTimeOffset.UtcNow&&x.Quez.SubjectYear.TeacherSubject.TeacherId==currentUserService.UserId))
+        .WithMessage("this quez is active or not belongs to you");
     }
 
 }

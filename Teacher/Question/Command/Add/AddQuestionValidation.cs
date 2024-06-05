@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 using FluentValidation;
 using infrastructure;
 using Shared.Services.User;
@@ -15,19 +10,24 @@ public class AddQuestionValidation: AbstractValidator<AddQuestionCommand>
     public AddQuestionValidation(ApplicationDbContext context,ICurrentUserService currentUserService){
 
 
-// x.IsBelongForId((Guid)currentUserService.UserId!)
-    // x.Pending()
         RuleFor(x=>x.QuezId)
         .NotEmpty()
         .NotNull()
-        .Must(id=>context.Quezs.Any(x=>x.Id==id));
+        .Must(id=>context.Quezs.Any(x=>x.Id==id&&x.StartAt>DateTimeOffset.UtcNow&&x.SubjectYear.TeacherSubject.TeacherId==currentUserService.UserId))
+        .WithMessage("this quez is active or not belongs to you");
         
         
         RuleFor(x=>x.ImageId)
-        .NotNull()
-        .When(x=>x.Title==null)        
         .Must(id=>context.Images.Any(x=>x.Id==id))
         .When(x=>x.ImageId!=null);
+
+
+
+
+        RuleFor(x=>x.Title)
+        .NotNull()
+        .When(x=>x.ImageId==null);
+
 
 
 

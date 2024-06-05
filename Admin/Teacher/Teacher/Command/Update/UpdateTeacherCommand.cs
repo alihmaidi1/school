@@ -12,11 +12,11 @@ public class UpdateTeacherCommand:ICommand
     
     public string Email { get; set; }
 
-
     public string Password { get; set; }
     
-    public bool Status { get; set; }
+    
+
 
     public Guid? Image { get; set; }
-    
+ 
 }

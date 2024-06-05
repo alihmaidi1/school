@@ -15,7 +15,7 @@ public class SubjectConfiguration : IEntityTypeConfiguration<Subject>
     {
 
 
-        builder.HasMany(x=>x.Teachers)
+        builder.HasMany(x=>x.TeacherSubjects)
         .WithOne(x=>x.Subject)
         .HasForeignKey(x=>x.SubjectId)
         .OnDelete(DeleteBehavior.Restrict);

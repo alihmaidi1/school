@@ -15,7 +15,7 @@ public static class TeacherFaker
         Teacher.RuleFor(x => x.Email, setter => setter.Internet.Email());
         Teacher.RuleFor(x=>x.Image,setter=>setter.Internet.Avatar());
         Teacher.RuleFor(x => x.Hash, setter => setter.Random.String2(27,AlphaNumericWithSpicial.AlphaNumeric));
-        Teacher.RuleFor(x => x.Password,setter=> PasswordHelper.HashPassword(setter.Internet.Password()));
+        Teacher.RuleFor(x => x.Password,setter=> PasswordHelper.HashPassword("12345678"));
         
         return Teacher;
 

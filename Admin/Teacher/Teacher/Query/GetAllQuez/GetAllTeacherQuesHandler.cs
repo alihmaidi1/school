@@ -1,13 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Common.CQRS;
 using Dto.Admin.Teacher;
 using infrastructure;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Shared.CQRS;
 using Shared.Entity.EntityOperation;
 using Shared.OperationResult;
 
@@ -29,26 +23,19 @@ public class GetAllTeacherQuesHandler : OperationResult, IQueryHandler<GetAllTea
 
         var Result=_context
         .SubjectYears
-        .Where(x=>x.TeacherId==request.Id)
+        .Where(x=>x.TeacherSubject.TeacherId==request.Id)
         .Where(x=>x.ClassYear.YearId==request.YearId)
-        .Where(x=>x.Teacher.Subject.Name.Contains(request.Search??""))
+        .Where(x=>x.TeacherSubject.Subject.Name.Contains(request.Search??""))
         .Select(x=>new GetAllTeacherQuezDto(){
-
-            Id=x.Teacher.Subject.Id,
-            Name=x.Teacher.Subject.Name,
-            
-            Quezies=x.StudentSubjects.SelectMany(y=>y.StudentQuezs.Select(z=>z.Quez)).Select(y=>new GetAllTeacherQuezDto.Quez(){
-
+            Id=x.TeacherSubject.Subject.Id,
+            Name=x.TeacherSubject.Subject.Name,            
+            Quezies=x.Quezs.Select(y=>new GetAllTeacherQuezDto.Quez(){
                 Id=y.Id,
                 Name=y.Name,
-                StartAt=y.StartAt.ToString("G"),
+                StartAt=y.StartAt,
                 QuestionNumber=y.Questions.Count(),
                 Student=y.StudentQuezs.Count()
-
-            }).ToList()
-            
-
-
+            }).ToList()            
         })
         .ToPagedList(request.PageNumber,request.PageSize);
         return Success(Result,"this is all your data");

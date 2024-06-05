@@ -11,7 +11,9 @@ public class Teacher: Account.Account,ISoftDelete
         Id = Guid.NewGuid();
         Vacations = new HashSet<Vacation.Vacation>();
         Warnings = new HashSet<Warning.Warning>();
-        SubjectYears=new HashSet<SubjectYear>();
+        // SubjectYears=new HashSet<SubjectYear>();
+
+        TeacherSubjects=new HashSet<TeacherSubject>();
     }
     
     public void SendEmail(string Subject,string Message){
@@ -34,14 +36,13 @@ public class Teacher: Account.Account,ISoftDelete
     public string ? Image { get; set; }    
     public string ? Hash { get; set; }
 
-    public Guid SubjectId{get;set;}
-
-    public Subject Subject{get;set;}
-
+ 
     public string? Reason{get;set;}
     public ICollection<Vacation.Vacation> Vacations { get; set; }
     public ICollection<Warning.Warning> Warnings { get; set; }
-    public ICollection<SubjectYear> SubjectYears{get;set;} 
+    // public ICollection<SubjectYear> SubjectYears{get;set;} 
+
+    public ICollection<TeacherSubject> TeacherSubjects{get;set;}
 
 
 }

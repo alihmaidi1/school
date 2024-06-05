@@ -66,6 +66,6 @@ public class AddQuestionHandler :OperationResult, ICommandHandler<AddQuestionCom
 
         
 
-        return Created("question created successfully");
+        return Success("question was added to this quez successfully");
     }
 }

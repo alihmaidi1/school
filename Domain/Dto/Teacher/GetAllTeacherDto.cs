@@ -18,10 +18,11 @@ public class GetAllTeacherDto
     public string? Hash { get; set; }
 
 
-    public string Subject{get;set;}
 
     public int StudentNumber{get;set;}
     
+
+    public int SubjectNumber{get;set;}
 
 
 }

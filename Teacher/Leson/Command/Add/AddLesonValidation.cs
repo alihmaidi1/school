@@ -15,23 +15,23 @@ public class AddLesonValidation: AbstractValidator<AddLesonCommand>
     public AddLesonValidation(ApplicationDbContext context,ICurrentUserService currentUserService){
 
 
-        // RuleFor(x=>x.Name)
-        // .NotEmpty()
-        // .NotNull();
+        RuleFor(x=>x.Name)
+        .NotEmpty()
+        .NotNull();
 
 
-        // RuleFor(x=>x.File)
-        // .NotEmpty()
-        // .NotNull()
-        // .Must(file=>FileRule.IsPDF(file))
-        // .WithMessage("file should be pdf");
+        RuleFor(x=>x.File)
+        .NotEmpty()
+        .NotNull()
+        .Must(file=>FileRule.IsPDF(file))
+        .WithMessage("file should be pdf");
     
     
-        // RuleFor(x=>x.SubjectId)
-        // .NotNull()
-        // .NotEmpty()
-        // .Must(id=>context.SubjectYears.Any(x=>x.SubjectId==id&&x.Year.Date.Year==DateTime.Now.Year&&x.TeacherId==currentUserService.UserId))
-        // .WithMessage("this subject is not exists or not belongs to this teacher");
+        RuleFor(x=>x.SubjectId)
+        .NotNull()
+        .NotEmpty()
+        .Must(id=>context.SubjectYears.Any(x=>x.TeacherSubject.SubjectId==id&&x.ClassYear.Status&&x.TeacherSubject.TeacherId==currentUserService.UserId))
+        .WithMessage("this subject is not exists or not belongs to this teacher");
         
     }
 

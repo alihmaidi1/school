@@ -18,6 +18,7 @@ public class StudentQuezConfiguration:IEntityTypeConfiguration<StudentQuez>
         .HasForeignKey(x=>x.StudentQuizId)
         .OnDelete(DeleteBehavior.Restrict);
 
+
         
 
 

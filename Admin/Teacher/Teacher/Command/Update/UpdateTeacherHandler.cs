@@ -34,14 +34,11 @@ public class UpdateTeacherHandler:OperationResult,ICommandHandler<UpdateTeacherC
     public async Task<JsonResult> Handle(UpdateTeacherCommand request, CancellationToken cancellationToken)
     {
         
-        var image=_context.Images.FirstOrDefault(x=>x.Id==request.Image);
-        
-        var teacher=_context.Teachers.First(x=>x.Id==request.Id);
-        
-        
-            teacher.Email = request.Email;
-            teacher.Password = PasswordHelper.HashPassword(request.Password);
-            teacher.Name = request.Name;
+        var image=_context.Images.FirstOrDefault(x=>x.Id==request.Image);        
+        var teacher=_context.Teachers.First(x=>x.Id==request.Id);                
+        teacher.Email = request.Email;
+        teacher.Password = PasswordHelper.HashPassword(request.Password);
+        teacher.Name = request.Name;
 
         
         if (request.Image is not null){
@@ -54,6 +51,6 @@ public class UpdateTeacherHandler:OperationResult,ICommandHandler<UpdateTeacherC
         teacher.SendEmail("Update Teacher Info In School",$"this is your email In School and this is your password {request.Password}");
         await _context.SaveChangesAsync(cancellationToken);
         if(request.Image is not null) image!.Url.MoveFile(image.Url.GetNewPath(FolderName.Teacher).localPath);
-        return Success("admin was updated successfully");
+        return Success("teacher was updated successfully");
     }
 }

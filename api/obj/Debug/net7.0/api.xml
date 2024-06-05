@@ -223,6 +223,12 @@
             </summary>
             <returns>return all role in pagination</returns>
         </member>
+        <member name="M:schoolmanagment.Controllers.Admin.TeacherController.GetQuezDetailStudent(Admin.Teacher.Teacher.Query.GetStudentMarkInQuez.GetStudentMarkInQuezQuery,System.Threading.CancellationToken)">
+            <summary>
+            get all student answer in specific year 
+            </summary>
+            <returns>return all role in pagination</returns>
+        </member>
         <member name="M:schoolmanagment.Controllers.Admin.TeacherController.GetAllTeacherQuez(Admin.Teacher.Teacher.Query.GetAllQuez.GetAllTeacherQuezQuery,System.Threading.CancellationToken)">
             <summary>
             get all Teacher  subject  and leson  in specific year 
@@ -238,6 +244,12 @@
         <member name="M:schoolmanagment.Controllers.Admin.TeacherController.UpdateTeacher(Admin.Teacher.Teacher.Command.Update.UpdateTeacherCommand,System.Threading.CancellationToken)">
             <summary>
             update exists Teacher info and notify him by email 
+            </summary>
+            <returns>return if the operation successed</returns>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Admin.TeacherController.UpdateStatus(Admin.Teacher.Teacher.Command.ChangeStatus.ChangeTeacherStatusCommand,System.Threading.CancellationToken)">
+            <summary>
+            update teacher status 
             </summary>
             <returns>return if the operation successed</returns>
         </member>
@@ -315,7 +327,7 @@
             Create a new question to specific quez in currect year
             </summary>
         </member>
-        <member name="M:schoolmanagment.Controllers.Teacher.QuestionController.Delete(Teacher.Quez.Command.Delete.DeleteQuezCommand,System.Threading.CancellationToken)">
+        <member name="M:schoolmanagment.Controllers.Teacher.QuestionController.Delete(Teacher.Question.Command.Delete.DeleteQuestionCommand,System.Threading.CancellationToken)">
             <summary>
             Delete a  question from specific quez 
             </summary>
@@ -340,9 +352,9 @@
             Update a  Quez To specific subject 
             </summary>
         </member>
-        <member name="M:schoolmanagment.Controllers.Teacher.QuezController.GetAll(Teacher.Quez.Query.GetAll.GetAllTeacherQuezQuery,System.Threading.CancellationToken)">
+        <member name="M:schoolmanagment.Controllers.Teacher.QuezController.GetAll(Teacher.Quez.Query.GetAllQuez.GetAllQuezQuery,System.Threading.CancellationToken)">
             <summary>
-            Get All   Quez this year 
+            Get All  Quez in specific year 
             </summary>
         </member>
         <member name="M:schoolmanagment.Controllers.Teacher.QuezController.GetFinishQuezDetail(Teacher.Quez.Query.Get.GetQuezDetailQuery,System.Threading.CancellationToken)">
@@ -355,9 +367,19 @@
             Get Student Answer Detail  
             </summary>
         </member>
+        <member name="M:schoolmanagment.Controllers.Teacher.QuezController.GetQuestion(Teacher.Quez.Query.GetQuestion.GetQuezQuestionQuery,System.Threading.CancellationToken)">
+            <summary>
+            Get Quez With Question Detail  
+            </summary>
+        </member>
         <member name="M:schoolmanagment.Controllers.Teacher.SubjectController.GetAll(Teacher.Subject.Query.GetAllAudience.GetAllAudienceQuery,System.Threading.CancellationToken)">
             <summary>
             Get All Audience Date 
+            </summary>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Teacher.SubjectController.GetAllSubjectName(Teacher.Subject.Query.GetOwned.GetAllTeacherSubjectQuery,System.Threading.CancellationToken)">
+            <summary>
+            Get All subject name 
             </summary>
         </member>
         <member name="M:schoolmanagment.Controllers.Teacher.SubjectController.GetAudienceDetail(Teacher.Subject.Query.GetAudienceDetail.GetAudienceDetailQuery,System.Threading.CancellationToken)">

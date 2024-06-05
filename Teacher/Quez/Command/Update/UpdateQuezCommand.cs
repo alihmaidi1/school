@@ -13,7 +13,7 @@ public class UpdateQuezCommand: ICommand
 
     public string Name{get;set;}
 
-    public DateTime StartAt{get;set;}
+    public DateTimeOffset StartAt{get;set;}
 
 
 }

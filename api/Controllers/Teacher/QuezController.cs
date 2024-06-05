@@ -12,6 +12,8 @@ using Teacher.Quez.Command.Delete;
 using Teacher.Quez.Command.Update;
 using Teacher.Quez.Query.Get;
 using Teacher.Quez.Query.GetAll;
+using Teacher.Quez.Query.GetAllQuez;
+using Teacher.Quez.Query.GetQuestion;
 using Teacher.Quez.Query.GetStudentAnswer;
 
 namespace schoolmanagment.Controllers.Teacher;
@@ -62,11 +64,11 @@ public class QuezController:ApiController
     }
 
     /// <summary>
-    /// Get All   Quez this year 
+    /// Get All  Quez in specific year 
     /// </summary>
     [Produces(typeof(OperationResultBase<PageList<GetAllTeacherQuezDto>>))]
     [HttpGet]
-    public async Task<IActionResult> GetAll([FromQuery] GetAllTeacherQuezQuery command,CancellationToken token)
+    public async Task<IActionResult> GetAll([FromQuery] GetAllQuezQuery command,CancellationToken token)
     {
         var response = await this.Mediator.Send(command,token);
         return response;
@@ -99,5 +101,17 @@ public class QuezController:ApiController
 
     }
 
+
+    /// <summary>
+    /// Get Quez With Question Detail  
+    /// </summary>
+    [Produces(typeof(OperationResultBase<PageList<GetQuezQuestionDetailDto>>))]
+    [HttpGet]
+    public async Task<IActionResult> GetQuestion([FromQuery] GetQuezQuestionQuery command,CancellationToken token)
+    {
+        var response = await this.Mediator.Send(command,token);
+        return response;
+
+    }
 
 }

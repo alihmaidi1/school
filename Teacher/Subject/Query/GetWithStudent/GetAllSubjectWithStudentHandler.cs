@@ -15,8 +15,8 @@ public class GetAllSubjectWithStudentHandler : OperationResult, IQueryHandler<Ge
 {
 
     private ApplicationDbContext _context;
-    private ICurrentUserService currentUserService;
-    public GetAllSubjectWithStudentHandler(ApplicationDbContext context,ICurrentUserService _currentUserService){
+    private ICurrentUserService _currentUserService;
+    public GetAllSubjectWithStudentHandler(ApplicationDbContext context,ICurrentUserService currentUserService){
 
         _currentUserService=currentUserService;
         _context=context;
@@ -27,16 +27,14 @@ public class GetAllSubjectWithStudentHandler : OperationResult, IQueryHandler<Ge
         .ClassYears
         .Where(x=>x.YearId==request.YearId)
         .SelectMany(x=>x.SubjectYears)
-        .Where(x=>x.TeacherId==currentUserService.UserId)
+        .Where(x=>x.TeacherSubject.TeacherId==_currentUserService.UserId)
         .Select(x=>new GetAllSubjectWithStudentTeacherDto{
 
-            Id=x.Teacher.Subject.Id,
-            Name=x.Teacher.Subject.Name,
+            Id=x.TeacherSubject.Subject.Id,
+            Name=x.TeacherSubject.Subject.Name,
             Students=x.StudentSubjects.Select(x=>x.Student.Name).ToList()
         })
         .ToList();
-
         return Success(StudentSubject);
-
     }
 }

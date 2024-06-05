@@ -18,7 +18,7 @@ public class QuestionFaker
 
         var Question=new Faker<Question>();
         Question.RuleFor(x=>x.Name,setter=>setter.Random.Words(1));
-        Question.RuleFor(x=>x.Answers,setter=>AnswerFaker.GetFaker().Generate(setter.Random.Int(50,100)));
+        Question.RuleFor(x=>x.Answers,setter=>AnswerFaker.GetFaker().Generate(setter.Random.Int(2,4)));
         Question.RuleFor(x=>x.Time,setter=>setter.Random.Int(60,120));
         Question.RuleFor(x=>x.Score,setter=>setter.Random.Int(1,3));
         return Question;

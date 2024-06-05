@@ -19,7 +19,6 @@ public class AdminConfigration:IEntityTypeConfiguration<Admin>
             .OnDelete(DeleteBehavior.Restrict);
 
 
-
         builder.HasMany(x => x.Vacations)
             .WithOne(x => x.Admin)
             .HasForeignKey(x => x.AdminId)

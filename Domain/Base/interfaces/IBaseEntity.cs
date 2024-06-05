@@ -12,7 +12,7 @@ public interface IBaseEntity
 
     public DateTime DateCreated { get; set; }
 
-    public DateTime? DateDeleted { get; set; }
+    public DateTimeOffset? DateDeleted { get; set; }
 
 
     public DateTime? DateUpdated { get; set; }

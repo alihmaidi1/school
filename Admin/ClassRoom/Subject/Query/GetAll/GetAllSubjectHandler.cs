@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Domain.Dto.ClassRoom.Subject;
 using infrastructure;
 using Microsoft.AspNetCore.Mvc;
@@ -23,22 +19,19 @@ public class GetAllSubjectHandler : OperationResult, ICommandHandler<GetAllSubje
     public async Task<JsonResult> Handle(GetAllSubjectCommand request, CancellationToken cancellationToken)
     {
 
+        var Subjects=_context
+        .SubjectYears
+        .Where(x=>x.ClassYear.Status)
+        .Select(x=>new GetAllSubjectDto{
 
-        return null;
-        // var Subjects=_context
-        // .Subjects
-        // .Where(x=>x.Name.Equals(request.Search??"")||x.Class.Name.Equals(request.Search??""))
-        // .Select(x=>new GetAllSubjectDto{
+            Id=x.TeacherSubject.SubjectId,
+            SubjectName=x.TeacherSubject.Subject.Name,
+            Year=x.ClassYear.Class.Name,
+            Degree=x.TeacherSubject.Subject.Degree,
+            MinDegree=x.TeacherSubject.Subject.MinDegree,
+            Status=x.TeacherSubject.Teacher==null
 
-        //     Id=x.Id,
-        //     SubjectName=x.Name,
-        //     Year=x.Class.Name,
-        //     Degree=x.Degree,
-        //     MinDegree=x.MinDegree,
-        //     Status=x.SubjectYears.Any(x=>x.Year.Date==DateTime.Now)
-
-        // }).ToPagedList(request.PageNumber,request.PageSize);
-
-        // return Success(Subjects,"this is all subject");   
+        }).ToPagedList(request.PageNumber,request.PageSize);
+        return Success(Subjects,"this is all subject ");   
     }
 }

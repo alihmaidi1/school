@@ -12,7 +12,7 @@ public class Question: BaseEntity,ISoftDelete
 
         Id=Guid.NewGuid();
 
-        Answers=new HashSet<Answer>();
+        Answers=new List<Answer>();
     }
 
 
@@ -29,7 +29,7 @@ public class Question: BaseEntity,ISoftDelete
 
     public Domain.Entities.Quez.Quez Quez{get;set;}
 
-    public ICollection<Answer> Answers{get;set;}
+    public List<Answer> Answers{get;set;}
 
 
 }

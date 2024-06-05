@@ -5,25 +5,23 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Repository.Teacher.Teacher;
 using Shared.CQRS;
-using Shared.Enum;
-using Shared.File;
 using Shared.OperationResult;
 using Shared.Services.Email;
 using Shared.Helper;
 using Shared.Constant;
+using Domain.Entities.Teacher;
+using Shared.File;
 
 namespace Admin.Teacher.Teacher.Command.Add;
 
 public class AddTeacherHandler:OperationResult,ICommandHandler<AddTeacherCommand>
 {
-    private readonly IMailService _mailService;
 
     private readonly ApplicationDbContext _context;
 
-    public AddTeacherHandler(ApplicationDbContext context,IMailService MailService,IConfiguration configuration,IWebHostEnvironment webHostEnvironment,ITeacherRepository TeacherRepository)
+    public AddTeacherHandler(ApplicationDbContext context,IConfiguration configuration,IWebHostEnvironment webHostEnvironment,ITeacherRepository TeacherRepository)
     {
 
-        _mailService = MailService;    
         _context=context;
     }
     
@@ -38,7 +36,11 @@ public class AddTeacherHandler:OperationResult,ICommandHandler<AddTeacherCommand
             Password=PasswordHelper.HashPassword(request.Password),
             Image=image.Url,
             Hash=image.Hash,
-            SubjectId=request.SubjectId
+            TeacherSubjects=request.SubjectId.Select(id=>new TeacherSubject{
+
+                SubjectId=id,                
+                
+            }).ToList()
         };
         _context.Teachers.Add(teacher);
         _context.Images.Remove(image);
@@ -46,5 +48,6 @@ public class AddTeacherHandler:OperationResult,ICommandHandler<AddTeacherCommand
         await _context.SaveChangesAsync(cancellationToken);
         image.Url.MoveFile(image.Url.GetNewPath(FolderName.Teacher).localPath);
         return Success("teacher was created successfully");
+
     }
 }

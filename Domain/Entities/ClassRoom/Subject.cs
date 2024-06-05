@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Domain.Base.Entity;
 using Domain.Base.interfaces;
+using Domain.Entities.Teacher;
 using Domain.Entities.Teacher.Teacher;
 using Shared.Entity.Entity;
 
@@ -16,7 +17,6 @@ namespace Domain.Entities.ClassRoom;
         public Subject(){
 
             Id=Guid.NewGuid();
-            Teachers=new HashSet<Teacher.Teacher.Teacher>();
         }
 
 
@@ -30,8 +30,9 @@ namespace Domain.Entities.ClassRoom;
 
         public Class Class{get;set;}
 
-        public ICollection<Teacher.Teacher.Teacher> Teachers{get;set;}
+        // public ICollection<Teacher.Teacher.Teacher> Teachers{get;set;}
 
+        public ICollection<TeacherSubject> TeacherSubjects{get;set;}
 
 
 

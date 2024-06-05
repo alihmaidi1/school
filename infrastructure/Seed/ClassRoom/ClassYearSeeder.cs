@@ -15,7 +15,7 @@ public static class ClassYearSeeder
         if(!context.ClassYears.Any()){
 
             var Years=context.Years.Select(x=>x.Id).ToList();
-            var Classes=context.Classes.Include(x=>x.Subjects).ThenInclude(x=>x.Teachers).ToList();            
+            var Classes=context.Classes.ToList();            
             var ClassYears=ClassYearFaker.GetFaker(Years,Classes).Generate(20);            
             var ActiveClassyear=ClassYears.First();
             ActiveClassyear.Status=true;

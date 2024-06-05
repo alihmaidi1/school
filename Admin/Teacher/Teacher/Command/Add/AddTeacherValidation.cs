@@ -37,7 +37,7 @@ public class AddTeacherValidation:AbstractValidator<AddTeacherCommand>
         RuleFor(x=>x.SubjectId)
         .NotEmpty()
         .NotNull()
-        .Must(id=>context.Subjects.Any());
+        .Must(ids=>context.Subjects.Where(x=>ids.Contains(x.Id)).Distinct().Count()==ids.Distinct().Count());
         
 
     }

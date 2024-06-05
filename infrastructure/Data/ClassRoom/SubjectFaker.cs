@@ -20,7 +20,6 @@ namespace infrastructure.Data.ClassRoom
             subject.RuleFor(x=>x.ClassId,setter=>setter.PickRandom(Subjects));
             subject.RuleFor(x=>x.Degree,setter=>100);
             subject.RuleFor(x=>x.MinDegree,setter=>50);
-            subject.RuleFor(x=>x.Teachers,setter=>TeacherFaker.GetBillFaker().Generate(1));
             return subject;
             
         }

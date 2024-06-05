@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Org.BouncyCastle.Asn1.X9;
 using Shared.CQRS;
 using Shared.OperationResult;
 
@@ -15,7 +14,7 @@ public class DeleteTeacherHandler : OperationResult, ICommandHandler<DeleteTeach
 {
 
 
-    ApplicationDbContext _context;
+    public ApplicationDbContext _context;
 
     public DeleteTeacherHandler(ApplicationDbContext context){
 
@@ -25,8 +24,9 @@ public class DeleteTeacherHandler : OperationResult, ICommandHandler<DeleteTeach
     public async Task<JsonResult> Handle(DeleteTeacherCommand request, CancellationToken cancellationToken)
     {
 
-        await _context.Teachers.Where(x=>x.Id==request.Id).ExecuteDeleteAsync();
-        await _context.SaveChangesAsync(cancellationToken);
+        _context.Teachers.Where(x=>x.Id==request.Id).ExecuteUpdate(setter=>setter.SetProperty(x=>x.DateDeleted,DateTimeOffset.UtcNow));        
+        _context.Vacations.Where(x=>x.TeacherId==request.Id).ExecuteUpdate(setter=>setter.SetProperty(x=>x.DateDeleted,DateTimeOffset.UtcNow));
+        _context.Warnings.Where(x=>x.TeacherId==request.Id).ExecuteUpdate(setter=>setter.SetProperty(x=>x.DateDeleted,DateTimeOffset.UtcNow));
         return Deleted();
     }
 }

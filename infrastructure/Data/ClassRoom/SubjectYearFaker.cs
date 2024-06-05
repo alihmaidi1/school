@@ -11,13 +11,13 @@ namespace infrastructure.Data.ClassRoom;
     {
 
 
-        public static Faker<SubjectYear> GetFaker(){
+        public static Faker<SubjectYear> GetFaker(List<Guid> ClassYears,List<Guid> TeacherSubjects){
 
 
             var SubjectYear =new Faker<SubjectYear>();
-            // SubjectYear.RuleFor(x=>x.YearId,setter=>setter.PickRandom(Years));
-            // SubjectYear.RuleFor(x=>x.SubjectId,setter=>setter.PickRandom(Subject));
-            // SubjectYear.RuleFor(x=>x.TeacherId,setter=>setter.PickRandom(Teachers));
+            SubjectYear.RuleFor(x=>x.ClassYearId,setter=>setter.PickRandom(ClassYears));
+            SubjectYear.RuleFor(x=>x.TeacherSubjectId,setter=>setter.PickRandom(TeacherSubjects));
+
             return SubjectYear;
         
 

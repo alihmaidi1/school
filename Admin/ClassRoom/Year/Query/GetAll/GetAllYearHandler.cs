@@ -25,7 +25,7 @@ public class GetAllYearHandler : OperationResult, IQueryHandler<GetAllYearQuery>
         var Years=_context.Years.Select(x=>new GetAllYearDto{
 
             Id=x.Id,
-            Name=x.Date.ToString()
+            Name=x.Date
         }).ToList();
 
         return Success(Years,"this is all year");

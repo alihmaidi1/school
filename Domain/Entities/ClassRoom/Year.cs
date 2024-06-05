@@ -19,7 +19,7 @@ namespace Domain.Entities.ClassRoom;
             ClassYears=new HashSet<ClassYear>();
         }
 
-        public string Date{get;set;}
+        public DateTimeOffset Date{get;set;}
 
         public ICollection<ClassYear> ClassYears{get;set;}
 

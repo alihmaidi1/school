@@ -14,24 +14,24 @@ public class AddQuezValidation: AbstractValidator<AddQuezCommand>
     public AddQuezValidation(ApplicationDbContext context,ICurrentUserService currentUserService){
 
 
-        // RuleFor(x=>x.Name)
-        // .NotEmpty()
-        // .NotNull();
+        RuleFor(x=>x.Name)
+        .NotEmpty()
+        .NotNull();
 
 
 
-        // RuleFor(x=>x.StartAt)
-        // .NotEmpty()
-        // .NotNull()
-        // .Must(startAt=>startAt>=DateTime.Now);
+        RuleFor(x=>x.StartAt)
+        .NotEmpty()
+        .NotNull()
+        .Must(startAt=>startAt>=DateTimeOffset.UtcNow);
 
 
-        // RuleFor(x=>x.SubjectId)
-        // .NotEmpty()
-        // .NotNull()
-        // .Must(id=>context.SubjectYears.Any(x=>x.SubjectId==id&& x.TeacherId==currentUserService.UserId&&x.Year.Date.Year==DateTime.Now.Year))
-        // .WithMessage("this subject is not belongs to this teacher in this year");
-    
+        RuleFor(x=>x.SubjectId)
+        .NotNull()
+        .NotEmpty()
+        .Must(id=>context.SubjectYears.Any(x=>x.ClassYear.Status&&x.TeacherSubject.SubjectId==id&&x.TeacherSubject.TeacherId==currentUserService.UserId))
+        .WithMessage("this subject is not exists or in active year");
+
     }
 
 }

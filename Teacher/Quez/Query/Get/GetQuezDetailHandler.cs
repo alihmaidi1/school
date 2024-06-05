@@ -8,6 +8,7 @@ using Domain.Entities.Quez;
 using Dto.Quez;
 using infrastructure;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Shared.OperationResult;
 
 namespace Teacher.Quez.Query.Get;
@@ -24,21 +25,22 @@ public class GetQuezDetailHandler : OperationResult, IQueryHandler<GetQuezDetail
     public async Task<JsonResult> Handle(GetQuezDetailQuery request, CancellationToken cancellationToken)
     {
 
-        
+     
         var StudentsAnswers=_context
         .Quezs
+        .AsNoTracking()
         .Where(x=>x.Id==request.Id)
         .Select(x=>new GetFinishQuezDetailDto{
 
             Id=x.Id,
             Name=x.Name,
-            StartAt=x.StartAt.ToString(),
+            StartAt=x.StartAt,
             Students=x.StudentQuezs.Select(y=>new GetFinishQuezDetailDto.Student{
 
-                Id=y.StudentSubject.StudentId,
-                Name=y.StudentSubject.Student.Name,
-                Image=y.StudentSubject.Student.Image,
-                Hash=y.StudentSubject.Student.Hash,
+                Id=y.StudentId,
+                Name=y.Student.Name,
+                Image=y.Student.Image,
+                Hash=y.Student.Hash,
                 Precent=(y.StudentAnswers.Count(x=>x.Answer.IsCorrect)/x.Questions.Count())
 
             }).ToList()

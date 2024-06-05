@@ -1,5 +1,6 @@
 using Admin.Manager.Role.Command.Add;
 using Admin.Teacher.Teacher.Command.Add;
+using Admin.Teacher.Teacher.Command.ChangeStatus;
 using Admin.Teacher.Teacher.Command.Delete;
 using Admin.Teacher.Teacher.Command.Update;
 using Admin.Teacher.Teacher.Query.GetAll;
@@ -8,10 +9,12 @@ using Admin.Teacher.Teacher.Query.GetAllQuez;
 using Admin.Teacher.Teacher.Query.GetAllSubjectAndStudent;
 using Admin.Teacher.Teacher.Query.GetAllTeacherStudentSubject;
 using Admin.Teacher.Teacher.Query.GetAllTeacherYear;
+using Admin.Teacher.Teacher.Query.GetStudentMarkInQuez;
 using Domain.Dto.ClassRoom;
 using Domain.Dto.Teacher;
 using Domain.Enum;
 using Dto.Admin.Teacher;
+using Dto.Quez;
 using infrastructure.Attribute;
 using Microsoft.AspNetCore.Mvc;
 using schoolManagement.Base;
@@ -108,6 +111,21 @@ public class TeacherController:ApiController
 
 
     /// <summary>
+    /// get all student answer in specific year 
+    /// </summary>
+    /// <returns>return all role in pagination</returns>
+    [Produces(typeof(OperationResultBase<GetFinishQuezDetailDto>))]
+   
+    [HttpGet]
+    public async Task<IActionResult> GetQuezDetailStudent([FromQuery] GetStudentMarkInQuezQuery request,CancellationToken Token)
+    {
+        var response = await this.Mediator.Send(request,Token);
+        return response;
+
+    }
+
+
+    /// <summary>
     /// get all Teacher  subject  and leson  in specific year 
     /// </summary>
     /// <returns>return all role in pagination</returns>
@@ -145,6 +163,20 @@ public class TeacherController:ApiController
     
     [HttpPut]
     public async Task<IActionResult> UpdateTeacher([FromBody] UpdateTeacherCommand request,CancellationToken Token)
+    {
+        var response = await this.Mediator.Send(request,Token);
+        return response;
+    }
+
+
+    /// <summary>
+    /// update teacher status 
+    /// </summary>
+    /// <returns>return if the operation successed</returns>
+   
+    
+    [HttpPut]
+    public async Task<IActionResult> UpdateStatus([FromBody] ChangeTeacherStatusCommand request,CancellationToken Token)
     {
         var response = await this.Mediator.Send(request,Token);
         return response;

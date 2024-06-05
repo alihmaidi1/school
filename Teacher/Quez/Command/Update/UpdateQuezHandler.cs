@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Domain.Entities.Quez;
 using infrastructure;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Shared.CQRS;
 using Shared.OperationResult;
 
@@ -23,15 +24,15 @@ public class UpdateQuezHandler : OperationResult,ICommandHandler<UpdateQuezComma
     public  async Task<JsonResult> Handle(UpdateQuezCommand request, CancellationToken cancellationToken)
     {
 
-        var Quez=new Domain.Entities.Quez.Quez(){
 
-            Id=request.Id,
-            Name=request.Name,
-            StartAt=request.StartAt
-        };
+        await _context
+        .Quezs
+        .Where(x=>x.Id==request.Id)
+        .ExecuteUpdateAsync(setter=>
+            setter.SetProperty(x=>x.Name,request.Name)
+                  .SetProperty(x=>x.StartAt,request.StartAt),
+        cancellationToken);
 
-        _context.Quezs.Update(Quez);
-        await _context.SaveChangesAsync(cancellationToken);
         return Success("updated successfully");
     }
 }

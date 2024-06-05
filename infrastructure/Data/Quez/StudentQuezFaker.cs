@@ -11,11 +11,11 @@ public class StudentQuezFaker
 {
 
 
-    public static Faker<StudentQuez> GetFaker(List<Guid> StudentSubjects)
+    public static Faker<StudentQuez> GetFaker(List<Guid> Students)
     {
 
         var StudentQuez=new Faker<StudentQuez>();
-        StudentQuez.RuleFor(x=>x.StudentSubjectId,setter=>setter.PickRandom(StudentSubjects));
+        StudentQuez.RuleFor(x=>x.StudentId,setter=>setter.PickRandom(Students));
         return StudentQuez;
 
    }

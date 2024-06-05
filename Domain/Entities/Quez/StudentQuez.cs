@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Domain.Base.Entity;
 using Domain.Base.interfaces;
+using Domain.Entities.Student.Student;
 using Domain.Entities.Student.StudentSubject;
 using Shared.Entity.Entity;
 
@@ -21,13 +22,15 @@ public class StudentQuez: BaseEntity,ISoftDelete
     }
 
 
-    public Guid StudentSubjectId{get;set;}
+    
+    public Guid StudentId{get;set;}
+
+    public Student.Student.Student Student{get;set;}
 
     public Guid QuezId{get;set;}
 
     public Quez Quez{get;set;}
 
-    public StudentSubject StudentSubject{get;set;}
 
 
     public ICollection<StudentAnswer> StudentAnswers{get;set;}

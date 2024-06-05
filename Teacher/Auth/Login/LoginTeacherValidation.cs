@@ -24,6 +24,10 @@ public class LoginTeacherValidation: AbstractValidator<LoginTeacherCommand>
         .NotEmpty()
         .NotNull();
 
+        RuleFor(x=>x.FcmToken)
+        .NotEmpty()
+        .NotNull();
+
     }
 
 }

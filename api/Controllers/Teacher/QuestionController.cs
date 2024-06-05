@@ -8,6 +8,7 @@ using schoolManagement.Base;
 using Shared.OperationResult.Base;
 using Shared.Swagger;
 using Teacher.Question.Command.Add;
+using Teacher.Question.Command.Delete;
 using Teacher.Question.Command.Update;
 using Teacher.Quez.Command.Delete;
 
@@ -37,7 +38,7 @@ public class QuestionController: ApiController
     /// </summary>
     [Produces(typeof(OperationResultBase<Boolean>))]
     [HttpDelete]
-    public async Task<IActionResult> Delete([FromQuery] DeleteQuezCommand command,CancellationToken token)
+    public async Task<IActionResult> Delete([FromQuery] DeleteQuestionCommand command,CancellationToken token)
     {
         var response = await this.Mediator.Send(command,token);
         return response;
@@ -49,7 +50,7 @@ public class QuestionController: ApiController
     /// Update a  question To specific quez 
     /// </summary>
     [Produces(typeof(OperationResultBase<Boolean>))]
-    [HttpDelete]
+    [HttpPut]
     public async Task<IActionResult> Update([FromForm] UpdateQuestionCommand command,CancellationToken token)
     {
         var response = await this.Mediator.Send(command,token);

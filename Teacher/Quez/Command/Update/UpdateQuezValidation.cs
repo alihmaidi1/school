@@ -16,7 +16,7 @@ public class UpdateQuezValidation: AbstractValidator<UpdateQuezCommand>
         RuleFor(x=>x.Id)
         .NotEmpty()
         .NotNull()
-        .Must(id=>context.Quezs.Any(x=>x.Id==id&&x.IsPending()))
+        .Must(id=>context.Quezs.Any(x=>x.Id==id&&x.StartAt<DateTimeOffset.UtcNow))
         .WithMessage("this quez is not exists or it is active or finished");
 
         RuleFor(x=>x.Name)
@@ -26,7 +26,7 @@ public class UpdateQuezValidation: AbstractValidator<UpdateQuezCommand>
         RuleFor(x=>x.StartAt)
         .NotEmpty()
         .NotNull()
-        .GreaterThan(DateTime.Now);
+        .GreaterThan(DateTimeOffset.UtcNow);
 
     }
 

@@ -18,12 +18,12 @@ public static class DatabaseSeed
         // context.Database.EnsureDeleted();
         
         // context.Database.EnsureCreated();
-        // var pendingMigration = await context.Database.GetPendingMigrationsAsync();
-        // if (!pendingMigration.Any())
-        // {
-        //     await context.Database.MigrateAsync();
+        var pendingMigration = await context.Database.GetPendingMigrationsAsync();
+        if (!pendingMigration.Any())
+        {
+            await context.Database.MigrateAsync();
             
-        // }
+        }
         var transaction = await context.Database.BeginTransactionAsync();
 
         try
@@ -36,14 +36,20 @@ public static class DatabaseSeed
             await YearSeeder.SeedData(context);
             await StageSeeder.SeedData(context);
             await SubjectSeeder.SeedData(context);
+            await TeacherSeeder.seedData(context);
+            await VacationTypeSeeder.seedData(context);
             await VacationSeeder.seedData(context);
             await WarningSeed.seedData(context);
             await ParentSeed.seedData(context);
             await StudentSeed.seedData(context);
+            await TeacherSubjectSeeder.SeedData(context);
+
+
             await ClassYearSeeder.SeedData(context);
+            await SubjectYearSeeder.SeedData(context);
             await StudentSubjectSeeder.seedData(context);
             await LesonSeeder.SeedData(context);
-            await QuezSeeder.seedData(context);
+            await QuezSeeder.seedData(context);            
             // await StudentAnswerSeeder.seedData(context);
 
 

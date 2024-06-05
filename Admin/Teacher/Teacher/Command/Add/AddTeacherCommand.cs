@@ -15,7 +15,8 @@ public class AddTeacherCommand:ICommand
 
     public Guid Image { get; set; }
 
-    public Guid SubjectId{get;set;}
-    
+    public List<Guid> SubjectId{get;set;}
+
+
     
 }

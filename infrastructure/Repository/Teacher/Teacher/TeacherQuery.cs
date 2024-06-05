@@ -16,8 +16,8 @@ public static class TeacherQuery
             Image = Teacher.Image,
             Hash = Teacher.Hash,
             Status=Teacher.Status,
-            Subject=Teacher.Subject.Name,
-            StudentNumber=Teacher.SubjectYears.SelectMany(x=>x.StudentSubjects).Select(x=>x.StudentId).Distinct().Count()            
+            StudentNumber=Teacher.TeacherSubjects.SelectMany(x=>x.SubjectYears.Where(x=>x.ClassYear.Status)).SelectMany(x=>x.StudentSubjects).Distinct().Count(),
+            SubjectNumber=Teacher.TeacherSubjects.Count()            
 
         };
 

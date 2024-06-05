@@ -17,7 +17,6 @@ public class StudentSubject: BaseEntity,ISoftDelete
     public StudentSubject(){
 
         Id=Guid.NewGuid();
-        StudentQuezs=new HashSet<StudentQuez>();
 
     }
 
@@ -33,6 +32,5 @@ public class StudentSubject: BaseEntity,ISoftDelete
 
     public float? Mark{get;set;}
 
-    public ICollection<StudentQuez> StudentQuezs{get;set;}
 
 }
