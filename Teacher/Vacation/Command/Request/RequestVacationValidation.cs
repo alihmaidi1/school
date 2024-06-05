@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FluentValidation;
+using infrastructure;
 
 namespace Teacher.Vacation.Command.Request;
 
 public class RequestVacationValidation: AbstractValidator<RequestVacationCommand>
 {
 
-    public RequestVacationValidation(){
+    public RequestVacationValidation(ApplicationDbContext context){
+
 
 
         RuleFor(x=>x.Reason)
@@ -19,10 +21,15 @@ public class RequestVacationValidation: AbstractValidator<RequestVacationCommand
         RuleFor(x=>x.StartAt)
         .NotEmpty()
         .NotNull()
-        .GreaterThan(DateTime.Now);
+        .GreaterThan(DateTimeOffset.UtcNow);
 
-        RuleFor(x=>x.type)
-        .IsInEnum();
+
+        RuleFor(x=>x.TypeId)
+        .NotEmpty()
+        .NotNull()
+        .Must(id=>context.VacationTypes.Any(x=>x.Id==id))
+        .WithMessage("id is not exists in our data");
+
 
         RuleFor(x=>x.Period)
         .NotEmpty()

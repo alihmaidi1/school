@@ -6,7 +6,7 @@ namespace infrastructure.Data.Teacher;
 
 public static class VacationFaker
 {
-    public static Faker<Vacation> GetVacationFaker(List<Domain.Entities.Teacher.Teacher.Teacher> teachers,List<Admin> managers)
+    public static Faker<Vacation> GetVacationFaker(List<Domain.Entities.Teacher.Teacher.Teacher> teachers,List<Admin> managers,List<Guid> VacationTypes)
     {
 
 
@@ -17,7 +17,7 @@ public static class VacationFaker
         Vacation.RuleFor(x => x.TeacherId, setter => setter.PickRandom(teachers).Id);
         Vacation.RuleFor(x => x.AdminId, setter => setter.PickRandom(managers).Id);
         Vacation.RuleFor(x => x.Status, setter => setter.Random.Bool());
-        
+        Vacation.RuleFor(x=>x.TypeId,setter=>setter.PickRandom(VacationTypes));
         return Vacation;
 
         

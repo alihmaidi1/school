@@ -6,6 +6,7 @@ using schoolManagement.Base;
 using Shared.OperationResult.Base;
 using Shared.Swagger;
 using Teacher.Vacation.Command.Request;
+using Teacher.Vacation.Query.GetAllVacationType;
 
 namespace schoolmanagment.Controllers.Teacher;
 
@@ -18,17 +19,17 @@ public class VacationController:ApiController
 {
     
 
-    // /// <summary>
-    // /// Get All Teacher Vacation
-    // /// </summary>
-    // [Produces(typeof(OperationResultBase<Boolean>))]
-    // [HttpPost]
-    // public async Task<IActionResult> GetAllTeacher([FromBody] AddVacationCommand request,CancellationToken Token)
-    // {
-    //     var response = await this.Mediator.Send(request,Token);
-    //     return response;
+    /// <summary>
+    /// Get All Vacation Type
+    /// </summary>
+    [Produces(typeof(OperationResultBase<Boolean>))]
+    [HttpPost]
+    public async Task<IActionResult> GetAllVacationTypes(CancellationToken Token)
+    {
+        var response = await this.Mediator.Send(new GetAllVacationTypeQuery(),Token);
+        return response;
 
-    // }
+    }
 
 
 

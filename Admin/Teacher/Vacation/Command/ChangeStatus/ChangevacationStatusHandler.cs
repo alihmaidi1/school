@@ -32,8 +32,6 @@ public class ChangevacationStatusHandler:OperationResult,ICommandHandler<ChnageV
     {
 
         await _context.Vacations.Where(x=>x.Id==request.Id).ExecuteUpdateAsync(setter=>setter.SetProperty(x=>x.Status,request.Status).SetProperty(x=>x.AdminId,_currentUserService.UserId),cancellationToken);
-        await _context.SaveChangesAsync(cancellationToken);
-        // // send notification to teacher
         return Success("status was updated successfully");
 
 

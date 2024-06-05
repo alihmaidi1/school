@@ -265,6 +265,24 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:schoolmanagment.Controllers.Admin.VacationController.AddVacationType(Admin.Teacher.VacationType.Command.Add.AddVacationTypeCommand,System.Threading.CancellationToken)">
+            <summary>
+            Add a new Vacation Type  
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Admin.VacationController.GetAllVacationTypes(Admin.Teacher.VacationType.Query.GetAll.GetAllVacationTypeQuery,System.Threading.CancellationToken)">
+            <summary>
+            Get All Vacation Type  
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Admin.VacationController.DeleteVacationType(Admin.Teacher.VacationType.Command.Delete.DeleteVacationTypeCommand,System.Threading.CancellationToken)">
+            <summary>
+            Delete Vacation Type  
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:schoolmanagment.Controllers.Admin.YearController.GetAllYear(System.Threading.CancellationToken)">
             <summary>
             get all year 
@@ -396,6 +414,11 @@
         <member name="M:schoolmanagment.Controllers.Teacher.SubjectController.GetAllSubjectAndStudent(Teacher.Subject.Query.GetWithStudent.GetAllSubjectWithStudentQuery,System.Threading.CancellationToken)">
             <summary>
             Get All Audience Detail 
+            </summary>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Teacher.VacationController.GetAllVacationTypes(System.Threading.CancellationToken)">
+            <summary>
+            Get All Vacation Type
             </summary>
         </member>
         <member name="M:schoolmanagment.Controllers.Teacher.VacationController.Add(Teacher.Vacation.Command.Request.RequestVacationCommand,System.Threading.CancellationToken)">

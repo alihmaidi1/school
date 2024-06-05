@@ -16,7 +16,8 @@ public static class VacationSeeder
 
             List<Domain.Entities.Teacher.Teacher.Teacher> teachers = context.Teachers.ToList();
             List<Admin> managers = context.Admins.ToList();
-            List<Vacation> vacations = VacationFaker.GetVacationFaker(teachers,managers).Generate(10);
+            var VacationTypes=context.VacationTypes.Select(x=>x.Id).ToList();
+            List<Vacation> vacations = VacationFaker.GetVacationFaker(teachers,managers,VacationTypes).Generate(10);
             context.AddRange(vacations);
             context.SaveChanges();
         }

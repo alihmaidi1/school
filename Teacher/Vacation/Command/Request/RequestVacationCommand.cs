@@ -12,9 +12,9 @@ public class RequestVacationCommand: ICommand
 
     public string Reason{get;set;}
 
-    public DateTime StartAt{get;set;}
+    public DateTimeOffset StartAt{get;set;}
 
-    public VacationType type{get;set;}
+    public Guid TypeId{get;set;}
 
     public int Period{get;set;}
 

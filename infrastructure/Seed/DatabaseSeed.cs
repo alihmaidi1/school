@@ -15,9 +15,9 @@ public static class DatabaseSeed
     public static async Task InitializeAsync(IServiceProvider services)
     {
         var context = services.GetRequiredService<ApplicationDbContext>();
-        // context.Database.EnsureDeleted();
+        context.Database.EnsureDeleted();
         
-        // context.Database.EnsureCreated();
+        context.Database.EnsureCreated();
         var pendingMigration = await context.Database.GetPendingMigrationsAsync();
         if (!pendingMigration.Any())
         {

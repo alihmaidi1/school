@@ -16,8 +16,7 @@ public class ChangeVacationStatusValidation:AbstractValidator<ChnageVacationStat
             .NotNull()
             .Must(id => context.Vacations.Any(x=>x.Id==id))
             .WithMessage("this id is not exists in our data");
-        //
-        //
+
         RuleFor(x => x.Status)
             .NotNull();
 

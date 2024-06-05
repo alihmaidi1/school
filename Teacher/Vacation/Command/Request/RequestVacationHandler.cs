@@ -29,12 +29,12 @@ public class RequestVacationHandler : OperationResult, ICommandHandler<RequestVa
             Reason=request.Reason,
             Days=request.Period,            
             Date=request.StartAt,
-            TeacherId=(Guid)_currentUserService.UserId!
+            TeacherId=_currentUserService.UserId!.Value,
+            TypeId=request.TypeId
 
 
         };
-
-        _context.Vacations.Add(Vacation);
+        await _context.Vacations.AddAsync(Vacation);
         await _context.SaveChangesAsync(cancellationToken);
 
         return Success("vacation was sended to admin successfully");
