@@ -85,7 +85,7 @@ public class ParentController:ApiController
     /// </summary>
     /// <returns>return all role in pagination</returns>
     
-    [HttpDelete]
+    [HttpPut]
     public async Task<IActionResult> UpdateParent([FromQuery] UpdateParentCommand command,CancellationToken Token)
     {
         var response = await this.Mediator.Send(command,Token);

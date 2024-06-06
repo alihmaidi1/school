@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Domain.Entities.ClassRoom;
 using infrastructure.Data.ClassRoom;
 
 namespace infrastructure.Seed.ClassRoom;
@@ -17,8 +18,13 @@ public static class LesonSeeder
 
 
             var SubjectYear=context.SubjectYears.Select(x=>x.Id).ToList();
+            var Lesons=new List<Leson>();
+            SubjectYear.ForEach(x=>{
 
-            var Lesons=LesonFaker.GetFaker(SubjectYear).Generate(100);
+                Lesons.AddRange(LesonFaker.GetFaker(x).Generate(4));
+                
+            });
+
             context.Lesons.AddRange(Lesons);
             context.SaveChanges();
         }

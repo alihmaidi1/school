@@ -15,6 +15,8 @@ public class GetAllNotificationDto
 
     public string Body{get;set;}
 
+    public DateTimeOffset Date{get;set;}
+
     public Dictionary<string,string> Data{get;set;}
 
 }

@@ -13,6 +13,7 @@ using Teacher.Quez.Command.Update;
 using Teacher.Quez.Query.Get;
 using Teacher.Quez.Query.GetAll;
 using Teacher.Quez.Query.GetAllQuez;
+using Teacher.Quez.Query.GetAllQuezWithQuestionAndAnswer;
 using Teacher.Quez.Query.GetQuestion;
 using Teacher.Quez.Query.GetStudentAnswer;
 
@@ -108,6 +109,19 @@ public class QuezController:ApiController
     [Produces(typeof(OperationResultBase<PageList<GetQuezQuestionDetailDto>>))]
     [HttpGet]
     public async Task<IActionResult> GetQuestion([FromQuery] GetQuezQuestionQuery command,CancellationToken token)
+    {
+        var response = await this.Mediator.Send(command,token);
+        return response;
+
+    }
+
+
+    /// <summary>
+    /// Get Quez With Question Detail and Answer  
+    /// </summary>
+    [Produces(typeof(OperationResultBase<GetQuezwithQuestionAndDetailDto>))]
+    [HttpGet]
+    public async Task<IActionResult> GetQuezDetailWithQuestionAndAnswer([FromQuery] GetQuezWithQuestionAndAnswerQuery command,CancellationToken token)
     {
         var response = await this.Mediator.Send(command,token);
         return response;

@@ -49,7 +49,19 @@
             Refresh Admin token and refresh token  for use at one time
             </summary>
         </member>
-        <member name="M:schoolmanagment.Controllers.Admin.NotificationController.GetAllStudentByParent(Admin.Notification.Query.ReadAll.ReadAllAdminNotificationCommand,System.Threading.CancellationToken)">
+        <member name="M:schoolmanagment.Controllers.Admin.ClassController.GetAll(Admin.ClassRoom.Class.Query.GetFinalResultQuery,System.Threading.CancellationToken)">
+            <summary>
+            get Final Result for class in specific year 
+            </summary>
+            <returns>return all role in pagination</returns>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Admin.ClassController.GetAllStageWithClasses(Admin.ClassRoom.Class.Query.GetAllStageWithClasses.GetAllStageWithClassesQuery,System.Threading.CancellationToken)">
+            <summary>
+            get All Stage With Classes 
+            </summary>
+            <returns>return all role in pagination</returns>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Admin.NotificationController.GetAllNotification(Admin.Notification.Query.ReadAll.ReadAllAdminNotificationCommand,System.Threading.CancellationToken)">
             <summary>
             get all Notification  
             </summary>
@@ -169,6 +181,18 @@
             </summary>
             <returns>return all role in pagination</returns>
         </member>
+        <member name="M:schoolmanagment.Controllers.Admin.StudentController.GetAll(Admin.Student.Student.Query.GetAll.GetAllStudentQuery,System.Threading.CancellationToken)">
+            <summary>
+            get all student  
+            </summary>
+            <returns>return all role in pagination</returns>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Admin.StudentController.GetAllInstallment(Admin.Student.Student.Query.GetAllInstallment.GetAllInstallmentQuery,System.Threading.CancellationToken)">
+            <summary>
+            get all student installment  
+            </summary>
+            <returns>return all role in pagination</returns>
+        </member>
         <member name="M:schoolmanagment.Controllers.Admin.SubjectController.GetAllTeacher(Admin.ClassRoom.Subject.Query.GetAll.GetAllSubjectCommand,System.Threading.CancellationToken)">
             <summary>
             get all Subject with Status  in this year 
@@ -226,6 +250,18 @@
         <member name="M:schoolmanagment.Controllers.Admin.TeacherController.GetQuezDetailStudent(Admin.Teacher.Teacher.Query.GetStudentMarkInQuez.GetStudentMarkInQuezQuery,System.Threading.CancellationToken)">
             <summary>
             get all student answer in specific year 
+            </summary>
+            <returns>return all role in pagination</returns>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Admin.TeacherController.GetQuezDetailWithQuestionAndAnswer(Admin.Teacher.Teacher.Query.GetStudentMarkInQuez.GetStudentMarkInQuezQuery,System.Threading.CancellationToken)">
+            <summary>
+            get quez detail with question and answer  
+            </summary>
+            <returns>return all role in pagination</returns>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Admin.TeacherController.GetQuezDetailWithStudentAnswer(Admin.Teacher.Teacher.Query.GetAllStudentAnswerInQuez.GetAllStudentAnswerInQuezQuery,System.Threading.CancellationToken)">
+            <summary>
+            get quez detail with student answer  
             </summary>
             <returns>return all role in pagination</returns>
         </member>
@@ -388,6 +424,11 @@
         <member name="M:schoolmanagment.Controllers.Teacher.QuezController.GetQuestion(Teacher.Quez.Query.GetQuestion.GetQuezQuestionQuery,System.Threading.CancellationToken)">
             <summary>
             Get Quez With Question Detail  
+            </summary>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Teacher.QuezController.GetQuezDetailWithQuestionAndAnswer(Teacher.Quez.Query.GetAllQuezWithQuestionAndAnswer.GetQuezWithQuestionAndAnswerQuery,System.Threading.CancellationToken)">
+            <summary>
+            Get Quez With Question Detail and Answer  
             </summary>
         </member>
         <member name="M:schoolmanagment.Controllers.Teacher.SubjectController.GetAll(Teacher.Subject.Query.GetAllAudience.GetAllAudienceQuery,System.Threading.CancellationToken)">

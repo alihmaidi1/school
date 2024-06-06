@@ -10,7 +10,7 @@ public class GetAllInstallmentDto
 
     public Guid Id{get;set;}
 
-    public string Year{get;set;}
+    public DateTimeOffset Year{get;set;}
     public string Name{get;set;}
 
 

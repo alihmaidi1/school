@@ -18,6 +18,7 @@ public class StudentSubjectSeeder
 
             var Students=context.Students.Select(x=>x.Id).ToList();
             var SubjectYears=context.SubjectYears.Select(x=>x.Id).ToList();
+            
             var StudentSubject=StudentSubjectFaker.GetFaker(Students,SubjectYears).Generate(100).DistinctBy(x=>new {x.StudentId,x.SubjectYearId});
             context.StudentSubjects.AddRange(StudentSubject);
             context.SaveChanges();

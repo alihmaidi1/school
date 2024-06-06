@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Domain.Entities.ClassRoom;
 using infrastructure.Data.ClassRoom;
 
 namespace infrastructure.Seed.ClassRoom;
@@ -16,8 +17,13 @@ namespace infrastructure.Seed.ClassRoom;
                 if(!context.Subjects.Any()){
 
                     var classIds=context.Classes.Select(x=>x.Id).ToList();
-                    var Subject=SubjectFaker.GetFaker(classIds).Generate(20);
-                    context.Subjects.AddRange(Subject);
+                    var Subjects=new List<Subject>();
+                    classIds.ForEach(x=>{
+
+                        Subjects.AddRange(SubjectFaker.GetFaker(x).Generate(8));
+
+                    }); 
+                    context.Subjects.AddRange(Subjects);
                     context.SaveChanges();
                 }
 

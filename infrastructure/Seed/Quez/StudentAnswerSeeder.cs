@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Domain.Entities.Quez;
 using Dto.Quez;
 using infrastructure.Data.Quez;
 using Microsoft.EntityFrameworkCore;
@@ -16,19 +17,35 @@ public class StudentAnswerSeeder
 
         if(!context.StudentAnswers.Any()){
 
-            
-            // var Quez=context
-            // .StudentQuezs
-            // .Include(x=>x.Questions)
-            // .ThenInclude(x=>x.Answers)
-            // .Select(x=>new GetQuezWithAnswerIds{
-            //     Id=x.Id,
-            //     Answers=x.Questions.SelectMany(y=>y.Answers.Select(z=>z.Id).ToList()).ToList()
-            //     })
-            // .ToList();
+            List<StudentAnswer> StudentAnswers=new List<StudentAnswer>();
+            var Quez=context
+            .StudentQuezs
+            .Where(x=>x.Quez.StartAt>DateTimeOffset.UtcNow)
+            .Select(x=>new {
+
+                Id=x.Id,
+                Answer=x.Quez.Questions.Select(x=>x.Answers).ToList()
+            }).ToList();
+
+            Quez.ForEach(x=>{
+
+
+                StudentAnswers.AddRange(
+                    x
+                    .Answer
+                    .Select(y=>new StudentAnswer{
+                        StudentQuizId=x.Id,
+                        AnswerId=y.OrderBy(z=>Guid.NewGuid()).First().Id
+                    
+                    })
+                    .ToList()
+                );
+
+            });
 
             // var StudentAnswer=StudentAnswerFaker.GetFaker(Quez).Generate(100).DistinctBy(x=>new {x.StudentQuizId,x.AnswerId});
-            // context.SaveChanges();
+            context.StudentAnswers.AddRange(StudentAnswers);
+            context.SaveChanges();
         }
 
 

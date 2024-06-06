@@ -10,13 +10,13 @@ namespace infrastructure.Data.ClassRoom;
 public class LesonFaker
 {
 
-    public static Faker<Leson> GetFaker(List<Guid> SubjectYears){
+    public static Faker<Leson> GetFaker(Guid SubjectYears){
 
         var Leson=new Faker<Leson>();
 
         Leson.RuleFor(x=>x.Name,setter=>setter.Random.Words(1));
         Leson.RuleFor(x=>x.Url,setter=>setter.System.FilePath());
-        Leson.RuleFor(x=>x.SubjectYearId,setter=>setter.PickRandom(SubjectYears));
+        Leson.RuleFor(x=>x.SubjectYearId,setter=>SubjectYears);
         return Leson;
         
 

@@ -22,21 +22,21 @@ public class GetSubjectDetailHandler : OperationResult, IQueryHandler<GetSubject
     }
     public async Task<JsonResult> Handle(GetSubjectDetailQuery request, CancellationToken cancellationToken)
     {
-        // var Subject=_context
-        // .SubjectYears
-        // .Where(x=>x.YearId==request.YearId)
-        // .Select(x=>new GetSubjectDetailDto{
+        var Subject=_context
+        .SubjectYears
+        .Where(x=>x.ClassYear.YearId==request.YearId)
+        .Select(x=>new GetSubjectDetailDto{
 
-        //     Id=x.Subject.Id,
-        //     Name=x.Subject.Name,
-        //     Degree=x.Subject.Degree,
-        //     MinDegree=x.Subject.MinDegree,
-        //     StudentNumber=x.StudentSubjects.Count()
+            Id=x.TeacherSubject.Subject.Id,
+            Name=x.TeacherSubject.Subject.Name,
+            Degree=x.TeacherSubject.Subject.Degree,
+            MinDegree=x.TeacherSubject.Subject.MinDegree,
+            StudentNumber=x.StudentSubjects.Count()
             
-        // })
-        // .First();
+        })
+        .First();
 
-        // return Success(Subject,"this is subject info");
-        return null;
+        return Success(Subject,"this is subject info");
+        
     }
 }

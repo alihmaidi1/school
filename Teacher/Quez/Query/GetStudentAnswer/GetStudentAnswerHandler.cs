@@ -23,36 +23,35 @@ public class GetStudentAnswerHandler : OperationResult, IQueryHandler<GetStudent
     public async Task<JsonResult> Handle(GetStudentAnswerQuery request, CancellationToken cancellationToken)
     {
 
-        // var Answers=_context
-        // .StudentSubjects
-        // .AsNoTracking()
-        // .Where(x=>x.StudentId==request.StudentId)
-        // // .SelectMany(x=>x.StudentQuezs)
-        // .Select(x=>new StudentAnswerDto{
+        var Answers=_context
+        .StudentQuezs
+        .AsNoTracking()
+        .Where(x=>x.StudentId==request.StudentId)
+        // .SelectMany(x=>x.StudentQuezs)
+        .Select(x=>new StudentAnswerDto{
 
-        //     Id=x.Quez.Id,
-        //     Name=x.Quez.Name,
-        //     StartAt=x.Quez.StartAt.ToString(),
-        //     Questions=x.StudentAnswers.Select(y=>new StudentAnswerDto.Question{
+            Id=x.Quez.Id,
+            Name=x.Quez.Name,
+            StartAt=x.Quez.StartAt.ToString(),
+            Questions=x.StudentAnswers.Select(y=>new StudentAnswerDto.Question{
 
-        //         Id=y.Answer.Question.Id,
-        //         Name=y.Answer.Question.Name,
-        //         Image=y.Answer.Question.Image,
-        //         Answers=y.Answer.Question.Answers.Select(z=>new StudentAnswerDto.Answer{
+                Id=y.Answer.Question.Id,
+                Name=y.Answer.Question.Name,
+                Image=y.Answer.Question.Image,
+                Answers=y.Answer.Question.Answers.Select(z=>new StudentAnswerDto.Answer{
 
-        //             Id=z.Id,
-        //             Name=z.Name,
-        //             IsCorrect=z.IsCorrect,
-        //             IsSelect=z.Id==y.AnswerId
+                    Id=z.Id,
+                    Name=z.Name,
+                    IsCorrect=z.IsCorrect,
+                    IsSelect=z.Id==y.AnswerId
 
-        //         }).ToList()
+                }).ToList()
 
 
-        //     }).ToList()
+            }).ToList()
 
-        // }).ToList();
+        }).ToList();
         
-        return null;
-        // return Success(Answers,"this is student answer");
+        return Success(Answers,"this is student answer");
     }
 }

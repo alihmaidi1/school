@@ -12,4 +12,7 @@ public class GetSubjectDetailQuery: IQuery
     public Guid YearId{get;set;}
 
 
+    public Guid SubjectId{get;set;}
+
+
 }

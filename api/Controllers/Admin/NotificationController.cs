@@ -29,7 +29,7 @@ public class NotificationController: ApiController
     /// <returns>return all role in pagination</returns>
     [Produces(typeof(OperationResultBase<PageList<GetAllNotificationDto>>))]   
     [HttpGet]
-    public async Task<IActionResult> GetAllStudentByParent([FromQuery] ReadAllAdminNotificationCommand command,CancellationToken Token)
+    public async Task<IActionResult> GetAllNotification([FromQuery] ReadAllAdminNotificationCommand command,CancellationToken Token)
     {
         var response = await this.Mediator.Send(command,Token);
         return response;

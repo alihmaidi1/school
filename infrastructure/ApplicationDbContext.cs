@@ -10,6 +10,7 @@ using Domain.Entities.Quez;
 using Domain.Entities.Role;
 using Domain.Entities.Student.Parent;
 using Domain.Entities.Student.Student;
+using Domain.Entities.Student.StudentBill;
 using Domain.Entities.Student.StudentSubject;
 using Domain.Entities.Teacher;
 using Domain.Entities.Teacher.Teacher;
@@ -104,6 +105,8 @@ public class ApplicationDbContext:DbContext
 
 
      public DbSet<Bill> Bills{get;init;}
+
+     public DbSet<StudentBill> StudentBills{get;set;}
 
     public DbSet<SubjectYear> SubjectYears{get;init;}
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Common.CQRS;
+using Domain.Dto.ClassRoom;
 using Domain.Dto.ClassRoom.Subject;
 using infrastructure;
 using Microsoft.AspNetCore.Mvc;
@@ -21,10 +22,10 @@ public class GetAllSubjectNameHandler : OperationResult,IQueryHandler<GetAllSubj
     }
     public async Task<JsonResult> Handle(GetAllSubjectNameQuery request, CancellationToken cancellationToken)
     {
-        var Subjects=_context.Subjects.Select(x=>new GetAllSubjectDto{
+        var Subjects=_context.Subjects.Select(x=>new GetAllSubjectNameDto{
 
             Id=x.Id,
-            SubjectName=x.Name
+            Name=x.Name
         }).ToList();
 
         return Success(Subjects);

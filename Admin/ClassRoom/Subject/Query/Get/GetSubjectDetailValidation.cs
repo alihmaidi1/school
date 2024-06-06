@@ -16,8 +16,18 @@ public class GetSubjectDetailValidation: AbstractValidator<GetSubjectDetailQuery
         .NotEmpty()
         .NotNull()
         .Must(id=>context.Years.Any(x=>x.Id==id))
+        .WithMessage("this year is not exists in our data");
+
+
+
+        RuleFor(x=>x.SubjectId)
+        .NotEmpty()
+        .NotNull()
+        .Must(id=>context.Subjects.Any(x=>x.Id==id))
         .WithMessage("this subject is not exists in our data");
 
+
+        
     }
 
 }

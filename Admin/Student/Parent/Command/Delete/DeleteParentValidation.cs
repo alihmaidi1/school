@@ -15,8 +15,8 @@ public class DeleteParentValidation: AbstractValidator<DeleteParentCommand>
         RuleFor(x=>x.Id)
         .NotEmpty()
         .NotNull()
-        .Must(id=>context.Parents.Any(x=>x.Id==id))
-        .WithMessage("this parent is not exists in our data");
+        .Must(id=>context.Parents.Any(x=>x.Id==id&&!x.Students.Any()))
+        .WithMessage("this parent is not exists or has student");
 
     }
 

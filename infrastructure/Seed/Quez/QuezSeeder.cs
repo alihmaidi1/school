@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Domain.Entities.ClassRoom;
+using Domain.Entities.Quez;
 using infrastructure.Data.Quez;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,6 +17,7 @@ public static class QuezSeeder
 
         if(!context.Quezs.Any()){
 
+            var Quezes=new List<Domain.Entities.Quez.Quez>();
 
 
             List<SubjectYear> subjectYears=context
@@ -23,7 +25,12 @@ public static class QuezSeeder
             .Include(x=>x.StudentSubjects)
             .ThenInclude(x=>x.Student)
             .ToList();
-            var Quezes=QuezFaker.GetFaker(subjectYears).Generate(40);
+            subjectYears.ForEach(x=>{
+
+                Quezes.AddRange(QuezFaker.GetFaker(x).Generate(5));
+
+            });
+
             context.Quezs.AddRange(Quezes);
             context.SaveChanges();
 

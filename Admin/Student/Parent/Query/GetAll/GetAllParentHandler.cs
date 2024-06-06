@@ -29,8 +29,19 @@ public class GetAllParentHandler:OperationResult,IQueryHandler<GetAllParentsQuer
             Hash=x.Image,
             Children=x.Students.Count(),
             Email=x.Email,
-            RequiredMoney=x.Students.Sum(y=>y.StudentBills.Sum(z=>z.Money-z.PaiedMoney)),
-            PayedMoney=x.Students.Sum(y=>y.StudentBills.Sum(z=>z.PaiedMoney))
+            RequiredMoney=x.Students.SelectMany(x=>x.StudentBills).Sum(y=>y.Money-y.PaiedMoney),
+            PayedMoney=x.Students.SelectMany(x=>x.StudentBills).Sum(y=>y.PaiedMoney),
+            Students=x.Students.Select(y=>new GetAllParentDto.Student{
+
+                Id=y.Id,
+                Name=y.Name,
+                Email=y.Email,
+                Image=y.Image,
+                Hash=y.Hash
+
+            }).ToList()
+
+
 
 
         })

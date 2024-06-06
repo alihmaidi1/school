@@ -2,6 +2,8 @@ using Admin.ClassRoom.Student.Query.GetByStage;
 using Admin.ClassRoom.Student.Query.GetSubjectByYear;
 using Admin.Student.Student.Command.Add;
 using Admin.Student.Student.Command.Delete;
+using Admin.Student.Student.Query.GetAll;
+using Admin.Student.Student.Query.GetAllInstallment;
 using Admin.Student.Student.Query.GetAllQuezByYearAndSubject;
 using Domain.Dto.Student;
 using Domain.Enum;
@@ -60,7 +62,7 @@ public class StudentController: ApiController
     /// <returns>return all role in pagination</returns>
     [Produces(typeof(OperationResultBase<Boolean>))]
    
-    [HttpPost]
+    [HttpDelete]
     public async Task<IActionResult> Delete([FromQuery] DeleteStudentCommand request,CancellationToken Token)
     {
         var response = await this.Mediator.Send(request,Token);
@@ -98,4 +100,33 @@ public class StudentController: ApiController
 
     }
 
+
+    /// <summary>
+    /// get all student  
+    /// </summary>
+    /// <returns>return all role in pagination</returns>
+    [Produces(typeof(OperationResultBase<PageList<GetAllStudentStageDto>>))]
+
+    [HttpGet]
+    public async Task<IActionResult> GetAll([FromQuery] GetAllStudentQuery request,CancellationToken Token)
+    {
+        var response = await this.Mediator.Send(request,Token);
+        return response;
+
+    }
+
+
+    /// <summary>
+    /// get all student installment  
+    /// </summary>
+    /// <returns>return all role in pagination</returns>
+    [Produces(typeof(OperationResultBase<PageList<GetAllInstallmentDto>>))]
+
+    [HttpGet]
+    public async Task<IActionResult> GetAllInstallment([FromQuery] GetAllInstallmentQuery request,CancellationToken Token)
+    {
+        var response = await this.Mediator.Send(request,Token);
+        return response;
+
+    }
 }

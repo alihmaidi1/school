@@ -42,7 +42,7 @@ public class AddStudentValidation: AbstractValidator<AddStudentCommand>
         RuleFor(x=>x.ClassId)
         .NotEmpty()
         .NotNull()
-        .Must(id=>context.Classes.Any(x=>x.Id==id))
+        .Must(id=>context.ClassYears.Any(x=>x.ClassId==id&&x.Status))
         .WithMessage("this class id not exists in our data");
 
     }

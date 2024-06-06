@@ -6,6 +6,7 @@ using Common.CQRS;
 using Dto.Student.Student;
 using infrastructure;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Shared.OperationResult;
 
 namespace Admin.Student.Student.Query.GetAllQuezByYearAndSubject;
@@ -22,22 +23,22 @@ public class GetAllQuezByYearAndSubjectHandler : OperationResult , IQueryHandler
     }
     public async Task<JsonResult> Handle(GetAllQuezByYearAndSubjectQuery request, CancellationToken cancellationToken)
     {
-        // var quezes=_context
-        // .StudentSubjects
-        // .Where(x=>x.StudentId==request.Id)
-        // .Where(x=>x.SubjectYear.YearId==request.YearId)
-        // .Where(x=>x.SubjectYear.SubjectId==request.SubjectId)
-        // .SelectMany(x=>x.StudentQuezs)
-        // .Select(x=>new GetAllStudentQuezDto{
+        var quezes=_context
+        .SubjectYears
+        .AsNoTracking()
+        .Where(x=>x.ClassYear.YearId==request.YearId)
+        .Where(x=>x.TeacherSubject.SubjectId==request.SubjectId)
+        .SelectMany(x=>x.StudentSubjects.Where(x=>x.StudentId==request.Id).Select(x=>x.Student))
+        .SelectMany(x=>x.StudentQuezs)
+        .Select(x=>new GetAllStudentQuezDto{
 
-        //         Id=x.QuezId,
-        //         Name=x.Quez.Name,
-        //         Mark=x.StudentAnswers.Where(x=>x.Answer.IsCorrect).Sum(x=>x.Answer.Question.Score)
+                Id=x.QuezId,
+                Name=x.Quez.Name,
+                Mark=x.StudentAnswers.Where(x=>x.Answer.IsCorrect).Sum(x=>x.Answer.Question.Score)
             
-        // })
-        // .ToList();
-        // return Success(quezes,"this is all quezes");
+        })
+        .ToList();
+        return Success(quezes,"this is all quezes");
 
-        return null;
     }
 }

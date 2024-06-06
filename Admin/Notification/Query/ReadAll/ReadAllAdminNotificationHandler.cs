@@ -28,16 +28,14 @@ public class ReadAllAdminNotificationHandler : OperationResult, ICommandHandler<
     public async Task<JsonResult> Handle(ReadAllAdminNotificationCommand request, CancellationToken cancellationToken)
     {
         var Notifications=_context
-        .Admins
+        .Notifications
         .AsNoTracking()
-        .Where(x=>x.Id==_currentUserService.UserId)
-        .SelectMany(x=>x.AccountNotifications)
-        
         .Select(x=>new GetAllNotificationDto{
 
-            Id=x.NotificationId,
-            Title=x.Notification.Title,
-            Body=x.Notification.Body
+            Id=x.Id,
+            Title=x.Title,
+            Body=x.Body,
+            Date=x.DateCreated
 
         })
         .ToPagedList(request.PageNumber,request.PageSize);

@@ -14,8 +14,8 @@ public static class TeacherSeeder
         if (!context.Teachers.Any())
         {
 
-            
-            List<Domain.Entities.Teacher.Teacher.Teacher> teachers = TeacherFaker.GetBillFaker().Generate(5);
+            List<Guid> Subjects=context.Subjects.Select(x=>x.Id).ToList();
+            List<Domain.Entities.Teacher.Teacher.Teacher> teachers = TeacherFaker.GetBillFaker(Subjects).Generate(5);
             context.AddRange(teachers);
             context.SaveChanges();
 

@@ -7,6 +7,7 @@ using Domain.Dto.Student;
 using infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Shared.Entity.EntityOperation;
 using Shared.OperationResult;
 
 namespace Admin.Student.Student.Query.GetAllInstallment;
@@ -23,24 +24,30 @@ public class GetAllInstallmentHandler : OperationResult ,IQueryHandler<GetAllIns
     public async Task<JsonResult> Handle(GetAllInstallmentQuery request, CancellationToken cancellationToken)
     {
 
-        // var Installments=_context
-        // .SubjectYears
-        // .AsNoTracking()
-        // .Select(x=>new GetAllInstallmentDto{
+        var Installments=_context
+        .ClassYears
+        .AsNoTracking()
+        .AsSplitQuery()
+        .Where(x=>!x.Status)
+        .Where(x=>x.SubjectYears.Any(x=>x.StudentSubjects.Any(x=>x.StudentId==request.Id)))
 
-        //     Id=x.Subject.ClassId,
-        //     Name=x.Subject.Class.Name,
-        //     Year=x.Year.Date.Year.ToString(),
-        //     Mark=(x.StudentSubjects
-        //     .Where(x=>x.StudentId==request.Id)
-        //     .Sum(x=>x.Mark??0)/x.StudentSubjects
-        //     .Where(x=>x.StudentId==request.Id)
-        //     .Count())
-        // })
-        // .ToList();
+        .Select(x=>new GetAllInstallmentDto{
 
-        // return Success(Installments,"this is all installment");
+            Id=x.ClassId,
+            Name=x.Class.Name,
+            Year=x.Year.Date,
+            Mark=(
+                x.SubjectYears.SelectMany(x=>x.StudentSubjects.Where(x=>x.StudentId==request.Id)).Sum(x=>x.Mark.Value)/
+                x.SubjectYears.SelectMany(x=>x.StudentSubjects.Where(x=>x.StudentId==request.Id)).Count()
+                
+                )
+            
 
-        return null;
+            
+        })
+        .ToPagedList(request.PageNumber,request.PageSize);
+
+        return Success(Installments,"this is all installment");
+
     }
 }

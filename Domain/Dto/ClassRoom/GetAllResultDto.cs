@@ -16,13 +16,16 @@ public class GetAllResultDto
 
     public float Precent{get;set;}
 
+    public List<Subject> Subjects{get;set;}
+
 
     public class Subject{
 
 
+        public Guid Id{get;set;}
         public string Name{get;set;}
 
-        public float Mark{get;set;}
+        public float? Mark{get;set;}
 
     }
 

@@ -2,7 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Domain.Entities.ClassRoom;
+using Domain.Entities.Student.StudentBill;
+using Domain.Entities.Student.StudentSubject;
 using infrastructure.Data.ClassRoom;
+using Microsoft.EntityFrameworkCore;
 using Org.BouncyCastle.Math.EC.Rfc7748;
 
 namespace infrastructure.Seed.ClassRoom;
@@ -15,12 +19,59 @@ namespace infrastructure.Seed.ClassRoom;
 
                 if(!context.SubjectYears.Any()){
 
+                
+                    var Classyears=context
+                    .ClassYears
+                    .Include(x=>x.Class)
+                    .ThenInclude(x=>x.Subjects)
+                    .ThenInclude(x=>x.TeacherSubjects)
+                    .ToList();
+                    
+                    var SubjectYears=new List<SubjectYear>();     
+                    var StudentBill=new List<StudentBill>();     
 
-                var Classyears=context.ClassYears.Select(x=>x.Id).ToList();
-                var teacherSubjects=context.TeacherSubjects.Select(x=>x.Id).ToList();
-                var SubjectYears=SubjectYearFaker.GetFaker(Classyears,teacherSubjects).Generate(100).DistinctBy(x=>new {x.TeacherSubjectId,x.ClassYearId});
-                context.SubjectYears.AddRange(SubjectYears);
-                context.SaveChanges();
+                    var Student=context.Students.Select(x=>x.Id).ToList();
+                    Classyears.ForEach(x=>{
+
+                        var StudentClass=Student.OrderBy(x=>Guid.NewGuid()).Take(4).ToList();
+                        SubjectYears.AddRange(
+
+                            x.Class.Subjects.Select(y=>new SubjectYear{
+                            ClassYearId=x.Id,
+                            TeacherSubjectId=y.TeacherSubjects.OrderBy(x=>Guid.NewGuid()).First().Id,
+                            StudentSubjects=StudentClass.Select(y=>new StudentSubject{
+
+                                StudentId=y,
+                                
+
+                            }).ToList(),
+                            
+              
+
+                        })
+                        .ToList()
+                        .Distinct()
+                    );
+
+                    StudentClass.ForEach(y=>{
+
+                        StudentBill.AddRange(
+                        x.Bills.Select(z=>new StudentBill{
+                            BillId=z.Id,
+                            Money=z.Money,
+                            PaiedMoney=0,
+                            StudentId=y
+
+                        }).ToList()
+
+                        );
+
+                    });
+
+                    });
+                    context.SubjectYears.AddRange(SubjectYears);
+                    context.StudentBills.AddRange(StudentBill);
+                    context.SaveChanges();
 
                 }
                                 

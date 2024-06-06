@@ -26,14 +26,22 @@ public class GetFinalResultHandler : OperationResult ,IQueryHandler<GetFinalResu
 
         var Result=_context
         .SubjectYears
+        .Where(x=>x.ClassYear.YearId==request.YearId)
+        .Where(x=>x.ClassYear.ClassId==request.ClassId)
+        .Where(x=>!x.ClassYear.Status)
         .SelectMany(x=>x.StudentSubjects)
         .GroupBy(x=>x.Student)
         .Select(x=>new GetAllResultDto{
 
             Id=x.Key.Id,
             Name=x.Key.Name,
-            Status=x.Count(x=>x.Mark>50)>2,
-            Precent=x.Sum(x=>(float)x.Mark)/x.Count()            
+            Status=x.Count(x=>x.Mark>x.SubjectYear.TeacherSubject.Subject.MinDegree)>2,
+            Precent=x.Sum(x=>x.Mark.Value)/x.Count(),
+            Subjects=x.Select(y=>new GetAllResultDto.Subject{
+                Id=y.SubjectYear.TeacherSubject.SubjectId,
+                Name=y.SubjectYear.TeacherSubject.Subject.Name,
+                Mark=y.Mark
+            }).ToList()
 
             
 
