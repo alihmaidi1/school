@@ -12,6 +12,7 @@ using Shared.Entity.EntityOperation;
 using Shared.OperationResult.Base;
 using Shared.Swagger;
 using Teacher.Quez.Query.GetAllQuez;
+using Teacher.Student.Command.AddMark;
 using Teacher.Subject.Query.GetAllAudience;
 using Teacher.Subject.Query.GetAudienceDetail;
 using Teacher.Subject.Query.GetOwned;
@@ -94,5 +95,18 @@ public class SubjectController: ApiController
 
     }
 
+
+
+    /// <summary>
+    /// Update Student Mark in Subject in active year
+    /// </summary>
+    [Produces(typeof(OperationResultBase<Boolean>))]
+    [HttpPut]
+    public async Task<IActionResult> UpdateStudentMark([FromQuery] AddMarkCommand command,CancellationToken token)
+    {
+        var response = await this.Mediator.Send(command,token);
+        return response;
+
+    }
 }
 

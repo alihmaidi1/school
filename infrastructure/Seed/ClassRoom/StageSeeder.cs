@@ -19,21 +19,20 @@ public static class StageSeeder
                 Stages.Add(new Stage(){
 
                     Name="Primary stage",
-                    Classes=new List<Class>(){new Class(){ Name="first class"},new Class{Name="second class"},new Class{Name="third class"}}
+                    Classes=new List<Class>(){new Class(){ Name="first class",Level=1},new Class{Name="second class",Level=2},new Class{Name="third class",Level=3}}
                 });
 
 
                 Stages.Add(new Stage(){
 
                     Name="2th stage",
-                    Classes=new List<Class>(){new Class(){ Name="4th class"},new Class{Name="5th class"},new Class{Name="6th class"}}
-
+                    Classes=new List<Class>(){new Class(){ Name="4th class",Level=4},new Class{Name="5th class",Level=5},new Class{Name="6th class",Level=6}}
                 });
 
                 Stages.Add(new Stage(){
 
                     Name="3th stage",
-                    Classes=new List<Class>(){new Class(){ Name="7th class"},new Class{Name="8th class"},new Class{Name="9th class"}}
+                    Classes=new List<Class>(){new Class(){ Name="7th class",Level=7},new Class{Name="8th class",Level=8},new Class{Name="9th class",Level=9}}
 
                 });
 

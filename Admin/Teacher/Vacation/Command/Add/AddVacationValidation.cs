@@ -15,10 +15,6 @@ public class AddVacationValidation:AbstractValidator<AddVacationCommand>
             .NotNull()
             .WithMessage("reason should be not null");
 
-        RuleFor(x => x.Days)
-            .NotEmpty()
-            .NotNull()
-            .GreaterThan(0);
 
     }
 

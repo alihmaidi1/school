@@ -26,8 +26,6 @@ public class Student:BaseEntity
             Email=Email,
             Subject=Subject,
             Message=Message
-
-
             
         });
 
@@ -37,7 +35,10 @@ public class Student:BaseEntity
     
     public string Email { get; set; }
     
+
+    public int Level{get;set;}    
     
+
 
     public string Password { get; set; }
     

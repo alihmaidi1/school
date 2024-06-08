@@ -2,9 +2,11 @@ using Admin.ClassRoom.Student.Query.GetByStage;
 using Admin.ClassRoom.Student.Query.GetSubjectByYear;
 using Admin.Student.Student.Command.Add;
 using Admin.Student.Student.Command.Delete;
+using Admin.Student.Student.Command.PayBill;
 using Admin.Student.Student.Query.GetAll;
 using Admin.Student.Student.Query.GetAllInstallment;
 using Admin.Student.Student.Query.GetAllQuezByYearAndSubject;
+using Admin.Student.Student.Query.GetAllStudentBill;
 using Domain.Dto.Student;
 using Domain.Enum;
 using Dto.Student.Student;
@@ -124,6 +126,36 @@ public class StudentController: ApiController
 
     [HttpGet]
     public async Task<IActionResult> GetAllInstallment([FromQuery] GetAllInstallmentQuery request,CancellationToken Token)
+    {
+        var response = await this.Mediator.Send(request,Token);
+        return response;
+
+    }
+
+
+    /// <summary>
+    /// get all student Bill in specific year  
+    /// </summary>
+    /// <returns>return all role in pagination</returns>
+    [Produces(typeof(OperationResultBase<GetAllStudentBillDto>))]
+
+    [HttpGet]
+    public async Task<IActionResult> GetAllStudentBill([FromQuery] GetAllStudentBillQuery request,CancellationToken Token)
+    {
+        var response = await this.Mediator.Send(request,Token);
+        return response;
+
+    }
+
+
+
+    /// <summary>
+    /// Pay Bill  
+    /// </summary>
+    /// <returns>return all role in pagination</returns>
+    [Produces(typeof(OperationResultBase<Boolean>))]
+    [HttpPost]
+    public async Task<IActionResult> PayBill([FromBody] PayBillCommand request,CancellationToken Token)
     {
         var response = await this.Mediator.Send(request,Token);
         return response;

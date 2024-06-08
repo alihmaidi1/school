@@ -2,6 +2,8 @@ using Admin.ClassRoom.Subject.Query.Get;
 using Admin.ClassRoom.Subject.Query.GetAll;
 using Admin.ClassRoom.Subject.Query.GetAllByYear;
 using Admin.ClassRoom.Subject.Query.GetAllName;
+using Admin.ClassRoom.Subject.Query.GetAudience;
+using Admin.ClassRoom.Subject.Query.GetSession;
 using Domain.Dto.ClassRoom;
 using Domain.Dto.ClassRoom.Subject;
 using Domain.Enum;
@@ -79,5 +81,36 @@ public class SubjectController: ApiController
         return response;
 
     }
+
+
+    /// <summary>
+    /// get Subject Session Number In Specific Year 
+    /// </summary>
+    /// <returns>return all role in pagination</returns>
+    [Produces(typeof(OperationResultBase<List<int>>))]
+   
+    [HttpGet]
+    public async Task<IActionResult> GetSessionNumber([FromQuery] GetSessionQuery request,CancellationToken Token)
+    {
+        var response = await this.Mediator.Send(request,Token);
+        return response;
+
+    }
+
+
+    /// <summary>
+    /// get Subject Audience In Specific Year 
+    /// </summary>
+    /// <returns>return all role in pagination</returns>
+    [Produces(typeof(OperationResultBase<List<int>>))]
+   
+    [HttpGet]
+    public async Task<IActionResult> GetAudienceInSpecificSession([FromQuery] GetAudienceQuery request,CancellationToken Token)
+    {
+        var response = await this.Mediator.Send(request,Token);
+        return response;
+
+    }
+
 
 }

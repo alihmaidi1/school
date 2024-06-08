@@ -260,8 +260,8 @@ namespace infrastructure.Migrations
                     b.Property<Guid?>("CreatedBy")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
+                    b.Property<DateTimeOffset>("Date")
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
@@ -310,6 +310,9 @@ namespace infrastructure.Migrations
 
                     b.Property<Guid?>("DeletedBy")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Level")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -873,8 +876,8 @@ namespace infrastructure.Migrations
                     b.Property<Guid?>("CreatedBy")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
+                    b.Property<DateTimeOffset>("Date")
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
@@ -909,7 +912,7 @@ namespace infrastructure.Migrations
 
                     b.HasIndex("SubjectYearId");
 
-                    b.ToTable("Audience");
+                    b.ToTable("Audiences");
                 });
 
             modelBuilder.Entity("Domain.Entities.Student.Parent.Parent", b =>
@@ -996,6 +999,9 @@ namespace infrastructure.Migrations
                     b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Level")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -1032,8 +1038,8 @@ namespace infrastructure.Migrations
                     b.Property<Guid?>("CreatedBy")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
+                    b.Property<DateTimeOffset>("Date")
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
@@ -1065,7 +1071,7 @@ namespace infrastructure.Migrations
 
                     b.HasIndex("StudentId");
 
-                    b.ToTable("StudentBill");
+                    b.ToTable("StudentBills");
                 });
 
             modelBuilder.Entity("Domain.Entities.Student.StudentSubject.StudentSubject", b =>

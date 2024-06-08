@@ -17,7 +17,7 @@ namespace Domain.Entities.ClassRoom;
             StudentBills=new HashSet<StudentBill>();
         }
 
-        public DateTime Date{get;set;}
+        public DateTimeOffset Date{get;set;}
         public float Money{get;set;}
 
         public ClassYear ClassYear{get;set;}

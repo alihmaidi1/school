@@ -30,7 +30,7 @@ public class StudentBill:BaseEntity
 
     public Bill Bill{get;set;}
 
-    public DateTime Date{get;set;}
+    public DateTimeOffset Date{get;set;}
     public float Money{get;set;}
 
     public float PaiedMoney{get;set;}=0;

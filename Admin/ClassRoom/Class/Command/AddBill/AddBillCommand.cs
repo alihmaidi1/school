@@ -13,6 +13,6 @@ public class AddBillCommand: ICommand
 
     public float Money{get;set;}
 
-    public DateTime Date{get;set;}
+    public DateTimeOffset Date{get;set;}
 
 }

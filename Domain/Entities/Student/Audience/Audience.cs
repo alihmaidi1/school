@@ -19,7 +19,7 @@ public class Audience: BaseEntity
         Id=Guid.NewGuid();
     }
 
-    public DateTime Date{get;set;}
+    public DateTimeOffset Date{get;set;}
 
     public bool IsExists{get;set;}
 

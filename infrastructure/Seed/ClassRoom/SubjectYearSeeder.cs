@@ -42,6 +42,7 @@ namespace infrastructure.Seed.ClassRoom;
                             StudentSubjects=StudentClass.Select(y=>new StudentSubject{
 
                                 StudentId=y,
+                                Mark=new Random().Next(40,100)
                                 
 
                             }).ToList(),

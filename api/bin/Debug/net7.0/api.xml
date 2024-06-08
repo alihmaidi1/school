@@ -55,9 +55,27 @@
             </summary>
             <returns>return all role in pagination</returns>
         </member>
-        <member name="M:schoolmanagment.Controllers.Admin.ClassController.GetAllStageWithClasses(Admin.ClassRoom.Class.Query.GetAllStageWithClasses.GetAllStageWithClassesQuery,System.Threading.CancellationToken)">
+        <member name="M:schoolmanagment.Controllers.Admin.ClassController.GetAllStageWithClasses(System.Threading.CancellationToken)">
             <summary>
             get All Stage With Classes 
+            </summary>
+            <returns>return all role in pagination</returns>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Admin.ClassController.GetAllActiveClasses(System.Threading.CancellationToken)">
+            <summary>
+            get All Active Classes 
+            </summary>
+            <returns>return all role in pagination</returns>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Admin.ClassController.GetAllStudentBill(Admin.ClassRoom.Class.Query.GetAllBill.GetAllBillQuery,System.Threading.CancellationToken)">
+            <summary>
+            get All Bill for  Class In specific year  
+            </summary>
+            <returns>return all role in pagination</returns>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Admin.ClassController.AddBill(Admin.ClassRoom.Class.Command.AddBill.AddBillCommand,System.Threading.CancellationToken)">
+            <summary>
+            Add a New Bill to Specific class in active year  
             </summary>
             <returns>return all role in pagination</returns>
         </member>
@@ -193,6 +211,18 @@
             </summary>
             <returns>return all role in pagination</returns>
         </member>
+        <member name="M:schoolmanagment.Controllers.Admin.StudentController.GetAllStudentBill(Admin.Student.Student.Query.GetAllStudentBill.GetAllStudentBillQuery,System.Threading.CancellationToken)">
+            <summary>
+            get all student Bill in specific year  
+            </summary>
+            <returns>return all role in pagination</returns>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Admin.StudentController.PayBill(Admin.Student.Student.Command.PayBill.PayBillCommand,System.Threading.CancellationToken)">
+            <summary>
+            Pay Bill  
+            </summary>
+            <returns>return all role in pagination</returns>
+        </member>
         <member name="M:schoolmanagment.Controllers.Admin.SubjectController.GetAllTeacher(Admin.ClassRoom.Subject.Query.GetAll.GetAllSubjectCommand,System.Threading.CancellationToken)">
             <summary>
             get all Subject with Status  in this year 
@@ -214,6 +244,18 @@
         <member name="M:schoolmanagment.Controllers.Admin.SubjectController.GetSubjectDetail(Admin.ClassRoom.Subject.Query.Get.GetSubjectDetailQuery,System.Threading.CancellationToken)">
             <summary>
             get Subject Detail in specific year 
+            </summary>
+            <returns>return all role in pagination</returns>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Admin.SubjectController.GetSessionNumber(Admin.ClassRoom.Subject.Query.GetSession.GetSessionQuery,System.Threading.CancellationToken)">
+            <summary>
+            get Subject Session Number In Specific Year 
+            </summary>
+            <returns>return all role in pagination</returns>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Admin.SubjectController.GetAudienceInSpecificSession(Admin.ClassRoom.Subject.Query.GetAudience.GetAudienceQuery,System.Threading.CancellationToken)">
+            <summary>
+            get Subject Audience In Specific Year 
             </summary>
             <returns>return all role in pagination</returns>
         </member>
@@ -455,6 +497,11 @@
         <member name="M:schoolmanagment.Controllers.Teacher.SubjectController.GetAllSubjectAndStudent(Teacher.Subject.Query.GetWithStudent.GetAllSubjectWithStudentQuery,System.Threading.CancellationToken)">
             <summary>
             Get All Audience Detail 
+            </summary>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Teacher.SubjectController.UpdateStudentMark(Teacher.Student.Command.AddMark.AddMarkCommand,System.Threading.CancellationToken)">
+            <summary>
+            Update Student Mark in Subject in active year
             </summary>
         </member>
         <member name="M:schoolmanagment.Controllers.Teacher.VacationController.GetAllVacationTypes(System.Threading.CancellationToken)">

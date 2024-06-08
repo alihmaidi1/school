@@ -8,6 +8,7 @@ using Domain.Entities.ClassRoom;
 using Domain.Entities.Manager.Admin;
 using Domain.Entities.Quez;
 using Domain.Entities.Role;
+using Domain.Entities.Student.Audience;
 using Domain.Entities.Student.Parent;
 using Domain.Entities.Student.Student;
 using Domain.Entities.Student.StudentBill;
@@ -20,6 +21,7 @@ using infrastructure.Convertor;
 using infrastructure.Interceptor;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
+using MimeKit.Encodings;
 using Org.BouncyCastle.Math.EC.Rfc7748;
 using Shared.Entity.Entity;
 using Shared.Services.User;
@@ -85,7 +87,7 @@ public class ApplicationDbContext:DbContext
      public DbSet<Warning> Warnings { get; init; }
      public DbSet<Vacation> Vacations { get; init; }
 
-     public DbSet<VacationType> VacationTypes{get;set;}
+     public DbSet<VacationType> VacationTypes{get;init;}
 
      public DbSet<Program> Programs{get;init;}
      
@@ -106,7 +108,7 @@ public class ApplicationDbContext:DbContext
 
      public DbSet<Bill> Bills{get;init;}
 
-     public DbSet<StudentBill> StudentBills{get;set;}
+     public DbSet<StudentBill> StudentBills{get;init;}
 
     public DbSet<SubjectYear> SubjectYears{get;init;}
 
@@ -130,9 +132,11 @@ public class ApplicationDbContext:DbContext
     public DbSet<Notification> Notifications{get;init;}
 
 
+    public DbSet<Audience> Audiences{get;init;}
+
     public DbSet<AccountNotification> AccountNotifications{get;init;}
 
-    public DbSet<Account> Accounts{get;set;}
+    public DbSet<Account> Accounts{get;init;}
 
     public DbSet<OutBoxMessage> OutBoxMessages{get;init;}
 

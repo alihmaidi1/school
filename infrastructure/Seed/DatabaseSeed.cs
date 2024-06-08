@@ -50,6 +50,7 @@ public static class DatabaseSeed
             await LesonSeeder.SeedData(context);
             await QuezSeeder.seedData(context);            
             await StudentAnswerSeeder.seedData(context);
+            await AudienceSeeder.seedData(context);
             // await StudentAnswerSeeder.seedData(context);
             // await ClassYearSeeder.seedData(context);
             // await BillSeeder.seedData(context);
