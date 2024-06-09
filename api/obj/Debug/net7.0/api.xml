@@ -67,6 +67,12 @@
             </summary>
             <returns>return all role in pagination</returns>
         </member>
+        <member name="M:schoolmanagment.Controllers.Admin.ClassController.GetAllUnActiveClasses(System.Threading.CancellationToken)">
+            <summary>
+            get All UnActive Classes 
+            </summary>
+            <returns>return all role in pagination</returns>
+        </member>
         <member name="M:schoolmanagment.Controllers.Admin.ClassController.GetAllStudentBill(Admin.ClassRoom.Class.Query.GetAllBill.GetAllBillQuery,System.Threading.CancellationToken)">
             <summary>
             get All Bill for  Class In specific year  
@@ -76,6 +82,12 @@
         <member name="M:schoolmanagment.Controllers.Admin.ClassController.AddBill(Admin.ClassRoom.Class.Command.AddBill.AddBillCommand,System.Threading.CancellationToken)">
             <summary>
             Add a New Bill to Specific class in active year  
+            </summary>
+            <returns>return all role in pagination</returns>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Admin.ClassController.FinishClassYear(Admin.ClassRoom.Class.Command.FinishYear.FinishYearCommand,System.Threading.CancellationToken)">
+            <summary>
+            Finish class year   
             </summary>
             <returns>return all role in pagination</returns>
         </member>

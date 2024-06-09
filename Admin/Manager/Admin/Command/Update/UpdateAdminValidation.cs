@@ -2,6 +2,7 @@ using Domain.Entities.Manager.Admin;
 using Domain.Entities.Role;
 using FluentValidation;
 using infrastructure;
+using Microsoft.EntityFrameworkCore;
 using Repository.Manager.Admin;
 using Repository.Manager.Role;
 
@@ -45,7 +46,7 @@ public class UpdateAdminValidation:AbstractValidator<UpdateAdminCommand>
         RuleFor(x => x.AdminId)
             .NotEmpty()
             .NotNull()
-            .Must(x => adminRepository.IsExists(x).GetAwaiter().GetResult())
+            .Must(id => context.Admins.IgnoreQueryFilters().Where(x=>x.DateDeleted==null).Any(x=>x.Id==id))
             .WithMessage("this admin is not exists in our data");
 
         RuleFor(x=>x.Image)

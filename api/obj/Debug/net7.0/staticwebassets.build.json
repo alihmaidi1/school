@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "oPfBzHKlgZAok0obd8ZSNobijZQkZiEJTR+QlWMMJs4=",
+  "Hash": "CgDgMTfhaUB+57Yzk2Dk98hfBb8AfPjynICVe++vWQ8=",
   "Source": "api",
   "BasePath": "_content/api",
   "Mode": "Default",
@@ -300,6 +300,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/Admins/0669ac73-442f-405a-85ec-9e8aa609bb85.png"
+    },
+    {
+      "Identity": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Admins/1193f0ac-770b-4978-8c75-c92491ac5723.png",
+      "SourceId": "api",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/",
+      "BasePath": "_content/api",
+      "RelativePath": "Admins/1193f0ac-770b-4978-8c75-c92491ac5723.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/Admins/1193f0ac-770b-4978-8c75-c92491ac5723.png"
     },
     {
       "Identity": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Admins/1bb8e150-2403-4685-9e21-483ce920e6c0.jpg",

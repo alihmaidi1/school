@@ -23,7 +23,12 @@ public class ChnageAdminStatusHandler :OperationResult, ICommandHandler<ChangeAd
     public async Task<JsonResult> Handle(ChangeAdminStatusCommand request, CancellationToken cancellationToken)
     {
         
-        await _context.Admins.Where(x=>x.Id==request.Id).ExecuteUpdateAsync(setter=>setter.SetProperty(x=>x.Status,request.Status),cancellationToken);
+        await _context
+        .Admins
+        .IgnoreQueryFilters()
+        .Where(x=>x.DateDeleted==null)
+        .Where(x=>x.Id==request.Id)
+        .ExecuteUpdateAsync(setter=>setter.SetProperty(x=>x.Status,request.Status),cancellationToken);
         return Success("admin status was updated successfully");
     }
 }

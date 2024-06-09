@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Admin.ClassRoom.Class.Command.AddBill;
+using Admin.ClassRoom.Class.Command.FinishYear;
 using Admin.ClassRoom.Class.Query;
 using Admin.ClassRoom.Class.Query.GetActiveYear;
 using Admin.ClassRoom.Class.Query.GetAllBill;
 using Admin.ClassRoom.Class.Query.GetAllStageWithClasses;
+using Admin.ClassRoom.Class.Query.GetUnActiveYear;
 using Domain.Dto.ClassRoom;
 using Domain.Enum;
 using infrastructure.Attribute;
@@ -74,6 +76,24 @@ public class ClassController:ApiController
 
     }
 
+
+
+    /// <summary>
+    /// get All UnActive Classes 
+    /// </summary>
+    /// <returns>return all role in pagination</returns>
+   
+    [Produces(typeof(OperationResultBase<List<GetUnActiveClassDto>>))]
+
+    [HttpGet]
+    public async Task<IActionResult> GetAllUnActiveClasses(CancellationToken Token)
+    {
+        var response = await this.Mediator.Send(new GetUnActiveClassQuery(),Token);
+        return response;
+
+    }
+
+
     /// <summary>
     /// get All Bill for  Class In specific year  
     /// </summary>
@@ -100,6 +120,22 @@ public class ClassController:ApiController
 
     [HttpPost]
     public async Task<IActionResult> AddBill([FromBody] AddBillCommand command,CancellationToken Token)
+    {
+        var response = await this.Mediator.Send(command,Token);
+        return response;
+
+    }
+
+
+    /// <summary>
+    /// Finish class year   
+    /// </summary>
+    /// <returns>return all role in pagination</returns>
+   
+    [Produces(typeof(OperationResultBase<Boolean>))]
+
+    [HttpPut]
+    public async Task<IActionResult> FinishClassYear([FromBody] FinishYearCommand command,CancellationToken Token)
     {
         var response = await this.Mediator.Send(command,Token);
         return response;

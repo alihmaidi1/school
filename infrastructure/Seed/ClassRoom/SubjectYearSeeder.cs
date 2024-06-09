@@ -30,10 +30,10 @@ namespace infrastructure.Seed.ClassRoom;
                     var SubjectYears=new List<SubjectYear>();     
                     var StudentBill=new List<StudentBill>();     
 
-                    var Student=context.Students.Select(x=>x.Id).ToList();
+                    var Student=context.Students.ToList();
                     Classyears.ForEach(x=>{
 
-                        var StudentClass=Student.OrderBy(x=>Guid.NewGuid()).Take(4).ToList();
+                        var StudentClass=Student.Where(y=>y.Level<=x.Class.Level).Select(x=>x.Id).OrderBy(x=>Guid.NewGuid()).Take(4).ToList();
                         SubjectYears.AddRange(
 
                             x.Class.Subjects.Select(y=>new SubjectYear{

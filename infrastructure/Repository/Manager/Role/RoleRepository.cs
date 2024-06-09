@@ -5,7 +5,7 @@ using Domain.Entities.Role;
 using Domain.Enum;
 using infrastructure;
 using infrastructure.Repository.Base;
-
+using Microsoft.EntityFrameworkCore;
 using Shared.Entity.EntityOperation;
 
 namespace Repository.Manager.Role;
@@ -45,6 +45,8 @@ public class RoleRepository:GenericRepository<Domain.Entities.Role.Role>,IRoleRe
         
         return  DbContext
             .Admins
+            .IgnoreQueryFilters()
+            .Where(x=>x.DateDeleted==null)
             .Where(x => x.RoleId == Id)
             .Where(x=>x.Name.Contains(Search??""))
             .Where(x=>x.Email.Contains(Search??""))

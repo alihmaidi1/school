@@ -1,9 +1,10 @@
 
 using Domain.Base.Entity;
+using Domain.Base.interfaces;
 
 namespace Domain.Entities.Role;
 
-public class Role:BaseEntity
+public class Role:BaseEntity,ISoftDelete
 {
     
     

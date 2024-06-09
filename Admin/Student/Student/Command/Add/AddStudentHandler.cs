@@ -45,6 +45,7 @@ public class AddStudentHandler : OperationResult ,ICommandHandler<AddStudentComm
         .ToList();
 
 
+        var Level=_context.Classes.Where(x=>x.Id==request.ClassId).Select(x=>x.Level).First();
         var StudentSubjects=_context
         .SubjectYears
         .Where(x=>x.ClassYear.ClassId==request.ClassId)
@@ -70,7 +71,8 @@ public class AddStudentHandler : OperationResult ,ICommandHandler<AddStudentComm
             ParentId=request.ParentId,
             Gender=request.Gender,
             StudentBills=Bills,
-            StudentSubjects=StudentSubjects          
+            StudentSubjects=StudentSubjects,
+            Level=Level          
 
         };
         Student.SendEmail("you are a new student in school",$"this is your password{request.Password}");

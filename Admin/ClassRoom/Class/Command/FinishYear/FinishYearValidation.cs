@@ -15,7 +15,7 @@ public class FinishYearValidation: AbstractValidator<FinishYearCommand>
         RuleFor(x=>x.ClassYearId)
         .NotEmpty()
         .NotNull()
-        .Must(id=>context.ClassYears.Any(x=>x.Id==id&&!x.Status))
+        .Must(id=>context.ClassYears.Any(x=>x.Id==id&&x.Status))
         .WithMessage("this class year is not exists or is already finished");
 
     }

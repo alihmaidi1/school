@@ -18,6 +18,7 @@ public class AddStudentValidation: AbstractValidator<AddStudentCommand>
         .NotEmpty()
         .NotNull();
 
+
         RuleFor(x=>x.ParentId)
         .NotEmpty()
         .NotNull()
@@ -44,6 +45,9 @@ public class AddStudentValidation: AbstractValidator<AddStudentCommand>
         .NotNull()
         .Must(id=>context.ClassYears.Any(x=>x.ClassId==id&&x.Status))
         .WithMessage("this class id not exists in our data");
+
+
+
 
     }
 

@@ -5,6 +5,7 @@ using Hangfire;
 using infrastructure;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Repository.Manager.Admin;
 using Shared.Constant;
@@ -43,7 +44,7 @@ public class UpdateAdminHandler:OperationResult,ICommandHandler<UpdateAdminComma
     public async Task<JsonResult> Handle(UpdateAdminCommand request, CancellationToken cancellationToken)
     {
 
-        var Admin = await AdminRepository.GetByIdAsync(request.AdminId);
+        var Admin = _context.Admins.IgnoreQueryFilters().First(x=>x.Id==request.AdminId);
         var image = _context.Images.FirstOrDefault(x => x.Id == request.Image);
         
         Admin.RoleId=request.RoleId;
