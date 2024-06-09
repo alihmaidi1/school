@@ -277,12 +277,6 @@
             </summary>
             <returns>return all role in pagination</returns>
         </member>
-        <member name="M:schoolmanagment.Controllers.Admin.TeacherController.GetAllTeacherYear(Admin.Teacher.Teacher.Query.GetAllTeacherYear.GetAllTeacherYearQuery,System.Threading.CancellationToken)">
-            <summary>
-            get all Teacher year in this school 
-            </summary>
-            <returns>return all </returns>
-        </member>
         <member name="M:schoolmanagment.Controllers.Admin.TeacherController.GetAllSubjectWithStudent(Admin.Teacher.Teacher.Query.GetAllSubjectAndStudent.GetAllSubjectAndStudentQuery,System.Threading.CancellationToken)">
             <summary>
             get all Teacher with subject and student in all year 
@@ -307,7 +301,7 @@
             </summary>
             <returns>return all role in pagination</returns>
         </member>
-        <member name="M:schoolmanagment.Controllers.Admin.TeacherController.GetQuezDetailWithQuestionAndAnswer(Admin.Teacher.Teacher.Query.GetStudentMarkInQuez.GetStudentMarkInQuezQuery,System.Threading.CancellationToken)">
+        <member name="M:schoolmanagment.Controllers.Admin.TeacherController.GetQuezDetailWithQuestionAndAnswer(Admin.Teacher.Teacher.Query.GetAllQuezDetail.GetAllQuezDetailQuery,System.Threading.CancellationToken)">
             <summary>
             get quez detail with question and answer  
             </summary>
@@ -370,6 +364,12 @@
         <member name="M:schoolmanagment.Controllers.Admin.VacationController.DeleteVacationType(Admin.Teacher.VacationType.Command.Delete.DeleteVacationTypeCommand,System.Threading.CancellationToken)">
             <summary>
             Delete Vacation Type  
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Admin.VacationController.GetAll(Admin.Teacher.Vacation.Query.GetAll.GetVacationQuery,System.Threading.CancellationToken)">
+            <summary>
+            Get All Vacation  
             </summary>
             <returns></returns>
         </member>
@@ -465,7 +465,7 @@
             Get All  Quez in specific year 
             </summary>
         </member>
-        <member name="M:schoolmanagment.Controllers.Teacher.QuezController.GetFinishQuezDetail(Teacher.Quez.Query.Get.GetQuezDetailQuery,System.Threading.CancellationToken)">
+        <member name="M:schoolmanagment.Controllers.Teacher.QuezController.GetQuezDetail(Teacher.Quez.Query.Get.GetQuezDetailQuery,System.Threading.CancellationToken)">
             <summary>
             Get  Quez detail  
             </summary>
@@ -485,12 +485,12 @@
             Get Quez With Question Detail and Answer  
             </summary>
         </member>
-        <member name="M:schoolmanagment.Controllers.Teacher.SubjectController.GetAll(Teacher.Subject.Query.GetAllAudience.GetAllAudienceQuery,System.Threading.CancellationToken)">
+        <member name="M:schoolmanagment.Controllers.Teacher.SubjectController.GetAllAudience(Teacher.Subject.Query.GetAllAudience.GetAllAudienceQuery,System.Threading.CancellationToken)">
             <summary>
             Get All Audience Date 
             </summary>
         </member>
-        <member name="M:schoolmanagment.Controllers.Teacher.SubjectController.GetAllSubjectName(Teacher.Subject.Query.GetOwned.GetAllTeacherSubjectQuery,System.Threading.CancellationToken)">
+        <member name="M:schoolmanagment.Controllers.Teacher.SubjectController.GetAllSubjectName(System.Threading.CancellationToken)">
             <summary>
             Get All subject name 
             </summary>

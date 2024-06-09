@@ -91,12 +91,19 @@ public class VacationController:ApiController
     
     
     
-    
-    // [HttpGet(VacationRouter.prefix)]
-    // public async Task<IActionResult> GetAll([FromQuery] GetVacationQuery request,CancellationToken Token)
-    // {
-    //     var response = await this.Mediator.Send(request,Token);
-    //     return response;
 
-    // }
+    /// <summary>
+    /// Get All Vacation  
+    /// </summary>
+    /// <returns></returns>
+
+    [Produces(typeof(OperationResultBase<PageList<GetAllVacationDto>>))]
+    
+    [HttpGet]
+    public async Task<IActionResult> GetAll([FromQuery] GetVacationQuery request,CancellationToken Token)
+    {
+        var response = await this.Mediator.Send(request,Token);
+        return response;
+
+    }
 }

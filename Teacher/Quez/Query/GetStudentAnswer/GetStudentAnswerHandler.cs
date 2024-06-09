@@ -27,7 +27,8 @@ public class GetStudentAnswerHandler : OperationResult, IQueryHandler<GetStudent
         .StudentQuezs
         .AsNoTracking()
         .Where(x=>x.StudentId==request.StudentId)
-        // .SelectMany(x=>x.StudentQuezs)
+        .Where(x=>x.QuezId==request.QuezId)
+
         .Select(x=>new StudentAnswerDto{
 
             Id=x.Quez.Id,

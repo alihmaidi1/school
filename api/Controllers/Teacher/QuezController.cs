@@ -82,7 +82,7 @@ public class QuezController:ApiController
     /// </summary>
     [Produces(typeof(OperationResultBase<GetFinishQuezDetailDto>))]
     [HttpGet]
-    public async Task<IActionResult> GetFinishQuezDetail([FromQuery] GetQuezDetailQuery command,CancellationToken token)
+    public async Task<IActionResult> GetQuezDetail([FromQuery] GetQuezDetailQuery command,CancellationToken token)
     {
         var response = await this.Mediator.Send(command,token);
         return response;

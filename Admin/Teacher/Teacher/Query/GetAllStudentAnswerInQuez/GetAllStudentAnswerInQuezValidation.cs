@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using FluentValidation;
 using infrastructure;
+using Microsoft.EntityFrameworkCore;
 
 namespace Admin.Teacher.Teacher.Query.GetAllStudentAnswerInQuez;
 
@@ -22,7 +23,7 @@ public class GetAllStudentAnswerInQuezValidation: AbstractValidator<GetAllStuden
         RuleFor(x=>x.QuezId)
         .NotEmpty()
         .NotNull()
-        .Must((request,id)=>context.StudentQuezs.Any(x=>x.QuezId==id&&x.StudentId==request.StudentId))
+        .Must((request,id)=>context.StudentQuezs.AsNoTracking().Any(x=>x.QuezId==id&&x.StudentId==request.StudentId))
         .WithMessage("this student does not has this quez");
 
 

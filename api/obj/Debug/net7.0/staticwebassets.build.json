@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "CgDgMTfhaUB+57Yzk2Dk98hfBb8AfPjynICVe++vWQ8=",
+  "Hash": "QfKBS+q9AJbM3Ad0J1aWeeBdfKUZsn7wIgriQy0R2LY=",
   "Source": "api",
   "BasePath": "_content/api",
   "Mode": "Default",
@@ -530,6 +530,25 @@
       "OriginalItemSpec": "wwwroot/Admins/e746586c-5109-4136-9ba5-c2a79dd5ccb5.png"
     },
     {
+      "Identity": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Lesons/a6b0ba82-6337-47e4-b9c3-adeaaba29360.pdf",
+      "SourceId": "api",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/",
+      "BasePath": "_content/api",
+      "RelativePath": "Lesons/a6b0ba82-6337-47e4-b9c3-adeaaba29360.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/Lesons/a6b0ba82-6337-47e4-b9c3-adeaaba29360.pdf"
+    },
+    {
       "Identity": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Lesons/dd766b75-9073-42d0-9d5e-b0b791eb07e4.pdf",
       "SourceId": "api",
       "SourceType": "Discovered",
@@ -680,6 +699,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/Teachers/6f865c13-122d-4fc6-bc9b-9a7adc09a95f.png"
+    },
+    {
+      "Identity": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Teachers/8f989758-9cce-498c-9131-14a224e953d1.png",
+      "SourceId": "api",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/",
+      "BasePath": "_content/api",
+      "RelativePath": "Teachers/8f989758-9cce-498c-9131-14a224e953d1.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/Teachers/8f989758-9cce-498c-9131-14a224e953d1.png"
     },
     {
       "Identity": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Teachers/b756bb2b-8c2a-455c-aeb7-18581831b5bb.png",

@@ -35,7 +35,7 @@ public class SubjectController: ApiController
     /// </summary>
     [Produces(typeof(OperationResultBase<List<string>>))]
     [HttpGet]
-    public async Task<IActionResult> GetAll([FromQuery] GetAllAudienceQuery command,CancellationToken token)
+    public async Task<IActionResult> GetAllAudience([FromQuery] GetAllAudienceQuery command,CancellationToken token)
     {
         var response = await this.Mediator.Send(command,token);
         return response;
@@ -47,9 +47,9 @@ public class SubjectController: ApiController
     /// </summary>
     [Produces(typeof(OperationResultBase<List<GetAllSubjectNameDto>>))]
     [HttpGet]
-    public async Task<IActionResult> GetAllSubjectName([FromQuery] GetAllTeacherSubjectQuery command,CancellationToken token)
+    public async Task<IActionResult> GetAllSubjectName(CancellationToken token)
     {
-        var response = await this.Mediator.Send(command,token);
+        var response = await this.Mediator.Send(new GetAllTeacherSubjectQuery(),token);
         return response;
 
     }

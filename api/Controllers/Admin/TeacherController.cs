@@ -6,6 +6,7 @@ using Admin.Teacher.Teacher.Command.Update;
 using Admin.Teacher.Teacher.Query.GetAll;
 using Admin.Teacher.Teacher.Query.GetAllLeson;
 using Admin.Teacher.Teacher.Query.GetAllQuez;
+using Admin.Teacher.Teacher.Query.GetAllQuezDetail;
 using Admin.Teacher.Teacher.Query.GetAllStudentAnswerInQuez;
 using Admin.Teacher.Teacher.Query.GetAllSubjectAndStudent;
 using Admin.Teacher.Teacher.Query.GetAllTeacherStudentSubject;
@@ -51,19 +52,19 @@ public class TeacherController:ApiController
     }
 
 
-    /// <summary>
-    /// get all Teacher year in this school 
-    /// </summary>
-    /// <returns>return all </returns>
-    [Produces(typeof(OperationResultBase<List<GetAllYearDto>>))]
+    // /// <summary>
+    // /// get all Teacher year in this school 
+    // /// </summary>
+    // /// <returns>return all </returns>
+    // [Produces(typeof(OperationResultBase<List<GetAllYearDto>>))]
    
-    [HttpGet]
-    public async Task<IActionResult> GetAllTeacherYear([FromQuery] GetAllTeacherYearQuery request,CancellationToken Token)
-    {
-        var response = await this.Mediator.Send(request,Token);
-        return response;
+    // [HttpGet]
+    // public async Task<IActionResult> GetAllTeacherYear([FromQuery] GetAllTeacherYearQuery request,CancellationToken Token)
+    // {
+    //     var response = await this.Mediator.Send(request,Token);
+    //     return response;
 
-    }
+    // }
 
 
     /// <summary>
@@ -134,7 +135,7 @@ public class TeacherController:ApiController
     /// <returns>return all role in pagination</returns>
     [Produces(typeof(OperationResultBase<GetQuezwithQuestionAndDetailDto>))]
     [HttpGet]
-    public async Task<IActionResult> GetQuezDetailWithQuestionAndAnswer([FromQuery] GetStudentMarkInQuezQuery request,CancellationToken Token)
+    public async Task<IActionResult> GetQuezDetailWithQuestionAndAnswer([FromQuery] GetAllQuezDetailQuery request,CancellationToken Token)
     {
         var response = await this.Mediator.Send(request,Token);
         return response;

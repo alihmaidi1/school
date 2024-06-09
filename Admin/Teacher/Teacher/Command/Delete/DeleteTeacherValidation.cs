@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using FluentValidation;
 using infrastructure;
+using Microsoft.EntityFrameworkCore;
 
 namespace Admin.Teacher.Teacher.Command.Delete;
 
@@ -16,7 +17,7 @@ public class DeleteTeacherValidation: AbstractValidator<DeleteTeacherCommand>
         RuleFor(x=>x.Id)
         .NotEmpty()
         .NotNull()
-        .Must(id=>context.Teachers.Any(x=>x.Id==id))
+        .Must(id=>context.Teachers.IgnoreQueryFilters().Where(x=>x.DateDeleted==null).Any(x=>x.Id==id))
         .WithMessage("this teacher is not exists in our data");
 
     }

@@ -8,12 +8,9 @@ namespace Admin.Teacher.Vacation.Query.GetAll;
 public class GetVacationValidation:AbstractValidator<GetVacationQuery>
 {
 
-    public GetVacationValidation(ITeacherRepository teacherRepository)
+    public GetVacationValidation()
     {
 
-        // RuleFor(x => x.TeacherId)
-        //     .Must(x => teacherRepository.IsExists(new TeacherID((Guid)x)))
-        //     .When(x => x.TeacherId != null);
 
 
 
