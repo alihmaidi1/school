@@ -451,6 +451,16 @@
             Get Student Final Result
             </summary>
         </member>
+        <member name="M:schoolmanagment.Controllers.Parent.StudentController.GetParentBill(Parent.Student.Query.GetBill.GetParentBillQuery,System.Threading.CancellationToken)">
+            <summary>
+            Get Student Bill
+            </summary>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Parent.StudentController.GetAllStudentAudiences(Parent.Student.Query.GetAllAudience.GetAllParentAudienceQuery,System.Threading.CancellationToken)">
+            <summary>
+            Get Student Audiences
+            </summary>
+        </member>
         <member name="M:schoolmanagment.Controllers.Student.AuthController.LoginStudent(Student.Auth.Command.Login.LoginStudentCommand,System.Threading.CancellationToken)">
             <summary>
             Login Student to App

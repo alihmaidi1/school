@@ -19,7 +19,7 @@ namespace schoolmanagment.Controllers.Parent;
 
 [ApiGroup(ApiGroupName.All, ApiGroupName.Parent)]
 
-[Route("Api/Teacher/[controller]/[action]")]
+[Route("Api/Parent/[controller]/[action]")]
 
 public class AuthController:ApiController
 {

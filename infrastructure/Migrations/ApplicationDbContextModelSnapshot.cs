@@ -945,6 +945,9 @@ namespace infrastructure.Migrations
                     b.Property<bool>("IsExists")
                         .HasColumnType("bit");
 
+                    b.Property<string>("Reason")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("SessionNumber")
                         .HasColumnType("int");
 

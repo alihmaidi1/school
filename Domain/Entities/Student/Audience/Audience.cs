@@ -24,6 +24,8 @@ public class Audience: BaseEntity
     public bool IsExists{get;set;}
 
 
+    public string? Reason{get;set;}
+
 
     public Guid StudentId{get;set;}
 

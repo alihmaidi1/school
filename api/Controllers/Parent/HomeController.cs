@@ -15,7 +15,7 @@ namespace schoolmanagment.Controllers.Parent;
 
 [ApiGroup(ApiGroupName.All, ApiGroupName.Parent)]
 
-[Route("Api/Teacher/[controller]/[action]")]
+[Route("Api/Parent/[controller]/[action]")]
 
 [CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Parent))]
 
