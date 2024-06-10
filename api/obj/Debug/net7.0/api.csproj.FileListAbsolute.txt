@@ -319,3 +319,7 @@
 /home/alihmaidi/Desktop/schhol1/api/bin/Debug/net7.0/infrastructure.pdb
 /home/alihmaidi/Desktop/schhol1/api/bin/Debug/net7.0/Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 /home/alihmaidi/Desktop/schhol1/api/bin/Debug/net7.0/Swashbuckle.AspNetCore.Newtonsoft.dll
+/home/alihmaidi/Desktop/schhol1/api/bin/Debug/net7.0/Parent.dll
+/home/alihmaidi/Desktop/schhol1/api/bin/Debug/net7.0/Student.dll
+/home/alihmaidi/Desktop/schhol1/api/bin/Debug/net7.0/Student.pdb
+/home/alihmaidi/Desktop/schhol1/api/bin/Debug/net7.0/Parent.pdb

@@ -30,8 +30,10 @@ public class GetHomeHandler : OperationResult,IQueryHandler<GetHomeQuery>
 
         var Result=new GetParentHomeDto();
 
+        var ChildFilter=request.Childs?.Any()??false;
         Result.Notifications=_context
         .AccountNotifications
+        .Where(x=>ChildFilter?request.Childs!.Contains(x.AccountId):true)
         .Select(x=>new GetAllNotificationDto{
 
             Id=x.Id,

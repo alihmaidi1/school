@@ -49,7 +49,25 @@
             Refresh Admin token and refresh token  for use at one time
             </summary>
         </member>
-        <member name="M:schoolmanagment.Controllers.Admin.ClassController.GetAll(Admin.ClassRoom.Class.Query.GetFinalResultQuery,System.Threading.CancellationToken)">
+        <member name="M:schoolmanagment.Controllers.Admin.BannerController.GetAll(Admin.ClassRoom.Banner.Query.GetAll.GetAllBannerQuery,System.Threading.CancellationToken)">
+            <summary>
+            Get All Banner 
+            </summary>
+            <returns>return all role in pagination</returns>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Admin.BannerController.Add(Admin.ClassRoom.Banner.Command.Add.AddBannerCommand,System.Threading.CancellationToken)">
+            <summary>
+            Add a New Banner 
+            </summary>
+            <returns>return all role in pagination</returns>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Admin.BannerController.Delete(Admin.ClassRoom.Banner.Command.Delete.DeleteBannerCommand,System.Threading.CancellationToken)">
+            <summary>
+            Delete Banner 
+            </summary>
+            <returns>return all role in pagination</returns>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Admin.ClassController.GetFinalResult(Admin.ClassRoom.Class.Query.GetFinalResultQuery,System.Threading.CancellationToken)">
             <summary>
             get Final Result for class in specific year 
             </summary>
@@ -181,12 +199,6 @@
             </summary>
             <returns>return response true if operation is successed</returns>
         </member>
-        <member name="M:schoolmanagment.Controllers.Admin.StudentController.GetAllStudentByStage(Admin.ClassRoom.Student.Query.GetByStage.GetStudentByStageQuery,System.Threading.CancellationToken)">
-            <summary>
-            get all student in stage 
-            </summary>
-            <returns>return all role in pagination</returns>
-        </member>
         <member name="M:schoolmanagment.Controllers.Admin.StudentController.Add(Admin.Student.Student.Command.Add.AddStudentCommand,System.Threading.CancellationToken)">
             <summary>
             Add a New Student In School 
@@ -235,7 +247,7 @@
             </summary>
             <returns>return all role in pagination</returns>
         </member>
-        <member name="M:schoolmanagment.Controllers.Admin.SubjectController.GetAllTeacher(Admin.ClassRoom.Subject.Query.GetAll.GetAllSubjectCommand,System.Threading.CancellationToken)">
+        <member name="M:schoolmanagment.Controllers.Admin.SubjectController.GetAllSubjectWithStatus(Admin.ClassRoom.Subject.Query.GetAll.GetAllSubjectCommand,System.Threading.CancellationToken)">
             <summary>
             get all Subject with Status  in this year 
             </summary>
@@ -392,6 +404,81 @@
         <member name="M:schoolmanagment.Controllers.Common.ImageController.UploadImages(Common.Feature.Image.Command.UploadImages.UploadImagesCommand)">
             <summary>
             upload images with at great size is 1 mega for one
+            </summary>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Parent.AuthController.LoginStudent(Parent.Auth.Command.Login.LoginParentCommand,System.Threading.CancellationToken)">
+            <summary>
+            Login Parent to App
+            </summary>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Parent.AuthController.ValidateCode(Parent.Auth.Command.ValidateCode.ValidateCodeCommand,System.Threading.CancellationToken)">
+            <summary>
+            Validate Code And Get Token Info For Parent
+            </summary>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Parent.AuthController.Logout(Parent.Auth.Command.Logout.LogoutParentCommand,System.Threading.CancellationToken)">
+            <summary>
+            Logout Student
+            </summary>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Parent.AuthController.RefreshToken(Parent.Auth.Command.RefreshToken.RefreshParentTokenCommand,System.Threading.CancellationToken)">
+            <summary>
+            Refresh Student Token
+            </summary>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Parent.HomeController.GetHome(Parent.Home.Query.GetHome.GetHomeQuery,System.Threading.CancellationToken)">
+            <summary>
+            Get Parent Home Page
+            </summary>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Parent.NotificationController.GetAllNotification(Parent.Notification.Query.GetAll.GetAllNotificationQuery,System.Threading.CancellationToken)">
+            <summary>
+            Get All Parent Notification
+            </summary>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Parent.NotificationController.Delete(Parent.Notification.Command.Delete.DeleteNotificationCommand,System.Threading.CancellationToken)">
+            <summary>
+            Delete Parent Notification
+            </summary>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Parent.StudentController.GetAllNotification(Parent.Student.Query.GetAllName.GetAllChildNameQuery,System.Threading.CancellationToken)">
+            <summary>
+            Get All Parent Student
+            </summary>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Parent.StudentController.GetFinalResults(Parent.Student.Query.FinalResult.GetParentFinalResultQuery,System.Threading.CancellationToken)">
+            <summary>
+            Get Student Final Result
+            </summary>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Student.AuthController.LoginStudent(Student.Auth.Command.Login.LoginStudentCommand,System.Threading.CancellationToken)">
+            <summary>
+            Login Student to App
+            </summary>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Student.AuthController.ValidateCode(Student.Auth.Command.ValidateCode.ValidateCodeCommand,System.Threading.CancellationToken)">
+            <summary>
+            Validate Code And Get Token Info For Student
+            </summary>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Student.AuthController.Logout(Student.Auth.Command.Logout.LogoutStudentCommand,System.Threading.CancellationToken)">
+            <summary>
+            Logout Student
+            </summary>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Student.AuthController.RefreshToken(Student.Auth.Command.RefreshToken.RefreshStudentTokenCommand,System.Threading.CancellationToken)">
+            <summary>
+            Refresh Student Token
+            </summary>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Student.NotificationController.GetAllNotification(Student.Notification.Query.GetAll.GetAllNotificationQuery,System.Threading.CancellationToken)">
+            <summary>
+            Get All Student Notification
+            </summary>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Student.NotificationController.Delete(Student.Notification.Command.Delete.DeleteNotificationCommand,System.Threading.CancellationToken)">
+            <summary>
+            Delete Parent Notification
             </summary>
         </member>
         <member name="M:schoolmanagment.Controllers.Teacher.AuthController.LoginTeacher(Teacher.Auth.Login.LoginTeacherCommand,System.Threading.CancellationToken)">

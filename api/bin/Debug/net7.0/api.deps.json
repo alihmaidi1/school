@@ -13,8 +13,10 @@
           "MediatR": "12.2.0",
           "Microsoft.AspNetCore.OpenApi": "7.0.14",
           "Microsoft.EntityFrameworkCore.Design": "7.0.14",
+          "Parent": "1.0.0",
           "RealTime": "1.0.0",
           "Shared": "1.0.0",
+          "Student": "1.0.0",
           "Swashbuckle.AspNetCore": "6.5.0",
           "Teacher": "1.0.0",
           "infrastructure": "1.0.0",
@@ -2123,6 +2125,15 @@
           "infrastructure.dll": {}
         }
       },
+      "Parent/1.0.0": {
+        "dependencies": {
+          "Repository": "1.0.0",
+          "Shared": "1.0.0"
+        },
+        "runtime": {
+          "Parent.dll": {}
+        }
+      },
       "RealTime/1.0.0": {
         "dependencies": {
           "Domain": "1.0.0",
@@ -2160,6 +2171,15 @@
         },
         "runtime": {
           "Shared.dll": {}
+        }
+      },
+      "Student/1.0.0": {
+        "dependencies": {
+          "Repository": "1.0.0",
+          "Shared": "1.0.0"
+        },
+        "runtime": {
+          "Student.dll": {}
         }
       },
       "Teacher/1.0.0": {
@@ -3787,6 +3807,11 @@
       "serviceable": false,
       "sha512": ""
     },
+    "Parent/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
     "RealTime/1.0.0": {
       "type": "project",
       "serviceable": false,
@@ -3798,6 +3823,11 @@
       "sha512": ""
     },
     "Shared/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Student/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

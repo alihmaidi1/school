@@ -11,4 +11,6 @@ public class GetHomeQuery: IQuery
 
     
 
+    public List<Guid>? Childs{get;set;}
+
 }
