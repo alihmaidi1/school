@@ -29,7 +29,7 @@ public class AddMarkValidation: AbstractValidator<AddMarkCommand>
                     x.StudentId==request.StudentId&&
                     x.SubjectYear.TeacherSubject.TeacherId==currentUserService.UserId)
             )
-            .WithMessage("this student odes not has this subject or this subject you are not learn it");
+            .WithMessage("this student does not has this subject or this subject you are not learn it");
 
 
         RuleFor(x=>x.Mark)

@@ -36,7 +36,7 @@ public class ClassController:ApiController
     [Produces(typeof(OperationResultBase<PageList<GetAllResultDto>>))]
 
     [HttpGet]
-    public async Task<IActionResult> GetAll([FromQuery] GetFinalResultQuery command,CancellationToken Token)
+    public async Task<IActionResult> GetFinalResult([FromQuery] GetFinalResultQuery command,CancellationToken Token)
     {
         var response = await this.Mediator.Send(command,Token);
         return response;

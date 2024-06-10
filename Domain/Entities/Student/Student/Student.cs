@@ -51,6 +51,8 @@ public class Student:BaseEntity
     
     
     public string? Hash { get; set; }
+
+    public string? Code{get;set;}
     
 
     public ICollection<StudentQuez> StudentQuezs{get;set;}

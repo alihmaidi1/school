@@ -44,7 +44,7 @@ public class AuthController: ApiController
     /// logout teacher from dashboard
     /// </summary>
     [HttpPost]
-    [CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema))]
+    [CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Teacher))]
 
     [Produces(typeof(OperationResultBase<Boolean>))]
 

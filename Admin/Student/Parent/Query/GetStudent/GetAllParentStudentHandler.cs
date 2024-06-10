@@ -24,7 +24,7 @@ public class GetAllParentStudentHandler : OperationResult ,IQueryHandler<GetAllP
 
         var Students=_context
         .Students
-        .Where(x=>x.Id==request.Id)
+        .Where(x=>x.ParentId==request.Id)
         .Select(x=>new GetAllStudentParentDto{
 
             Id=x.Id,

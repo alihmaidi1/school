@@ -31,7 +31,7 @@ public class SubjectController: ApiController
     [Produces(typeof(OperationResultBase<PageList<GetAllSubjectDto>>))]
    
     [HttpGet]
-    public async Task<IActionResult> GetAllTeacher([FromQuery] GetAllSubjectCommand request,CancellationToken Token)
+    public async Task<IActionResult> GetAllSubjectWithStatus([FromQuery] GetAllSubjectCommand request,CancellationToken Token)
     {
         var response = await this.Mediator.Send(request,Token);
         return response;

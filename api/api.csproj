@@ -15,14 +15,14 @@
     </PropertyGroup>
     <ItemGroup>
         <PackageReference Include="MediatR" Version="12.2.0" />
-        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.14"/>
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.14" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.14">
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <RuntimeHostConfigurationOption Include="System.Drawing.EnableUnixSupport" Value="true" />
 
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0"/>
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
     </ItemGroup>
 
     <ItemGroup>
@@ -57,6 +57,8 @@
       <ProjectReference Include="..\RealTime\RealTime.csproj" />
       <ProjectReference Include="..\Shared\Shared.csproj" />
       <ProjectReference Include="..\Teacher\Teacher.csproj" />
+      <ProjectReference Include="..\Student\Student.csproj" />
+      <ProjectReference Include="..\Parent\Parent.csproj" />
     </ItemGroup>
 
     <ItemGroup>

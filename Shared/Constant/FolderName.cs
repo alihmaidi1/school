@@ -6,6 +6,8 @@ public static class FolderName
     public  const string Temp = "Temps";
     public const string Admin = "Admins";
     public const string Parent = "Parent";
+    public const string Banner = "Parent";
+
     public const string Student = "Student";
 
     public const string Teacher = "Teachers";

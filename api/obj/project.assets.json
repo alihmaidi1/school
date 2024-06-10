@@ -4056,6 +4056,20 @@
           "bin/placeholder/infrastructure.dll": {}
         }
       },
+      "Parent/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "Repository": "1.0.0",
+          "Shared": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Parent.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Parent.dll": {}
+        }
+      },
       "RealTime/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
@@ -4108,6 +4122,20 @@
         },
         "runtime": {
           "bin/placeholder/Shared.dll": {}
+        }
+      },
+      "Student/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "Repository": "1.0.0",
+          "Shared": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Student.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Student.dll": {}
         }
       },
       "Teacher/1.0.0": {
@@ -11053,6 +11081,11 @@
       "path": "../infrastructure/infrastructure.csproj",
       "msbuildProject": "../infrastructure/infrastructure.csproj"
     },
+    "Parent/1.0.0": {
+      "type": "project",
+      "path": "../Parent/Parent.csproj",
+      "msbuildProject": "../Parent/Parent.csproj"
+    },
     "RealTime/1.0.0": {
       "type": "project",
       "path": "../RealTime/RealTime.csproj",
@@ -11068,6 +11101,11 @@
       "path": "../Shared/Shared.csproj",
       "msbuildProject": "../Shared/Shared.csproj"
     },
+    "Student/1.0.0": {
+      "type": "project",
+      "path": "../Student/Student.csproj",
+      "msbuildProject": "../Student/Student.csproj"
+    },
     "Teacher/1.0.0": {
       "type": "project",
       "path": "../Teacher/Teacher.csproj",
@@ -11081,8 +11119,10 @@
       "MediatR >= 12.2.0",
       "Microsoft.AspNetCore.OpenApi >= 7.0.14",
       "Microsoft.EntityFrameworkCore.Design >= 7.0.14",
+      "Parent >= 1.0.0",
       "RealTime >= 1.0.0",
       "Shared >= 1.0.0",
+      "Student >= 1.0.0",
       "Swashbuckle.AspNetCore >= 6.5.0",
       "Teacher >= 1.0.0",
       "infrastructure >= 1.0.0"
@@ -11119,11 +11159,17 @@
             "/home/alihmaidi/Desktop/schhol1/Common/Common.csproj": {
               "projectPath": "/home/alihmaidi/Desktop/schhol1/Common/Common.csproj"
             },
+            "/home/alihmaidi/Desktop/schhol1/Parent/Parent.csproj": {
+              "projectPath": "/home/alihmaidi/Desktop/schhol1/Parent/Parent.csproj"
+            },
             "/home/alihmaidi/Desktop/schhol1/RealTime/RealTime.csproj": {
               "projectPath": "/home/alihmaidi/Desktop/schhol1/RealTime/RealTime.csproj"
             },
             "/home/alihmaidi/Desktop/schhol1/Shared/Shared.csproj": {
               "projectPath": "/home/alihmaidi/Desktop/schhol1/Shared/Shared.csproj"
+            },
+            "/home/alihmaidi/Desktop/schhol1/Student/Student.csproj": {
+              "projectPath": "/home/alihmaidi/Desktop/schhol1/Student/Student.csproj"
             },
             "/home/alihmaidi/Desktop/schhol1/Teacher/Teacher.csproj": {
               "projectPath": "/home/alihmaidi/Desktop/schhol1/Teacher/Teacher.csproj"

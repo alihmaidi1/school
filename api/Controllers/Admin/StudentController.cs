@@ -27,19 +27,19 @@ namespace schoolmanagment.Controllers.Admin;
 public class StudentController: ApiController
 {
 
-    /// <summary>
-    /// get all student in stage 
-    /// </summary>
-    /// <returns>return all role in pagination</returns>
-    [Produces(typeof(OperationResultBase<PageList<GetAllStudentStageDto>>))]
+    // /// <summary>
+    // /// get all student in stage 
+    // /// </summary>
+    // /// <returns>return all role in pagination</returns>
+    // [Produces(typeof(OperationResultBase<PageList<GetAllStudentStageDto>>))]
    
-    [HttpGet]
-    public async Task<IActionResult> GetAllStudentByStage([FromQuery] GetStudentByStageQuery request,CancellationToken Token)
-    {
-        var response = await this.Mediator.Send(request,Token);
-        return response;
+    // [HttpGet]
+    // public async Task<IActionResult> GetAllStudentByStage([FromQuery] GetStudentByStageQuery request,CancellationToken Token)
+    // {
+    //     var response = await this.Mediator.Send(request,Token);
+    //     return response;
 
-    }
+    // }
 
 
     /// <summary>

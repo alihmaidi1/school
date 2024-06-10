@@ -8,6 +8,7 @@ public enum PermissionEnum
     Vacation,
     Warning,
     Parent,
+    Banner,
     Subject,
     Student,
     Notification,

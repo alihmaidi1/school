@@ -134,6 +134,8 @@ public class ApplicationDbContext:DbContext
 
     public DbSet<Audience> Audiences{get;init;}
 
+    public DbSet<Banner> Banners{get;set;}
+
     public DbSet<AccountNotification> AccountNotifications{get;init;}
 
     public DbSet<Account> Accounts{get;init;}
