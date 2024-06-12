@@ -11,6 +11,7 @@ using Shared.OperationResult.Base;
 using Shared.Swagger;
 using Student.Home.Query.GetHome;
 using Student.Subject.Query.GetAllLeson;
+using Student.Subject.Query.GetAllQuez;
 
 namespace schoolmanagment.Controllers.Student;
 
@@ -45,7 +46,22 @@ public class HomeController:ApiController
     [HttpGet]
     [Produces(typeof(OperationResultBase<GetAllStudentLesonDto>))]
 
-    public async Task<IActionResult> GetAllNotification([FromQuery] GetAllLesonQuery command,CancellationToken Token)
+    public async Task<IActionResult> GetAllLeson([FromQuery] GetAllLesonQuery command,CancellationToken Token)
+    {
+        var response = await this.Mediator.Send(command,Token);
+        return response;
+
+    }
+
+
+
+    /// <summary>
+    /// Get Student Quez
+    /// </summary>
+    [HttpGet]
+    [Produces(typeof(OperationResultBase<GetAllStudentQuezDto>))]
+
+    public async Task<IActionResult> GetAllQuez([FromQuery] GetAllQuezQuery command,CancellationToken Token)
     {
         var response = await this.Mediator.Send(command,Token);
         return response;

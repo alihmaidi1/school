@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Domain.Base.Entity;
 using Domain.Base.interfaces;
 using Domain.Entities.ClassRoom;
+using LinqKit;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Domain.Entities.Quez;
@@ -20,6 +21,9 @@ public class Quez:BaseEntity,ISoftDelete
 
         Questions=new HashSet<Question>();
     }
+
+
+    
 
 
     public string Name{get;set;}
@@ -39,21 +43,23 @@ public class Quez:BaseEntity,ISoftDelete
 
 
 
-    public static bool IsFinished(Quez quez){
+    public static Expression<Func<Quez,bool>> IsFinished(){
 
 
-        var TotalTime=quez.StartAt.AddSeconds(quez.Questions.Sum(x=>x.Time));
-        return TotalTime<DateTime.Now;
-
-
+                    
+        return quez=>quez.StartAt.AddSeconds(quez.Questions.Sum(x=>x.Time))<DateTime.Now;
     }
 
 
+    public static Expression<Func<Quez,bool>> IsNotStarted(){
 
 
-    public static bool IsBelongForId(Quez quez,Guid id){
+        return x=>x.StartAt<DateTimeOffset.UtcNow;
 
-        return true;
-        // return quez.StudentQuezs.First().StudentSubject.SubjectYear.TeacherId==id; 
+    }
+
+    public static Expression<Func<Quez,bool>> IsBelongForId(Guid id){
+        
+        return quez=>quez.SubjectYear.TeacherSubject.TeacherId==id; 
     }
 }

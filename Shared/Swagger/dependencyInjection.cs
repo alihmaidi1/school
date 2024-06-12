@@ -1,8 +1,6 @@
 using System.Reflection;
-using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Swashbuckle.AspNetCore.SwaggerUI;
@@ -29,7 +27,6 @@ public static class DependencyInjection
                 typeof(ApiGroupName).GetFields().Skip(1).ToList().ForEach(f =>
                 {
                     var info = f.GetCustomAttribute<GroupInfoAttribute>();
-
 
                     var openApiInfo = new OpenApiInfo();
                     openApiInfo.Title = info?.Title;

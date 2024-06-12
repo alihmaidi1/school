@@ -92,7 +92,7 @@ public class StudentController: ApiController
     /// get all student quez in specifice year 
     /// </summary>
     /// <returns>return all role in pagination</returns>
-    [Produces(typeof(OperationResultBase<PageList<GetAllStudentQuezDto>>))]
+    [Produces(typeof(OperationResultBase<PageList<Domain.Dto.Student.GetAllStudentQuezDto>>))]
 
     [HttpGet]
     public async Task<IActionResult> GetAllStudentQuezByYearAndSubject([FromQuery] GetAllQuezByYearAndSubjectQuery request,CancellationToken Token)

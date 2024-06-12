@@ -461,6 +461,16 @@
             Get Student Audiences
             </summary>
         </member>
+        <member name="M:schoolmanagment.Controllers.Parent.StudentController.GiveAudienceReason(Parent.Student.Command.GiveReasonOfAudience.GiveReasonOfAudienceCommand,System.Threading.CancellationToken)">
+            <summary>
+            Give  Audience Reason 
+            </summary>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Parent.StudentController.GetAllStudentQuezMark(Parent.Student.Query.GetStudentMarks.GetParentStudentMarksQuery,System.Threading.CancellationToken)">
+            <summary>
+            Get All Student quez 
+            </summary>
+        </member>
         <member name="M:schoolmanagment.Controllers.Student.AuthController.LoginStudent(Student.Auth.Command.Login.LoginStudentCommand,System.Threading.CancellationToken)">
             <summary>
             Login Student to App
@@ -479,6 +489,21 @@
         <member name="M:schoolmanagment.Controllers.Student.AuthController.RefreshToken(Student.Auth.Command.RefreshToken.RefreshStudentTokenCommand,System.Threading.CancellationToken)">
             <summary>
             Refresh Student Token
+            </summary>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Student.HomeController.GetStudentHome(Student.Home.Query.GetHome.GetStudentHomeQuery,System.Threading.CancellationToken)">
+            <summary>
+            Get Student Home
+            </summary>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Student.HomeController.GetAllLeson(Student.Subject.Query.GetAllLeson.GetAllLesonQuery,System.Threading.CancellationToken)">
+            <summary>
+            Get Student Leson
+            </summary>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Student.HomeController.GetAllQuez(Student.Subject.Query.GetAllQuez.GetAllQuezQuery,System.Threading.CancellationToken)">
+            <summary>
+            Get Student Quez
             </summary>
         </member>
         <member name="M:schoolmanagment.Controllers.Student.NotificationController.GetAllNotification(Student.Notification.Query.GetAll.GetAllNotificationQuery,System.Threading.CancellationToken)">
