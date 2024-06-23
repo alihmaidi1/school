@@ -1,6 +1,7 @@
 using Bogus;
 using Domain.Entities.Student.Parent;
 using Shared.Constant;
+using Shared.Helper;
 
 namespace infrastructure.Data.Student;
 
@@ -12,7 +13,7 @@ public static class StudentFaker
 
         var Student = new Faker<Domain.Entities.Student.Student.Student>();
         Student.RuleFor(x => x.Email, setter => setter.Internet.Email());
-        Student.RuleFor(x => x.Password, setter => setter.Internet.Password());
+        Student.RuleFor(x => x.Password, setter => PasswordHelper.HashPassword("12345678"));
         Student.RuleFor(x => x.Name, setter => setter.Random.Word());
         Student.RuleFor(x => x.ParentId,setter=>setter.PickRandom(parentIds));
         Student.RuleFor(x => x.Gender, setter => setter.Random.Bool());

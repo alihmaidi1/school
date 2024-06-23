@@ -1,6 +1,7 @@
 using Domain.Entities.Quez;
 using infrastructure.Seed.ClassRoom;
 using infrastructure.Seed.Manager;
+using infrastructure.Seed.Notification;
 using infrastructure.Seed.Quez;
 using infrastructure.Seed.Student;
 using infrastructure.Seed.Teacher;
@@ -51,6 +52,11 @@ public static class DatabaseSeed
             await QuezSeeder.seedData(context);            
             await StudentAnswerSeeder.seedData(context);
             await AudienceSeeder.seedData(context);
+            
+            await NotificationSeeder.seedData(context);
+            await NotificationAccountSeeder.seedData(context);
+            
+            
             // await StudentAnswerSeeder.seedData(context);
             // await ClassYearSeeder.seedData(context);
             // await BillSeeder.seedData(context);

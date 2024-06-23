@@ -28,37 +28,39 @@ public class GetHomeHandler : OperationResult,IQueryHandler<GetHomeQuery>
     public async Task<JsonResult> Handle(GetHomeQuery request, CancellationToken cancellationToken)
     {
 
-        var Result=new GetParentHomeDto();
+        return null;
 
-        var ChildFilter=request.Childs?.Any()??false;
-        Result.Notifications=_context
-        .AccountNotifications
-        .Where(x=>ChildFilter?request.Childs!.Contains(x.AccountId):true)
-        .Select(x=>new GetAllNotificationDto{
+        // var Result=new GetParentHomeDto();
 
-            Id=x.Id,
-            Title=x.Notification.Title,
-            Body=x.Notification.Body,
-            Date=x.DateCreated
+        // var ChildFilter=request.Childs?.Any()??false;
+        // Result.Notifications=_context
+        // .AccountNotifications
+        // .Where(x=>ChildFilter?request.Childs!.Contains(x.AccountId):true)
+        // .Select(x=>new GetAllNotificationDto{
 
-        })
-        .ToList();
+        //     Id=x.Id,
+        //     Title=x.Notification.Title,
+        //     Body=x.Notification.Body,
+        //     Date=x.DateCreated
 
-        Result.Banners=_context
-        .Banners
-        .Where(x=>x.StartAt>=DateTimeOffset.UtcNow)
-        .Where(x=>x.EndAt<=DateTimeOffset.UtcNow)
-        .Select(x=>new GetAllBannerDto{
+        // })
+        // .ToList();
 
-            Id=x.Id,
-            Name=x.Name,
-            Image=x.Image,
-            Url=x.Url            
+        // Result.Banners=_context
+        // .Banners
+        // .Where(x=>x.StartAt>=DateTimeOffset.UtcNow)
+        // .Where(x=>x.EndAt<=DateTimeOffset.UtcNow)
+        // .Select(x=>new GetAllBannerDto{
+
+        //     Id=x.Id,
+        //     Name=x.Name,
+        //     Image=x.Image,
+        //     Url=x.Url            
 
 
-        })
-        .ToList();
+        // })
+        // .ToList();
 
-        return Success(Result);
+        // return Success(Result);
     }
 }

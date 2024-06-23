@@ -1,13 +1,14 @@
 
 using Domain.Base.Entity;
 using Domain.Base.interfaces;
+using Domain.Entities.Account;
 using Domain.Event;
 using EntityFrameworkCore.EncryptColumn.Attribute;
 using Shared.Entity.Entity;
 
 namespace Domain.Entities.Student.Parent;
 
-public class Parent:BaseEntity
+public class Parent:Domain.Entities.Account.Account
 {
 
     public Parent()
@@ -31,12 +32,9 @@ public class Parent:BaseEntity
         });
 
     }
-    public string Name { get; set; }
     
     public string? Code{get;set;}
-    public string Email { get; set; }
     
-    public string Password { get; set; }
     
     public string? Image { get; set; }
     

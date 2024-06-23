@@ -9,7 +9,6 @@ public class StudentConfigration:IEntityTypeConfiguration<Domain.Entities.Studen
 {
     public void Configure(EntityTypeBuilder<Domain.Entities.Student.Student.Student> builder)
     {
-        builder.HasKey(x => x.Id);
         
 
         builder.HasMany(x=>x.Audiences)

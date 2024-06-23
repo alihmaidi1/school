@@ -98,6 +98,9 @@ namespace infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -969,123 +972,6 @@ namespace infrastructure.Migrations
                     b.ToTable("Audiences");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Student.Parent.Parent", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Code")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid?>("CreatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("DateCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTimeOffset?>("DateDeleted")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<DateTime?>("DateUpdated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid?>("DeletedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Hash")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Image")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Resize")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid?>("UpdatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Parents");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Student.Student.Student", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Code")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid?>("CreatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("DateCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTimeOffset?>("DateDeleted")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<DateTime?>("DateUpdated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid?>("DeletedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("Gender")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Hash")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Image")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Level")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Number")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("ParentId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid?>("UpdatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ParentId");
-
-                    b.ToTable("Students");
-                });
-
             modelBuilder.Entity("Domain.Entities.Student.StudentBill.StudentBill", b =>
                 {
                     b.Property<Guid>("Id")
@@ -1373,16 +1259,82 @@ namespace infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<Guid>("RoleId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasIndex("RoleId");
 
                     b.HasDiscriminator().HasValue("Admin");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Student.Parent.Parent", b =>
+                {
+                    b.HasBaseType("Domain.Entities.Account.Account");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Hash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Resize")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.ToTable("Accounts", t =>
+                        {
+                            t.Property("Hash")
+                                .HasColumnName("Parent_Hash");
+
+                            t.Property("Image")
+                                .HasColumnName("Parent_Image");
+                        });
+
+                    b.HasDiscriminator().HasValue("Parent");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Student.Student.Student", b =>
+                {
+                    b.HasBaseType("Domain.Entities.Account.Account");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Gender")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Hash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Level")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Number")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("ParentId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasIndex("ParentId");
+
+                    b.ToTable("Accounts", t =>
+                        {
+                            t.Property("Code")
+                                .HasColumnName("Student_Code");
+
+                            t.Property("Hash")
+                                .HasColumnName("Student_Hash");
+
+                            t.Property("Image")
+                                .HasColumnName("Student_Image");
+                        });
+
+                    b.HasDiscriminator().HasValue("Student");
                 });
 
             modelBuilder.Entity("Domain.Entities.Teacher.Teacher.Teacher", b =>
@@ -1393,10 +1345,6 @@ namespace infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Image")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Reason")
@@ -1412,9 +1360,6 @@ namespace infrastructure.Migrations
 
                             t.Property("Image")
                                 .HasColumnName("Teacher_Image");
-
-                            t.Property("Name")
-                                .HasColumnName("Teacher_Name");
                         });
 
                     b.HasDiscriminator().HasValue("Teacher");
@@ -1637,17 +1582,6 @@ namespace infrastructure.Migrations
                     b.Navigation("SubjectYear");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Student.Student.Student", b =>
-                {
-                    b.HasOne("Domain.Entities.Student.Parent.Parent", "Parent")
-                        .WithMany("Students")
-                        .HasForeignKey("ParentId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Parent");
-                });
-
             modelBuilder.Entity("Domain.Entities.Student.StudentBill.StudentBill", b =>
                 {
                     b.HasOne("Domain.Entities.ClassRoom.Bill", "Bill")
@@ -1761,6 +1695,17 @@ namespace infrastructure.Migrations
                     b.Navigation("Role");
                 });
 
+            modelBuilder.Entity("Domain.Entities.Student.Student.Student", b =>
+                {
+                    b.HasOne("Domain.Entities.Student.Parent.Parent", "Parent")
+                        .WithMany("Students")
+                        .HasForeignKey("ParentId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Parent");
+                });
+
             modelBuilder.Entity("Domain.Entities.Account.Account", b =>
                 {
                     b.Navigation("AccountNotifications");
@@ -1849,22 +1794,6 @@ namespace infrastructure.Migrations
                     b.Navigation("Admins");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Student.Parent.Parent", b =>
-                {
-                    b.Navigation("Students");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Student.Student.Student", b =>
-                {
-                    b.Navigation("Audiences");
-
-                    b.Navigation("StudentBills");
-
-                    b.Navigation("StudentQuezs");
-
-                    b.Navigation("StudentSubjects");
-                });
-
             modelBuilder.Entity("Domain.Entities.Teacher.TeacherSubject", b =>
                 {
                     b.Navigation("SubjectYears");
@@ -1880,6 +1809,22 @@ namespace infrastructure.Migrations
                     b.Navigation("Vacations");
 
                     b.Navigation("Warnings");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Student.Parent.Parent", b =>
+                {
+                    b.Navigation("Students");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Student.Student.Student", b =>
+                {
+                    b.Navigation("Audiences");
+
+                    b.Navigation("StudentBills");
+
+                    b.Navigation("StudentQuezs");
+
+                    b.Navigation("StudentSubjects");
                 });
 
             modelBuilder.Entity("Domain.Entities.Teacher.Teacher.Teacher", b =>

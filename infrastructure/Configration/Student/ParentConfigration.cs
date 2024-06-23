@@ -9,7 +9,6 @@ public class ParentConfigration:IEntityTypeConfiguration<Parent>
     public void Configure(EntityTypeBuilder<Parent> builder)
     {
 
-        builder.HasKey(x => x.Id);
 
         builder.HasMany(x => x.Students)
             .WithOne(x => x.Parent)

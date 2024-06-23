@@ -25,7 +25,6 @@ public class Teacher: Account.Account,ISoftDelete
             Message=Message
         });
     }
-    public string Name { get; set; }
     
     
     

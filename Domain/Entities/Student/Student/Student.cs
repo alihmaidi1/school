@@ -1,11 +1,12 @@
 using Domain.Base.Entity;
 using Domain.Base.interfaces;
+using Domain.Entities.Account;
 using Domain.Entities.Quez;
 using Domain.Event;
 
 namespace Domain.Entities.Student.Student;
 
-public class Student:BaseEntity
+public class Student:Domain.Entities.Account.Account
 {
     public Student()
     {
@@ -31,16 +32,11 @@ public class Student:BaseEntity
 
     }
 
-    public string Name { get; set; }
-    
-    public string Email { get; set; }
-    
 
     public int Level{get;set;}    
     
 
 
-    public string Password { get; set; }
     
     public int Number { get; set; }
     
