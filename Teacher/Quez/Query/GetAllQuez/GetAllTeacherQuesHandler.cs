@@ -31,7 +31,7 @@ public class GetAllTeacherQuesHandler : OperationResult, IQueryHandler<GetAllQue
 
         var Result=_context
         .SubjectYears
-        .Where(x=>x.TeacherSubject.TeacherId==_currentUserService.UserId)
+        .Where(x=>x.TeacherSubject.TeacherId==_currentUserService.GetUserid())
         .Where(x=>x.ClassYear.YearId==request.YearId)
         .Select(x=>new GetAllTeacherQuezDto(){
 

@@ -29,7 +29,7 @@ public class RequestVacationHandler : OperationResult, ICommandHandler<RequestVa
             Reason=request.Reason,
             Days=request.Period,            
             Date=request.StartAt,
-            TeacherId=_currentUserService.UserId!.Value,
+            TeacherId=_currentUserService.GetUserid()!.Value,
             TypeId=request.TypeId
 
 

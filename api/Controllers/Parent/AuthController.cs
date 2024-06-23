@@ -30,7 +30,7 @@ public class AuthController:ApiController
     [HttpPost]
     [Produces(typeof(OperationResultBase<Boolean>))]
 
-    public async Task<IActionResult> LoginStudent([FromBody] LoginParentCommand command,CancellationToken Token)
+    public async Task<IActionResult> LoginParent([FromBody] LoginParentCommand command,CancellationToken Token)
     {
         var response = await this.Mediator.Send(command,Token);
         return response;

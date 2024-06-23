@@ -6,6 +6,7 @@ using infrastructure;
 using infrastructure.Attribute;
 using Microsoft.AspNetCore.Mvc;
 using schoolManagement.Base;
+using Shared.Enum;
 using Shared.OperationResult.Base;
 using Shared.Swagger;
 
@@ -46,7 +47,7 @@ public class AuthController:ApiController
     /// <summary>
     /// logout admin from dashboard
     /// </summary>
-    [CheckTokenSession]
+    [CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Admin))]
     [HttpPost]
     [Produces(typeof(OperationResultBase<Boolean>))]
 

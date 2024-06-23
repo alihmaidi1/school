@@ -51,7 +51,7 @@ public class GetAllQuezHandler : OperationResult,IQueryHandler<GetAllQuezQuery>
         Result.Quezs=_context
         .Students
         .AsNoTracking()
-        .Where(x=>x.Id==_currentUserService.UserId)
+        .Where(x=>x.Id==_currentUserService.GetUserid())
         .SelectMany(x=>x.StudentQuezs.Where(x=>x.Quez.SubjectYearId==request.SubjectYearId))
         .Select(x=>new GetAllStudentQuezDto.Quez{
 

@@ -51,7 +51,7 @@ public class GetStudentHomeHandler : OperationResult,IQueryHandler<GetStudentHom
         Home.Subjects=_context
         .StudentSubjects
         .AsNoTracking()
-        .Where(x=>x.StudentId==_currentUserService.UserId)
+        .Where(x=>x.StudentId==_currentUserService.GetUserid())
         .Where(x=>x.SubjectYear.ClassYear.Status)
         .Select(x=>new GetStudentHomeDto.Subject{
 

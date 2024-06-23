@@ -31,14 +31,14 @@ public class AuditInterceptor: SaveChangesInterceptor
             switch (entry.State)
             {
                 case EntityState.Deleted:
-                    entity.DeletedBy = _currentUserService.UserId;
+                    entity.DeletedBy = _currentUserService.GetUserid();
                     break;
                 case EntityState.Modified:
-                    entity.UpdatedBy = _currentUserService.UserId;
+                    entity.UpdatedBy = _currentUserService.GetUserid();
                     entity.DateUpdated = DateTime.UtcNow;
                     break;
                 case EntityState.Added:
-                    entity.CreatedBy = _currentUserService.UserId;
+                    entity.CreatedBy = _currentUserService.GetUserid();
                     entity.DateCreated = DateTime.UtcNow;
                     break;
             }

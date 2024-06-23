@@ -27,7 +27,7 @@ public class GetAllSubjectWithStudentHandler : OperationResult, IQueryHandler<Ge
         .ClassYears
         .Where(x=>x.YearId==request.YearId)
         .SelectMany(x=>x.SubjectYears)
-        .Where(x=>x.TeacherSubject.TeacherId==_currentUserService.UserId)
+        .Where(x=>x.TeacherSubject.TeacherId==_currentUserService.GetUserid())
         .Select(x=>new GetAllSubjectWithStudentTeacherDto{
 
             Id=x.TeacherSubject.Subject.Id,

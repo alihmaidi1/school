@@ -18,11 +18,10 @@ public static class DependencyInjection
 
         var iJwtOption = configuration.GetSection("Jwt");
         services.Configure<JwtSetting>(iJwtOption);
-        var authentication = services.AddAuthentication(options =>
-        {
-            options.DefaultAuthenticateScheme = nameof(JwtSchema.Admin);
-            options.DefaultChallengeScheme = nameof(JwtSchema.Admin);
-            options.DefaultScheme = nameof(JwtSchema.Admin);
+        var authentication = services.AddAuthentication(option=>{
+
+            option.DefaultAuthenticateScheme=nameof(JwtSchema.Admin);
+            option.DefaultChallengeScheme=nameof(JwtSchema.Admin);        
         });
 
         foreach (var item in  System.Enum.GetNames(typeof(JwtSchema)))
@@ -30,14 +29,14 @@ public static class DependencyInjection
 
             authentication.AddJwtBearer(item, options =>
             {
-
-                    options.SaveToken = true;                    
+                
                     options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
                     {
 
+                        
                         ValidateIssuerSigningKey = true,
-                        ValidateIssuer = true,
                         ValidateAudience = true,
+                        ValidateIssuer = true,                    
                         ValidateLifetime = true,
                         ClockSkew=TimeSpan.Zero,
                         ValidIssuer = item,
@@ -67,7 +66,6 @@ public static class DependencyInjection
             
         }
         
-              
         return services;
 
     }

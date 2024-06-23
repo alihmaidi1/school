@@ -22,23 +22,21 @@ public class GetParentFinalResultHandler : OperationResult,IQueryHandler<GetPare
     }
     public async Task<JsonResult> Handle(GetParentFinalResultQuery request, CancellationToken cancellationToken)
     {
-        var ChildFilter=request.Childs?.Any()??false;
+
         var Results=_context
         .Students
         .AsNoTracking()
-        .AsSplitQuery()
-        .Where(x=>x.ParentId==_currentUserService.UserId)
-        .Where(x=>ChildFilter?request.Childs!.Contains(x.Id):true)        
+        .Where(x=>x.Id==request.StudentId)    
         .Select(x=>new GetAllStudentResultDto{
             Id=x.Id,
             Name=x.Name,
             Results=x
                 .StudentSubjects
                 .Where(x=>!x.SubjectYear.ClassYear.Status)
-                .GroupBy(x=>x.SubjectYear.ClassYear)
+                .GroupBy(x=>x.SubjectYear.ClassYear.Year)
                 .Select(y=>new GetAllStudentResultDto.Result{
 
-                    Date=y.Key.Year.Date,
+                    Date=y.Key.Date,
                     Total=y.Select(x=>x.Mark??0).Sum()/y.Count(),
                     Marks=y.Select(z=>new GetAllStudentResultDto.SubjectMark{
 
@@ -53,7 +51,7 @@ public class GetParentFinalResultHandler : OperationResult,IQueryHandler<GetPare
                 
 
         })
-        .ToPagedList(request.PageNumber,request.PageSize);
+        .First();
 
 
         return Success(Results);

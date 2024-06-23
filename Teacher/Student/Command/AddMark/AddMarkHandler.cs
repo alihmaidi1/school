@@ -30,7 +30,7 @@ public class AddMarkHandler : OperationResult,ICommandHandler<AddMarkCommand>
         .Where(x=>x.StudentId==request.StudentId)
         .Where(x=>x.SubjectYear.ClassYear.Status)
         .Where(x=>x.SubjectYear.TeacherSubject.SubjectId==request.SubjectId)
-        .Where(x=>x.SubjectYear.TeacherSubject.TeacherId==_currentUserService.UserId)
+        .Where(x=>x.SubjectYear.TeacherSubject.TeacherId==_currentUserService.GetUserid())
         .ExecuteUpdateAsync(setter=>setter.SetProperty(x=>x.Mark,request.Mark),cancellationToken);
 
         return Success("mark updated successfully");

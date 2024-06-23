@@ -34,7 +34,7 @@ public class GetAllTeacherLesonHandler : OperationResult,IQueryHandler<GetAllLes
         .SubjectYears
         .AsNoTracking()
         .Where(x=>x.ClassYear.YearId==request.YearId)
-        .Where(x=>x.TeacherSubject.TeacherId==_currentUserService.UserId)
+        .Where(x=>x.TeacherSubject.TeacherId==_currentUserService.GetUserid())
         .Select(x=>new GetAllTeacherLesonDto(){            
             Id=x.TeacherSubject.Subject.Id,
             Name=x.TeacherSubject.Subject.Name,

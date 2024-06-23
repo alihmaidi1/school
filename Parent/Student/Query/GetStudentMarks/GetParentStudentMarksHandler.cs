@@ -32,7 +32,7 @@ public class GetParentStudentMarksHandler : OperationResult,IQueryHandler<GetPar
         .Students
         .AsNoTracking()
         .AsSplitQuery()
-        .Where(x=>x.ParentId==_currentUserService.UserId)
+        .Where(x=>x.ParentId==_currentUserService.GetUserid())
         .Where(x=>ChildFilter?request.Childs!.Contains(x.Id):true)
         .Select(x=>new GetParentStudentMarksDto{
 

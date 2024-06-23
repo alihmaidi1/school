@@ -31,7 +31,7 @@ public class ChangevacationStatusHandler:OperationResult,ICommandHandler<ChnageV
     public async Task<JsonResult> Handle(ChnageVacationStatusCommand request, CancellationToken cancellationToken)
     {
 
-        await _context.Vacations.Where(x=>x.Id==request.Id).ExecuteUpdateAsync(setter=>setter.SetProperty(x=>x.Status,request.Status).SetProperty(x=>x.AdminId,_currentUserService.UserId),cancellationToken);
+        await _context.Vacations.Where(x=>x.Id==request.Id).ExecuteUpdateAsync(setter=>setter.SetProperty(x=>x.Status,request.Status).SetProperty(x=>x.AdminId,_currentUserService.GetUserid()),cancellationToken);
         return Success("status was updated successfully");
 
 

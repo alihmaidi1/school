@@ -27,7 +27,7 @@ public class SoftDeleteInterceptor : SaveChangesInterceptor
             if (entry is not { State: EntityState.Deleted, Entity: ISoftDelete delete }) continue;
             entry.State = EntityState.Modified;
             delete.DateDeleted=DateTime.Now;
-            delete.DeletedBy = _currentUserService.UserId;
+            delete.DeletedBy = _currentUserService.GetUserid();
         }        
         return base.SavedChanges(eventData, result);        
     }

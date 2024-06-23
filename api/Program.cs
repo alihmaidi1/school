@@ -30,7 +30,7 @@ builder.Services.AddResponseCompression(option => { option.MimeTypes = new[] { "
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
-builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddHangfire(x => x.UseSqlServerStorage(builder.Configuration["ConnectionStrings:DefaultConnection"]));
 builder.Services.AddHangfireServer();
 #endregion
@@ -175,6 +175,7 @@ app.UseMiddleware<ErrorHandling>();
 app.UseHttpsRedirection();
 
 app.UseStaticFiles();
+app.UseAuthentication();
 app.UseAuthorization();
 app.UseHangfireDashboard("/hangfire/dashboard");
 

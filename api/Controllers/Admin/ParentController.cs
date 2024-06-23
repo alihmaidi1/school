@@ -11,6 +11,7 @@ using infrastructure.Attribute;
 using Microsoft.AspNetCore.Mvc;
 using schoolManagement.Base;
 using Shared.Entity.EntityOperation;
+using Shared.Enum;
 using Shared.OperationResult.Base;
 using Shared.Swagger;
 
@@ -19,7 +20,7 @@ namespace schoolmanagment.Controllers.Admin;
 
 [Microsoft.AspNetCore.Mvc.Route("Api/SuperAdmin/[controller]/[action]")]
 [ApiGroup(ApiGroupName.All, ApiGroupName.Admin)]
-[CheckTokenSession(Policy = nameof(PermissionEnum.Parent))]
+[CheckTokenSession(Policy = nameof(PermissionEnum.Parent),AuthenticationSchemes =nameof(JwtSchema.Admin))]
 
 public class ParentController:ApiController
 {

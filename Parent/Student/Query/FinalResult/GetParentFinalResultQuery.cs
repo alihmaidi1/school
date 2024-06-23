@@ -8,11 +8,11 @@ using Shared.Abstraction;
 
 namespace Parent.Student.Query.FinalResult;
 
-public class GetParentFinalResultQuery: PaginationRequest,IQuery
+public class GetParentFinalResultQuery:IQuery
 {
 
 
-    public List<Guid>? Childs{get;set;}
+    public Guid StudentId{get;set;}
 
 
 

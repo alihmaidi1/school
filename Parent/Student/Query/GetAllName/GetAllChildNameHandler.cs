@@ -27,7 +27,7 @@ public class GetAllChildNameHandler : OperationResult,IQueryHandler<GetAllChildN
 
         var Students=_context
         .Students
-        .Where(x=>x.ParentId==_currentUserService.UserId)
+        .Where(x=>x.ParentId==_currentUserService.GetUserid())
         .Select(x=>new GetAllStudentNameDto{
 
             Id=x.Id,

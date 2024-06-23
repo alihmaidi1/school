@@ -16,7 +16,7 @@ public class DeleteNotificationValidation: AbstractValidator<DeleteNotificationC
         RuleFor(x=>x.Id)
         .NotEmpty()
         .NotNull()
-        .Must(id=>context.AccountNotifications.Any(x=>x.Id==id&&x.AccountId==currentUserService.UserId))
+        .Must(id=>context.AccountNotifications.Any(x=>x.Id==id&&x.AccountId==currentUserService.GetUserid()))
         .WithMessage("this notification is not exists or not belongs to you");
     }
 

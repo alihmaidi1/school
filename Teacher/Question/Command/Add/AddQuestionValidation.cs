@@ -13,7 +13,7 @@ public class AddQuestionValidation: AbstractValidator<AddQuestionCommand>
         RuleFor(x=>x.QuezId)
         .NotEmpty()
         .NotNull()
-        .Must(id=>context.Quezs.Any(x=>x.Id==id&&x.StartAt>DateTimeOffset.UtcNow&&x.SubjectYear.TeacherSubject.TeacherId==currentUserService.UserId))
+        .Must(id=>context.Quezs.Any(x=>x.Id==id&&x.StartAt>DateTimeOffset.UtcNow&&x.SubjectYear.TeacherSubject.TeacherId==currentUserService.GetUserid()))
         .WithMessage("this quez is active or not belongs to you");
         
         

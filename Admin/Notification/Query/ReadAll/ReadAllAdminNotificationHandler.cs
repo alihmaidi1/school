@@ -43,7 +43,7 @@ public class ReadAllAdminNotificationHandler : OperationResult, ICommandHandler<
         await _context
         .Admins
         .AsNoTracking()
-        .Where(x=>x.Id==_currentUserService.UserId)
+        .Where(x=>x.Id==_currentUserService.GetUserid())
         .SelectMany(x=>x.AccountNotifications)
         .ExecuteUpdateAsync(setter=>setter.SetProperty(x=>x.IsRead,true),cancellationToken);
         await _context.SaveChangesAsync(cancellationToken);

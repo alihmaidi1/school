@@ -51,7 +51,7 @@ public class StudentController: ApiController
     /// Get Student Final Result
     /// </summary>
     [HttpGet]
-    [Produces(typeof(OperationResultBase<PageList<GetAllStudentResultDto>>))]
+    [Produces(typeof(OperationResultBase<GetAllStudentResultDto>))]
 
     public async Task<IActionResult> GetFinalResults([FromQuery] GetParentFinalResultQuery command,CancellationToken Token)
     {

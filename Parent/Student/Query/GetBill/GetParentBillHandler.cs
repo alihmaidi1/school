@@ -34,7 +34,7 @@ public class GetParentBillHandler : OperationResult,IQueryHandler<GetParentBillQ
         .Students
         .AsNoTracking()
         .AsSplitQuery()
-        .Where(x=>x.ParentId==_currentUserService.UserId)
+        .Where(x=>x.ParentId==_currentUserService.GetUserid())
         .Where(x=>ChildFilter?request.Childs!.Contains(x.Id):true)
         .Select(x=>new GetAllParentBillDto{
 

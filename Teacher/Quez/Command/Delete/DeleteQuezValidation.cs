@@ -21,7 +21,7 @@ public class DeleteQuezValidation: AbstractValidator<DeleteQuezCommand>
         .NotNull()
         .Must(id=>context.Quezs.Any(
             (QuezEntity.Quez.IsNotStarted().Or(QuezEntity.Quez.IsFinished()))
-            .And(QuezEntity.Quez.IsBelongForId(currentUserService.UserId!.Value))
+            .And(QuezEntity.Quez.IsBelongForId(currentUserService.GetUserid()!.Value))
             
             
             ))

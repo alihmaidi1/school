@@ -28,7 +28,7 @@ public class GetAllTeacherSubjectHandler : OperationResult,IQueryHandler<GetAllT
 
         var Subjects=_context
         .TeacherSubjects
-        .Where(x=>x.TeacherId==_currentUserService.UserId)
+        .Where(x=>x.TeacherId==_currentUserService.GetUserid())
         .Where(x=>x.SubjectYears.Any(y=>y.ClassYear.Status))
         .Select(x=>new GetAllSubjectNameDto{
 

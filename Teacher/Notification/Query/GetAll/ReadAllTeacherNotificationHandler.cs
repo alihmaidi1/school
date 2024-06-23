@@ -29,7 +29,7 @@ public class ReadAllTeacherNotificationHandler : OperationResult ,ICommandHandle
          var Notifications=_context
         .Teachers
         .AsNoTracking()
-        .Where(x=>x.Id==_currentUserService.UserId)
+        .Where(x=>x.Id==_currentUserService.GetUserid())
         .SelectMany(x=>x.AccountNotifications)        
         .Select(x=>new GetAllNotificationDto{
 
@@ -42,7 +42,7 @@ public class ReadAllTeacherNotificationHandler : OperationResult ,ICommandHandle
         await _context
         .Teachers
         .AsNoTracking()
-        .Where(x=>x.Id==_currentUserService.UserId)
+        .Where(x=>x.Id==_currentUserService.GetUserid())
         .SelectMany(x=>x.AccountNotifications)
         .ExecuteUpdateAsync(setter=>setter.SetProperty(x=>x.IsRead,true),cancellationToken);
         await _context.SaveChangesAsync(cancellationToken);

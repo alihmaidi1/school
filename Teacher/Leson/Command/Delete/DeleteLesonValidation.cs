@@ -17,7 +17,7 @@ public class DeleteLesonValidation: AbstractValidator<DeleteLesonCommand>
         RuleFor(x=>x.Id)
         .NotNull()
         .NotEmpty()
-        .Must(id=>context.Lesons.Any(x=>x.Id==id&&x.SubjectYear.TeacherSubject.TeacherId==currentUserService.UserId))
+        .Must(id=>context.Lesons.Any(x=>x.Id==id&&x.SubjectYear.TeacherSubject.TeacherId==currentUserService.GetUserid()))
         .WithMessage("this leson is not exists in our data");
 
     }

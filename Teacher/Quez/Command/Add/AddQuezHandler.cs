@@ -31,7 +31,7 @@ public class AddQuezHandler : OperationResult, ICommandHandler<AddQuezCommand>
         .SubjectYears
         .AsNoTracking()
         .Where(x=>x.TeacherSubject.SubjectId==request.SubjectId)
-        .Where(x=>x.TeacherSubject.TeacherId==_currentUserService.UserId)
+        .Where(x=>x.TeacherSubject.TeacherId==_currentUserService.GetUserid())
         .Where(x=>x.ClassYear.Status)     
         .Select(x=>x.Id)   
         .First();
@@ -42,7 +42,7 @@ public class AddQuezHandler : OperationResult, ICommandHandler<AddQuezCommand>
             SubjectYearId=SubjectYearId
             
         };
-        var StudentSubjects=_context.SubjectYears.Where(x=>x.ClassYear.Status&&x.TeacherSubject.TeacherId==_currentUserService.UserId)
+        var StudentSubjects=_context.SubjectYears.Where(x=>x.ClassYear.Status&&x.TeacherSubject.TeacherId==_currentUserService.GetUserid())
         .SelectMany(x=>x.StudentSubjects)        
         .ToList();
         

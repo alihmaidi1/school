@@ -32,7 +32,7 @@ public class GetAllParentAudienceHandler : OperationResult,IQueryHandler<GetAllP
         .Students
         .AsNoTracking()
         .AsSplitQuery()
-        .Where(x=>x.ParentId==_currentUserService.UserId)
+        .Where(x=>x.ParentId==_currentUserService.GetUserid())
         .Where(x=>ChildsFilter?request.Childs!.Contains(x.Id):true)
         .Select(x=>new GetAllParentStudentAudienceDto{
 

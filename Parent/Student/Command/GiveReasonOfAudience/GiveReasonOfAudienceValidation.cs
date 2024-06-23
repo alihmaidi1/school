@@ -21,7 +21,7 @@ public class GiveReasonOfAudienceValidation: AbstractValidator<GiveReasonOfAudie
         RuleFor(x=>x.Id)
         .NotEmpty()
         .NotNull()
-        .Must(id=>context.Audiences.Any(x=>x.Id==id&&x.Student.ParentId==currentUserService.UserId))
+        .Must(id=>context.Audiences.Any(x=>x.Id==id&&x.Student.ParentId==currentUserService.GetUserid()))
         .WithMessage("this audience is not correct");
 
 

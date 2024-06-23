@@ -27,7 +27,7 @@ public class GetAllNotificationHandler : OperationResult,IQueryHandler<GetAllNot
 
         var Notifications=_context
         .AccountNotifications
-        .Where(x=>x.AccountId==_currentUserService.UserId)
+        .Where(x=>x.AccountId==_currentUserService.GetUserid())
         .Select(x=>new GetAllNotificationDto{
             Id=x.Id,
             Title=x.Notification.Title,

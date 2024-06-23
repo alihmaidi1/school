@@ -406,7 +406,7 @@
             upload images with at great size is 1 mega for one
             </summary>
         </member>
-        <member name="M:schoolmanagment.Controllers.Parent.AuthController.LoginStudent(Parent.Auth.Command.Login.LoginParentCommand,System.Threading.CancellationToken)">
+        <member name="M:schoolmanagment.Controllers.Parent.AuthController.LoginParent(Parent.Auth.Command.Login.LoginParentCommand,System.Threading.CancellationToken)">
             <summary>
             Login Parent to App
             </summary>
@@ -424,11 +424,6 @@
         <member name="M:schoolmanagment.Controllers.Parent.AuthController.RefreshToken(Parent.Auth.Command.RefreshToken.RefreshParentTokenCommand,System.Threading.CancellationToken)">
             <summary>
             Refresh Student Token
-            </summary>
-        </member>
-        <member name="M:schoolmanagment.Controllers.Parent.HomeController.GetHome(Parent.Home.Query.GetHome.GetHomeQuery,System.Threading.CancellationToken)">
-            <summary>
-            Get Parent Home Page
             </summary>
         </member>
         <member name="M:schoolmanagment.Controllers.Parent.NotificationController.GetAllNotification(Parent.Notification.Query.GetAll.GetAllNotificationQuery,System.Threading.CancellationToken)">
