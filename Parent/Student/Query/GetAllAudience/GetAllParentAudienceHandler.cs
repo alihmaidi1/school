@@ -27,13 +27,12 @@ public class GetAllParentAudienceHandler : OperationResult,IQueryHandler<GetAllP
     public async Task<JsonResult> Handle(GetAllParentAudienceQuery request, CancellationToken cancellationToken)
     {
 
-        var ChildsFilter=request.Childs?.Any()??false;
         var Audiences=_context
         .Students
         .AsNoTracking()
         .AsSplitQuery()
         .Where(x=>x.ParentId==_currentUserService.GetUserid())
-        .Where(x=>ChildsFilter?request.Childs!.Contains(x.Id):true)
+        .Where(x=>x.Id==request.StudentId)
         .Select(x=>new GetAllParentStudentAudienceDto{
 
             Id=x.Id,
@@ -50,7 +49,7 @@ public class GetAllParentAudienceHandler : OperationResult,IQueryHandler<GetAllP
             }).ToList()
             
         })
-        .ToPagedList(request.PageNumber,request.PageSize);
+        .First();
         return Success(Audiences);
     }
 }

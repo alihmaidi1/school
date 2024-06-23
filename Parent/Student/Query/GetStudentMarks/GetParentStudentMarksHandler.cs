@@ -26,14 +26,13 @@ public class GetParentStudentMarksHandler : OperationResult,IQueryHandler<GetPar
     public async Task<JsonResult> Handle(GetParentStudentMarksQuery request, CancellationToken cancellationToken)
     {
 
-        var ChildFilter=request.Childs?.Any()??false;
         var Marks=
         _context
         .Students
         .AsNoTracking()
         .AsSplitQuery()
         .Where(x=>x.ParentId==_currentUserService.GetUserid())
-        .Where(x=>ChildFilter?request.Childs!.Contains(x.Id):true)
+        .Where(x=>x.Id==request.StudentId)
         .Select(x=>new GetParentStudentMarksDto{
 
             Id=x.Id,
@@ -56,7 +55,7 @@ public class GetParentStudentMarksHandler : OperationResult,IQueryHandler<GetPar
 
             }).ToList()
         })
-        .ToPagedList(request.PageNumber,request.PageSize);
+        .First();
         return Success(Marks);
     }
 }

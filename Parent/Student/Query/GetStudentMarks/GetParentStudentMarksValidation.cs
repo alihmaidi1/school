@@ -13,9 +13,10 @@ public class GetParentStudentMarksValidation: AbstractValidator<GetParentStudent
     public GetParentStudentMarksValidation(ApplicationDbContext context,ICurrentUserService currentUserService){
 
 
-        RuleFor(x=>x.Childs)
-        .Must(ids=>context.Students.Count(x=>x.ParentId==currentUserService.GetUserid()&&ids!.Distinct().Contains(x.Id))==ids!.Distinct().Count())
-        .When(request=>request.Childs?.Any()??false)
+        RuleFor(x=>x.StudentId)
+        .NotEmpty()
+        .NotNull()
+        .Must(ids=>context.Students.Any(x=>x.ParentId==currentUserService.GetUserid()&&x.Id==ids))
         .WithMessage("some child is not correct");
 
 

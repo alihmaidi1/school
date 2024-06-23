@@ -29,13 +29,12 @@ public class GetParentBillHandler : OperationResult,IQueryHandler<GetParentBillQ
     public async Task<JsonResult> Handle(GetParentBillQuery request, CancellationToken cancellationToken)
     {
 
-        var ChildFilter=request.Childs?.Any()??false;
         var StudentBills=_context
         .Students
         .AsNoTracking()
         .AsSplitQuery()
         .Where(x=>x.ParentId==_currentUserService.GetUserid())
-        .Where(x=>ChildFilter?request.Childs!.Contains(x.Id):true)
+        .Where(x=>x.Id==request.StudentId)
         .Select(x=>new GetAllParentBillDto{
 
             Id=x.Id,
@@ -52,7 +51,7 @@ public class GetParentBillHandler : OperationResult,IQueryHandler<GetParentBillQ
             }).ToList()
 
         })
-        .ToPagedList(request.PageNumber,request.PageSize);
+        .First();
 
         return Success(StudentBills,"this is all student bill");
      

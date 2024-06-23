@@ -7,9 +7,9 @@ using Shared.Abstraction;
 
 namespace Parent.Student.Query.GetAllAudience;
 
-public class GetAllParentAudienceQuery: PaginationRequest,IQuery
+public class GetAllParentAudienceQuery: IQuery
 {
 
-    public List<Guid>? Childs{get;set;}
+    public Guid StudentId{get;set;}
 
 }

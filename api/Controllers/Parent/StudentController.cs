@@ -66,7 +66,7 @@ public class StudentController: ApiController
     /// Get Student Bill
     /// </summary>
     [HttpGet]
-    [Produces(typeof(OperationResultBase<PageList<GetAllParentBillDto>>))]
+    [Produces(typeof(OperationResultBase<GetAllParentBillDto>))]
 
     public async Task<IActionResult> GetParentBill([FromQuery] GetParentBillQuery command,CancellationToken Token)
     {
@@ -80,7 +80,7 @@ public class StudentController: ApiController
     /// Get Student Audiences
     /// </summary>
     [HttpGet]
-    [Produces(typeof(OperationResultBase<PageList<GetAllParentStudentAudienceDto>>))]
+    [Produces(typeof(OperationResultBase<GetAllParentStudentAudienceDto>))]
 
     public async Task<IActionResult> GetAllStudentAudiences([FromQuery] GetAllParentAudienceQuery command,CancellationToken Token)
     {
@@ -108,7 +108,7 @@ public class StudentController: ApiController
     /// Get All Student quez 
     /// </summary>
     [HttpGet]
-    [Produces(typeof(OperationResultBase<PageList<GetParentStudentMarksDto>>))]
+    [Produces(typeof(OperationResultBase<GetParentStudentMarksDto>))]
 
     public async Task<IActionResult> GetAllStudentQuezMark([FromQuery] GetParentStudentMarksQuery command,CancellationToken Token)
     {

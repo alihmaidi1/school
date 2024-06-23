@@ -7,10 +7,10 @@ using Shared.Abstraction;
 
 namespace Parent.Student.Query.GetBill;
 
-public class GetParentBillQuery: PaginationRequest,IQuery
+public class GetParentBillQuery: IQuery
 {
 
 
-    public List<Guid>? Childs{get;set;}
+    public Guid StudentId{get;set;}
 
 }

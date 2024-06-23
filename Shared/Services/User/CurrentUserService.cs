@@ -21,7 +21,7 @@ public class CurrentUserService : ICurrentUserService
         if (value != null)
             UserId = Guid.Parse(value);
 
-        return null;
+        return UserId;
         
 
     }

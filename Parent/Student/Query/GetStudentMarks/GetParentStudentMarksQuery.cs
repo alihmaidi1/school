@@ -7,10 +7,10 @@ using Org.BouncyCastle.Bcpg.OpenPgp;
 using Shared.Abstraction;
 
 namespace Parent.Student.Query.GetStudentMarks;
-public class GetParentStudentMarksQuery:PaginationRequest,IQuery
+public class GetParentStudentMarksQuery:IQuery
 {
 
-    public List<Guid>? Childs{get;set;}
+    public Guid StudentId{get;set;}
     
 
 }
