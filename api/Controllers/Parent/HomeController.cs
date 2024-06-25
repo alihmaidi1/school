@@ -24,17 +24,17 @@ public class HomeController: ApiController
 
 
 
-    // /// <summary>
-    // /// Get Parent Home Page
-    // /// </summary>
-    // [HttpGet]
-    // [Produces(typeof(OperationResultBase<GetParentHomeDto>))]
+    /// <summary>
+    /// Get Parent Home Page
+    /// </summary>
+    [HttpGet]
+    [Produces(typeof(OperationResultBase<GetParentHomeDto>))]
 
-    // public async Task<IActionResult> GetHome([FromQuery] GetHomeQuery command,CancellationToken Token)
-    // {
-    //     var response = await this.Mediator.Send(command,Token);
-    //     return response;
+    public async Task<IActionResult> GetHome([FromQuery] GetHomeQuery command,CancellationToken Token)
+    {
+        var response = await this.Mediator.Send(command,Token);
+        return response;
 
-    // }
+    }
 
 }
