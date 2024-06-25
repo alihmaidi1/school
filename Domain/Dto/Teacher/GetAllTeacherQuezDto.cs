@@ -27,6 +27,7 @@ public class GetAllTeacherQuezDto
             public int QuestionNumber{get;set;}
 
             public DateTimeOffset StartAt{get;set;}      
+            public DateTimeOffset EndAt{get;set;}      
 
             public int Student{get;set;}
         }

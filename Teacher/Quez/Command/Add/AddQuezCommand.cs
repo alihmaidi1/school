@@ -11,7 +11,9 @@ public class AddQuezCommand: ICommand
 
     public string Name{get;set;}
 
-    public DateTime StartAt{get;set;}
+    public DateTimeOffset StartAt{get;set;}
+
+    public DateTimeOffset EndAt{get;set;}
 
     public Guid SubjectId{get;set;}
 

@@ -21,8 +21,6 @@ public class GetParentHomeDto
 
     public List<GetAllStudentNotificationDto> Notifications{get;set;}
 
-    public AdminRefreshTokenDto TokenInfo{get;set;}
-
 
     public int NotificationCount{get;set;}
 

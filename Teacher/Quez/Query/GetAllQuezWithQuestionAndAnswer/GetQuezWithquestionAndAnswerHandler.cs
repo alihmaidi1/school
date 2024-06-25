@@ -28,6 +28,8 @@ public class GetQuezWithquestionAndAnswerHandler : OperationResult,IQueryHandler
             Id=x.Id,
             Name=x.Name,
             StartAt=x.StartAt,
+            EndAt=x.EndAt,
+
             Questions=x.Questions.Select(y=>new GetQuezwithQuestionAndDetailDto.Question{
 
                 Id=y.Id,

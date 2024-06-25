@@ -14,6 +14,7 @@ public class GetQuezQuestionDetailDto
     public string Name{get;set;}
 
     public DateTimeOffset StartAt{get;set;}
+    public DateTimeOffset EndAt{get;set;}
 
     public List<Question> Questions{get;set;}
 

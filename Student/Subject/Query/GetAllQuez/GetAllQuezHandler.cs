@@ -57,6 +57,7 @@ public class GetAllQuezHandler : OperationResult,IQueryHandler<GetAllQuezQuery>
 
             Id=x.Id,
             StartAt=x.Quez.StartAt,
+            EndAt=x.Quez.EndAt,
             Name=x.Quez.Name,
             QuestionNumber=x.Quez.Questions.Count()
         })        

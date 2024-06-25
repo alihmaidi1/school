@@ -20,6 +20,8 @@ public class Account :BaseEntity ,ISoftDelete
     public string Email{get;set;}
     public string Password{get;set;}
 
+    public string? ResetCode{get;set;}
+
     public string? Name{get;set;}
     public List<AccountSession> AccountSessions { get; set; }
 

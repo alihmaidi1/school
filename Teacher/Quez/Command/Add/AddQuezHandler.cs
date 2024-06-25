@@ -39,7 +39,8 @@ public class AddQuezHandler : OperationResult, ICommandHandler<AddQuezCommand>
 
             Name=request.Name,
             StartAt=request.StartAt,
-            SubjectYearId=SubjectYearId
+            SubjectYearId=SubjectYearId,
+            EndAt=request.EndAt
             
         };
         var StudentSubjects=_context.SubjectYears.Where(x=>x.ClassYear.Status&&x.TeacherSubject.TeacherId==_currentUserService.GetUserid())

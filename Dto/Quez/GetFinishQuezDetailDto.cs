@@ -15,6 +15,9 @@ public class GetFinishQuezDetailDto
     public string Name{get;set;}
 
     public DateTimeOffset StartAt{get;set;}
+    public DateTimeOffset EndAt{get;set;}
+
+
 
     public List<Student> Students{get;set;}
 

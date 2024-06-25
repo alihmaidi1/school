@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Domain.Dto.ClassRoom;
+using Dto.Admin.Auth.Dto;
 
 namespace Domain.Dto.Student;
 
@@ -11,8 +12,13 @@ public class GetStudentHomeDto
 
     public List<GetAllBannerDto> Banners{get;set;}
 
+    public AdminRefreshTokenDto TokenInfo{get;set;}
 
     public List<Subject> Subjects{get;set;}
+
+
+    public int NotificationCount{get;set;}
+
     public class Subject{
 
 

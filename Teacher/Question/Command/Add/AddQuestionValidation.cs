@@ -1,3 +1,4 @@
+using System.Data.Entity;
 using FluentValidation;
 using infrastructure;
 using Shared.Services.User;
@@ -40,7 +41,15 @@ public class AddQuestionValidation: AbstractValidator<AddQuestionCommand>
         RuleFor(x=>x.Time)
         .NotEmpty()
         .NotNull()
-        .GreaterThan(0);
+        .GreaterThan(0)
+        .Must((request,time)=>{
+
+            var Time=context.Quezs.Include(x=>x.Questions).FirstOrDefault(x=>x.Id==request.QuezId);
+
+            return Time.EndAt>=Time.StartAt.AddSeconds(Time.Questions.Sum(x=>x.Time)+time);
+
+        })
+        .WithMessage("time of quez is greator from quez time");
 
         RuleFor(x=>x.Answers)
         .NotNull()

@@ -28,6 +28,11 @@ public class UpdateQuezValidation: AbstractValidator<UpdateQuezCommand>
         .NotNull()
         .GreaterThan(DateTimeOffset.UtcNow);
 
+        RuleFor(x=>x.EndAt)
+        .NotEmpty()
+        .NotNull()
+        .GreaterThan(x=>x.StartAt);
+
     }
 
 }

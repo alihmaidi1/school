@@ -30,6 +30,9 @@ public class Quez:BaseEntity,ISoftDelete
 
     public DateTimeOffset StartAt{get;set;}
 
+
+    public DateTimeOffset EndAt{get;set;}
+
     public ICollection<Question> Questions{get;set;}
 
     
@@ -44,10 +47,8 @@ public class Quez:BaseEntity,ISoftDelete
 
 
     public static Expression<Func<Quez,bool>> IsFinished(){
-
-
                     
-        return quez=>quez.StartAt.AddSeconds(quez.Questions.Sum(x=>x.Time))<DateTime.Now;
+        return quez=>quez.EndAt<DateTimeOffset.UtcNow;
     }
 
 

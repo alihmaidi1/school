@@ -20,7 +20,8 @@ public class QuezFaker
         var Faker=new Faker();
         Quez.RuleFor(x=>x.Name,setter=>setter.Random.Word());
         Quez.RuleFor(x=>x.SubjectYearId,setter=>subjectYears.Id);
-        Quez.RuleFor(x=>x.StartAt,setter=>DateTimeOffset.UtcNow.AddDays(setter.Random.Int(1,5)));
+        Quez.RuleFor(x=>x.StartAt,setter=>DateTimeOffset.UtcNow.AddDays(setter.Random.Int(-2,2)));
+        Quez.RuleFor(x=>x.EndAt,(setter,quez)=>quez.StartAt.AddDays(setter.Random.Int(1,2)));    
         Quez.RuleFor(x=>x.StudentQuezs,setter=>subjectYears.StudentSubjects.Select(x=>new StudentQuez{
 
             StudentId=x.StudentId,

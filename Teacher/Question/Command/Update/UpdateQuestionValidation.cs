@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using Bogus;
@@ -29,7 +30,16 @@ public class UpdateQuestionValidation: AbstractValidator<UpdateQuestionCommand>
         RuleFor(x=>x.Time)
         .NotEmpty()
         .NotNull()
-        .GreaterThan(0);
+        .GreaterThan(0)
+        .Must((request,time)=>{
+
+            var quez=context.Questions.Where(x=>x.Id==request.Id).Select(x=>x.Quez).First();
+            var QuestionTime=context.Questions.Where(x=>x.QuezId==quez.Id&&x.Id!=request.Id).Sum(x=>x.Time);
+            return quez.EndAt>=quez.StartAt.AddSeconds(QuestionTime+time);      
+
+
+        })
+        .WithMessage("time of quez is less than sum of question time");
 
         RuleFor(x=>x.ImageId)
         .Must(x=>context.Images.Any(y=>y.Id.Equals(x)))

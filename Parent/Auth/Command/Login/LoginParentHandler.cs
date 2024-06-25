@@ -32,8 +32,9 @@ public class LoginParentHandler : OperationResult,ICommandHandler<LoginParentCom
         if(!PasswordHelper.VerifyPassword(request.Password,Parent.Password)) return ValidationError("Password","Password Is Not Correct");
         var Code="123456";        
         Parent.Code=Code;
+        Parent.SendEmail("Student Login Code",$"You Can Login To Your Account By This Code${Code}");
+
         await _context.SaveChangesAsync(cancellationToken);
-        _mailService.SendMail(request.Email,"Student Login Code",$"You Can Login To Your Account By This Code${Code}");
         return Success("Code was sended to your email successfully");
 
     }

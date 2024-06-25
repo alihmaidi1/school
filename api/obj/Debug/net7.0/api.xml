@@ -436,7 +436,7 @@
             Delete Parent Notification
             </summary>
         </member>
-        <member name="M:schoolmanagment.Controllers.Parent.StudentController.GetAllNotification(Parent.Student.Query.GetAllName.GetAllChildNameQuery,System.Threading.CancellationToken)">
+        <member name="M:schoolmanagment.Controllers.Parent.StudentController.GetAllChildName(System.Threading.CancellationToken)">
             <summary>
             Get All Parent Student
             </summary>
@@ -486,17 +486,17 @@
             Refresh Student Token
             </summary>
         </member>
-        <member name="M:schoolmanagment.Controllers.Student.HomeController.GetStudentHome(Student.Home.Query.GetHome.GetStudentHomeQuery,System.Threading.CancellationToken)">
-            <summary>
-            Get Student Home
-            </summary>
-        </member>
         <member name="M:schoolmanagment.Controllers.Student.HomeController.GetAllLeson(Student.Subject.Query.GetAllLeson.GetAllLesonQuery,System.Threading.CancellationToken)">
             <summary>
             Get Student Leson
             </summary>
         </member>
         <member name="M:schoolmanagment.Controllers.Student.HomeController.GetAllQuez(Student.Subject.Query.GetAllQuez.GetAllQuezQuery,System.Threading.CancellationToken)">
+            <summary>
+            Get Student Quez
+            </summary>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Student.HomeController.GetAllMark(System.Threading.CancellationToken)">
             <summary>
             Get Student Quez
             </summary>
@@ -509,6 +509,21 @@
         <member name="M:schoolmanagment.Controllers.Student.NotificationController.Delete(Student.Notification.Command.Delete.DeleteNotificationCommand,System.Threading.CancellationToken)">
             <summary>
             Delete Parent Notification
+            </summary>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Student.QuezController.GetQuezInfo(Student.Quez.Query.GetQuezInfo.GetQuezInfoQuery,System.Threading.CancellationToken)">
+            <summary>
+            Get Quez Info 
+            </summary>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Student.QuezController.GetFinishQuezInfo(Student.Quez.Query.GetFinishQuezInfo.GetFinishQuezInfoQuery,System.Threading.CancellationToken)">
+            <summary>
+            Get finish Quez Info 
+            </summary>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Student.QuezController.SolveQuez(Student.Quez.Command.SolveQuez.SolveQuezCommand,System.Threading.CancellationToken)">
+            <summary>
+            Solve Quez 
             </summary>
         </member>
         <member name="M:schoolmanagment.Controllers.Teacher.AuthController.LoginTeacher(Teacher.Auth.Login.LoginTeacherCommand,System.Threading.CancellationToken)">

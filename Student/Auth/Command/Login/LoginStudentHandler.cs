@@ -29,10 +29,12 @@ public class LoginStudentHandler : OperationResult,ICommandHandler<LoginStudentC
         var Student=_context.Students.FirstOrDefault(x=>x.Email==request.Email);
         if(Student is null) return ValidationError("Email","this email is not exists im our data");
         if(!PasswordHelper.VerifyPassword(request.Password,Student.Password)) return ValidationError("Password","Password Is Not Correct");
-        var Code=string.Empty.GenerateCode();        
+        var Code="123456";        
         Student.Code=Code;
+
+        Student.SendEmail("Student Login Code",$"You Can Login To Your Account By This Code${Code}");
+
         await _context.SaveChangesAsync(cancellationToken);
-        _mailService.SendMail(request.Email,"Student Login Code",$"You Can Login To Your Account By This Code${Code}");
         return Success("Code was sended to your email successfully");
 
     }

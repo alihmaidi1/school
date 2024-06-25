@@ -333,3 +333,9 @@
 /home/alihmaidi/Desktop/schhol1/api/bin/Debug/net7.0/runtimes/win-x86/native/sni.dll
 /home/alihmaidi/Desktop/schhol1/api/bin/Debug/net7.0/runtimes/unix/lib/netcoreapp2.1/System.Data.SqlClient.dll
 /home/alihmaidi/Desktop/schhol1/api/bin/Debug/net7.0/runtimes/win/lib/netcoreapp2.1/System.Data.SqlClient.dll
+/home/alihmaidi/Desktop/schhol1/api/bin/Debug/net7.0/publish/web.config
+/home/alihmaidi/Desktop/schhol1/api/bin/Debug/net7.0/publish/api.deps.json
+/home/alihmaidi/Desktop/schhol1/api/bin/Debug/net7.0/publish/api.runtimeconfig.json
+/home/alihmaidi/Desktop/schhol1/api/bin/Debug/net7.0/publish/appsettings.json
+/home/alihmaidi/Desktop/schhol1/api/bin/Debug/net7.0/publish/appsettings.Production.json
+/home/alihmaidi/Desktop/schhol1/api/bin/Debug/net7.0/Model.dll

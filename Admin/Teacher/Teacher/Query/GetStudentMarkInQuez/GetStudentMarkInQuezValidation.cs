@@ -15,8 +15,8 @@ public class GetStudentMarkInQuezValidation: AbstractValidator<GetStudentMarkInQ
         RuleFor(x=>x.Id)
         .NotEmpty()
         .NotNull()
-        .Must(id=>context.Quezs.Any(x=>x.Id==id))
-        .WithMessage("this quez is not exists in our data");
+        .Must(id=>context.Quezs.Any(x=>x.Id==id&&x.EndAt>DateTimeOffset.UtcNow))
+        .WithMessage("this quez is not exists in our data or it is not finished");
 
     }
 

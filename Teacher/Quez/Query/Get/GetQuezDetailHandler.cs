@@ -35,6 +35,7 @@ public class GetQuezDetailHandler : OperationResult, IQueryHandler<GetQuezDetail
             Id=x.Id,
             Name=x.Name,
             StartAt=x.StartAt,
+            EndAt=x.EndAt,
             Students=x.StudentQuezs.Select(y=>new GetFinishQuezDetailDto.Student{
 
                 Id=y.StudentId,

@@ -32,6 +32,7 @@ public class GetAllStudentAnswerInQuezHandler : OperationResult,IQueryHandler<Ge
             Id=x.Quez.Id,
             Name=x.Quez.Name,
             StartAt=x.Quez.StartAt.ToString(),
+            EndAt=x.Quez.EndAt,
             Questions=x.StudentAnswers.Select(y=>new StudentAnswerDto.Question{
 
                 Id=y.Answer.Question.Id,

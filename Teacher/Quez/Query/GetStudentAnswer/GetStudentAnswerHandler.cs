@@ -28,12 +28,15 @@ public class GetStudentAnswerHandler : OperationResult, IQueryHandler<GetStudent
         .AsNoTracking()
         .Where(x=>x.StudentId==request.StudentId)
         .Where(x=>x.QuezId==request.QuezId)
+        
 
         .Select(x=>new StudentAnswerDto{
 
             Id=x.Quez.Id,
             Name=x.Quez.Name,
             StartAt=x.Quez.StartAt.ToString(),
+            EndAt=x.Quez.EndAt,
+
             Questions=x.StudentAnswers.Select(y=>new StudentAnswerDto.Question{
 
                 Id=y.Answer.Question.Id,

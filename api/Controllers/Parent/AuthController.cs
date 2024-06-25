@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Dto.Admin.Auth.Dto;
 using infrastructure.Attribute;
 using Microsoft.AspNetCore.Mvc;
+using Parent.Auth.Command.CheckResetCode;
+using Parent.Auth.Command.ForgetPassword;
 using Parent.Auth.Command.Login;
 using Parent.Auth.Command.Logout;
 using Parent.Auth.Command.RefreshToken;
@@ -83,6 +85,36 @@ public class AuthController:ApiController
     }
 
 
+
+    /// <summary>
+    /// Forget Password Request
+    /// </summary>
+    [HttpPost]
+    [Produces(typeof(OperationResultBase<Boolean>))]
+
+
+    public async Task<IActionResult> ForgetPassword([FromBody] ForgetPasswordCommand command,CancellationToken Token)
+    {
+        var response = await this.Mediator.Send(command,Token);
+        return response;
+
+    }
+
+
+
+    /// <summary>
+    /// Forget Password Request
+    /// </summary>
+    [HttpPost]
+    [Produces(typeof(OperationResultBase<AdminRefreshTokenDto>))]
+
+
+    public async Task<IActionResult> CheckResetCode([FromBody] CheckResetCodeCommand command,CancellationToken Token)
+    {
+        var response = await this.Mediator.Send(command,Token);
+        return response;
+
+    }
 
 
 }

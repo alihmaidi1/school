@@ -32,6 +32,11 @@ public class AddQuezValidation: AbstractValidator<AddQuezCommand>
         .Must(id=>context.SubjectYears.Any(x=>x.ClassYear.Status&&x.TeacherSubject.SubjectId==id&&x.TeacherSubject.TeacherId==currentUserService.GetUserid()))
         .WithMessage("this subject is not exists or in active year");
 
+
+        RuleFor(x=>x.EndAt)
+        .NotEmpty()
+        .NotNull()
+        .GreaterThan(x=>x.StartAt);
     }
 
 }

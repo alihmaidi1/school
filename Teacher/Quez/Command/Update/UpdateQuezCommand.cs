@@ -14,6 +14,7 @@ public class UpdateQuezCommand: ICommand
     public string Name{get;set;}
 
     public DateTimeOffset StartAt{get;set;}
+    public DateTimeOffset EndAt{get;set;}
 
 
 }

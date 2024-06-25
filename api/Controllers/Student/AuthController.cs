@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Domain.Dto.Student;
 using Dto.Admin.Auth.Dto;
 using infrastructure.Attribute;
 using Microsoft.AspNetCore.Mvc;
@@ -44,7 +45,7 @@ public class AuthController:ApiController
     /// Validate Code And Get Token Info For Student
     /// </summary>
     [HttpPost]
-    [Produces(typeof(OperationResultBase<AdminRefreshTokenDto>))]
+    [Produces(typeof(OperationResultBase<GetStudentHomeDto>))]
 
     public async Task<IActionResult> ValidateCode([FromBody] ValidateCodeCommand command,CancellationToken Token)
     {

@@ -1,0 +1,19 @@
+{
+  "Version": 1,
+  "Hash": "m53dbwS65uPn3OJocl1vXJ9XqDNVKhWBDI9UP8D+2o4=",
+  "Source": "api",
+  "BasePath": "_content/api",
+  "Mode": "Default",
+  "ManifestType": "Publish",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "api/wwwroot",
+      "Source": "api",
+      "ContentRoot": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/",
+      "BasePath": "_content/api",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": []
+}

@@ -38,9 +38,9 @@ public class StudentController: ApiController
     [HttpGet]
     [Produces(typeof(OperationResultBase<List<GetAllStudentNameDto>>))]
 
-    public async Task<IActionResult> GetAllNotification([FromQuery] GetAllChildNameQuery command,CancellationToken Token)
+    public async Task<IActionResult> GetAllChildName(CancellationToken Token)
     {
-        var response = await this.Mediator.Send(command,Token);
+        var response = await this.Mediator.Send(new GetAllChildNameQuery(),Token);
         return response;
 
     }

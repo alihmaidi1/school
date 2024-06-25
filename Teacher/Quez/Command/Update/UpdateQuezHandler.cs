@@ -30,7 +30,8 @@ public class UpdateQuezHandler : OperationResult,ICommandHandler<UpdateQuezComma
         .Where(x=>x.Id==request.Id)
         .ExecuteUpdateAsync(setter=>
             setter.SetProperty(x=>x.Name,request.Name)
-                  .SetProperty(x=>x.StartAt,request.StartAt),
+                  .SetProperty(x=>x.StartAt,request.StartAt)
+                  .SetProperty(x=>x.EndAt,request.EndAt),
         cancellationToken);
 
         return Success("updated successfully");

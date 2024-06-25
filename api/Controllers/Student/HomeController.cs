@@ -12,6 +12,7 @@ using Shared.Swagger;
 using Student.Home.Query.GetHome;
 using Student.Subject.Query.GetAllLeson;
 using Student.Subject.Query.GetAllQuez;
+using Student.Subject.Query.GetAllResult;
 
 namespace schoolmanagment.Controllers.Student;
 
@@ -25,18 +26,18 @@ public class HomeController:ApiController
 {
 
 
-    /// <summary>
-    /// Get Student Home
-    /// </summary>
-    [HttpGet]
-    [Produces(typeof(OperationResultBase<GetStudentHomeDto>))]
+    // /// <summary>
+    // /// Get Student Home
+    // /// </summary>
+    // [HttpGet]
+    // [Produces(typeof(OperationResultBase<GetStudentHomeDto>))]
 
-    public async Task<IActionResult> GetStudentHome([FromQuery] GetStudentHomeQuery command,CancellationToken Token)
-    {
-        var response = await this.Mediator.Send(command,Token);
-        return response;
+    // public async Task<IActionResult> GetStudentHome([FromQuery] GetStudentHomeQuery command,CancellationToken Token)
+    // {
+    //     var response = await this.Mediator.Send(command,Token);
+    //     return response;
 
-    }
+    // }
 
 
 
@@ -67,4 +68,19 @@ public class HomeController:ApiController
         return response;
 
     }
+
+
+    /// <summary>
+    /// Get Student Quez
+    /// </summary>
+    [HttpGet]
+    [Produces(typeof(OperationResultBase<List<GetAllResultDto>>))]
+
+    public async Task<IActionResult> GetAllMark(CancellationToken Token)
+    {
+        var response = await this.Mediator.Send(new GetAllResultQuery(),Token);
+        return response;
+
+    }
+
 }

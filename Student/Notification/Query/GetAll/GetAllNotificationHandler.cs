@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using Common.CQRS;
@@ -27,6 +28,7 @@ public class GetAllNotificationHandler : OperationResult,IQueryHandler<GetAllNot
 
         var Notifications=_context
         .AccountNotifications
+        .AsNoTracking()
         .Where(x=>x.AccountId==_currentUserService.GetUserid())
         .Select(x=>new GetAllNotificationDto{
             Id=x.Id,

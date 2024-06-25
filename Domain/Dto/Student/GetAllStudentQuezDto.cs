@@ -24,6 +24,8 @@ public class GetAllStudentQuezDto
         public Guid Id{get;set;}
 
         public DateTimeOffset StartAt{get;set;}
+        public DateTimeOffset EndAt{get;set;}
+
         public int QuestionNumber{get;set;}
 
         public string Name{get;set;}

@@ -13,6 +13,7 @@ public class StudentAnswerDto
     public string Name{get;set;}
 
     public string StartAt{get;set;}
+    public DateTimeOffset EndAt{get;set;}
 
     public List<Question> Questions{get;set;}
 

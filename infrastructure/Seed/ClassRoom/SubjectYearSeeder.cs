@@ -22,7 +22,9 @@ namespace infrastructure.Seed.ClassRoom;
                 
                     var Classyears=context
                     .ClassYears
+                    .Where(x=>x.Status)
                     .Include(x=>x.Class)
+                    
                     .ThenInclude(x=>x.Subjects)
                     .ThenInclude(x=>x.TeacherSubjects)
                     .ToList();

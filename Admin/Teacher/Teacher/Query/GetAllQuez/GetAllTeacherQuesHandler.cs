@@ -33,6 +33,7 @@ public class GetAllTeacherQuesHandler : OperationResult, IQueryHandler<GetAllTea
                 Id=y.Id,
                 Name=y.Name,
                 StartAt=y.StartAt,
+                EndAt=y.EndAt,
                 QuestionNumber=y.Questions.Count(),
                 Student=y.StudentQuezs.Count()
             }).ToList()            

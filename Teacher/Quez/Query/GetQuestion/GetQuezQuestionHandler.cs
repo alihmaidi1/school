@@ -32,6 +32,8 @@ public class GetQuezQuestionHandler : OperationResult, IQueryHandler<GetQuezQues
             Id=x.Id,
             Name=x.Name,
             StartAt=x.StartAt,
+            EndAt=x.EndAt,
+
             Questions=x.Questions.Select(y=>new GetQuezQuestionDetailDto.Question{
 
                 Id=y.Id,

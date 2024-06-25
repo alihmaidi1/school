@@ -36,13 +36,13 @@ public class GetAllTeacherQuesHandler : OperationResult, IQueryHandler<GetAllQue
         .Select(x=>new GetAllTeacherQuezDto(){
 
             Id=x.TeacherSubject.Subject.Id,
-            Name=x.TeacherSubject.Subject.Name,
-            
+            Name=x.TeacherSubject.Subject.Name,            
             Quezies=x.Quezs.Select(y=>new GetAllTeacherQuezDto.Quez(){
 
                 Id=y.Id,
                 Name=y.Name,
                 StartAt=y.StartAt,
+                EndAt=y.EndAt,
                 QuestionNumber=y.Questions.Count(),
                 Student=y.StudentQuezs.Count()
 
