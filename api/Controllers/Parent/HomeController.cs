@@ -30,9 +30,9 @@ public class HomeController: ApiController
     [HttpGet]
     [Produces(typeof(OperationResultBase<GetParentHomeDto>))]
 
-    public async Task<IActionResult> GetHome([FromQuery] GetHomeQuery command,CancellationToken Token)
+    public async Task<IActionResult> GetHome(CancellationToken Token)
     {
-        var response = await this.Mediator.Send(command,Token);
+        var response = await this.Mediator.Send(new GetHomeQuery(),Token);
         return response;
 
     }

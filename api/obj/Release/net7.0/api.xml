@@ -416,7 +416,7 @@
             Validate Code And Get Token Info For Parent
             </summary>
         </member>
-        <member name="M:schoolmanagment.Controllers.Parent.AuthController.Logout(Parent.Auth.Command.Logout.LogoutParentCommand,System.Threading.CancellationToken)">
+        <member name="M:schoolmanagment.Controllers.Parent.AuthController.Logout(System.Threading.CancellationToken)">
             <summary>
             Logout Student
             </summary>
@@ -424,6 +424,21 @@
         <member name="M:schoolmanagment.Controllers.Parent.AuthController.RefreshToken(Parent.Auth.Command.RefreshToken.RefreshParentTokenCommand,System.Threading.CancellationToken)">
             <summary>
             Refresh Student Token
+            </summary>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Parent.AuthController.ForgetPassword(Parent.Auth.Command.ForgetPassword.ForgetPasswordCommand,System.Threading.CancellationToken)">
+            <summary>
+            Forget Password Request
+            </summary>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Parent.AuthController.CheckResetCode(Parent.Auth.Command.CheckResetCode.CheckResetCodeCommand,System.Threading.CancellationToken)">
+            <summary>
+            Check Code if exists and then return token info
+            </summary>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Parent.HomeController.GetHome(System.Threading.CancellationToken)">
+            <summary>
+            Get Parent Home Page
             </summary>
         </member>
         <member name="M:schoolmanagment.Controllers.Parent.NotificationController.GetAllNotification(Parent.Notification.Query.GetAll.GetAllNotificationQuery,System.Threading.CancellationToken)">

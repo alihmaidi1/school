@@ -426,6 +426,21 @@
             Refresh Student Token
             </summary>
         </member>
+        <member name="M:schoolmanagment.Controllers.Parent.AuthController.ForgetPassword(Parent.Auth.Command.ForgetPassword.ForgetPasswordCommand,System.Threading.CancellationToken)">
+            <summary>
+            Forget Password Request
+            </summary>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Parent.AuthController.CheckResetCode(Parent.Auth.Command.CheckResetCode.CheckResetCodeCommand,System.Threading.CancellationToken)">
+            <summary>
+            Forget Password Request
+            </summary>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Parent.HomeController.GetHome(Parent.Home.Query.GetHome.GetHomeQuery,System.Threading.CancellationToken)">
+            <summary>
+            Get Parent Home Page
+            </summary>
+        </member>
         <member name="M:schoolmanagment.Controllers.Parent.NotificationController.GetAllNotification(Parent.Notification.Query.GetAll.GetAllNotificationQuery,System.Threading.CancellationToken)">
             <summary>
             Get All Parent Notification

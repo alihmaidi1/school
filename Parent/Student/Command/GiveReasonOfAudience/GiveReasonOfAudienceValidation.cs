@@ -25,6 +25,10 @@ public class GiveReasonOfAudienceValidation: AbstractValidator<GiveReasonOfAudie
         .WithMessage("this audience is not correct");
 
 
+        RuleFor(x=>x.ImageId)
+        .Must(id=>context.Images.Any(x=>x.Id==id))
+        .When(x=>x.ImageId!=null);
+
     }
 
 }

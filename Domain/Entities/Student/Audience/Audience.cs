@@ -27,6 +27,11 @@ public class Audience: BaseEntity
     public string? Reason{get;set;}
 
 
+    public string? Image{get;set;}
+
+    public string? Hash{get;set;}
+
+
     public Guid StudentId{get;set;}
 
     public Student.Student Student{get;set;}

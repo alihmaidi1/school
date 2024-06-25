@@ -62,9 +62,9 @@ public class AuthController:ApiController
     [CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Parent))]
 
 
-    public async Task<IActionResult> Logout([FromBody] LogoutParentCommand command,CancellationToken Token)
+    public async Task<IActionResult> Logout(CancellationToken Token)
     {
-        var response = await this.Mediator.Send(command,Token);
+        var response = await this.Mediator.Send(new LogoutParentCommand(),Token);
         return response;
 
     }
@@ -103,7 +103,7 @@ public class AuthController:ApiController
 
 
     /// <summary>
-    /// Forget Password Request
+    /// Check Code if exists and then return token info
     /// </summary>
     [HttpPost]
     [Produces(typeof(OperationResultBase<AdminRefreshTokenDto>))]

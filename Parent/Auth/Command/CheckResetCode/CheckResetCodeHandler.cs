@@ -9,6 +9,7 @@ using infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Repository.Jwt;
 using Shared.CQRS;
+using Shared.Enum;
 using Shared.OperationResult;
 
 namespace Parent.Auth.Command.CheckResetCode;

@@ -13,4 +13,6 @@ public class GiveReasonOfAudienceCommand: ICommand
 
     public string Reason{get;set;}
 
+    public Guid? ImageId{get;set;}
+
 }

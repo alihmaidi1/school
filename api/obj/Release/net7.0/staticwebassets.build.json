@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "UKHzuMtEJut+0Iachf3Nxszr29xOTt76KXWmwkOw+cw=",
+  "Hash": "Bjw6cNDA40bzAflM/KfwYN3aaUx47Na30/ExuV+17jk=",
   "Source": "api",
   "BasePath": "_content/api",
   "Mode": "Default",
@@ -15,5 +15,44 @@
       "Pattern": "**"
     }
   ],
-  "Assets": []
+  "Assets": [
+    {
+      "Identity": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Temps/6b93ff65-ce9d-4870-9be3-c158234f4cba.png",
+      "SourceId": "api",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/",
+      "BasePath": "_content/api",
+      "RelativePath": "Temps/6b93ff65-ce9d-4870-9be3-c158234f4cba.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/Temps/6b93ff65-ce9d-4870-9be3-c158234f4cba.png"
+    },
+    {
+      "Identity": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Temps/de484aab-6866-4ef4-9640-1f9dcf6f41ea.png",
+      "SourceId": "api",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/",
+      "BasePath": "_content/api",
+      "RelativePath": "Temps/de484aab-6866-4ef4-9640-1f9dcf6f41ea.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/Temps/de484aab-6866-4ef4-9640-1f9dcf6f41ea.png"
+    }
+  ]
 }

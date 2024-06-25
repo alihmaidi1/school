@@ -9,6 +9,8 @@ public static class FolderName
     public const string Banner = "Parent";
 
     public const string Student = "Student";
+    public const string Audience = "Audience";
+
 
     public const string Teacher = "Teachers";
     public const string Leson="Lesons";
