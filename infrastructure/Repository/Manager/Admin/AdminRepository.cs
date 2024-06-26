@@ -70,7 +70,7 @@ public class AdminRepository:GenericRepository<Domain.Entities.Manager.Admin.Adm
                     
                     Id = x.Role.Id,
                     Name = x.Role.Name,
-                    Permissions = x.Role.Permissions,
+                    // Permissions = x.Role.Permissions,
                     CreatedAt = x.Role.DateCreated
                 }
                 

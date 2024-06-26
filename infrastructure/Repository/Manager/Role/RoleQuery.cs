@@ -1,21 +1,15 @@
 using System.Linq.Expressions;
 using Domain.Dto.Manager.Admin;
 using Domain.Dto.Manager.Role;
+using Domain.Enum;
 
 namespace Repository.Manager.Role;
 
 public static class RoleQuery
 {
     
-    public static Expression<Func<Domain.Entities.Role.Role, GetAllRoleDto>> ToGetAllRole = role =>
-        new GetAllRoleDto
-        {
-            Id = role.Id,
-            Name = role.Name,
-            Permissions = role.Permissions,
-            CreatedAt = role.DateCreated
-        };
-
+    // public static Expression<Func<Domain.Entities.Role.Role, GetAllRoleDto>> ToGetAllRole = role =>
+        
     public static Expression<Func<Domain.Entities.Manager.Admin.Admin, GetAllAdminByRoleDto>> ToGetAllAdmin = admin =>
         new GetAllAdminByRoleDto
         {

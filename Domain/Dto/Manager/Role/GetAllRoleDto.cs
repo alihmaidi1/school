@@ -13,8 +13,16 @@ namespace Domain.Dto.Manager.Role;
 
     public string Name { get; set; }
 
-    public List<string> Permissions { get; set; }
+    public List<Permission> Permissions { get; set; }
 
     public DateTime CreatedAt { get; set; }
+
+    public class Permission{
+
+        public string Name{get;set;}
+
+        public bool Status{get;set;}
+
+    }
 
     }

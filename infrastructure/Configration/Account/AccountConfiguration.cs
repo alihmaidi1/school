@@ -13,7 +13,7 @@ public class AccountConfiguration: IEntityTypeConfiguration<Domain.Entities.Acco
             .HasForeignKey(x => x.AccountId)
             .OnDelete(DeleteBehavior.Cascade);
 
-        builder.HasQueryFilter(x=>x.DateDeleted==null&&x.Status);
+        builder.HasQueryFilter(x=>x.DateDeleted==null);
 
 
         builder.HasMany(x=>x.AccountNotifications)

@@ -19,12 +19,23 @@ public class RoleRepository:GenericRepository<Domain.Entities.Role.Role>,IRoleRe
 
     public PageList<GetAllRoleDto> GetAll(int? pageNumber, int? pageSize,string? Search)
     {
-        
+        var Permissions=Enum.GetNames(typeof(Domain.Enum.PermissionEnum)).Order().ToList();
         var Result = DbContext.Roles
             .Where(x => !x.Name.Equals(RoleEnum.SuperAdmin.ToString()))
-            .Where(x=>x.Name.Contains(Search??""))
+            .Where(x=>x.Name.Contains(Search??""))            
             // .Sort<Domain.Entities.Role.Role>(OrderBy, RoleSorting.switchOrdering)
-            !.Select(RoleQuery.ToGetAllRole)
+            .AsEnumerable()
+            !.Select(x=>new GetAllRoleDto{
+                Id = x.Id,
+                Name = x.Name,
+                Permissions = Permissions.Select(y=>new GetAllRoleDto.Permission{
+
+                    Name=y,
+                    Status=x.Permissions.Any(x=>x.Equals(y))
+
+                }).ToList(),
+                CreatedAt = x.DateCreated
+            })
             .ToPagedList(pageNumber, pageSize);
         return Result;
 
