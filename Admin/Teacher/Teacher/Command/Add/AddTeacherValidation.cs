@@ -1,6 +1,7 @@
 using System.Data;
 using FluentValidation;
 using infrastructure;
+using Microsoft.EntityFrameworkCore;
 using Repository.Teacher.Teacher;
 
 namespace Admin.Teacher.Teacher.Command.Add;
@@ -19,7 +20,7 @@ public class AddTeacherValidation:AbstractValidator<AddTeacherCommand>
         RuleFor(x => x.Email)
             .NotEmpty()
             .NotNull()
-            .Must(email=>!teacherRepository.IsExistsByProperty("Email",email));
+            .Must(email=>!context.Admins.IgnoreQueryFilters().Where(x=>x.DateDeleted==null).Any(x=>x.Email==email)&&!context.Teachers.IgnoreAutoIncludes().Where(x=>x.DateCreated==null).Any(x=>x.Email==email));
 
 
         RuleFor(x => x.Password)

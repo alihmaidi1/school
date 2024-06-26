@@ -12,9 +12,7 @@ public class LoginAdminValidation:AbstractValidator<LoginAdminCommand>
         RuleFor(x => x.Email)
             .NotEmpty()
             .NotNull()
-            .EmailAddress()
-            .Must(email=>adminRepository.IsExistsByProperty("Email",email))
-            .WithMessage("email is not found in our data");
+            .EmailAddress();
 
         RuleFor(x => x.Password)
             .NotEmpty()

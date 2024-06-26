@@ -17,9 +17,10 @@ public class TeacherRepository:GenericRepository<Domain.Entities.Teacher.Teacher
 
         var Result = DbContext
             .Teachers
+            .IgnoreQueryFilters()
+            .Where(x=>x.DateDeleted==null)
             .Where(x=>x.Name.Contains(Search??""))
-            .Where(x=>x.Email.Contains(Search??""))    
-            .Where(x=>x.Status)        
+            .Where(x=>x.Email.Contains(Search??""))       
             .Select(TeacherQuery.ToGetAllTeacher)
             .ToPagedList(pageNumber,pageSize);
 

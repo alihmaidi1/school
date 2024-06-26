@@ -44,11 +44,6 @@
             logout admin from dashboard
             </summary>
         </member>
-        <member name="M:schoolmanagment.Controllers.Admin.AuthController.RefreshToken(Admin.Manager.Auth.Command.RefreshToken.RefreshAdminTokenCommand)">
-            <summary>
-            Refresh Admin token and refresh token  for use at one time
-            </summary>
-        </member>
         <member name="M:schoolmanagment.Controllers.Admin.BannerController.GetAll(Admin.ClassRoom.Banner.Query.GetAll.GetAllBannerQuery,System.Threading.CancellationToken)">
             <summary>
             Get All Banner 
@@ -416,7 +411,7 @@
             Validate Code And Get Token Info For Parent
             </summary>
         </member>
-        <member name="M:schoolmanagment.Controllers.Parent.AuthController.Logout(Parent.Auth.Command.Logout.LogoutParentCommand,System.Threading.CancellationToken)">
+        <member name="M:schoolmanagment.Controllers.Parent.AuthController.Logout(System.Threading.CancellationToken)">
             <summary>
             Logout Student
             </summary>
@@ -433,10 +428,10 @@
         </member>
         <member name="M:schoolmanagment.Controllers.Parent.AuthController.CheckResetCode(Parent.Auth.Command.CheckResetCode.CheckResetCodeCommand,System.Threading.CancellationToken)">
             <summary>
-            Forget Password Request
+            Check Code if exists and then return token info
             </summary>
         </member>
-        <member name="M:schoolmanagment.Controllers.Parent.HomeController.GetHome(Parent.Home.Query.GetHome.GetHomeQuery,System.Threading.CancellationToken)">
+        <member name="M:schoolmanagment.Controllers.Parent.HomeController.GetHome(System.Threading.CancellationToken)">
             <summary>
             Get Parent Home Page
             </summary>
@@ -539,21 +534,6 @@
         <member name="M:schoolmanagment.Controllers.Student.QuezController.SolveQuez(Student.Quez.Command.SolveQuez.SolveQuezCommand,System.Threading.CancellationToken)">
             <summary>
             Solve Quez 
-            </summary>
-        </member>
-        <member name="M:schoolmanagment.Controllers.Teacher.AuthController.LoginTeacher(Teacher.Auth.Login.LoginTeacherCommand,System.Threading.CancellationToken)">
-            <summary>
-            Login teacher to dashboard
-            </summary>
-        </member>
-        <member name="M:schoolmanagment.Controllers.Teacher.AuthController.LogoutTeacher(Teacher.Auth.Logout.LogoutTeacherCommand,System.Threading.CancellationToken)">
-            <summary>
-            logout teacher from dashboard
-            </summary>
-        </member>
-        <member name="M:schoolmanagment.Controllers.Teacher.AuthController.RefreshToken(Teacher.Auth.RefreshToken.RefreshTokenTeacherCommand)">
-            <summary>
-            Refresh Teacher token and refresh token  for use at one time
             </summary>
         </member>
         <member name="M:schoolmanagment.Controllers.Teacher.LesonController.GetAllSubjectAndLeson(Teacher.Leson.Teacher.Leson.Query.GetAllLeson.GetAllLesonQuery,System.Threading.CancellationToken)">

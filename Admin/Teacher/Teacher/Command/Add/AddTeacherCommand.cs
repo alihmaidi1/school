@@ -11,7 +11,7 @@ public class AddTeacherCommand:ICommand
     public string Email { get; set; }
 
     public string Password { get; set; }
-    
+        
 
     public Guid Image { get; set; }
 

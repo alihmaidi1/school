@@ -29,6 +29,7 @@ public class DeleteAdminHandler:OperationResult,
     public async Task<JsonResult> Handle(DeleteAdminCommand request, CancellationToken cancellationToken)
     {
         await _dbContext.Admins.Where(x=>x.Id==request.Id).ExecuteUpdateAsync(setter=>setter.SetProperty(x=>x.DateDeleted,DateTimeOffset.UtcNow),cancellationToken);
+        _dbContext.AccountSessions.Where(x=>x.AccountId==request.Id).ExecuteDelete();
         return Success("this admin was deleted successfully");
 
     }

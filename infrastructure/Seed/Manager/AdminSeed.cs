@@ -13,7 +13,7 @@ public static class AdminSeed
         {
             
             
-            List<Guid> roles = context.Roles.Select(x=>x.Id).ToList();
+            List<Guid> roles = context.Roles.Where(x=>x.Name!="SuperAdmin").Select(x=>x.Id).ToList();
             var admins = AdminFaker.GetBillFaker(roles).Generate(7).ToList().DistinctBy(x=>x.Email);
             context.Admins.AddRange(admins);
             context.SaveChanges();

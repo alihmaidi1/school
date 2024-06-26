@@ -25,48 +25,48 @@ namespace schoolmanagment.Controllers.Teacher;
 public class AuthController: ApiController
 {
 
-    /// <summary>
-    /// Login teacher to dashboard
-    /// </summary>
-    [HttpPost]
-    [Produces(typeof(OperationResultBase<AdminRefreshTokenDto>))]
+    // /// <summary>
+    // /// Login teacher to dashboard
+    // /// </summary>
+    // [HttpPost]
+    // [Produces(typeof(OperationResultBase<AdminRefreshTokenDto>))]
 
-    public async Task<IActionResult> LoginTeacher([FromBody] LoginTeacherCommand command,CancellationToken Token)
-    {
-        var response = await this.Mediator.Send(command,Token);
-        return response;
+    // public async Task<IActionResult> LoginTeacher([FromBody] LoginTeacherCommand command,CancellationToken Token)
+    // {
+    //     var response = await this.Mediator.Send(command,Token);
+    //     return response;
 
-    }
+    // }
     
 
 
-    /// <summary>
-    /// logout teacher from dashboard
-    /// </summary>
-    [HttpPost]
-    [CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Teacher))]
+    // /// <summary>
+    // /// logout teacher from dashboard
+    // /// </summary>
+    // [HttpPost]
+    // [CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Teacher))]
 
-    [Produces(typeof(OperationResultBase<Boolean>))]
+    // [Produces(typeof(OperationResultBase<Boolean>))]
 
-    public async Task<IActionResult> LogoutTeacher([FromBody] LogoutTeacherCommand command,CancellationToken Token)
-    {
-        var response = await this.Mediator.Send(command,Token);
-        return response;
+    // public async Task<IActionResult> LogoutTeacher([FromBody] LogoutTeacherCommand command,CancellationToken Token)
+    // {
+    //     var response = await this.Mediator.Send(command,Token);
+    //     return response;
 
-    }
+    // }
 
 
-   /// <summary>
-    /// Refresh Teacher token and refresh token  for use at one time
-    /// </summary>
-    [HttpPost]
-    [Produces(typeof(OperationResultBase<AdminRefreshTokenDto>))]
+//    /// <summary>
+//     /// Refresh Teacher token and refresh token  for use at one time
+//     /// </summary>
+//     [HttpPost]
+//     [Produces(typeof(OperationResultBase<AdminRefreshTokenDto>))]
 
-    public async Task<IActionResult> RefreshToken([FromBody] RefreshTokenTeacherCommand command)
-    {
-        var response =await this.Mediator.Send(command);
-        return response;
-    }
+//     public async Task<IActionResult> RefreshToken([FromBody] RefreshTokenTeacherCommand command)
+//     {
+//         var response =await this.Mediator.Send(command);
+//         return response;
+//     }
 
 
 

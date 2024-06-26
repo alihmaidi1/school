@@ -20,7 +20,7 @@ namespace schoolmanagment.Controllers.Admin;
 
 [Route("Api/SuperAdmin/[controller]/[action]")]
 [ApiGroup(ApiGroupName.All, ApiGroupName.Admin)]
-[CheckTokenSession(Policy = nameof(PermissionEnum.Role))]
+[CheckTokenSession(Policy = "Role")]
 public class RoleController:ApiController
 {
     /// <summary>

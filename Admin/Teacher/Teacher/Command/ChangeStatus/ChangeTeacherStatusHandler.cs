@@ -23,8 +23,17 @@ public class ChangeTeacherStatusHandler :OperationResult, ICommandHandler<Change
     }
     public async Task<JsonResult> Handle(ChangeTeacherStatusCommand request, CancellationToken cancellationToken)
     {
-        _context.Teachers.Where(x=>x.Id==request.Id).ExecuteUpdate(setter=>setter.SetProperty(x=>x.Status,request.Status).SetProperty(x=>x.Reason,request.Status?null:request.Reason));
-        
+        _context
+        .Teachers
+        .IgnoreQueryFilters()
+        .Where(x=>x.Id==request.Id)
+        .ExecuteUpdate(setter=>setter.SetProperty(x=>x.Status,request.Status).SetProperty(x=>x.Reason,request.Status?null:request.Reason));
+        if(!request.Status){
+
+            _context.AccountSessions.Where(x=>x.AccountId==request.Id).ExecuteDelete();
+
+        }
+
         return Success("teacher status was updated successfully");
     }
 }

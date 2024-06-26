@@ -20,7 +20,7 @@ public interface IAdminRepository:IGenericRepository<Domain.Entities.Manager.Adm
     
     
     
-    public PageList<GetAllAdminDto> GetAll(AdminSortEnum orderBy, int? pageNumber, int? pageSize,string? search);
+    public PageList<GetAllAdminDto> GetAll( int? pageNumber, int? pageSize,string? search);
 
 
 

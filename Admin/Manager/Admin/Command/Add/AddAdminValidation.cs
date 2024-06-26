@@ -1,4 +1,6 @@
 using FluentValidation;
+using infrastructure;
+using Microsoft.EntityFrameworkCore;
 using Repository.Manager.Admin;
 using Repository.Manager.Role;
 
@@ -7,7 +9,7 @@ namespace Admin.Manager.Admin.Command.Add;
 public class AddAdminValidation:AbstractValidator<AddAdminCommand>
 {
 
-    public AddAdminValidation(IAdminRepository adminRepository,IRoleRepository roleRepository)
+    public AddAdminValidation(ApplicationDbContext context,IRoleRepository roleRepository)
     {
         
         RuleFor(x => x.Name)
@@ -31,7 +33,7 @@ public class AddAdminValidation:AbstractValidator<AddAdminCommand>
             .NotEmpty()
             .NotNull()
             .EmailAddress()
-            .Must(email => !adminRepository.IsExistsByProperty("Email",email))
+            .Must(email => !context.Admins.IgnoreQueryFilters().Where(x=>x.DateDeleted==null).Any(x=>x.Email==email)&&!context.Teachers.IgnoreQueryFilters().Where(x=>x.DateDeleted==null).Any(x=>x.Email==email))
             .WithMessage("email address is already exists");
 
         RuleFor(x => x.ImageId)

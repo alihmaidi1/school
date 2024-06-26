@@ -8,6 +8,7 @@ using Domain.AppMetaData.Admin;
 using Domain.Dto.Manager.Admin;
 using Domain.Enum;
 using infrastructure.Attribute;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using schoolManagement.Base;
 using Shared.Entity.EntityOperation;
@@ -19,7 +20,7 @@ namespace schoolmanagment.Controllers.Admin;
 
 [Route("Api/SuperAdmin/[controller]/[action]")]
 [ApiGroup(ApiGroupName.All, ApiGroupName.Admin)]
-[CheckTokenSession(Policy = nameof(PermissionEnum.Admin) ,AuthenticationSchemes =nameof(JwtSchema.Admin))]
+[Authorize(Policy = "Admin" ,AuthenticationSchemes =nameof(JwtSchema.Admin))]
 public class AdminController:ApiController
 {
     

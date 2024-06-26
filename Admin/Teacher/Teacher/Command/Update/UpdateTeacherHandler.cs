@@ -35,7 +35,7 @@ public class UpdateTeacherHandler:OperationResult,ICommandHandler<UpdateTeacherC
     {
         
         var image=_context.Images.FirstOrDefault(x=>x.Id==request.Image);        
-        var teacher=_context.Teachers.First(x=>x.Id==request.Id);                
+        var teacher=_context.Teachers.IgnoreQueryFilters().First(x=>x.Id==request.Id);                
         teacher.Email = request.Email;
         teacher.Password = PasswordHelper.HashPassword(request.Password);
         teacher.Name = request.Name;

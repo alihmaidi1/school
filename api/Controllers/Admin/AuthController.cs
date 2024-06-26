@@ -1,6 +1,7 @@
 using Admin.Manager.Auth.Command.Login;
 using Admin.Manager.Auth.Command.Logout;
 using Admin.Manager.Auth.Command.RefreshToken;
+using Domain.Dto.Manager.Admin;
 using Dto.Admin.Auth.Dto;
 using infrastructure;
 using infrastructure.Attribute;
@@ -33,7 +34,7 @@ public class AuthController:ApiController
     /// Login admin to dashboard
     /// </summary>
     [HttpPost]
-    [Produces(typeof(OperationResultBase<AdminRefreshTokenDto>))]
+    [Produces(typeof(OperationResultBase<LoginAdminDto>))]
 
     public async Task<IActionResult> Login([FromBody] LoginAdminCommand command,CancellationToken Token)
     {
@@ -47,7 +48,6 @@ public class AuthController:ApiController
     /// <summary>
     /// logout admin from dashboard
     /// </summary>
-    [CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Admin))]
     [HttpPost]
     [Produces(typeof(OperationResultBase<Boolean>))]
 
@@ -58,17 +58,17 @@ public class AuthController:ApiController
     }
 
     
-    /// <summary>
-    /// Refresh Admin token and refresh token  for use at one time
-    /// </summary>
-    [HttpPost]
-    [Produces(typeof(OperationResultBase<AdminRefreshTokenDto>))]
+    // /// <summary>
+    // /// Refresh Admin token and refresh token  for use at one time
+    // /// </summary>
+    // [HttpPost]
+    // [Produces(typeof(OperationResultBase<AdminRefreshTokenDto>))]
 
-    public async Task<IActionResult> RefreshToken([FromBody] RefreshAdminTokenCommand command)
-    {
-        var response =await this.Mediator.Send(command);
-        return response;
-    }
+    // public async Task<IActionResult> RefreshToken([FromBody] RefreshAdminTokenCommand command)
+    // {
+    //     var response =await this.Mediator.Send(command);
+    //     return response;
+    // }
 
 
 

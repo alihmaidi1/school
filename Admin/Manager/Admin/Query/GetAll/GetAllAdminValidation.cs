@@ -11,8 +11,6 @@ public class GetAllAdminValidation:AbstractValidator<GetAllAdminQuery>
     public GetAllAdminValidation()
     {
 
-        RuleFor(x => x.OrderBy)
-            .IsInEnum();
     }
     
 }

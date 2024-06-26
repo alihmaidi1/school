@@ -25,14 +25,14 @@ public class AdminRepository:GenericRepository<Domain.Entities.Manager.Admin.Adm
         
     }
 
-    public PageList<GetAllAdminDto> GetAll(AdminSortEnum orderBy, int? pageNumber, int? pageSize, string? search)
+    public PageList<GetAllAdminDto> GetAll( int? pageNumber, int? pageSize, string? search)
     {
         var result = DbContext
             .Admins
             .IgnoreQueryFilters()
+            .Where(x=>x.Name!="SuperAdmin")
             .Where(x=>x.DateDeleted==null)
             .Where(x=>x.Name.Contains(search??"")||x.Email.Contains(search??"")||x.Role.Name.Contains(search??""))
-            .OrderBy(AdminSorting.SwitchOrdering(orderBy))
             .Select(AdminQuery.ToGetAllAdmin)
             .ToPagedList(pageNumber, pageSize);
         return result;

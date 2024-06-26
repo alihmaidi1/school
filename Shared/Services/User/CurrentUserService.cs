@@ -28,6 +28,6 @@ public class CurrentUserService : ICurrentUserService
 
     private Guid? UserId { get; set; }
 
-    public string? Token => _httpContextAccessor.HttpContext?.Request?.Headers?.Authorization.ToString()?.Split(" ")[1];
+    public string? Token => _httpContextAccessor.HttpContext?.Request?.Headers?.Authorization.ToString()?.Split(" ")?[1];
 
 }

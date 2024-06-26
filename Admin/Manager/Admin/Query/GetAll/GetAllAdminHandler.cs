@@ -18,7 +18,7 @@ public class GetAllAdminHandler:OperationResult,IQueryHandler<GetAllAdminQuery>
     public async Task<JsonResult> Handle(GetAllAdminQuery request, CancellationToken cancellationToken)
     {
         
-        var result = _adminRepository.GetAll(request.OrderBy, request.PageNumber, request.PageSize,request.Search);
+        var result = _adminRepository.GetAll(request.PageNumber, request.PageSize,request.Search);
         return Success(result, "this is all admin");
     }
 }

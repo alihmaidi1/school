@@ -32,8 +32,8 @@ public class UpdateAdminValidation:AbstractValidator<UpdateAdminCommand>
         
         RuleFor(x => x.Email)
         .EmailAddress()
-        .Must((request,email)=>adminRepository.IsUnique(request.AdminId,"Email",email))
-        .WithMessage("this admin is already exists in our data");
+        .Must((request,email)=>!context.Admins.IgnoreQueryFilters().Where(x=>x.DateDeleted==null).Any(x=>x.Email==email&&x.Id!=request.AdminId)&&!context.Teachers.IgnoreQueryFilters().Where(x=>x.DateDeleted==null).Any(x=>x.Email==email))
+        .WithMessage("this email is already exists in our data");
        
        
         RuleFor(x => x.Password)

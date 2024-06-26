@@ -8,7 +8,7 @@ public static class RoleSeed
 
     public static Task SeedData(ApplicationDbContext context)
     {
-        if (!context.Roles.Any())
+        if (context.Roles.Count()==1)
         {
 
             List<string> permissions = Enum.GetNames(typeof(PermissionEnum)).ToList();

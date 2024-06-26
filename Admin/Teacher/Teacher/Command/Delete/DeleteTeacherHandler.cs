@@ -27,6 +27,7 @@ public class DeleteTeacherHandler : OperationResult, ICommandHandler<DeleteTeach
         _context.Teachers.IgnoreQueryFilters().Where(x=>x.Id==request.Id).ExecuteUpdate(setter=>setter.SetProperty(x=>x.DateDeleted,DateTimeOffset.UtcNow));        
         _context.Vacations.Where(x=>x.TeacherId==request.Id).ExecuteUpdate(setter=>setter.SetProperty(x=>x.DateDeleted,DateTimeOffset.UtcNow));
         _context.Warnings.Where(x=>x.TeacherId==request.Id).ExecuteUpdate(setter=>setter.SetProperty(x=>x.DateDeleted,DateTimeOffset.UtcNow));
+        _context.AccountSessions.Where(x=>x.AccountId==request.Id).ExecuteDelete();
         return Deleted();
     }
 }

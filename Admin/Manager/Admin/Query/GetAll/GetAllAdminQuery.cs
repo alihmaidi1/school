@@ -7,7 +7,6 @@ namespace Admin.Manager.Admin.Query.GetAll;
 
 public class GetAllAdminQuery: PaginationRequest , IQuery
 {
-    public AdminSortEnum OrderBy { get; set; }
     public string? Search { get; set; }
 
 }
