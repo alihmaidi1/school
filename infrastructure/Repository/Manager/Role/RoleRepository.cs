@@ -56,8 +56,6 @@ public class RoleRepository:GenericRepository<Domain.Entities.Role.Role>,IRoleRe
         
         return  DbContext
             .Admins
-            .IgnoreQueryFilters()
-            .Where(x=>x.DateDeleted==null)
             .Where(x => x.RoleId == Id)
             .Where(x=>x.Name.Contains(Search??""))
             .Where(x=>x.Email.Contains(Search??""))

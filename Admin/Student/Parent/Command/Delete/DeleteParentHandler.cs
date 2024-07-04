@@ -25,6 +25,7 @@ public class DeleteParentHandler : OperationResult ,ICommandHandler<DeleteParent
 
         await _context.Parents.Where(x=>x.Id==request.Id).ExecuteDeleteAsync(cancellationToken);
         await _context.SaveChangesAsync(cancellationToken);
+        await _context.AccountSessions.Where(x=>x.AccountId==request.Id).ExecuteDeleteAsync(cancellationToken);
         return Success("parent was deleted successfully");
     }
 }

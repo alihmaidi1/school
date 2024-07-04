@@ -431,6 +431,11 @@
             Check Code if exists and then return token info
             </summary>
         </member>
+        <member name="M:schoolmanagment.Controllers.Parent.AuthController.ChangePassword(Parent.Auth.Command.ChangePassword.ChangePasswordCommand,System.Threading.CancellationToken)">
+            <summary>
+            Change Parent Password
+            </summary>
+        </member>
         <member name="M:schoolmanagment.Controllers.Parent.HomeController.GetHome(System.Threading.CancellationToken)">
             <summary>
             Get Parent Home Page
@@ -494,6 +499,26 @@
         <member name="M:schoolmanagment.Controllers.Student.AuthController.RefreshToken(Student.Auth.Command.RefreshToken.RefreshStudentTokenCommand,System.Threading.CancellationToken)">
             <summary>
             Refresh Student Token
+            </summary>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Student.AuthController.ResetCode(Student.Auth.Command.ForgetPassword.ForgetPasswordCommand,System.Threading.CancellationToken)">
+            <summary>
+            Forget Student Password
+            </summary>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Student.AuthController.CheckResetCode(Student.Auth.Command.CheckResetCode.CheckResetCodeCommand,System.Threading.CancellationToken)">
+            <summary>
+            Check Reset Code
+            </summary>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Student.AuthController.ChangePassword(Student.Auth.Command.ChangePassword.ChangePasswordCommand,System.Threading.CancellationToken)">
+            <summary>
+            Change Password
+            </summary>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Student.HomeController.GetStudentHome(System.Threading.CancellationToken)">
+            <summary>
+            Get Student Home
             </summary>
         </member>
         <member name="M:schoolmanagment.Controllers.Student.HomeController.GetAllLeson(Student.Subject.Query.GetAllLeson.GetAllLesonQuery,System.Threading.CancellationToken)">

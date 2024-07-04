@@ -26,7 +26,7 @@ public class LoginStudentHandler : OperationResult,ICommandHandler<LoginStudentC
     public async Task<JsonResult> Handle(LoginStudentCommand request, CancellationToken cancellationToken)
     {
 
-        var Student=_context.Students.FirstOrDefault(x=>x.Email==request.Email);
+        var Student=_context.Students.Where(x=>x.Status).FirstOrDefault(x=>x.Email==request.Email);
         if(Student is null) return ValidationError("Email","this email is not exists im our data");
         if(!PasswordHelper.VerifyPassword(request.Password,Student.Password)) return ValidationError("Password","Password Is Not Correct");
         var Code="123456";        

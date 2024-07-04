@@ -10,6 +10,9 @@ using schoolManagement.Base;
 using Shared.Enum;
 using Shared.OperationResult.Base;
 using Shared.Swagger;
+using Student.Auth.Command.ChangePassword;
+using Student.Auth.Command.CheckResetCode;
+using Student.Auth.Command.ForgetPassword;
 using Student.Auth.Command.Login;
 using Student.Auth.Command.Logout;
 using Student.Auth.Command.RefreshToken;
@@ -45,7 +48,7 @@ public class AuthController:ApiController
     /// Validate Code And Get Token Info For Student
     /// </summary>
     [HttpPost]
-    [Produces(typeof(OperationResultBase<GetStudentHomeDto>))]
+    [Produces(typeof(OperationResultBase<AdminRefreshTokenDto>))]
 
     public async Task<IActionResult> ValidateCode([FromBody] ValidateCodeCommand command,CancellationToken Token)
     {
@@ -85,6 +88,52 @@ public class AuthController:ApiController
         return response;
 
     }
+
+
+    /// <summary>
+    /// Forget Student Password
+    /// </summary>
+    [HttpPost]
+    [Produces(typeof(OperationResultBase<Boolean>))]
+
+
+    public async Task<IActionResult> ResetCode([FromBody] ForgetPasswordCommand command,CancellationToken Token)
+    {
+        var response = await this.Mediator.Send(command,Token);
+        return response;
+
+    }
+
+
+    /// <summary>
+    /// Check Reset Code
+    /// </summary>
+    [HttpPost]
+    [Produces(typeof(OperationResultBase<AdminRefreshTokenDto>))]
+
+
+    public async Task<IActionResult> CheckResetCode([FromBody] CheckResetCodeCommand command,CancellationToken Token)
+    {
+        var response = await this.Mediator.Send(command,Token);
+        return response;
+
+    }
+
+
+    /// <summary>
+    /// Change Password
+    /// </summary>
+    [HttpPost]
+    [Produces(typeof(OperationResultBase<Boolean>))]
+    [CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Student))]
+
+    public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordCommand command,CancellationToken Token)
+    {
+        var response = await this.Mediator.Send(command,Token);
+        return response;
+
+    }
+
 
 
 }

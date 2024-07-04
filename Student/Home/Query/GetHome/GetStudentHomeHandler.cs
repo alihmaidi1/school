@@ -63,6 +63,7 @@ public class GetStudentHomeHandler : OperationResult,IQueryHandler<GetStudentHom
         })
         .ToList();
 
+        Home.NotificationCount=_context.Students.Where(x=>x.Id==_currentUserService.GetUserid()).Count();
         return Success(Home);
     }
 }

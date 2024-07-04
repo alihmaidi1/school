@@ -16,7 +16,7 @@ public static class WarningSeed
 
             List<Domain.Entities.Teacher.Teacher.Teacher> teachers = context.Teachers.ToList();
             List<Admin> managers = context.Admins.ToList();
-            List<Warning> warnings = WarningFaker.GetBrandFaker(teachers,managers).Generate(10);
+            List<Warning> warnings = WarningFaker.GetBrandFaker(teachers,managers).Generate(5);
             context.AddRange(warnings);
             context.SaveChanges();
         }

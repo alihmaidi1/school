@@ -28,7 +28,7 @@ public class DeleteStudentHandler :OperationResult , ICommandHandler<DeleteStude
         await _context.StudentQuezs.Where(x=>x.StudentId==request.Id).ExecuteUpdateAsync(setter=>setter.SetProperty(x=>x.DateDeleted,DateTimeOffset.UtcNow),cancellationToken);        
         // await _context.Where(x=>x.StudentId==request.Id).ExecuteUpdateAsync(setter=>setter.SetProperty(x=>x.DateDeleted,DateTimeOffset.UtcNow),cancellationToken);
         await _context.Students.Where(x=>x.Id==request.Id).ExecuteUpdateAsync(setter=>setter.SetProperty(x=>x.DateDeleted,DateTimeOffset.UtcNow),cancellationToken);
-        
+        await _context.AccountSessions.Where(x=>x.AccountId==request.Id).ExecuteDeleteAsync(cancellationToken);
         return Success("student deleted successfully");
     }
 }

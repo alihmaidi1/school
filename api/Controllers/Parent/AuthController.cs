@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Dto.Admin.Auth.Dto;
 using infrastructure.Attribute;
 using Microsoft.AspNetCore.Mvc;
+using Parent.Auth.Command.ChangePassword;
 using Parent.Auth.Command.CheckResetCode;
 using Parent.Auth.Command.ForgetPassword;
 using Parent.Auth.Command.Login;
@@ -117,4 +118,19 @@ public class AuthController:ApiController
     }
 
 
+
+    /// <summary>
+    /// Change Parent Password
+    /// </summary>
+    [HttpPut]
+    [Produces(typeof(OperationResultBase<Boolean>))]
+    [CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Parent))]
+
+
+    public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordCommand command,CancellationToken Token)
+    {
+        var response = await this.Mediator.Send(command,Token);
+        return response;
+
+    }
 }

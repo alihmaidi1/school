@@ -20,6 +20,8 @@ public class StudentAnswerSeeder
             List<StudentAnswer> StudentAnswers=new List<StudentAnswer>();
             var Quez=context
             .StudentQuezs
+            .AsNoTracking()
+            .AsSplitQuery()
             .Where(x=>x.Quez.StartAt>DateTimeOffset.UtcNow)
             .Select(x=>new {
 

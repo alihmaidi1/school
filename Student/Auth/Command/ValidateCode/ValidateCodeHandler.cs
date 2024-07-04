@@ -45,42 +45,8 @@ public class ValidateCodeHandler : OperationResult,ICommandHandler<ValidateCodeC
         _context.SaveChanges();
 
 
-        var Home=new GetStudentHomeDto();
-        Home.Banners=_context
-        .Banners
-        .AsNoTracking()
-        .Where(x=>x.StartAt<=DateTimeOffset.UtcNow)
-        .Where(x=>x.EndAt>=DateTimeOffset.UtcNow)
-        .Select(x=>new GetAllBannerDto{
-
-            Id=x.Id,
-            Image=x.Image,
-            Url=x.Url,
-            StartAt=x.StartAt,
-            EndAt=x.EndAt,
-            Name=x.Name
-
-
-        })
-        .ToList();
-
-        Home.Subjects=_context
-        .StudentSubjects
-        .AsNoTracking()
-        .Where(x=>x.StudentId==Student.Id)
-        .Where(x=>x.SubjectYear.ClassYear.Status)
-        .Select(x=>new GetStudentHomeDto.Subject{
-
-
-            Id=x.SubjectYear.Id,
-            Name=x.SubjectYear.TeacherSubject.Subject.Name
-
-
-        })
-        .ToList();
-        Home.NotificationCount=_context.AccountNotifications.Where(x=>x.AccountId==Student.Id&&!x.IsRead).Count();
-        Home.TokenInfo=_mapper.Map<AdminRefreshTokenDto>(accountSession);
-        return Success(Home,"this this your login info");
+                
+        return Success(_mapper.Map<AdminRefreshTokenDto>(accountSession),"this this your login info");
         
 
         

@@ -10,12 +10,12 @@ public class PageList<T>
         CurrentPage = pageNumber;
         Data = items;
         var x = count / (double)PageSize;
-        TotalPages = x == 0 ? 1 : Math.Ceiling((decimal)x);
+        TotalPages = x == 0 ? 1 : (int)Math.Ceiling((decimal)x);
     }
 
 
     public int? CurrentPage { get; }
-    public decimal TotalPages { get; }
+    public int TotalPages { get; }
     public int? PageSize { get; }
     public long TotalCount { get; private set; }
     public bool HasPrevious => CurrentPage > 1;

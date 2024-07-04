@@ -18,7 +18,7 @@ public static class VacationTypeSeeder
         if (!context.VacationTypes.Any())
         {
 
-            List<VacationType> vacations = VacationTypeFaker.GetVacationFaker().Generate(10);
+            List<VacationType> vacations = VacationTypeFaker.GetVacationFaker().Generate(4);
             context.VacationTypes.AddRange(vacations);
             await context.SaveChangesAsync();
         }

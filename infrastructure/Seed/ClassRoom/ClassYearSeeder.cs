@@ -15,12 +15,12 @@ public static class ClassYearSeeder
 
         if(!context.ClassYears.Any()){
 
-            var Years=context.Years.Select(x=>x.Id).ToList();
-            var Classes=context.Classes.ToList();        
+            var Years=context.Years.AsNoTracking().Select(x=>x.Id).ToList();
+            var Classes=context.Classes.AsNoTracking().ToList();        
             var ClassYears=new List<ClassYear>();
             Classes.ForEach(x=>{
 
-                var classes=ClassYearFaker.GetFaker(Years,x).Generate(5).DistinctBy(x=>new {x.YearId,x.ClassId}).ToList();
+                var classes=ClassYearFaker.GetFaker(Years,x).Generate(2).DistinctBy(x=>new {x.YearId,x.ClassId}).ToList();
                 var active=classes.First();
                 active.Status=true;
                 classes.RemoveAt(0);

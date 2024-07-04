@@ -14,7 +14,7 @@ namespace infrastructure.Seed.ClassRoom;
             public static Task SeedData(ApplicationDbContext context){
 
                 if(!context.Years.Any()){
-                var Years=YearFaker.GetFaker().Generate(5).DistinctBy(x=>x.Date);
+                var Years=YearFaker.GetFaker().Generate(3).DistinctBy(x=>x.Date);
                 context.Years.AddRange(Years);
                 context.SaveChanges();
 

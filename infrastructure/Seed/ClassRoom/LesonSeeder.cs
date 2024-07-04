@@ -21,7 +21,7 @@ public static class LesonSeeder
             var Lesons=new List<Leson>();
             SubjectYear.ForEach(x=>{
 
-                Lesons.AddRange(LesonFaker.GetFaker(x).Generate(4));
+                Lesons.AddRange(LesonFaker.GetFaker(x).Generate(2));
                 
             });
 

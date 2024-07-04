@@ -20,7 +20,7 @@ namespace infrastructure.Seed.ClassRoom;
                     var Subjects=new List<Subject>();
                     classIds.ForEach(x=>{
 
-                        Subjects.AddRange(SubjectFaker.GetFaker(x).Generate(8));
+                        Subjects.AddRange(SubjectFaker.GetFaker(x).Generate(5));
 
                     }); 
                     context.Subjects.AddRange(Subjects);

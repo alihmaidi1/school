@@ -12,7 +12,7 @@ public static class RoleSeed
         {
 
             List<string> permissions = Enum.GetNames(typeof(PermissionEnum)).ToList();
-            var roles = RoleFaker.GetBillFaker(permissions).Generate(5).ToList();
+            var roles = RoleFaker.GetBillFaker(permissions).Generate(3).ToList();
             context.Roles.AddRange(roles);
             context.SaveChanges();
 

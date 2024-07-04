@@ -44,11 +44,6 @@
             logout admin from dashboard
             </summary>
         </member>
-        <member name="M:schoolmanagment.Controllers.Admin.AuthController.RefreshToken(Admin.Manager.Auth.Command.RefreshToken.RefreshAdminTokenCommand)">
-            <summary>
-            Refresh Admin token and refresh token  for use at one time
-            </summary>
-        </member>
         <member name="M:schoolmanagment.Controllers.Admin.BannerController.GetAll(Admin.ClassRoom.Banner.Query.GetAll.GetAllBannerQuery,System.Threading.CancellationToken)">
             <summary>
             Get All Banner 
@@ -436,6 +431,11 @@
             Check Code if exists and then return token info
             </summary>
         </member>
+        <member name="M:schoolmanagment.Controllers.Parent.AuthController.ChangePassword(Parent.Auth.Command.ChangePassword.ChangePasswordCommand,System.Threading.CancellationToken)">
+            <summary>
+            Change Parent Password
+            </summary>
+        </member>
         <member name="M:schoolmanagment.Controllers.Parent.HomeController.GetHome(System.Threading.CancellationToken)">
             <summary>
             Get Parent Home Page
@@ -501,6 +501,26 @@
             Refresh Student Token
             </summary>
         </member>
+        <member name="M:schoolmanagment.Controllers.Student.AuthController.ResetCode(Student.Auth.Command.ForgetPassword.ForgetPasswordCommand,System.Threading.CancellationToken)">
+            <summary>
+            Forget Student Password
+            </summary>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Student.AuthController.CheckResetCode(Student.Auth.Command.CheckResetCode.CheckResetCodeCommand,System.Threading.CancellationToken)">
+            <summary>
+            Check Reset Code
+            </summary>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Student.AuthController.ChangePassword(Student.Auth.Command.ChangePassword.ChangePasswordCommand,System.Threading.CancellationToken)">
+            <summary>
+            Change Password
+            </summary>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Student.HomeController.GetStudentHome(System.Threading.CancellationToken)">
+            <summary>
+            Get Student Home
+            </summary>
+        </member>
         <member name="M:schoolmanagment.Controllers.Student.HomeController.GetAllLeson(Student.Subject.Query.GetAllLeson.GetAllLesonQuery,System.Threading.CancellationToken)">
             <summary>
             Get Student Leson
@@ -539,21 +559,6 @@
         <member name="M:schoolmanagment.Controllers.Student.QuezController.SolveQuez(Student.Quez.Command.SolveQuez.SolveQuezCommand,System.Threading.CancellationToken)">
             <summary>
             Solve Quez 
-            </summary>
-        </member>
-        <member name="M:schoolmanagment.Controllers.Teacher.AuthController.LoginTeacher(Teacher.Auth.Login.LoginTeacherCommand,System.Threading.CancellationToken)">
-            <summary>
-            Login teacher to dashboard
-            </summary>
-        </member>
-        <member name="M:schoolmanagment.Controllers.Teacher.AuthController.LogoutTeacher(Teacher.Auth.Logout.LogoutTeacherCommand,System.Threading.CancellationToken)">
-            <summary>
-            logout teacher from dashboard
-            </summary>
-        </member>
-        <member name="M:schoolmanagment.Controllers.Teacher.AuthController.RefreshToken(Teacher.Auth.RefreshToken.RefreshTokenTeacherCommand)">
-            <summary>
-            Refresh Teacher token and refresh token  for use at one time
             </summary>
         </member>
         <member name="M:schoolmanagment.Controllers.Teacher.LesonController.GetAllSubjectAndLeson(Teacher.Leson.Teacher.Leson.Query.GetAllLeson.GetAllLesonQuery,System.Threading.CancellationToken)">

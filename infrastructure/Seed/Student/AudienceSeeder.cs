@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using Bogus;
@@ -20,6 +21,7 @@ public static class AudienceSeeder
 
             var SubjectYears=context
             .SubjectYears
+            .AsNoTracking()
             .Select(x=>new SubjectYearWithStudentIdsDto{
                 Id=x.Id,
                 StudentsId=x.StudentSubjects.Select(x=>x.StudentId).Distinct().ToList()

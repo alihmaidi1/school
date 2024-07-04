@@ -26,18 +26,18 @@ public class HomeController:ApiController
 {
 
 
-    // /// <summary>
-    // /// Get Student Home
-    // /// </summary>
-    // [HttpGet]
-    // [Produces(typeof(OperationResultBase<GetStudentHomeDto>))]
+    /// <summary>
+    /// Get Student Home
+    /// </summary>
+    [HttpGet]
+    [Produces(typeof(OperationResultBase<GetStudentHomeDto>))]
 
-    // public async Task<IActionResult> GetStudentHome([FromQuery] GetStudentHomeQuery command,CancellationToken Token)
-    // {
-    //     var response = await this.Mediator.Send(command,Token);
-    //     return response;
+    public async Task<IActionResult> GetStudentHome(CancellationToken Token)
+    {
+        var response = await this.Mediator.Send(new GetStudentHomeQuery(),Token);
+        return response;
 
-    // }
+    }
 
 
 

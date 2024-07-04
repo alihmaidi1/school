@@ -18,7 +18,7 @@ namespace Admin.Manager.Admin.Command.ChangeStatus;
             RuleFor(x=>x.Id)
             .NotEmpty()
             .NotNull()
-            .Must(id=>context.Admins.IgnoreQueryFilters().Where(x=>x.DateDeleted==null).Any(x=>x.Id==id))
+            .Must(id=>context.Admins.Any(x=>x.Id==id))
             .WithMessage("admin is not exists in our data");
         }
 

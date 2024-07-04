@@ -22,6 +22,8 @@ public static class QuezSeeder
 
             List<SubjectYear> subjectYears=context
             .SubjectYears
+            .AsNoTracking()
+            .AsSplitQuery()
             .Include(x=>x.StudentSubjects)
             .ThenInclude(x=>x.Student)
             .ToList();

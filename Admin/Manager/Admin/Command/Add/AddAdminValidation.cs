@@ -33,7 +33,7 @@ public class AddAdminValidation:AbstractValidator<AddAdminCommand>
             .NotEmpty()
             .NotNull()
             .EmailAddress()
-            .Must(email => !context.Admins.IgnoreQueryFilters().Where(x=>x.DateDeleted==null).Any(x=>x.Email==email)&&!context.Teachers.IgnoreQueryFilters().Where(x=>x.DateDeleted==null).Any(x=>x.Email==email))
+            .Must(email => !context.Admins.Any(x=>x.Email==email)&&!context.Teachers.Any(x=>x.Email==email))
             .WithMessage("email address is already exists");
 
         RuleFor(x => x.ImageId)

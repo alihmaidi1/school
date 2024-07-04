@@ -24,37 +24,37 @@ public static class DatabaseSeed
             await context.Database.MigrateAsync();
             
         }
-        var transaction = await context.Database.BeginTransactionAsync();
+        // var transaction = await context.Database.BeginTransactionAsync();
 
         try
         {
             
-            await SuperAdminSeed.SeedData(context);
-            await RoleSeed.SeedData(context);
-            await AdminSeed.SeedData(context);
+            // await SuperAdminSeed.SeedData(context);
+            // await RoleSeed.SeedData(context);
+            // await AdminSeed.SeedData(context);
 
-            await YearSeeder.SeedData(context);
-            await StageSeeder.SeedData(context);
-            await SubjectSeeder.SeedData(context);
-            await TeacherSeeder.seedData(context);
-            await VacationTypeSeeder.seedData(context);
+            // await YearSeeder.SeedData(context);
+            // await StageSeeder.SeedData(context);
+            // await SubjectSeeder.SeedData(context);
+            // await TeacherSeeder.seedData(context);
+            // await VacationTypeSeeder.seedData(context);
 
-            await VacationSeeder.seedData(context);
-            await WarningSeed.seedData(context);
-            await ParentSeed.seedData(context);
-            await StudentSeed.seedData(context);
-            await ClassYearSeeder.SeedData(context);
-            await TeacherSubjectSeeder.SeedData(context);
-            await SubjectYearSeeder.SeedData(context);
+            // await VacationSeeder.seedData(context);
+            // await WarningSeed.seedData(context);
+            // await ParentSeed.seedData(context);
+            // await StudentSeed.seedData(context);
+            // await ClassYearSeeder.SeedData(context);
+            // await TeacherSubjectSeeder.SeedData(context);
+            // await SubjectYearSeeder.SeedData(context);
 
             
-            await LesonSeeder.SeedData(context);
-            await QuezSeeder.seedData(context);            
-            await StudentAnswerSeeder.seedData(context);
-            await AudienceSeeder.seedData(context);
+            // await LesonSeeder.SeedData(context);
+            // await QuezSeeder.seedData(context);            
+            // await StudentAnswerSeeder.seedData(context);
+            // await AudienceSeeder.seedData(context);
             
-            await NotificationSeeder.seedData(context);
-            await NotificationAccountSeeder.seedData(context);
+            // await NotificationSeeder.seedData(context);
+            // await NotificationAccountSeeder.seedData(context);
             
             
             // await StudentAnswerSeeder.seedData(context);
@@ -62,12 +62,12 @@ public static class DatabaseSeed
             // await BillSeeder.seedData(context);
             // await StudentClassSeed.seedData(context);
             // await StudentBillSeed.seedData(context);
-            await transaction.CommitAsync();
+            // await transaction.CommitAsync();
 
         }
         catch(Exception ex)
         {
-            transaction.Rollback();
+            // transaction.Rollback();
             throw new Exception(ex.Message);
         }
         

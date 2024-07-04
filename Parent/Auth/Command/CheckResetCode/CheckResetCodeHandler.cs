@@ -30,7 +30,7 @@ public class CheckResetCodeHandler : OperationResult,ICommandHandler<CheckResetC
     }
     public async Task<JsonResult> Handle(CheckResetCodeCommand request, CancellationToken cancellationToken)
     {
-        var Parent=_context.Parents.FirstOrDefault(x=>x.Email==request.Email&&x.ResetCode==request.Code);
+        var Parent=_context.Parents.Where(x=>x.Status).FirstOrDefault(x=>x.Email==request.Email&&x.ResetCode==request.Code);
         if(Parent is null) return ValidationError("Email","email or code is not exists");
         AccountSession accountSession =await _jwtRepository.GetTokensInfo(Parent.Id, Parent.Email,nameof(JwtSchema.Parent),null);
         accountSession.FcmToken=request.FcmToken;

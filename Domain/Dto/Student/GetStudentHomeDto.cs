@@ -12,7 +12,6 @@ public class GetStudentHomeDto
 
     public List<GetAllBannerDto> Banners{get;set;}
 
-    public AdminRefreshTokenDto TokenInfo{get;set;}
 
     public List<Subject> Subjects{get;set;}
 

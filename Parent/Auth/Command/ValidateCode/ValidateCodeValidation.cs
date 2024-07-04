@@ -16,7 +16,7 @@ public class ValidateCodeValidation: AbstractValidator<ValidateCodeCommand>
         .NotEmpty()
         .NotNull()
         .EmailAddress()
-        .Must(email=>context.Parents.Any(x=>x.Email==email))
+        .Must(email=>context.Parents.Where(x=>x.Status).Any(x=>x.Email==email))
         .WithMessage("this email is not exists in our data");
 
         RuleFor(x=>x.Code)

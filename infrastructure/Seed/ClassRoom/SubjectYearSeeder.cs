@@ -22,6 +22,7 @@ namespace infrastructure.Seed.ClassRoom;
                 
                     var Classyears=context
                     .ClassYears
+                    .AsNoTracking()
                     .Where(x=>x.Status)
                     .Include(x=>x.Class)
                     

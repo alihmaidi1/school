@@ -13,7 +13,7 @@ public class DeleteAdminValidation:AbstractValidator<DeleteAdminCommand>
         RuleFor(x => x.Id)
             .NotEmpty()
             .NotNull()
-            .Must(id => context.Admins.Where(x=>x.DateDeleted==null).Any(x=>x.Id==id))
+            .Must(id => context.Admins.Any(x=>x.Id==id))
             .WithMessage("this admin is not exists in our data");
     }
 }

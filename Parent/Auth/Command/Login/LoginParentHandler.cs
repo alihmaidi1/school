@@ -27,7 +27,7 @@ public class LoginParentHandler : OperationResult,ICommandHandler<LoginParentCom
     public async Task<JsonResult> Handle(LoginParentCommand request, CancellationToken cancellationToken)
     {
 
-        var Parent=_context.Parents.FirstOrDefault(x=>x.Email==request.Email);
+        var Parent=_context.Parents.Where(x=>x.Status).FirstOrDefault(x=>x.Email==request.Email);
         if(Parent is null) return ValidationError("Email","this email is not exists im our data");
         if(!PasswordHelper.VerifyPassword(request.Password,Parent.Password)) return ValidationError("Password","Password Is Not Correct");
         var Code="123456";        
