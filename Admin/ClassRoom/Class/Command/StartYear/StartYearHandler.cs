@@ -7,10 +7,11 @@ using infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Shared.CQRS;
+using Shared.OperationResult;
 
 namespace Admin.ClassRoom.Class.Command.StartYear;
 
-public class StartYearHandler : ICommandHandler<StartYearCommand>
+public class StartYearHandler : OperationResult,ICommandHandler<StartYearCommand>
 {
 
 
@@ -20,11 +21,12 @@ public class StartYearHandler : ICommandHandler<StartYearCommand>
         _context=context;
 
     }
-    public Task<JsonResult> Handle(StartYearCommand request, CancellationToken cancellationToken)
+    public async Task<JsonResult> Handle(StartYearCommand request, CancellationToken cancellationToken)
     {
 
         var Class=_context
         .Classes
+        .Include(x=>x.Subjects)
         .AsNoTracking()
         .Where(x=>x.Id==request.ClassId)
         .First();
@@ -42,16 +44,21 @@ public class StartYearHandler : ICommandHandler<StartYearCommand>
 
             ClassId=request.ClassId,
             YearId=request.YearId,
+            SubjectYears=Class.Subjects.Select(x=>new SubjectYear{
+
+                SubjectId=x.Id
+
+            }).ToList()
 
             
             
         };
-        // var ClassYear=_context
-        // .ClassYears
-        // .Where(x=>x.ClassId==request.YearId)
-        // .OrderByDescending(x=>x.DateCreated)
-        // .First();
-        
-        throw new NotImplementedException();
+
+        _context.ClassYears.Add(ClassYear);
+
+        _context.SaveChanges();
+
+
+        return Success();
     }
 }

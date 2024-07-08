@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using FluentValidation;
 using infrastructure;
+using Org.BouncyCastle.Ocsp;
 
 namespace Admin.ClassRoom.Class.Command.StartYear;
 
@@ -14,7 +15,9 @@ public class StartYearValidation: AbstractValidator<StartYearCommand>
 
         RuleFor(x=>x.ClassId)
         .NotEmpty()
-        .NotNull();
+        .NotNull()
+        .Must(id=>!context.ClassYears.Any(x=>x.ClassId==id&&x.Status))
+        .WithMessage("last year is not finished yet");
 
         RuleFor(x=>x.YearId)
         .NotEmpty()

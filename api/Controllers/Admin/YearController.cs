@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Admin.ClassRoom.Year.Command.Add;
 using Admin.ClassRoom.Year.Query.GetAll;
 using Domain.Dto.ClassRoom;
 using Domain.Enum;
@@ -28,6 +29,20 @@ public class YearController: ApiController
     public async Task<IActionResult> GetAllYear(CancellationToken Token)
     {
         var response = await this.Mediator.Send(new GetAllYearQuery(),Token);
+        return response;
+
+    }
+
+
+    /// <summary>
+    /// Add New Year 
+    /// </summary>
+    /// <returns>return all role in pagination</returns>
+    [Produces(typeof(OperationResultBase<List<GetAllYearDto>>))]
+    [HttpPost]
+    public async Task<IActionResult> AddYear([FromBody] AddYearCommand request,CancellationToken Token)
+    {
+        var response = await this.Mediator.Send(request,Token);
         return response;
 
     }

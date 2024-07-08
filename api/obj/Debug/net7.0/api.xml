@@ -74,6 +74,12 @@
             </summary>
             <returns>return all role in pagination</returns>
         </member>
+        <member name="M:schoolmanagment.Controllers.Admin.ClassController.StartYear(Admin.ClassRoom.Class.Command.StartYear.StartYearCommand,System.Threading.CancellationToken)">
+            <summary>
+            get All Stage With Classes 
+            </summary>
+            <returns>return all role in pagination</returns>
+        </member>
         <member name="M:schoolmanagment.Controllers.Admin.ClassController.GetAllActiveClasses(System.Threading.CancellationToken)">
             <summary>
             get All Active Classes 
@@ -89,6 +95,18 @@
         <member name="M:schoolmanagment.Controllers.Admin.ClassController.GetAllStudentBill(Admin.ClassRoom.Class.Query.GetAllBill.GetAllBillQuery,System.Threading.CancellationToken)">
             <summary>
             get All Bill for  Class In specific year  
+            </summary>
+            <returns>return all role in pagination</returns>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Admin.ClassController.GetUnSigned(Admin.ClassRoom.Class.Query.GetUnSignedSubject.GetUnSignedSubjectQuery,System.Threading.CancellationToken)">
+            <summary>
+            get All Un Signed Subject To Teacher  
+            </summary>
+            <returns>return all role in pagination</returns>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Admin.ClassController.AsignSubjectToTeacher(Admin.ClassRoom.Class.Command.SignSubjectToTeacher.SignSubjectToTeacherCommand,System.Threading.CancellationToken)">
+            <summary>
+            ASign Subject To Teacher    
             </summary>
             <returns>return all role in pagination</returns>
         </member>
