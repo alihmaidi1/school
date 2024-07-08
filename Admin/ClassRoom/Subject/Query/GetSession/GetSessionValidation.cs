@@ -19,7 +19,7 @@ public class GetSessionValidation: AbstractValidator<GetSessionQuery>
         RuleFor(x=>x.YearId)
         .NotEmpty()
         .NotNull()
-        .Must((request,yearid)=>context.SubjectYears.Any(x=>x.ClassYear.YearId==yearid&&x.TeacherSubject.SubjectId==request.SubjectId))
+        .Must((request,yearid)=>context.SubjectYears.Any(x=>x.ClassYear.YearId==yearid&&x.SubjectId==request.SubjectId))
         .WithMessage("this subject not valid with this year");
 
     }

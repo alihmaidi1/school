@@ -31,7 +31,7 @@ public class ForgetPasswordHandler : OperationResult,ICommandHandler<ForgetPassw
         .Students
         .Where(x=>x.Email==request.Email)
         .ExecuteUpdateAsync(setter=>setter.SetProperty(x=>x.ResetCode,code),cancellationToken);
-        _mailService.SendMail(request.Email,"reset password code",$"this is reset code {code}");
+        // _mailService.SendMail(request.Email,"reset password code",$"this is reset code {code}");
         return Success("reset code was sended to email successfully");
     }
 }

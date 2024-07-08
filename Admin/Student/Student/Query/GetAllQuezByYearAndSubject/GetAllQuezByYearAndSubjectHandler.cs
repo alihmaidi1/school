@@ -27,7 +27,7 @@ public class GetAllQuezByYearAndSubjectHandler : OperationResult , IQueryHandler
         .SubjectYears
         .AsNoTracking()
         .Where(x=>x.ClassYear.YearId==request.YearId)
-        .Where(x=>x.TeacherSubject.SubjectId==request.SubjectId)
+        .Where(x=>x.SubjectId==request.SubjectId)
         .SelectMany(x=>x.StudentSubjects.Where(x=>x.StudentId==request.Id).Select(x=>x.Student))
         .SelectMany(x=>x.StudentQuezs)
         .Select(x=>new GetAllStudentQuezDto{

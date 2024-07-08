@@ -17,6 +17,8 @@ namespace Domain.Entities.ClassRoom;
         public Subject(){
 
             Id=Guid.NewGuid();
+
+            SubjectYear=new HashSet<SubjectYear>();
         }
 
 
@@ -26,13 +28,17 @@ namespace Domain.Entities.ClassRoom;
         public float Degree{get;set;}
         public string Name{get;set;}
 
+        
+
         public Guid ClassId{get;set;}
 
         public Class Class{get;set;}
 
         // public ICollection<Teacher.Teacher.Teacher> Teachers{get;set;}
 
+
         public ICollection<TeacherSubject> TeacherSubjects{get;set;}
+        public ICollection<SubjectYear> SubjectYear{get;set;}
 
 
 

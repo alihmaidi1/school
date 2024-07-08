@@ -36,8 +36,8 @@ public class GetAllResultHandler : OperationResult,IQueryHandler<GetAllResultQue
         .Where(x=>x.Mark.HasValue)
         .Select(x=>new GetAllResultDto{
 
-            Id=x.SubjectYear.TeacherSubject.Subject.Id,
-            Name=x.SubjectYear.TeacherSubject.Subject.Name,
+            Id=x.SubjectYear.Subject.Id,
+            Name=x.SubjectYear.Subject.Name,
             Mark=x.Mark!.Value
         })
         .ToList();

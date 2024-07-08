@@ -33,8 +33,8 @@ public class GetStudentSubjectByYearHandler : OperationResult ,IQueryHandler<Get
         .Select(x=>new GetAllStudentSubjectDto{
 
 
-                Id=x.SubjectYear.TeacherSubject.Subject.Id,
-                Name=x.SubjectYear.TeacherSubject.Subject.Name,
+                Id=x.SubjectYear.Subject.Id,
+                Name=x.SubjectYear.Subject.Name,
                 Mark=x.Mark
         })
         .ToPagedList(request.PageNumber,request.PageSize);

@@ -49,7 +49,10 @@ public class UpdateAdminHandler:OperationResult,ICommandHandler<UpdateAdminComma
         
         Admin.RoleId=request.RoleId;
         Admin.Email=request.Email;
-        Admin.Password=PasswordHelper.HashPassword(request.Password);
+        if(request.Password is not null){
+            Admin.Password=PasswordHelper.HashPassword(request.Password);
+
+        }
         Admin.Status=request.Status;
         Admin.Name=request.Name;
         if(request.Image is not null){

@@ -17,7 +17,8 @@ public class OperationResult
                 
         const int statusCode = (int)System.Net.HttpStatusCode.OK;
         const string message = "Deleted Successfully";
-        return this.ToJsonResult<object>(statusCode:statusCode,message:message);
+        
+        return this.ToJsonResult<object>(statusCode:statusCode,message:message,result:true);
     }
 
     public  JsonResult NotFound<T>(string message="") where T : class
@@ -38,7 +39,7 @@ public class OperationResult
     public JsonResult Success(string resultMessage = "")
     {
         const int statusCode = (int)System.Net.HttpStatusCode.OK;
-        return this.ToJsonResult<object>(statusCode,message:resultMessage);
+        return this.ToJsonResult<object>(statusCode,message:resultMessage,result:true);
 
     }
 

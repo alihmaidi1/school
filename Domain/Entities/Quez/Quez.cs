@@ -61,6 +61,6 @@ public class Quez:BaseEntity,ISoftDelete
 
     public static Expression<Func<Quez,bool>> IsBelongForId(Guid id){
         
-        return quez=>quez.SubjectYear.TeacherSubject.TeacherId==id; 
+        return quez=>quez.SubjectYear.TeacherId==id; 
     }
 }

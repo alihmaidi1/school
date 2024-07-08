@@ -11,6 +11,7 @@ using Parent.Auth.Command.ForgetPassword;
 using Parent.Auth.Command.Login;
 using Parent.Auth.Command.Logout;
 using Parent.Auth.Command.RefreshToken;
+using Parent.Auth.Command.ReSetCode;
 using Parent.Auth.Command.ValidateCode;
 using schoolManagement.Base;
 using Shared.Enum;
@@ -128,6 +129,22 @@ public class AuthController:ApiController
 
 
     public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordCommand command,CancellationToken Token)
+    {
+        var response = await this.Mediator.Send(command,Token);
+        return response;
+
+    }
+
+
+
+    /// <summary>
+    /// Reset Parent Code
+    /// </summary>
+    [HttpPut]
+    [Produces(typeof(OperationResultBase<Boolean>))]
+
+
+    public async Task<IActionResult> ResetParentCode([FromBody] ResetCodeCommand command,CancellationToken Token)
     {
         var response = await this.Mediator.Send(command,Token);
         return response;

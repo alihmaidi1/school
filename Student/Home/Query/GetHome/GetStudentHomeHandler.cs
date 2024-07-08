@@ -57,7 +57,7 @@ public class GetStudentHomeHandler : OperationResult,IQueryHandler<GetStudentHom
 
 
             Id=x.SubjectYear.Id,
-            Name=x.SubjectYear.TeacherSubject.Subject.Name
+            Name=x.SubjectYear.Subject.Name
 
 
         })

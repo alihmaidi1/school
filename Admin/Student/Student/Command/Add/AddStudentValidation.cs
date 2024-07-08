@@ -40,12 +40,16 @@ public class AddStudentValidation: AbstractValidator<AddStudentCommand>
         RuleFor(x=>x.Gender)
         .NotNull();
 
-        RuleFor(x=>x.ClassId)
-        .NotEmpty()
-        .NotNull()
-        .Must(id=>context.ClassYears.Any(x=>x.ClassId==id&&x.Status))
-        .WithMessage("this class id not exists in our data");
+        // RuleFor(x=>x.ClassId)
+        // .NotEmpty()
+        // .NotNull()
+        // .Must(id=>context.ClassYears.Any(x=>x.ClassId==id&&x.Status))
+        // .WithMessage("this class id not exists in our data");
 
+
+        RuleFor(x=>x.Level)
+        .GreaterThan(0)
+        .LessThanOrEqualTo(9);
 
 
 

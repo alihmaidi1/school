@@ -36,6 +36,24 @@ public class GetHomeHandler : OperationResult,IQueryHandler<GetHomeQuery>
 
         var Result=new GetParentHomeDto();
 
+        var parent=_context.Parents.First(x=>x.Id==_currentUserService.GetUserid());
+        Result.Name=parent.Name;
+        Result.Image=parent.Image;
+
+        Result.Students=_context
+        .Students
+        .AsNoTracking()
+        .Where(x=>x.ParentId==_currentUserService.GetUserid())
+        .Select(x=>new GetAllStudentDto{
+
+            Id=x.Id,
+            Name=x.Name,
+            Image=x.Image,
+            Hash=x.Hash
+
+        })
+        .ToList();
+
 
         Result.Notifications=_context
         .AccountNotifications
@@ -69,19 +87,6 @@ public class GetHomeHandler : OperationResult,IQueryHandler<GetHomeQuery>
 
         Result.NotificationCount=_context.AccountNotifications.Where(x=>x.AccountId==_currentUserService.GetUserid()&&!x.IsRead).Count();
 
-        Result.Students=_context
-        .Students
-        .AsNoTracking()
-        .Where(x=>x.ParentId==_currentUserService.GetUserid())
-        .Select(x=>new GetAllStudentDto{
-
-            Id=x.Id,
-            Name=x.Name,
-            Image=x.Image,
-            Hash=x.Hash
-
-        })
-        .ToList();
 
 
         return Success(Result);

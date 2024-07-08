@@ -24,12 +24,12 @@ public class GetAllSubjectHandler : OperationResult, ICommandHandler<GetAllSubje
         .Where(x=>x.ClassYear.Status)
         .Select(x=>new GetAllSubjectDto{
 
-            Id=x.TeacherSubject.SubjectId,
-            SubjectName=x.TeacherSubject.Subject.Name,
+            Id=x.SubjectId,
+            SubjectName=x.Subject.Name,
             Year=x.ClassYear.Class.Name,
-            Degree=x.TeacherSubject.Subject.Degree,
-            MinDegree=x.TeacherSubject.Subject.MinDegree,
-            Status=x.TeacherSubject.Teacher==null
+            Degree=x.Subject.Degree,
+            MinDegree=x.Subject.MinDegree,
+            Status=x.Teacher==null
 
         }).ToPagedList(request.PageNumber,request.PageSize);
         return Success(Subjects,"this is all subject ");   

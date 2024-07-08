@@ -24,7 +24,7 @@ public class AddStudentCommand: ICommand
     public Guid Image{get;set;}
 
 
-    public Guid ClassId{get;set;}
+    public int Level{get;set;}
 
 
 

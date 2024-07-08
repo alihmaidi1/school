@@ -27,10 +27,10 @@ public class GetSubjectDetailHandler : OperationResult, IQueryHandler<GetSubject
         .Where(x=>x.ClassYear.YearId==request.YearId)
         .Select(x=>new GetSubjectDetailDto{
 
-            Id=x.TeacherSubject.Subject.Id,
-            Name=x.TeacherSubject.Subject.Name,
-            Degree=x.TeacherSubject.Subject.Degree,
-            MinDegree=x.TeacherSubject.Subject.MinDegree,
+            Id=x.Subject.Id,
+            Name=x.Subject.Name,
+            Degree=x.Subject.Degree,
+            MinDegree=x.Subject.MinDegree,
             StudentNumber=x.StudentSubjects.Count()
             
         })

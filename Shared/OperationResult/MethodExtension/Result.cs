@@ -33,7 +33,7 @@ public static class Result
     {
         
         
-        using var operationResultBase=CreateOperationResultBase<object>(null,"validation error",statusCode,errors);
+        using var operationResultBase=CreateOperationResultBase<object>(false,"validation error",statusCode,errors);
         return new JsonResult(operationResultBase)
         {
 

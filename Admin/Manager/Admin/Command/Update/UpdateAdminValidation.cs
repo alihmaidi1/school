@@ -37,9 +37,10 @@ public class UpdateAdminValidation:AbstractValidator<UpdateAdminCommand>
        
        
         RuleFor(x => x.Password)
-            .NotEmpty()
-            .NotNull()
-            .MinimumLength(8);
+            // .NotEmpty()
+            // .NotNull()
+            .MinimumLength(8)
+            .When(x=>x.Password!=null);
 
 
 

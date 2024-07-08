@@ -24,10 +24,10 @@ public class AddMarkValidation: AbstractValidator<AddMarkCommand>
         .NotNull()
         .Must((request,id)=>context
             .StudentSubjects
-            .Any(x=>x.SubjectYear.TeacherSubject.SubjectId==id&&
+            .Any(x=>x.SubjectYear.SubjectId==id&&
                     x.SubjectYear.ClassYear.Status&&
                     x.StudentId==request.StudentId&&
-                    x.SubjectYear.TeacherSubject.TeacherId==currentUserService.GetUserid())
+                    x.SubjectYear.TeacherId==currentUserService.GetUserid())
             )
             .WithMessage("this student does not has this subject or this subject you are not learn it");
 

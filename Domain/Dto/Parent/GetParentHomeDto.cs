@@ -17,6 +17,11 @@ public class GetParentHomeDto
     public List<GetAllBannerDto> Banners{get;set;}
 
 
+    public string Image{get;set;}
+
+    public string Name{get;set;}
+
+
     public List<GetAllStudentDto> Students{get;set;}
 
     public List<GetAllStudentNotificationDto> Notifications{get;set;}

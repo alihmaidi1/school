@@ -28,7 +28,7 @@ public class GetAudienceHandler : OperationResult,IQueryHandler<GetAudienceQuery
         .AsNoTracking()
         
         .Where(x=>x.SessionNumber==request.SessionNumber)
-        .Where(x=>x.SubjectYear.TeacherSubject.SubjectId==request.SubjectId)
+        .Where(x=>x.SubjectYear.SubjectId==request.SubjectId)
         .Where(x=>x.SubjectYear.ClassYear.YearId==request.YearId)
         .Select(x=>new GetStudentAudienceDto{
 

@@ -34,7 +34,7 @@ public class FinishYearHandler : OperationResult,ICommandHandler<FinishYearComma
 
             Id=x.Key.Id,
             Level=x.Key.Level,
-            Status=x.Select(x=>x.Mark<x.SubjectYear.TeacherSubject.Subject.MinDegree).Count()<2
+            Status=x.Select(x=>x.Mark<x.SubjectYear.Subject.MinDegree).Count()<2
 
         })
         .ToList();

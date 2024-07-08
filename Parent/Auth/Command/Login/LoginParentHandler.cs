@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Common.ExtensionMethod;
 using infrastructure;
 using MailKit;
 using Microsoft.AspNetCore.Mvc;
@@ -32,10 +27,10 @@ public class LoginParentHandler : OperationResult,ICommandHandler<LoginParentCom
         if(!PasswordHelper.VerifyPassword(request.Password,Parent.Password)) return ValidationError("Password","Password Is Not Correct");
         var Code="123456";        
         Parent.Code=Code;
-        Parent.SendEmail("Student Login Code",$"You Can Login To Your Account By This Code${Code}");
+        // Parent.SendEmail("Student Login Code",$"You Can Login To Your Account By This Code${Code}");
 
         await _context.SaveChangesAsync(cancellationToken);
-        return Success("Code was sended to your email successfully");
+        return Success(true,"Code was sended to your email successfully");
 
     }
 }

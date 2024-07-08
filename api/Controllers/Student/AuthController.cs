@@ -16,6 +16,7 @@ using Student.Auth.Command.ForgetPassword;
 using Student.Auth.Command.Login;
 using Student.Auth.Command.Logout;
 using Student.Auth.Command.RefreshToken;
+using Student.Auth.Command.ReSetCode;
 using Student.Auth.Command.ValidateCode;
 using Teacher.Auth.Login;
 
@@ -134,6 +135,21 @@ public class AuthController:ApiController
 
     }
 
+
+
+
+    /// <summary>
+    /// Change Password
+    /// </summary>
+    [HttpPost]
+    [Produces(typeof(OperationResultBase<Boolean>))]
+
+    public async Task<IActionResult> ResetStudentCode([FromBody] ResetCodeCommand command,CancellationToken Token)
+    {
+        var response = await this.Mediator.Send(command,Token);
+        return response;
+
+    }
 
 
 }

@@ -41,7 +41,7 @@ public class GetParentFinalResultHandler : OperationResult,IQueryHandler<GetPare
                     Marks=y.Select(z=>new GetAllStudentResultDto.SubjectMark{
 
                         Mark=z.Mark??0,
-                        Name=z.SubjectYear.TeacherSubject.Subject.Name
+                        Name=z.SubjectYear.Subject.Name
 
                     }).ToList()
 

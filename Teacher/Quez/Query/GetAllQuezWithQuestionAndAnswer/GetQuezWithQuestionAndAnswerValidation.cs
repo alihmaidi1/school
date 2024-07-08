@@ -20,7 +20,7 @@ public class GetQuezWithQuestionAndAnswerValidation:AbstractValidator<GetQuezWit
         RuleFor(x=>x.Id)
         .NotEmpty()
         .NotNull()
-        .Must(id=>context.Quezs.Any(x=>x.Id==id&&x.SubjectYear.TeacherSubject.TeacherId==currentUserService.GetUserid()))
+        .Must(id=>context.Quezs.Any(x=>x.Id==id&&x.SubjectYear.TeacherId==currentUserService.GetUserid()))
         .WithMessage("this quez is not belongs to you");
 
     }

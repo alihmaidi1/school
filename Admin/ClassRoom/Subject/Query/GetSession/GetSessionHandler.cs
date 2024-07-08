@@ -24,7 +24,7 @@ public class GetSessionHandler : OperationResult,IQueryHandler<GetSessionQuery>
 
         var SessionNumber=_context
         .SubjectYears
-        .Where(x=>x.TeacherSubject.SubjectId==request.SubjectId)
+        .Where(x=>x.SubjectId==request.SubjectId)
         .Where(x=>x.ClassYear.YearId==request.YearId)
         .SelectMany(x=>x.Audiences)
         .Select(x=>x.SessionNumber)

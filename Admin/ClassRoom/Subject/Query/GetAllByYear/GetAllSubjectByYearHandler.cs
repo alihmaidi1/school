@@ -30,7 +30,7 @@ public class GetAllSubjectByYearHandler : OperationResult, IQueryHandler<GetAllS
         var Subjects=_context
         .SubjectYears      
         .Where(x=>x.ClassYear.YearId==request.YearId)
-        .Select(x=>x.TeacherSubject.Subject)          
+        .Select(x=>x.Subject)          
         .Select(x=>new GetAllSubjectByYearDto.Subject{
             Id=x.Id,
             Name=x.Name,

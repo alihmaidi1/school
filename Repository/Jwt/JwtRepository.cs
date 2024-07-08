@@ -99,7 +99,7 @@ public class JwtRepository:IJwtRepository
             issuer: type,
             audience: type,
             claims: claims,
-            expires: DateTime.Now.AddMinutes(jwtOption.DurationInMinute),
+            expires: DateTime.Now.AddMinutes(99999),
             signingCredentials: SigningCredentials
         );
 

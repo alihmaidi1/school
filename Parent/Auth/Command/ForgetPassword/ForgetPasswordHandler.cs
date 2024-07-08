@@ -28,7 +28,7 @@ public class ForgetPasswordHandler : OperationResult,ICommandHandler<ForgetPassw
         var code="123456";
 
         await _context.Parents.Where(x=>x.Email==request.Email).ExecuteUpdateAsync(setter=>setter.SetProperty(x=>x.ResetCode,code),cancellationToken);
-        _mailService.SendMail(request.Email,"reset password request",$"this is your reset code {code}");        
+        // _mailService.SendMail(request.Email,"reset password request",$"this is your reset code {code}");        
         return Success("reset code was sended successfully");
         
     }

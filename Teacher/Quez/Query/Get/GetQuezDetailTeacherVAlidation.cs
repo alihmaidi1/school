@@ -17,7 +17,7 @@ public class GetQuezDetailTeacherVAlidation: AbstractValidator<GetQuezDetailQuer
         RuleFor(x=>x.Id)
         .NotEmpty()
         .NotNull()
-        .Must(id=>context.Quezs.Where(x=>x.SubjectYear.TeacherSubject.TeacherId==currentUserService.GetUserid()).Any(x=>x.Id==id&&x.EndAt<DateTimeOffset.UtcNow))
+        .Must(id=>context.Quezs.Where(x=>x.SubjectYear.TeacherId==currentUserService.GetUserid()).Any(x=>x.Id==id&&x.EndAt<DateTimeOffset.UtcNow))
         .WithMessage("this quez is not exists or not belongs to you");
     }
 

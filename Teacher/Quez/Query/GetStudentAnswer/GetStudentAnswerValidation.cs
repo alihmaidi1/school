@@ -16,7 +16,7 @@ public class GetStudentAnswerValidation: AbstractValidator<GetStudentAnswerQuery
         RuleFor(x=>x.QuezId)
         .NotEmpty()
         .NotNull()
-        .Must(id=>context.Quezs.Any(x=>x.Id==id&&x.SubjectYear.TeacherSubject.TeacherId==currentUserService.GetUserid()))
+        .Must(id=>context.Quezs.Any(x=>x.Id==id&&x.SubjectYear.TeacherId==currentUserService.GetUserid()))
         .WithMessage("this quez is not belongs to you");
 
         RuleFor(x=>x.StudentId)

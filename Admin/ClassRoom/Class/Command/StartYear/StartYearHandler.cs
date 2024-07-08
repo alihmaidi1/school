@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Domain.Entities.ClassRoom;
 using infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -31,11 +32,20 @@ public class StartYearHandler : ICommandHandler<StartYearCommand>
 
         var Students=_context
         .Students
+        .AsNoTracking()
         .Where(x=>x.Level==Class.Level)
         .Where(x=>x.StudentSubjects.Where(y=>!y.SubjectYear.ClassYear.Status).Any())
         .Select(x=>x.Id)
         .ToList();
+        var ClassYear=new ClassYear{
 
+
+            ClassId=request.ClassId,
+            YearId=request.YearId,
+
+            
+            
+        };
         // var ClassYear=_context
         // .ClassYears
         // .Where(x=>x.ClassId==request.YearId)

@@ -30,7 +30,7 @@ public class AddLesonValidation: AbstractValidator<AddLesonCommand>
         RuleFor(x=>x.SubjectId)
         .NotNull()
         .NotEmpty()
-        .Must(id=>context.SubjectYears.Any(x=>x.TeacherSubject.SubjectId==id&&x.ClassYear.Status&&x.TeacherSubject.TeacherId==currentUserService.GetUserid()))
+        .Must(id=>context.SubjectYears.Any(x=>x.SubjectId==id&&x.ClassYear.Status&&x.TeacherId==currentUserService.GetUserid()))
         .WithMessage("this subject is not exists or not belongs to this teacher");
         
     }

@@ -30,10 +30,10 @@ public class GetAllTeacherLesonHandler : OperationResult,IQueryHandler<GetAllTea
         .SubjectYears
         .AsNoTracking()
         .Where(x=>x.ClassYear.YearId==request.YearId)
-        .Where(x=>x.TeacherSubject.TeacherId==request.Id)
+        .Where(x=>x.TeacherId==request.Id)
         .Select(x=>new GetAllTeacherLesonDto(){            
-            Id=x.TeacherSubject.Subject.Id,
-            Name=x.TeacherSubject.Subject.Name,
+            Id=x.Subject.Id,
+            Name=x.Subject.Name,
             Lesons=x.Lesons.Select(y=>new GetAllTeacherLesonDto.Leson(){
 
                 Id=y.Id,

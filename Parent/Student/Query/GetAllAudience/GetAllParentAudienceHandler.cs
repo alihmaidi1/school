@@ -45,7 +45,7 @@ public class GetAllParentAudienceHandler : OperationResult,IQueryHandler<GetAllP
                 Id=y.Id,
                 Date=y.Date,
                 SessionNumber=y.SessionNumber,
-                SubjectName=y.SubjectYear.TeacherSubject.Subject.Name
+                SubjectName=y.SubjectYear.Subject.Name
             }).ToList()
             
         })

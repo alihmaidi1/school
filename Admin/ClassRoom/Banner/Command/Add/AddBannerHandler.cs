@@ -37,6 +37,6 @@ public class AddBannerHandler : OperationResult,ICommandHandler<AddBannerCommand
         _context.Banners.Add(Banner);
         await _context.SaveChangesAsync(cancellationToken);
         Image.Url.MoveFile(Image.Url.GetNewPath(FolderName.Banner).localPath);
-        return Created("Created Successfully");
+        return Created(true,"Created Successfully");
     }
 }

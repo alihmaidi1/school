@@ -16,7 +16,6 @@ public class TeacherSubject:BaseEntity,ISoftDelete
 
         Id=Guid.NewGuid();
 
-        SubjectYears=new HashSet<SubjectYear>();
     }
 
 
@@ -27,6 +26,5 @@ public class TeacherSubject:BaseEntity,ISoftDelete
 
     public Guid SubjectId{get;set;}
 
-    public ICollection<SubjectYear> SubjectYears{get;set;}
 
 }

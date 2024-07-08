@@ -29,8 +29,8 @@ public class AddMarkHandler : OperationResult,ICommandHandler<AddMarkCommand>
         .StudentSubjects
         .Where(x=>x.StudentId==request.StudentId)
         .Where(x=>x.SubjectYear.ClassYear.Status)
-        .Where(x=>x.SubjectYear.TeacherSubject.SubjectId==request.SubjectId)
-        .Where(x=>x.SubjectYear.TeacherSubject.TeacherId==_currentUserService.GetUserid())
+        .Where(x=>x.SubjectYear.SubjectId==request.SubjectId)
+        .Where(x=>x.SubjectYear.TeacherId==_currentUserService.GetUserid())
         .ExecuteUpdateAsync(setter=>setter.SetProperty(x=>x.Mark,request.Mark),cancellationToken);
 
         return Success("mark updated successfully");

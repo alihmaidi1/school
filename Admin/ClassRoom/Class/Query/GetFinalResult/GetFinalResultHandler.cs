@@ -35,11 +35,11 @@ public class GetFinalResultHandler : OperationResult ,IQueryHandler<GetFinalResu
 
             Id=x.Key.Id,
             Name=x.Key.Name,
-            Status=x.Count(x=>x.Mark>x.SubjectYear.TeacherSubject.Subject.MinDegree)>2,
+            Status=x.Count(x=>x.Mark>x.SubjectYear.Subject.MinDegree)>2,
             Precent=x.Sum(x=>x.Mark.Value)/x.Count(),
             Subjects=x.Select(y=>new GetAllResultDto.Subject{
-                Id=y.SubjectYear.TeacherSubject.SubjectId,
-                Name=y.SubjectYear.TeacherSubject.Subject.Name,
+                Id=y.SubjectYear.SubjectId,
+                Name=y.SubjectYear.Subject.Name,
                 Mark=y.Mark
             }).ToList()
 

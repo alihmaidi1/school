@@ -40,7 +40,7 @@ public class GetParentStudentMarksHandler : OperationResult,IQueryHandler<GetPar
             Marks=x
             .StudentQuezs
             .Where(x=>x.Quez.SubjectYear.ClassYear.Status)
-            .GroupBy(x=>x.Quez.SubjectYear.TeacherSubject.Subject)
+            .GroupBy(x=>x.Quez.SubjectYear.Subject)
             .Select(y=>new GetParentStudentMarksDto.Subject{
                 
                 Id=y.Key.Id,

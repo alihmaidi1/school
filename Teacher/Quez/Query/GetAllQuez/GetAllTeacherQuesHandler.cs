@@ -31,12 +31,12 @@ public class GetAllTeacherQuesHandler : OperationResult, IQueryHandler<GetAllQue
 
         var Result=_context
         .SubjectYears
-        .Where(x=>x.TeacherSubject.TeacherId==_currentUserService.GetUserid())
+        .Where(x=>x.TeacherId==_currentUserService.GetUserid())
         .Where(x=>x.ClassYear.YearId==request.YearId)
         .Select(x=>new GetAllTeacherQuezDto(){
 
-            Id=x.TeacherSubject.Subject.Id,
-            Name=x.TeacherSubject.Subject.Name,            
+            Id=x.Subject.Id,
+            Name=x.Subject.Name,            
             Quezies=x.Quezs.Select(y=>new GetAllTeacherQuezDto.Quez(){
 
                 Id=y.Id,

@@ -32,10 +32,10 @@ public class LoginStudentHandler : OperationResult,ICommandHandler<LoginStudentC
         var Code="123456";        
         Student.Code=Code;
 
-        Student.SendEmail("Student Login Code",$"You Can Login To Your Account By This Code${Code}");
+        // Student.SendEmail("Student Login Code",$"You Can Login To Your Account By This Code${Code}");
 
         await _context.SaveChangesAsync(cancellationToken);
-        return Success("Code was sended to your email successfully");
+        return Success(true,"Code was sended to your email successfully");
 
     }
 }

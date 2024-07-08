@@ -23,12 +23,12 @@ public class GetAllTeacherQuesHandler : OperationResult, IQueryHandler<GetAllTea
 
         var Result=_context
         .SubjectYears
-        .Where(x=>x.TeacherSubject.TeacherId==request.Id)
+        .Where(x=>x.TeacherId==request.Id)
         .Where(x=>x.ClassYear.YearId==request.YearId)
-        .Where(x=>x.TeacherSubject.Subject.Name.Contains(request.Search??""))
+        .Where(x=>x.Subject.Name.Contains(request.Search??""))
         .Select(x=>new GetAllTeacherQuezDto(){
-            Id=x.TeacherSubject.Subject.Id,
-            Name=x.TeacherSubject.Subject.Name,            
+            Id=x.Subject.Id,
+            Name=x.Subject.Name,            
             Quezies=x.Quezs.Select(y=>new GetAllTeacherQuezDto.Quez(){
                 Id=y.Id,
                 Name=y.Name,

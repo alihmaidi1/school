@@ -34,10 +34,10 @@ public class GetAllTeacherLesonHandler : OperationResult,IQueryHandler<GetAllLes
         .SubjectYears
         .AsNoTracking()
         .Where(x=>x.ClassYear.YearId==request.YearId)
-        .Where(x=>x.TeacherSubject.TeacherId==_currentUserService.GetUserid())
+        .Where(x=>x.TeacherId==_currentUserService.GetUserid())
         .Select(x=>new GetAllTeacherLesonDto(){            
-            Id=x.TeacherSubject.Subject.Id,
-            Name=x.TeacherSubject.Subject.Name,
+            Id=x.Subject.Id,
+            Name=x.Subject.Name,
             Lesons=x.Lesons.Select(y=>new GetAllTeacherLesonDto.Leson(){
                 Id=y.Id,
                 Name=y.Name,

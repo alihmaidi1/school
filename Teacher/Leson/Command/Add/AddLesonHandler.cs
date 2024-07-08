@@ -32,7 +32,7 @@ public class AddLesonHandler : OperationResult, ICommandHandler<AddLesonCommand>
 
         var File=request.File.UploadFile(FolderName.Leson);
         
-        var SubjectYear=_context.SubjectYears.FirstOrDefault(x=>x.TeacherSubject.TeacherId==_currentUserService.GetUserid()&&x.TeacherSubject.SubjectId==request.SubjectId);
+        var SubjectYear=_context.SubjectYears.FirstOrDefault(x=>x.TeacherId==_currentUserService.GetUserid()&&x.SubjectId==request.SubjectId);
         if(SubjectYear is null) return ValidationError("SubjectId","This Subject Is Not Belongs To this teacher in this year");        
         
         var Leson=new Domain.Entities.ClassRoom.Leson(){

@@ -25,11 +25,11 @@ public class GetAllTeacherStudentSubjectHandler : OperationResult, IQueryHandler
         .ClassYears
         .Where(x=>x.YearId==request.YearId)
         .SelectMany(x=>x.SubjectYears)
-        .Where(x=>x.TeacherSubject.TeacherId==request.TeacherId)
+        .Where(x=>x.TeacherId==request.TeacherId)
         .Select(x=>new GetAllSubjectWithStudentTeacherDto{
 
-            Id=x.TeacherSubject.Subject.Id,
-            Name=x.TeacherSubject.Subject.Name,
+            Id=x.Subject.Id,
+            Name=x.Subject.Name,
             Students=x.StudentSubjects.Select(x=>x.Student.Name).ToList()
         })
         .ToList();

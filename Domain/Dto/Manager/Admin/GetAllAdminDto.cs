@@ -20,6 +20,13 @@ public class GetAllAdminDto
     
     public string? Hash { get; set; }
     public bool Status { get; set; }
-    public string Role { get; set; }
+    public Roles Role { get; set; }
+
+    public class Roles{
+
+        public Guid Id{get;set;}
+
+        public string Name{get;set;}
+    }
 
 }

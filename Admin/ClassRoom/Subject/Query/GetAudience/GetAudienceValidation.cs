@@ -31,7 +31,7 @@ public class GetAudienceValidation: AbstractValidator<GetAudienceQuery>
             context.
             Audiences
             .Any(x=>x.SessionNumber==request.SessionNumber&&
-                    x.SubjectYear.TeacherSubject.SubjectId==id&&
+                    x.SubjectYear.SubjectId==id&&
                     x.SubjectYear.ClassYear.YearId==request.YearId
                 )
         )

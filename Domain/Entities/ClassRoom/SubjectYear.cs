@@ -3,6 +3,7 @@ using Domain.Base.interfaces;
 using Domain.Entities.Student.Audience;
 using Domain.Entities.Student.StudentSubject;
 using Domain.Entities.Teacher;
+using Domain.Entities.Teacher.Teacher;
 
 namespace Domain.Entities.ClassRoom;
 
@@ -18,10 +19,15 @@ namespace Domain.Entities.ClassRoom;
             Programs=new HashSet<Program>();
         }
 
-        public TeacherSubject TeacherSubject{get;set;}
 
-        public Guid TeacherSubjectId{get;set;}
+        public Guid SubjectId{get;set;}
 
+        public Subject Subject{get;set;}
+
+
+        public Guid? TeacherId{get;set;}
+
+        public Teacher.Teacher.Teacher? Teacher{get;set;}
 
         public ClassYear ClassYear{get;set;}
 

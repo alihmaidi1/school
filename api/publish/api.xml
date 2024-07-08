@@ -436,6 +436,11 @@
             Change Parent Password
             </summary>
         </member>
+        <member name="M:schoolmanagment.Controllers.Parent.AuthController.ResetParentCode(Parent.Auth.Command.ReSetCode.ResetCodeCommand,System.Threading.CancellationToken)">
+            <summary>
+            Reset Parent Code
+            </summary>
+        </member>
         <member name="M:schoolmanagment.Controllers.Parent.HomeController.GetHome(System.Threading.CancellationToken)">
             <summary>
             Get Parent Home Page
@@ -512,6 +517,11 @@
             </summary>
         </member>
         <member name="M:schoolmanagment.Controllers.Student.AuthController.ChangePassword(Student.Auth.Command.ChangePassword.ChangePasswordCommand,System.Threading.CancellationToken)">
+            <summary>
+            Change Password
+            </summary>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Student.AuthController.ResetStudentCode(Student.Auth.Command.ReSetCode.ResetCodeCommand,System.Threading.CancellationToken)">
             <summary>
             Change Password
             </summary>

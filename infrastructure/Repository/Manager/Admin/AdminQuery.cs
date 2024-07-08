@@ -15,7 +15,11 @@ public static class AdminQuery
             Status = admin.Status,
             Image = admin.Image,
             Hash = admin.Hash,
-            Role = admin.Role.Name
+            Role = new GetAllAdminDto.Roles{
+
+                Id=admin.Role.Id,
+                Name=admin.Role.Name
+            }
         };
     
 }

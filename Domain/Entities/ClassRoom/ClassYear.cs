@@ -34,7 +34,7 @@ public class ClassYear: BaseEntity
     public Year Year{get;set;}
 
 
-    public bool Status{get;set;}
+    public bool Status{get;set;}=true;
 
     public ICollection<Bill> Bills{get;set;}
 
