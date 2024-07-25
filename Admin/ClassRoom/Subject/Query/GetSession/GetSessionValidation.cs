@@ -14,13 +14,14 @@ public class GetSessionValidation: AbstractValidator<GetSessionQuery>
 
         RuleFor(x=>x.SubjectId)
         .NotEmpty()
-        .NotNull();
+        .NotNull()
+        .Must(id=>context.Subjects.Any(x=>x.Id==id))
+        .WithMessage("this subject is not exists in our data");
 
         RuleFor(x=>x.YearId)
-        .NotEmpty()
-        .NotNull()
-        .Must((request,yearid)=>context.SubjectYears.Any(x=>x.ClassYear.YearId==yearid&&x.SubjectId==request.SubjectId))
-        .WithMessage("this subject not valid with this year");
+        .Must((id)=>context.Years.Any(x=>x.Id==id))
+        .When(x=>x.YearId.HasValue)
+        .WithMessage("this year is not exsits in our data");
 
     }
 

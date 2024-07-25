@@ -483,6 +483,11 @@
             Change Parent Password
             </summary>
         </member>
+        <member name="M:schoolmanagment.Controllers.Parent.AuthController.UpdateParentProfile(Parent.Auth.Command.UpdateProfile.UpdateProfileCommand,System.Threading.CancellationToken)">
+            <summary>
+            Update Parent Profile
+            </summary>
+        </member>
         <member name="M:schoolmanagment.Controllers.Parent.AuthController.ResetParentCode(Parent.Auth.Command.ReSetCode.ResetCodeCommand,System.Threading.CancellationToken)">
             <summary>
             Reset Parent Code
@@ -558,6 +563,11 @@
             Refresh Student Token
             </summary>
         </member>
+        <member name="M:schoolmanagment.Controllers.Student.AuthController.UpdateStudentProfile(Student.Auth.Command.UpdateProfile.UpdateProfileCommand,System.Threading.CancellationToken)">
+            <summary>
+            Update Student Profile
+            </summary>
+        </member>
         <member name="M:schoolmanagment.Controllers.Student.AuthController.ResetCode(Student.Auth.Command.ForgetPassword.ForgetPasswordCommand,System.Threading.CancellationToken)">
             <summary>
             Forget Student Password
@@ -619,6 +629,11 @@
             </summary>
         </member>
         <member name="M:schoolmanagment.Controllers.Student.QuezController.SolveQuez(Student.Quez.Command.SolveQuez.SolveQuezCommand,System.Threading.CancellationToken)">
+            <summary>
+            Solve Quez 
+            </summary>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Student.QuezController.GetAllActiveQuez(Student.Quez.Query.GetAll.GetAllQuezQuery,System.Threading.CancellationToken)">
             <summary>
             Solve Quez 
             </summary>
@@ -704,6 +719,11 @@
             Get All Student for Subject 
             </summary>
         </member>
+        <member name="M:schoolmanagment.Controllers.Teacher.StudentController.GetAllStudentsForSetSession(Teacher.Student.Query.GetStudentHaveSubject.GetStudentHaveSubjectQuery,System.Threading.CancellationToken)">
+            <summary>
+            Get All Student for Subject 
+            </summary>
+        </member>
         <member name="M:schoolmanagment.Controllers.Teacher.StudentController.AddMarkToStudent(Teacher.Subject.Command.Add.AddMarkToStudentCommand,System.Threading.CancellationToken)">
             <summary>
             Add Mark To Student
@@ -712,6 +732,11 @@
         <member name="M:schoolmanagment.Controllers.Teacher.SubjectController.GetAllAudience(Teacher.Subject.Query.GetAllAudience.GetAllAudienceQuery,System.Threading.CancellationToken)">
             <summary>
             Get All Audience Date 
+            </summary>
+        </member>
+        <member name="M:schoolmanagment.Controllers.Teacher.SubjectController.AddSession(Teacher.Subject.Command.AddSession.AddSessionCommand,System.Threading.CancellationToken)">
+            <summary>
+            Add A Session 
             </summary>
         </member>
         <member name="M:schoolmanagment.Controllers.Teacher.SubjectController.GetOwnedTeacherActiveSubject(System.Threading.CancellationToken)">

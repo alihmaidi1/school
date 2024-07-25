@@ -42,6 +42,7 @@ public class GetParentBillHandler : OperationResult,IQueryHandler<GetParentBillQ
             Bills=x
             .StudentBills
             .Where(x=>x.Bill.ClassYear.Status)
+            .Where(x=>x.Money-x.PaiedMoney>0)
             .Select(y=>new GetAllParentBillDto.Bill{
 
                 Date=y.Bill.Date,

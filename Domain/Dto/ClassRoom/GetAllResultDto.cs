@@ -25,7 +25,7 @@ public class GetAllResultDto
         public Guid Id{get;set;}
         public string Name{get;set;}
 
-        public float? Mark{get;set;}
+        public float? Degree{get;set;}
 
     }
 

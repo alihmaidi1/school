@@ -9,6 +9,7 @@ using schoolManagement.Base;
 using Shared.Enum;
 using Shared.OperationResult.Base;
 using Shared.Swagger;
+using Teacher.Student.Query.GetStudentHaveSubject;
 using Teacher.Student.Query.GetUnHasMark;
 using Teacher.Subject.Command.Add;
 
@@ -29,6 +30,20 @@ public class StudentController:ApiController
     [CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Teacher))]
 
     public async Task<IActionResult> GetAllStudentInActiveSubject([FromQuery] GetUnhaveMarkStudentQuery command,CancellationToken token)
+    {
+        var response = await this.Mediator.Send(command,token);
+        return response;
+
+    }
+
+    /// <summary>
+    /// Get All Student for Subject 
+    /// </summary>
+    [Produces(typeof(OperationResultBase<List<GetStudentNameDto>>))]
+    [HttpGet]
+    [CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Teacher))]
+
+    public async Task<IActionResult> GetAllStudentsForSetSession([FromQuery] GetStudentHaveSubjectQuery command,CancellationToken token)
     {
         var response = await this.Mediator.Send(command,token);
         return response;

@@ -13,8 +13,8 @@ public class SolveQuezValidation: AbstractValidator<SolveQuezCommand>
         RuleFor(x=>x.Id)
         .NotEmpty()
         .NotNull()
-        .Must(id=>context.StudentQuezs.Any(x=>x.Id==id&&x.Quez.EndAt>DateTimeOffset.UtcNow))
-        .WithMessage("this quez not exists or it is already finished");
+        .Must(id=>context.StudentQuezs.Any(x=>x.Id==id&&x.Quez.EndAt>DateTimeOffset.UtcNow&&!x.StudentAnswers.Any()))
+        .WithMessage("this quez not exists or it is already finished or finished");
 
 
         RuleFor(x=>x.Answers)
@@ -42,7 +42,7 @@ public class SolveQuezValidation: AbstractValidator<SolveQuezCommand>
 
 
 
-        });
+        }).WithMessage("your answer is not valid");
 
     }
 

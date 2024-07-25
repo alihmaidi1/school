@@ -53,6 +53,8 @@ public class GetAllQuezHandler : OperationResult,IQueryHandler<GetAllQuezQuery>
         .AsNoTracking()
         .Where(x=>x.Id==_currentUserService.GetUserid())
         .SelectMany(x=>x.StudentQuezs.Where(x=>x.Quez.SubjectYearId==request.SubjectYearId))
+        .Where(x=>x.Quez.StartAt<=DateTime.UtcNow&&x.Quez.EndAt>DateTime.UtcNow)
+        .Where(x=>!x.StudentAnswers.Any())
         .Select(x=>new GetAllStudentQuezDto.Quez{
 
             Id=x.Id,

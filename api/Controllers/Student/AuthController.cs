@@ -18,6 +18,7 @@ using Student.Auth.Command.Login;
 using Student.Auth.Command.Logout;
 using Student.Auth.Command.RefreshToken;
 using Student.Auth.Command.ReSetCode;
+using Student.Auth.Command.UpdateProfile;
 using Student.Auth.Command.ValidateCode;
 using Student.Home.Query.GetProfile;
 using Teacher.Auth.Login;
@@ -110,6 +111,22 @@ public class AuthController:ApiController
 
     }
 
+
+
+    /// <summary>
+    /// Update Student Profile
+    /// </summary>
+    [HttpPut]
+    [Produces(typeof(OperationResultBase<Boolean>))]
+    [CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Student))]
+
+
+    public async Task<IActionResult> UpdateStudentProfile([FromBody] UpdateProfileCommand command,CancellationToken Token)
+    {
+        var response = await this.Mediator.Send(command,Token);
+        return response;
+
+    }
 
     /// <summary>
     /// Forget Student Password

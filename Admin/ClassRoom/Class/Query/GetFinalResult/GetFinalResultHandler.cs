@@ -65,7 +65,7 @@ public class GetFinalResultHandler : OperationResult ,IQueryHandler<GetFinalResu
             Subjects=x.Select(y=>new GetAllResultDto.Subject{
                 Id=y.SubjectYear.SubjectId,
                 Name=y.SubjectYear.Subject.Name,
-                Mark=y.Mark
+                Degree=y.Mark
             }).ToList()
 
             

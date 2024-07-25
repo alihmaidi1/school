@@ -8,6 +8,7 @@ using Admin.ClassRoom.Subject.Query.GetSession;
 using Admin.Teacher.Teacher.Query.GetAllSubject;
 using Domain.Dto.ClassRoom;
 using Domain.Dto.ClassRoom.Subject;
+using Domain.Dto.Session;
 using Domain.Dto.Teacher;
 using Domain.Enum;
 using infrastructure.Attribute;
@@ -131,9 +132,10 @@ public class SubjectController: ApiController
     /// get Subject Session Number In Specific Year 
     /// </summary>
     /// <returns>return all role in pagination</returns>
-    [Produces(typeof(OperationResultBase<List<int>>))]
-    [CheckTokenSession(Policy = nameof(PermissionEnum.Subject))]
-   
+    [Produces(typeof(OperationResultBase<GetSessionWithExistsStudentDto>))]
+    [CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Admin),Policy = nameof(PermissionEnum.Subject))]
+    [CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Teacher))]
+
     [HttpGet]
     public async Task<IActionResult> GetSessionNumber([FromQuery] GetSessionQuery request,CancellationToken Token)
     {

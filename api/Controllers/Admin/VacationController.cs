@@ -10,6 +10,7 @@ using infrastructure.Attribute;
 using Microsoft.AspNetCore.Mvc;
 using schoolManagement.Base;
 using Shared.Entity.EntityOperation;
+using Shared.Enum;
 using Shared.OperationResult.Base;
 using Shared.Swagger;
 
@@ -18,7 +19,6 @@ namespace schoolmanagment.Controllers.Admin;
 
 [Route("Api/SuperAdmin/[controller]/[action]")]
 [ApiGroup(ApiGroupName.All, ApiGroupName.Admin)]
-[CheckTokenSession(Policy = nameof(PermissionEnum.Vacation))]
 
 public class VacationController:ApiController
 {
@@ -31,6 +31,8 @@ public class VacationController:ApiController
     /// <returns></returns>
 
     [HttpPut]
+    [CheckTokenSession(Policy = nameof(PermissionEnum.Vacation))]
+
     public async Task<IActionResult> ChangeStatus([FromQuery] ChnageVacationStatusCommand request,CancellationToken Token)
     {
         var response = await this.Mediator.Send(request,Token);
@@ -46,6 +48,7 @@ public class VacationController:ApiController
     /// <returns></returns>
 
     [Produces(typeof(OperationResultBase<Boolean>))]
+    [CheckTokenSession(Policy = nameof(PermissionEnum.Vacation))]
 
     [HttpPost]
     public async Task<IActionResult> AddVacationType([FromQuery] AddVacationTypeCommand request,CancellationToken Token)
@@ -64,6 +67,8 @@ public class VacationController:ApiController
     /// <returns></returns>
 
     [Produces(typeof(OperationResultBase<PageList<GetAllVacationTypeDto>>))]
+    [CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Admin),Policy = nameof(PermissionEnum.Vacation))]
+    [CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Teacher))]
 
     [HttpPost]
     public async Task<IActionResult> GetAllVacationTypes([FromQuery] GetAllVacationTypeQuery request,CancellationToken Token)
@@ -81,6 +86,8 @@ public class VacationController:ApiController
     /// <returns></returns>
 
     [Produces(typeof(OperationResultBase<Boolean>))]
+    [CheckTokenSession(Policy = nameof(PermissionEnum.Vacation))]
+    
     [HttpDelete]
     public async Task<IActionResult> DeleteVacationType([FromQuery] DeleteVacationTypeCommand request,CancellationToken Token)
     {
@@ -98,6 +105,7 @@ public class VacationController:ApiController
     /// <returns></returns>
 
     [Produces(typeof(OperationResultBase<List<GetAllVacationDto>>))]
+    [CheckTokenSession(Policy = nameof(PermissionEnum.Vacation))]
     
     [HttpGet]
     public async Task<IActionResult> GetAll([FromQuery] GetVacationQuery request,CancellationToken Token)

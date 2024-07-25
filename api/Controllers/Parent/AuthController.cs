@@ -13,6 +13,7 @@ using Parent.Auth.Command.Login;
 using Parent.Auth.Command.Logout;
 using Parent.Auth.Command.RefreshToken;
 using Parent.Auth.Command.ReSetCode;
+using Parent.Auth.Command.UpdateProfile;
 using Parent.Auth.Command.ValidateCode;
 using Parent.Home.Query.GetProfile;
 using schoolManagement.Base;
@@ -153,6 +154,22 @@ public class AuthController:ApiController
         return response;
 
     }
+
+    /// <summary>
+    /// Update Parent Profile
+    /// </summary>
+    [HttpPut]
+    [Produces(typeof(OperationResultBase<Boolean>))]
+    [CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Parent))]
+
+
+    public async Task<IActionResult> UpdateParentProfile([FromBody] UpdateProfileCommand command,CancellationToken Token)
+    {
+        var response = await this.Mediator.Send(command,Token);
+        return response;
+
+    }
+
 
 
 

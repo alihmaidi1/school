@@ -29,7 +29,7 @@ public class GetAllchildBillHandler : OperationResult,IQueryHandler<GetAllChildB
         .StudentBills
         .AsNoTracking()
         .Where(x=>x.Student.ParentId==request.ParentId)        
-        .Where(x=>(x.Bill.Money-x.PaiedMoney)>0)
+        .Where(x=>(x.Money-x.PaiedMoney)>0)
         .Select(x=>new GetAllStudentBillDto{
             StudentId=x.StudentId,
             StudentName=x.Student.Name,

@@ -13,7 +13,6 @@ public class UpdateProfileCommand: ICommand
 
     public string Email{get;set;}
 
-    public Guid? Image{get;set;}
 
     public string? Password{get;set;}
 

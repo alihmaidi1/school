@@ -1,11 +1,15 @@
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using Common.CQRS;
+using Domain.Dto.Session;
 using infrastructure;
 using Microsoft.AspNetCore.Mvc;
+using Shared.Entity.EntityOperation;
 using Shared.OperationResult;
+using Shared.Services.User;
 
 namespace Admin.ClassRoom.Subject.Query.GetSession;
 
@@ -13,9 +17,11 @@ public class GetSessionHandler : OperationResult,IQueryHandler<GetSessionQuery>
 {
 
     private ApplicationDbContext _context;
-    public GetSessionHandler(ApplicationDbContext context){
+    private ICurrentUserService _currentUserService;
+    public GetSessionHandler(ApplicationDbContext context,ICurrentUserService currentUserService){
 
         _context=context;
+        _currentUserService=currentUserService;
 
     }
 
@@ -24,13 +30,41 @@ public class GetSessionHandler : OperationResult,IQueryHandler<GetSessionQuery>
 
         var SessionNumber=_context
         .SubjectYears
-        .Where(x=>x.SubjectId==request.SubjectId)
-        .Where(x=>x.ClassYear.YearId==request.YearId)
-        .SelectMany(x=>x.Audiences)
-        .Select(x=>x.SessionNumber)
-        .Distinct()
-        .ToList();
+        .AsNoTracking()
+        .Where(x=>x.SubjectId==request.SubjectId);
+        if(request.YearId.HasValue){
 
-        return Success(SessionNumber,"this is your session number");
+            SessionNumber=SessionNumber.Where(x=>x.ClassYear.YearId==request.YearId);
+
+        }else{
+
+            SessionNumber=SessionNumber.Where(x=>x.ClassYear.Status);
+        }
+
+        if(!_currentUserService.IsAdmin()){
+
+            SessionNumber=SessionNumber.Where(x=>x.TeacherId==_currentUserService.GetUserid());
+        }
+
+        var Result=SessionNumber
+        .Select(x=>new GetSessionWithExistsStudentDto{
+
+            Status=x.ClassYear.Status,
+            Sessions=x.Audiences.GroupBy(x=>x.SessionNumber).Select(y=>new GetSessionWithExistsStudentDto.Session{
+
+                SessionNumber=y.Key,
+                ExistsCount=y.Count(z=>z.IsExists),
+                Students=y.Select(y=>new GetSessionWithExistsStudentDto.Session.Student{
+                Id=y.Student.Id,
+                Name=y.Student.Name,
+                Status=y.IsExists
+            }).ToList()
+
+            }).ToPagedList(request.PageNumber,request.PageSize)
+
+        })
+        .FirstOrDefault();
+
+        return Success(Result,"this is your session number");
     }
 }

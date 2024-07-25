@@ -51,7 +51,7 @@ public class AddBillHandler : OperationResult,ICommandHandler<AddBillCommand>
 
         _context.Bills.Add(bill);
         await _context.SaveChangesAsync(cancellationToken);
-        return Created("bill was added successfully");
+        return Success();
         
     }
 }

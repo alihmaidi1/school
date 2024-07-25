@@ -14,6 +14,7 @@ using Shared.OperationResult.Base;
 using Shared.Swagger;
 using Teacher.Quez.Query.GetAllQuez;
 using Teacher.Student.Command.AddMark;
+using Teacher.Subject.Command.AddSession;
 using Teacher.Subject.Query.GetAllAudience;
 using Teacher.Subject.Query.GetAudienceDetail;
 using Teacher.Subject.Query.GetOwned;
@@ -25,7 +26,6 @@ namespace schoolmanagment.Controllers.Teacher;
 [ApiGroup(ApiGroupName.All, ApiGroupName.Teacher)]
 [Microsoft.AspNetCore.Mvc.Route("Api/Teacher/[controller]/[action]")]
 
-[CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Teacher))]
 
 public class SubjectController: ApiController
 {
@@ -37,7 +37,24 @@ public class SubjectController: ApiController
     /// </summary>
     [Produces(typeof(OperationResultBase<List<string>>))]
     [HttpGet]
+    [CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Teacher))]
+
     public async Task<IActionResult> GetAllAudience([FromQuery] GetAllAudienceQuery command,CancellationToken token)
+    {
+        var response = await this.Mediator.Send(command,token);
+        return response;
+
+    }
+
+
+    /// <summary>
+    /// Add A Session 
+    /// </summary>
+    [Produces(typeof(OperationResultBase<Boolean>))]
+    [HttpPut]
+    [CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Teacher))]
+
+    public async Task<IActionResult> AddSession([FromQuery] AddSessionCommand command,CancellationToken token)
     {
         var response = await this.Mediator.Send(command,token);
         return response;
@@ -49,6 +66,8 @@ public class SubjectController: ApiController
     /// </summary>
     [Produces(typeof(OperationResultBase<List<GetAllSubjectNameDto>>))]
     [HttpGet]
+    [CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Teacher))]
+
     public async Task<IActionResult> GetOwnedTeacherActiveSubject(CancellationToken token)
     {
         var response = await this.Mediator.Send(new GetAllTeacherSubjectQuery(),token);
@@ -63,6 +82,8 @@ public class SubjectController: ApiController
     /// </summary>
     [Produces(typeof(OperationResultBase<List<GetAudienceDetailDto>>))]
     [HttpGet]
+    [CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Teacher))]
+
     public async Task<IActionResult> GetAudienceDetail([FromQuery] GetAudienceDetailQuery command,CancellationToken token)
     {
         var response = await this.Mediator.Send(command,token);
@@ -76,6 +97,7 @@ public class SubjectController: ApiController
     /// </summary>
     /// <returns>return all role in pagination</returns>
     [Produces(typeof(OperationResultBase<PageList<GetAllTeacherQuezDto>>))]
+    [CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Teacher))]
    
     [HttpGet]
     public async Task<IActionResult> GetAllTeacherQuezInSpecificYear([FromQuery] GetAllQuezQuery request,CancellationToken Token)
@@ -89,6 +111,8 @@ public class SubjectController: ApiController
     /// Get All Audience Detail 
     /// </summary>
     [Produces(typeof(OperationResultBase<List<GetAllSubjectWithStudentTeacherDto>>))]
+    [CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Teacher))]
+    
     [HttpGet]
     public async Task<IActionResult> GetAllSubjectAndStudent([FromQuery] GetAllSubjectWithStudentQuery command,CancellationToken token)
     {
@@ -103,6 +127,7 @@ public class SubjectController: ApiController
     /// Update Student Mark in Subject in active year
     /// </summary>
     [Produces(typeof(OperationResultBase<Boolean>))]
+    [CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Teacher))]
     [HttpPut]
     public async Task<IActionResult> UpdateStudentMark([FromQuery] AddMarkCommand command,CancellationToken token)
     {

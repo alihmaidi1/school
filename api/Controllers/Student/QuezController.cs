@@ -6,6 +6,7 @@ using Shared.Enum;
 using Shared.OperationResult.Base;
 using Shared.Swagger;
 using Student.Quez.Command.SolveQuez;
+using Student.Quez.Query.GetAll;
 using Student.Quez.Query.GetFinishQuezInfo;
 using Student.Quez.Query.GetQuezInfo;
 
@@ -51,12 +52,26 @@ public class QuezController:ApiController
     /// <summary>
     /// Solve Quez 
     /// </summary>
-    [HttpGet]
-    [Produces(typeof(OperationResultBase<GetStudentFinishQuezDto>))]
+    [HttpPost]
+    [Produces(typeof(OperationResultBase<Boolean>))]
 
     public async Task<IActionResult> SolveQuez([FromQuery] SolveQuezCommand command,CancellationToken Token)
     {
         var response = await this.Mediator.Send(command,Token);
+        return response;
+
+    }
+
+
+    /// <summary>
+    /// Solve Quez 
+    /// </summary>
+    [HttpGet]
+    [Produces(typeof(OperationResultBase<GetAllStudentQuezDto.Quez>))]
+
+    public async Task<IActionResult> GetAllActiveQuez(CancellationToken Token)
+    {
+        var response = await this.Mediator.Send(new GetAllQuezQuery(),Token);
         return response;
 
     }
