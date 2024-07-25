@@ -35,6 +35,7 @@ public class GetParentStudentMarksDto
         public Guid Id{get;set;}
 
         public string Name{get;set;}
+        
 
         public float Mark{get;set;}
 

@@ -26,7 +26,7 @@ public class FinishYearHandler : OperationResult,ICommandHandler<FinishYearComma
         var Students=_context
         .ClassYears
         .AsNoTracking()
-        .Where(x=>x.Id==request.ClassYearId)
+        .Where(x=>x.ClassId==request.ClassId&&x.Status)
         .SelectMany(x=>x.SubjectYears)
         .SelectMany(x=>x.StudentSubjects)
         .GroupBy(x=>x.Student)
@@ -37,21 +37,18 @@ public class FinishYearHandler : OperationResult,ICommandHandler<FinishYearComma
             Status=x.Select(x=>x.Mark<x.SubjectYear.Subject.MinDegree).Count()<2
 
         })
+        .Where(x=>x.Status)
+        .Select(x=>x.Id)
         .ToList();
-
 
         await _context
         .Students
-        .Where(x=>Students.Where(x=>x.Status).Select(x=>x.Id).ToList().Contains(x.Id))
+        .Where(x=>Students.Contains(x.Id))
         .ExecuteUpdateAsync(setter=>setter.SetProperty(x=>x.Level,x=>x.Level+1),cancellationToken);        
-
         await _context
         .ClassYears
-        .Where(x=>x.Id==request.ClassYearId)
+        .Where(x=>x.ClassId==request.ClassId&&x.Status)
         .ExecuteUpdateAsync(setter=>setter.SetProperty(x=>x.Status,false),cancellationToken);
-
-
-        return Success("class year was finished successfully");
-        
+        return Success("class year was finished successfully");        
     }
 }

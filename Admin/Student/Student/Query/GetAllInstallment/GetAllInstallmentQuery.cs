@@ -7,7 +7,7 @@ using Shared.Abstraction;
 
 namespace Admin.Student.Student.Query.GetAllInstallment;
 
-public class GetAllInstallmentQuery: PaginationRequest,IQuery
+public class GetAllInstallmentQuery: IQuery
 {
 
 

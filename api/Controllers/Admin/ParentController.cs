@@ -1,4 +1,5 @@
 using Admin.Manager.Role.Query.GetAll;
+using Admin.Parent.Query;
 using Admin.Student.Parent.Command.Add;
 using Admin.Student.Parent.Command.Delete;
 using Admin.Student.Parent.Command.Update;
@@ -53,6 +54,22 @@ public class ParentController:ApiController
         return response;
     
     }
+
+
+    /// <summary>
+    /// get all bill   
+    /// </summary>
+    /// <returns>return all role in pagination</returns>
+    [Produces(typeof(OperationResultBase<List<Domain.Dto.ClassRoom.GetAllStudentBillDto>>))]   
+    [HttpGet]
+    public async Task<IActionResult> GetAllBill([FromQuery] GetAllChildBillQuery command,CancellationToken Token)
+    {
+        var response = await this.Mediator.Send(command,Token);
+        return response;
+    
+    }
+
+
 
     /// <summary>
     /// Add a new Parent to this school  

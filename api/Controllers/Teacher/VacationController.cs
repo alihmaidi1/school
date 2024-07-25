@@ -3,6 +3,7 @@ using Domain.AppMetaData.Teacher;
 using infrastructure.Attribute;
 using Microsoft.AspNetCore.Mvc;
 using schoolManagement.Base;
+using Shared.Enum;
 using Shared.OperationResult.Base;
 using Shared.Swagger;
 using Teacher.Vacation.Command.Request;
@@ -14,7 +15,8 @@ namespace schoolmanagment.Controllers.Teacher;
 
 [ApiGroup(ApiGroupName.All, ApiGroupName.Teacher)]
 [Microsoft.AspNetCore.Mvc.Route("Api/Teacher/[controller]/[action]")]
-[CheckTokenSession()]
+
+[CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Teacher))]
 public class VacationController:ApiController
 {
     

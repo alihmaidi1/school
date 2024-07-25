@@ -8,6 +8,7 @@ using infrastructure;
 using LinqKit;
 using Shared.Services.User;
 using Org.BouncyCastle.Math.EC.Rfc7748;
+using System.Data.Entity;
 
 namespace Teacher.Quez.Command.Delete;
 
@@ -19,12 +20,21 @@ public class DeleteQuezValidation: AbstractValidator<DeleteQuezCommand>
         RuleFor(x=>x.Id)
         .NotEmpty()
         .NotNull()
-        .Must(id=>context.Quezs.Any(
+        .Must(id=>{
+
+
+            if(currentUserService.IsAdmin()){
+
+                return context.Quezs.AsNoTracking().Any(QuezEntity.Quez.IsNotStarted().Or(QuezEntity.Quez.IsFinished()));
+
+            }else{
+
+            return context.Quezs.AsNoTracking().Any(
             (QuezEntity.Quez.IsNotStarted().Or(QuezEntity.Quez.IsFinished()))
-            .And(QuezEntity.Quez.IsBelongForId(currentUserService.GetUserid()!.Value))
-            
-            
-            ))
+            .And(QuezEntity.Quez.IsBelongForId(currentUserService.GetUserid()!.Value)));
+
+            }
+        })
         .WithMessage("you can not delete this quez because it is active");
     }
 

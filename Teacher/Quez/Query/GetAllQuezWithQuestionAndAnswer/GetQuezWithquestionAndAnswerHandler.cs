@@ -23,6 +23,8 @@ public class GetQuezWithquestionAndAnswerHandler : OperationResult,IQueryHandler
     {
         var Quez=await _context
         .Quezs
+        .AsNoTracking()
+        .AsSplitQuery()
         .Select(x=>new GetQuezwithQuestionAndDetailDto{
 
             Id=x.Id,

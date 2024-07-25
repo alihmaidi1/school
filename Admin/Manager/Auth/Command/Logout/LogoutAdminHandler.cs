@@ -21,7 +21,7 @@ public class LogoutAdminHandler:OperationResult, ICommandHandler<LogoutAdminComm
     
     public async Task<JsonResult> Handle(LogoutAdminCommand request, CancellationToken cancellationToken)
     {
-        await _context.AccountSessions.Where(x => x.Token==_currentUserService.Token).ExecuteDeleteAsync(cancellationToken);
+        await _context.AccountSessions.Where(x => x.Token==_currentUserService.getToken()).ExecuteDeleteAsync(cancellationToken);
         await _context.SaveChangesAsync(cancellationToken);
         return Success(true,"you are logout successfully");
     }

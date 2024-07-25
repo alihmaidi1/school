@@ -18,7 +18,7 @@ public class SignSubjectToTeacherValidation: AbstractValidator<SignSubjectToTeac
         RuleFor(x=>x.SubjectId)
         .NotEmpty()
         .NotNull()
-        .Must(id=>context.SubjectYears.Include(x=>x.Teacher).Any(x=>x.Id==id&&x.Teacher==null))
+        .Must(id=>context.SubjectYears.Include(x=>x.Teacher).Any(x=>x.SubjectId==id&&x.Teacher==null))
         .WithMessage("this subject already has teacher");
 
 
@@ -30,8 +30,8 @@ public class SignSubjectToTeacherValidation: AbstractValidator<SignSubjectToTeac
         .NotNull()
         .Must((request,teacherid)=>{
 
-            var SubjectId=context.SubjectYears.Select(x=>x.Id).First(x=>x==request.SubjectId);
-            return context.TeacherSubjects.Any(x=>x.TeacherId==teacherid&&x.SubjectId==SubjectId);
+            // var SubjectId=context.SubjectYears.First(x=>x.Id==request.SubjectId).SubjectId;
+            return context.TeacherSubjects.Any(x=>x.TeacherId==teacherid&&x.SubjectId==request.SubjectId);
 
         })
         .WithMessage("this teacher does not have this subject");

@@ -2,43 +2,44 @@ using System.Security.Claims;
 using Common.CQRS;
 using Domain.Entities.Manager.Admin;
 using Domain.Entities.Teacher.Teacher;
+using infrastructure;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Repository.Teacher.Warning;
 using Shared.CQRS;
 using Shared.OperationResult;
+using Shared.Services.User;
 
 namespace Admin.Teacher.Warning.Command.Add;
 
 public class AddWarningHandler:OperationResult,
     ICommandHandler<AddWarningCommand>
 {
-    
-    private IWarningRepository WarningRepository;
-    private readonly IHttpContextAccessor _httpContextAccessor;
+    private ApplicationDbContext _context;
 
-    public AddWarningHandler(IWarningRepository WarningRepository,IHttpContextAccessor _httpContextAccessor)
+    private ICurrentUserService _currentUserService;
+    public AddWarningHandler(ApplicationDbContext context,ICurrentUserService currentUserService)
     {
 
-        this.WarningRepository = WarningRepository;
-        this._httpContextAccessor = _httpContextAccessor;
+        _currentUserService=currentUserService;
+        _context=context;
 
     }
     
     public async Task<JsonResult> Handle(AddWarningCommand request, CancellationToken cancellationToken)
     {
-        // var AdminId = _httpContextAccessor.HttpContext.User.Claims.First(x=>x.Type==ClaimTypes.NameIdentifier).Value;
-        // var Warning = new Domain.Entities.Teacher.Warning.Warning()
-        // {
-        //     AdminId = new AdminID(new Guid(AdminId)),
-        //     TeacherId = new TeacherID(request.TeacherID),
-        //     Reason = request.Reson,
-        //     Date = DateTime.Now.Year
-        // };
-        //
-        // await WarningRepository.AddAsync(Warning);
-        // return Success("Warning Was added successfully");
+        var Warning = new Domain.Entities.Teacher.Warning.Warning()
+        {
+            AdminId = _currentUserService.GetUserid()!.Value,
+            TeacherId = request.TeacherID,
+            Reason = request.Reson,
+            Date = DateTime.Now.Year
+        };
+        _context.Warnings.Add(Warning);
+        _context.SaveChanges();
+        
+        
+        return Success("Warning Was added successfully");
 
-        return null;
     }
 }

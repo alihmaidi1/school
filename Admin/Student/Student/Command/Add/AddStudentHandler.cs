@@ -29,53 +29,58 @@ public class AddStudentHandler : OperationResult ,ICommandHandler<AddStudentComm
     {
 
         var image=_context.Images.First(x=>x.Id==request.Image);
-        // var Bills=_context
-        // .Bills
-        // .Where(x=>x.ClassYear.ClassId==request.ClassId)
-        // .Where(x=>x.ClassYear.Status)
-        // .Select(x=>new StudentBill{
+
+        var Class=_context.ClassYears.FirstOrDefault(x=>x.Status&&x.Class.Level==request.Level);
 
 
-        //         Date=x.Date,
-        //         Money=x.Money,
-        //         BillId=x.Id
-
-
-        // })
-        // .ToList();
-
-
-        // var Level=_context.Classes.Where(x=>x.Id==request.ClassId).Select(x=>x.Level).First();
-        // var StudentSubjects=_context
-        // .SubjectYears
-        // .Where(x=>x.ClassYear.ClassId==request.ClassId)
-        // .Where(x=>x.ClassYear.Status)
-        // .Select(x=>new StudentSubject{
-
-
-        //     SubjectYearId=x.Id
-
-        // })
-        // .ToList();
-        // if(!StudentSubjects.Any()||!Bills.Any()){
-
-        //     throw new Exception("this year info for this class is not complete");
-        // }
         var Student=new Domain.Entities.Student.Student.Student(){
 
             Name=request.Name,
             Email=request.Email,
             Password=PasswordHelper.HashPassword(request.Password),
-            Image = image.Url.GetNewPath(FolderName.Parent).httpPath,
+            Image = image.Url.GetNewPath(FolderName.Student).httpPath,
             Hash=image.Hash,
             ParentId=request.ParentId,
             Gender=request.Gender,
-            // StudentBills=Bills,
-            // StudentSubjects=StudentSubjects,
             Level=request.Level        
 
         };
-        // Student.SendEmail("you are a new student in school",$"this is your password{request.Password}");
+        if(Class is not null){
+
+            var Bills=_context
+            .Bills
+            .Where(x=>x.ClassYear.ClassId==Class.ClassId)
+            .Where(x=>x.ClassYear.Status)
+            .Select(x=>new StudentBill{
+
+
+                    Date=x.Date,
+                    Money=x.Money,
+                    BillId=x.Id
+
+
+            })
+            .ToList();
+            var StudentSubjects=_context
+            .SubjectYears
+            .Where(x=>x.ClassYear.ClassId==Class.ClassId)
+            .Where(x=>x.ClassYear.Status)
+            .Select(x=>new StudentSubject{
+
+
+                SubjectYearId=x.Id
+
+            })
+            .ToList();
+            Student.StudentBills=Bills;
+
+            Student.StudentSubjects=StudentSubjects;
+
+
+        }
+
+
+
         _context.Students.Add(Student);
         _context.Images.Remove(image);
         _context.SaveChanges();

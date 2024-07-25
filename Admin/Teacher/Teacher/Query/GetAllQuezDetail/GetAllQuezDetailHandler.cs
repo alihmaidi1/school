@@ -25,13 +25,15 @@ public class GetAllQuezDetailHandler : OperationResult,IQueryHandler<GetAllQuezD
     {
         var Quez=await _context
         .Quezs
+        .AsNoTracking()
+        .AsSplitQuery()
         .Select(x=>new GetQuezwithQuestionAndDetailDto{
 
             Id=x.Id,
             Name=x.Name,
             StartAt=x.StartAt,
             EndAt=x.EndAt,
-
+    
             Questions=x.Questions.Select(y=>new GetQuezwithQuestionAndDetailDto.Question{
 
                 Id=y.Id,

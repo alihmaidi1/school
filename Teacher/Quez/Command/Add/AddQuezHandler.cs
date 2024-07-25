@@ -31,10 +31,11 @@ public class AddQuezHandler : OperationResult, ICommandHandler<AddQuezCommand>
         .SubjectYears
         .AsNoTracking()
         .Where(x=>x.SubjectId==request.SubjectId)
-        .Where(x=>x.TeacherId==_currentUserService.GetUserid())
         .Where(x=>x.ClassYear.Status)     
         .Select(x=>x.Id)   
         .First();
+
+
         var Quez=new Domain.Entities.Quez.Quez(){
 
             Name=request.Name,
@@ -43,7 +44,10 @@ public class AddQuezHandler : OperationResult, ICommandHandler<AddQuezCommand>
             EndAt=request.EndAt
             
         };
-        var StudentSubjects=_context.SubjectYears.Where(x=>x.ClassYear.Status&&x.TeacherId==_currentUserService.GetUserid())
+        var StudentSubjects=_context.SubjectYears
+        .Where(x=>x.ClassYear.Status)
+        .Where(x=>x.SubjectId==request.SubjectId)
+
         .SelectMany(x=>x.StudentSubjects)        
         .ToList();
         

@@ -8,15 +8,13 @@ using Shared.Abstraction;
 
 namespace Admin.Teacher.Teacher.Query.GetAllQuez;
 
-public class GetAllTeacherQuezQuery: PaginationRequest, IQuery
+public class GetAllTeacherQuezQuery:  IQuery
 {
 
     public Guid Id {get;set;} 
 
-    public Guid YearId{get;set;}
+    public Guid? YearId{get;set;}
     
-
-    public string? Search{get;set;}   
 
 
 

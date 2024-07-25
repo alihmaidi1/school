@@ -22,6 +22,7 @@ public class GetAllTeacherQuezDto
 
             public Guid Id {get;set;}
 
+            public bool Status{get;set;}
             public string Name{get;set;}
 
             public int QuestionNumber{get;set;}

@@ -61,7 +61,7 @@ public class GetAllQuezHandler : OperationResult,IQueryHandler<GetAllQuezQuery>
             Name=x.Quez.Name,
             QuestionNumber=x.Quez.Questions.Count()
         })        
-        .ToPagedList(request.PageNumber,request.PageSize);
+        .ToList();
 
 
         return Success(Result); 

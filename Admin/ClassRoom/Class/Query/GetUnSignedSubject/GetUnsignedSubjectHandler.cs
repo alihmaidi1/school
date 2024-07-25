@@ -26,14 +26,20 @@ public class GetUnsignedSubjectHandler : OperationResult,IQueryHandler<GetUnSign
 
         var Subjects=_context
         .SubjectYears
+        .AsNoTracking()
         .Include(x=>x.Teacher)
         .Where(x=>x.Teacher==null)
-        .Select(x=>new GetAllSubjectNameDto{
+        .Select(x=>new GetUnSignedSubjectDto{
 
-            Id=x.Id,
-            Name=x.Subject.Name
+            Id=x.SubjectId,
+            Name=x.Subject.Name,
+            MinDegree=x.Subject.MinDegree,
+            Degree=x.Subject.Degree,
+            Year=x.Subject.Class.Name
+
         })
         .ToPagedList(request.PageNumber,request.PageSize);
+
         return Success(Subjects,"this is all subject without teacher");
     }
 }

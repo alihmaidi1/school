@@ -42,7 +42,7 @@ public class GetQuezDetailHandler : OperationResult, IQueryHandler<GetQuezDetail
                 Name=y.Student.Name,
                 Image=y.Student.Image,
                 Hash=y.Student.Hash,
-                Precent=(y.StudentAnswers.Count(x=>x.Answer.IsCorrect)/x.Questions.Count())
+                Precent=(y.StudentAnswers.Where(x=>x.Answer.IsCorrect).Sum(x=>x.Answer.Question.Score)/x.Questions.Sum(x=>x.Score))
 
             }).ToList()
 

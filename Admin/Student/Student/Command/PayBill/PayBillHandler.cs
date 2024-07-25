@@ -24,7 +24,8 @@ public class PayBillHandler : OperationResult,ICommandHandler<PayBillCommand>
 
         await _context
         .StudentBills
-        .Where(x=>x.Id==request.Id)
+        .Where(x=>x.BillId==request.BillId)
+        .Where(x=>x.StudentId==request.StudentId)        
         .ExecuteUpdateAsync(setter=>setter.SetProperty(x=>x.PaiedMoney,x=>x.Money),cancellationToken);
         return Success("payed successfully");
     }

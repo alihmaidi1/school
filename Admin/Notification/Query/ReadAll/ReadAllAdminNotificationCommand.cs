@@ -7,7 +7,7 @@ using Shared.CQRS;
 
 namespace Admin.Notification.Query.ReadAll;
 
-public class ReadAllAdminNotificationCommand: PaginationRequest ,ICommand
+public class ReadAllAdminNotificationCommand:  ICommand
 {
 
 

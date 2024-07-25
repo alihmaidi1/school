@@ -1,3 +1,4 @@
+using System.Data.Entity;
 using Common.CQRS;
 using Domain.Dto.Teacher;
 using Domain.Entities.Teacher.Teacher;
@@ -25,16 +26,19 @@ public class GetVacationsHandler:OperationResult,IQueryHandler<GetVacationQuery>
     {
         var Vacations=_context
         .Vacations
+        .AsNoTracking()
         .Where(x=>x.Status==null)
         .Select(x=>new GetAllVacationDto{
 
             Id=x.Id,
             Type=x.VacationType.Name,
             Date=x.Date,
+            Days=x.Days,
             Teacher=x.Teacher.Name,
+
             Reson=x.Reason
         })
-        .ToPagedList(request.PageNumber,request.PageSize);
+        .ToList();
         return Success(Vacations,"this is all vacation ");
     }
 }

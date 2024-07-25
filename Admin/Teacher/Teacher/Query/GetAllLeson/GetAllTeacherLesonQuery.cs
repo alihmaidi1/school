@@ -13,7 +13,7 @@ public class GetAllTeacherLesonQuery: IQuery
     public Guid Id{get;set;}
 
 
-    public Guid YearId{get;set;}
+    public Guid? YearId{get;set;}
 
 
 

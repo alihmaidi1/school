@@ -11,10 +11,10 @@ public class GetAllSubjectByYearQuery: PaginationRequest ,IQuery
 {
 
 
-    public Guid YearId{get;set;}
-
-    
+        public Guid? YearId{get;set;}
 
 
+
+        public string? Search{get;set;}
 
 }

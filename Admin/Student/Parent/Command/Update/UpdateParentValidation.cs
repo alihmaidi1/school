@@ -31,11 +31,6 @@ public class UpdateParentValidation: AbstractValidator<UpdateParentCommand>
 
         
 
-        RuleFor(x => x.Password)
-        .NotEmpty()
-        .NotNull()
-        .MinimumLength(8);
-
 
         RuleFor(x=>x.Image)
         .NotEmpty()

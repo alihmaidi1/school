@@ -12,9 +12,16 @@ public class CheckTokenSessionAttribute: AuthorizeAttribute,IAuthorizationFilter
     
     public void OnAuthorization(AuthorizationFilterContext context)
     {
+
+        if(!context.HttpContext.User.Identity.IsAuthenticated){
+
+            throw new UnAuthenticationException();
+            
+
+        }
         ApplicationDbContext dbContext = context.HttpContext.RequestServices.GetRequiredService<ApplicationDbContext>();
         ICurrentUserService currentUserService = context.HttpContext.RequestServices.GetRequiredService<ICurrentUserService>();
-        var accountSession = dbContext.AccountSessions.FirstOrDefault(x => x.Token ==currentUserService.Token&&x.Account.Status);
+        var accountSession = dbContext.AccountSessions.FirstOrDefault(x => x.Token ==currentUserService.getToken()&&x.Account.Status);
         if (accountSession is not null)
         {
             return;

@@ -9,6 +9,6 @@ namespace Teacher.Subject.Query.GetWithStudent;
 public class GetAllSubjectWithStudentQuery: IQuery
 {
 
-    public Guid YearId{get;set;}
+    public Guid? YearId{get;set;}
 
 }

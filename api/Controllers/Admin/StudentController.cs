@@ -76,7 +76,7 @@ public class StudentController: ApiController
     /// get all student mark in specifice year 
     /// </summary>
     /// <returns>return all role in pagination</returns>
-    [Produces(typeof(OperationResultBase<PageList<GetAllStudentSubjectDto>>))]
+    [Produces(typeof(OperationResultBase<List<GetAllStudentSubjectDto>>))]
 
     [HttpGet]
     public async Task<IActionResult> GetAllStudentSubjectByYear([FromQuery] GetStudentSubjectByYearQuery request,CancellationToken Token)
@@ -92,7 +92,7 @@ public class StudentController: ApiController
     /// get all student quez in specifice year 
     /// </summary>
     /// <returns>return all role in pagination</returns>
-    [Produces(typeof(OperationResultBase<PageList<Domain.Dto.Student.GetAllStudentQuezDto>>))]
+    [Produces(typeof(OperationResultBase<List<Dto.Student.Student.GetAllStudentQuezDto>>))]
 
     [HttpGet]
     public async Task<IActionResult> GetAllStudentQuezByYearAndSubject([FromQuery] GetAllQuezByYearAndSubjectQuery request,CancellationToken Token)
@@ -122,7 +122,7 @@ public class StudentController: ApiController
     /// get all student installment  
     /// </summary>
     /// <returns>return all role in pagination</returns>
-    [Produces(typeof(OperationResultBase<PageList<GetAllInstallmentDto>>))]
+    [Produces(typeof(OperationResultBase<List<GetAllInstallmentDto>>))]
 
     [HttpGet]
     public async Task<IActionResult> GetAllInstallment([FromQuery] GetAllInstallmentQuery request,CancellationToken Token)

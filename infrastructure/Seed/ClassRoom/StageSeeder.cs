@@ -24,19 +24,22 @@ public static class StageSeeder
                         
                         new Subject{
 
-                            Name="math 1"
+                            Name="math 1",
+                            Degree=60
 
                         },
 
                         new Subject{
 
-                            Name="English 1"
+                            Name="English 1",
+                            Degree=60
 
                         },
 
                         new Subject{
 
-                            Name="Arabic 1"
+                            Name="Arabic 1",
+                            Degree=60
 
                         },
 
@@ -50,19 +53,22 @@ public static class StageSeeder
                         
                         new Subject{
 
-                            Name="math 2"
+                            Name="math 2",
+                            Degree=60
 
                         },
 
                         new Subject{
 
-                            Name="English 2"
+                            Name="English 2",
+                            Degree=60
 
                         },
 
                         new Subject{
 
-                            Name="Arabic 2"
+                            Name="Arabic 2",
+                            Degree=60
 
                         },
 
@@ -78,19 +84,22 @@ public static class StageSeeder
                         
                         new Subject{
 
-                            Name="math 3"
+                            Name="math 3",
+                            Degree=60
 
                         },
 
                         new Subject{
 
-                            Name="English 3"
+                            Name="English 3",
+                            Degree=60
 
                         },
 
                         new Subject{
 
-                            Name="Arabic 3"
+                            Name="Arabic 3",
+                            Degree=60
 
                         },
 
@@ -112,19 +121,22 @@ public static class StageSeeder
                         
                         new Subject{
 
-                            Name="math 4"
+                            Name="math 4",
+                            Degree=60
 
                         },
 
                         new Subject{
 
-                            Name="English 4"
+                            Name="English 4",
+                            Degree=60
 
                         },
 
                         new Subject{
 
-                            Name="Arabic 4"
+                            Name="Arabic 4",
+                            Degree=60
 
                         },
 
@@ -137,19 +149,22 @@ public static class StageSeeder
                         
                         new Subject{
 
-                            Name="math 5"
+                            Name="math 5",
+                            Degree=60
 
                         },
 
                         new Subject{
 
-                            Name="English 5"
+                            Name="English 5",
+                            Degree=60
 
                         },
 
                         new Subject{
 
-                            Name="Arabic 5"
+                            Name="Arabic 5",
+                            Degree=60
 
                         },
 
@@ -163,19 +178,22 @@ public static class StageSeeder
                         
                         new Subject{
 
-                            Name="math 6"
+                            Name="math 6",
+                            Degree=60
 
                         },
 
                         new Subject{
 
-                            Name="English 6"
+                            Name="English 6",
+                            Degree=60
 
                         },
 
                         new Subject{
 
-                            Name="Arabic 6"
+                            Name="Arabic 6",
+                            Degree=60
 
                         },
 
@@ -195,19 +213,22 @@ public static class StageSeeder
                         
                         new Subject{
 
-                            Name="math 7"
+                            Name="math 7",
+                            Degree=60
 
                         },
 
                         new Subject{
 
-                            Name="English 7"
+                            Name="English 7",
+                            Degree=60
 
                         },
 
                         new Subject{
 
-                            Name="Arabic 7"
+                            Name="Arabic 7",
+                            Degree=60
 
                         },
 
@@ -221,19 +242,22 @@ public static class StageSeeder
                         
                         new Subject{
 
-                            Name="math 8"
+                            Name="math 8",
+                            Degree=60
 
                         },
 
                         new Subject{
 
-                            Name="English 8"
+                            Name="English 8",
+                            Degree=60
 
                         },
 
                         new Subject{
 
-                            Name="Arabic 8"
+                            Name="Arabic 8",
+                            Degree=60
 
                         },
 
@@ -246,19 +270,22 @@ public static class StageSeeder
                         
                         new Subject{
 
-                            Name="math 9"
+                            Name="math 9",
+                            Degree=60
 
                         },
 
                         new Subject{
 
-                            Name="English 9"
+                            Name="English 9",
+                            Degree=60
 
                         },
 
                         new Subject{
 
-                            Name="Arabic 9"
+                            Name="Arabic 9",
+                            Degree=60
 
                         },
 

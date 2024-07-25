@@ -1,5 +1,6 @@
 using Domain.Entities.Teacher.Teacher;
 using FluentValidation;
+using infrastructure;
 using Repository.Teacher.Teacher;
 
 namespace Admin.Teacher.Warning.Query.GetAll;
@@ -7,12 +8,11 @@ namespace Admin.Teacher.Warning.Query.GetAll;
 public class GetAllWarningAdminValidation:AbstractValidator<GetAllWarningAdminQuery>
 {
 
-    public GetAllWarningAdminValidation(ITeacherRepository teacherRepository)
+    public GetAllWarningAdminValidation(ApplicationDbContext context)
     {
-        // RuleFor(x => x.TeacherId)
-        //     .Must(x => teacherRepository.IsExists(new TeacherID((Guid)x)))
-        //     .When(x=>x.TeacherId!=null);
-        //
+        RuleFor(x => x.TeacherId)
+            .Must(id => context.Teachers.Any(x=>x.Id==id));
+        
         // RuleFor(x => x.Date)
         //     .LessThanOrEqualTo(DateTime.Now.Year)
         //     .When(x => x.Date!=null)

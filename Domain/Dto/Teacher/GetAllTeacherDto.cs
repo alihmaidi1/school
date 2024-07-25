@@ -17,6 +17,7 @@ public class GetAllTeacherDto
     public string? Hash { get; set; }
 
 
+    public List<Guid> SubjectIds{get;set;}
 
     public int StudentNumber{get;set;}
     

@@ -11,6 +11,7 @@ public class GetAllSubjectByYearDto
 
     public int TotalTeacher{get;set;}
 
+    public int TotalSubject{get;set;}
 
     public PageList<Subject> Subjects{get;set;}
 

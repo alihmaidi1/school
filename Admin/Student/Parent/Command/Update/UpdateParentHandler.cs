@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using infrastructure;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Shared.Constant;
 using Shared.CQRS;
 using Shared.File;
@@ -27,33 +28,30 @@ public class UpdateParentHandler :OperationResult , ICommandHandler<UpdateParent
     {
 
         
-        var Parent = new Domain.Entities.Student.Parent.Parent()
-        {
-        
-            Id=request.Id,
-            Name = request.Name,
-            Email = request.Email,
-            Password = PasswordHelper.HashPassword(request.Password),
-            
-        
-        };
-
-        Parent.SendEmail("Update Parent Info",$"this this your password {request.Password}");
 
         if(request.Image is not null){
-            
-            var image = _context.Images.First(x => x.Id == request.Image);
-            Parent.Image = image.Url.GetNewPath(FolderName.Parent).httpPath;
-            Parent.Hash=image.Hash;
-            _context.Parents.Update(Parent);
-            _context.SaveChanges();
-            image.Url.MoveFile(image.Url.GetNewPath(FolderName.Parent).localPath);
 
+            var image = _context.Images.First(x => x.Id == request.Image);
+
+            await _context.Parents.Where(x=>x.Id==request.Id)
+            .ExecuteUpdateAsync(setter=>
+            setter.SetProperty(x=>x.Image,image.Url.GetNewPath(FolderName.Parent).httpPath)
+            .SetProperty(x=>x.Hash,image.Hash)            
+            .SetProperty(x=>x.Name,request.Name)
+            .SetProperty(x=>x.Email,request.Email)            
+            ,cancellationToken);            
+            image.Url.MoveFile(image.Url.GetNewPath(FolderName.Parent).localPath);
 
         }else{
 
-            _context.Parents.Update(Parent);
-            _context.SaveChanges();
+            await _context.Parents.Where(x=>x.Id==request.Id)
+            .ExecuteUpdateAsync(setter=>
+            setter   
+            .SetProperty(x=>x.Name,request.Name)
+            .SetProperty(x=>x.Email,request.Email)            
+            ,cancellationToken);            
+
+
         }
         return Success("Parent was created successfully");
 

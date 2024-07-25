@@ -9,8 +9,8 @@ namespace Admin.Teacher.Teacher.Query.GetAllTeacherStudentSubject;
 public class GetAllTeacherStudentSubjectQuery: IQuery
 {
 
-    public Guid YearId{get;set;}
+    public Guid? YearId{get;set;}
 
-    public Guid TeacherId{get;set;}
+    public Guid Id{get;set;}
 
 }

@@ -52,7 +52,7 @@ public class GetAllLesonHandler : OperationResult,IQueryHandler<GetAllLesonQuery
             Name=x.Name,
             Url=x.Url
 
-        }).ToPagedList(request.PageNumber,request.PageSize);
+        }).ToList();
 
         return Success(Result);
 

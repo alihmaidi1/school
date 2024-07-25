@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using Domain.Entities.ClassRoom;
@@ -30,16 +31,13 @@ public class AddLesonHandler : OperationResult, ICommandHandler<AddLesonCommand>
     public async Task<JsonResult> Handle(AddLesonCommand request, CancellationToken cancellationToken)
     {
 
-        var File=request.File.UploadFile(FolderName.Leson);
-        
-        var SubjectYear=_context.SubjectYears.FirstOrDefault(x=>x.TeacherId==_currentUserService.GetUserid()&&x.SubjectId==request.SubjectId);
-        if(SubjectYear is null) return ValidationError("SubjectId","This Subject Is Not Belongs To this teacher in this year");        
-        
+        var File=request.File.UploadFile(FolderName.Leson);        
+        Guid SubjectYearId=_context.SubjectYears.AsNoTracking().First(x=>x.SubjectId==request.SubjectId&&x.ClassYear.Status).Id;
         var Leson=new Domain.Entities.ClassRoom.Leson(){
 
             Url=File,
             Name=request.Name,
-            SubjectYearId=SubjectYear.Id
+            SubjectYearId=SubjectYearId
 
         };
 

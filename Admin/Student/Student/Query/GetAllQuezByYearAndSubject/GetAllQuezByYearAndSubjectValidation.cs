@@ -19,17 +19,13 @@ public class GetAllQuezByYearAndSubjectValidation: AbstractValidator<GetAllQuezB
         .Must(id=>context.Students.Any(x=>x.Id==id))
         .WithMessage("this student is not exists in our data");
 
-        RuleFor(x=>x.SubjectId)
-        .NotEmpty()
-        .NotNull()
-        .Must(id=>context.Subjects.Any(x=>x.Id==id))
-        .WithMessage("this subject is not exists in our data");
 
 
         RuleFor(x=>x.YearId)
         .NotEmpty()
         .NotNull()
         .Must(id=>context.Years.Any(x=>x.Id==id))
+        .When(x=>x.YearId.HasValue)
         .WithMessage("this year is not exists in our data");
 
 

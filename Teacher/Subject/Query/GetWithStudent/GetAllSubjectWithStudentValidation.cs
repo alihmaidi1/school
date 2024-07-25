@@ -13,9 +13,8 @@ public class GetAllSubjectWithStudentValidation: AbstractValidator<GetAllSubject
     public GetAllSubjectWithStudentValidation(ApplicationDbContext context){
 
         RuleFor(x=>x.YearId)
-        .NotEmpty()
-        .NotNull()
         .Must(id=>context.Years.Any(x=>x.Id==id))
+        .When(x=>x.YearId.HasValue)
         .WithMessage("this year is not exists in our data");
     }
 

@@ -12,6 +12,19 @@ public class GetAllStudentQuezDto
 
     public string Name{get;set;}
 
-    public float Mark{get;set;}
+    public List<Quez> Quezs{get;set;}
 
+
+    public class Quez{
+
+
+        public Guid Id{get;set;}
+
+        public string Name{get;set;}
+
+        public float? Mark{get;set;}
+    }
 }
+
+
+

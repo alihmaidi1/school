@@ -14,6 +14,6 @@ public class GetAllSubjectCommand: PaginationRequest,ICommand
 
     
     public string? Search{get;set;}
-    
+
 
 }

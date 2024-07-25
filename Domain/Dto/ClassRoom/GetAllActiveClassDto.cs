@@ -12,6 +12,8 @@ public class GetAllActiveClassDto
 
     public string Name{get;set;}
 
-    public DateTimeOffset Date{get;set;}
+
+    public bool Status{get;set;}
+
     
 }

@@ -16,9 +16,12 @@ public class PermissionAuthorizationHandler:AuthorizationHandler<PermissionRequi
 
     protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, PermissionRequirement requirement)
     {
-        if (context.User.Identity?.IsAuthenticated == false)
+
+
+        
+        if (!context.User.HasClaim(c =>c.Issuer == "Admin"))
         {
-            context.Fail();
+            context.Succeed(requirement);
             return Task.CompletedTask;
         }
         

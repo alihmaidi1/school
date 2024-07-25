@@ -25,6 +25,7 @@ public class GetAllStudentAnswerInQuezHandler : OperationResult,IQueryHandler<Ge
         var Answers=_context
         .StudentQuezs
         .AsNoTracking()
+        .AsSplitQuery()
         .Where(x=>x.StudentId==request.StudentId)
         .Where(x=>x.QuezId==request.QuezId)
         .Select(x=>new StudentAnswerDto{

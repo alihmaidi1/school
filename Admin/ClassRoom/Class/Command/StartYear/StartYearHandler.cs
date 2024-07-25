@@ -1,8 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Domain.Entities.ClassRoom;
+using Domain.Entities.Student.StudentSubject;
 using infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -24,6 +21,18 @@ public class StartYearHandler : OperationResult,ICommandHandler<StartYearCommand
     public async Task<JsonResult> Handle(StartYearCommand request, CancellationToken cancellationToken)
     {
 
+
+        var Year=_context.Years.FirstOrDefault(x=>x.Date.Year==DateTime.UtcNow.Year);
+        if(Year is null){
+
+            Year=new Domain.Entities.ClassRoom.Year{
+
+                Date=DateTime.UtcNow,
+            };
+
+        }
+
+
         var Class=_context
         .Classes
         .Include(x=>x.Subjects)
@@ -31,22 +40,29 @@ public class StartYearHandler : OperationResult,ICommandHandler<StartYearCommand
         .Where(x=>x.Id==request.ClassId)
         .First();
 
-
         var Students=_context
         .Students
         .AsNoTracking()
         .Where(x=>x.Level==Class.Level)
-        .Where(x=>x.StudentSubjects.Where(y=>!y.SubjectYear.ClassYear.Status).Any())
+        .Where(x=>!x.StudentSubjects.Where(y=>y.SubjectYear.ClassYear.Status).Any())
         .Select(x=>x.Id)
         .ToList();
+
+
         var ClassYear=new ClassYear{
 
 
             ClassId=request.ClassId,
-            YearId=request.YearId,
+            YearId=Year.Id,
             SubjectYears=Class.Subjects.Select(x=>new SubjectYear{
 
-                SubjectId=x.Id
+                SubjectId=x.Id,
+                StudentSubjects=Students.Select(x=>new StudentSubject{
+
+                    StudentId=x
+
+
+                }).ToList()
 
             }).ToList()
 
@@ -55,10 +71,7 @@ public class StartYearHandler : OperationResult,ICommandHandler<StartYearCommand
         };
 
         _context.ClassYears.Add(ClassYear);
-
         _context.SaveChanges();
-
-
         return Success();
     }
 }

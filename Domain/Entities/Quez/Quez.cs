@@ -55,7 +55,7 @@ public class Quez:BaseEntity,ISoftDelete
     public static Expression<Func<Quez,bool>> IsNotStarted(){
 
 
-        return x=>x.StartAt<DateTimeOffset.UtcNow;
+        return x=>x.StartAt>DateTimeOffset.UtcNow;
 
     }
 

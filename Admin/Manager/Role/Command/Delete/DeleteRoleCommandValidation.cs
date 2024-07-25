@@ -13,8 +13,10 @@ public class DeleteRoleCommandValidation:AbstractValidator<DeleteRoleCommand>
         RuleFor(x => x.Id)
             .NotEmpty()
             .NotNull()
-            .Must(Id => context.Roles.Any(x=>x.Id==Id&&!x.Admins.Any()))
-            .WithMessage("id is not exists in our data or it have data");
+            .Must(Id => context.Roles.Any(x=>x.Id==Id))
+            .WithMessage("id is not exists in our data")
+            .Must(Id=>context.Roles.Any(x=>x.Id==Id&&!x.Admins.Any()))
+            .WithMessage("thie role has admins");
 
     }
     

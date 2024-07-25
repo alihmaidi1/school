@@ -32,9 +32,16 @@ public class GetAllTeacherLesonHandler : OperationResult,IQueryHandler<GetAllLes
 
         var Lesons=_context
         .SubjectYears
-        .AsNoTracking()
-        .Where(x=>x.ClassYear.YearId==request.YearId)
-        .Where(x=>x.TeacherId==_currentUserService.GetUserid())
+        .AsNoTracking();
+        if(request.YearId.HasValue){
+        
+            Lesons=Lesons.Where(x=>x.ClassYear.YearId==request.YearId);    
+
+        }else{
+
+            Lesons=Lesons.Where(x=>x.ClassYear.Status);
+        }
+        Lesons.Where(x=>x.TeacherId==_currentUserService.GetUserid())
         .Select(x=>new GetAllTeacherLesonDto(){            
             Id=x.Subject.Id,
             Name=x.Subject.Name,

@@ -8,9 +8,8 @@ public class GetAllWarningAdminQuery:IQuery
     public int? PageNumber { get; set; }
     
     public int? PageSize { get; set; }
-    public Guid? TeacherId { get; set; }
+    public Guid TeacherId { get; set; }
     
-    public int? Date { get; set; }
 
     
 }

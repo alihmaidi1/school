@@ -23,7 +23,8 @@ public class SignSubjectToTeacherHandler : OperationResult,ICommandHandler<SignS
 
         await _context
         .SubjectYears
-        .Where(x=>x.Id==request.SubjectId)
+        .Where(x=>x.SubjectId==request.SubjectId)
+        .Where(x=>x.TeacherId==null)
         .ExecuteUpdateAsync(setter=>setter.SetProperty(x=>x.TeacherId,request.TeacherId),cancellationToken);
         return Success("subject assigned successfully");
     }

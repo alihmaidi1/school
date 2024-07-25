@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using FluentValidation;
@@ -30,7 +31,15 @@ public class AddLesonValidation: AbstractValidator<AddLesonCommand>
         RuleFor(x=>x.SubjectId)
         .NotNull()
         .NotEmpty()
-        .Must(id=>context.SubjectYears.Any(x=>x.SubjectId==id&&x.ClassYear.Status&&x.TeacherId==currentUserService.GetUserid()))
+        .Must(id=>{
+
+            if(currentUserService.IsAdmin()){
+
+                return context.SubjectYears.AsNoTracking().Any(x=>x.ClassYear.Status&&x.SubjectId==id);
+            }
+            return context.SubjectYears.AsNoTracking().Any(x=>x.ClassYear.Status&&x.SubjectId==id&&x.TeacherId==currentUserService.GetUserid());
+
+        })
         .WithMessage("this subject is not exists or not belongs to this teacher");
         
     }

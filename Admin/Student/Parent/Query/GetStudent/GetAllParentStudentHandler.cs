@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using Common.CQRS;
@@ -24,6 +25,7 @@ public class GetAllParentStudentHandler : OperationResult ,IQueryHandler<GetAllP
 
         var Students=_context
         .Students
+        .AsNoTracking()
         .Where(x=>x.ParentId==request.Id)
         .Select(x=>new GetAllStudentParentDto{
 

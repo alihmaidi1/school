@@ -16,7 +16,7 @@ public class GetAllStudentQuezDto
     public int StudentCount{get;set;}
 
 
-    public PageList<Quez> Quezs{get;set;}
+    public List<Quez> Quezs{get;set;}
 
     public class Quez{
 

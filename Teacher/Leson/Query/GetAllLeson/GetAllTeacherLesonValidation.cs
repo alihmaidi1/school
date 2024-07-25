@@ -17,9 +17,8 @@ public class GetAllTeacherLesonValidation: AbstractValidator<GetAllLesonQuery>
         
 
         RuleFor(x=>x.YearId)
-        .NotEmpty()
-        .NotNull()
-        .Must((request,id)=>context.Years.Any(x=>x.Id==id))
+        .Must(id=>context.Years.Any(x=>x.Id==id))
+        .When(x=>x.YearId.HasValue)
         .WithMessage("this year is not exists or teacher is not learning in this year");
     }
 

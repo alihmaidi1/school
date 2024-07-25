@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using Common.CQRS;
@@ -21,16 +22,17 @@ public class GetAllAudienceHandler : OperationResult, IQueryHandler<GetAllAudien
     public async Task<JsonResult> Handle(GetAllAudienceQuery request, CancellationToken cancellationToken)
     {
 
-        // var Dates=_context
-        // .SubjectYears
-        // .Where(x=>x.SubjectId==request.SubjectId&&x.YearId==request.YearId)
-        // .SelectMany(x=>x.Audiences)
-        // .GroupBy(x=>x.SessionNumber)
-        // .Select(x=>x.First())
-        // .Select(x=>x.Date)
-        // .ToList();
+        var Dates=_context
+        .SubjectYears
+        .AsNoTracking()
+        .Where(x=>x.SubjectId==request.SubjectId&&x.ClassYear.YearId==request.YearId)
+        .SelectMany(x=>x.Audiences)
+        .GroupBy(x=>x.SessionNumber)
+        .Select(x=>x.First())
+        .Select(x=>x.Date)
+        .ToList();
 
-        // return Success(Dates,"this is all audience");
+        return Success(Dates,"this is all audience");
     
         return null;
     }

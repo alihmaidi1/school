@@ -30,6 +30,7 @@ public class AdminRepository:GenericRepository<Domain.Entities.Manager.Admin.Adm
         var result = DbContext
             .Admins
             .IgnoreQueryFilters()
+            .OrderBy(x=>x.DateCreated)
             .Where(x=>x.Name!="SuperAdmin")
             .Where(x=>x.DateDeleted==null)
             .Where(x=>x.Name.Contains(search??"")||x.Email.Contains(search??"")||x.Role.Name.Contains(search??""))

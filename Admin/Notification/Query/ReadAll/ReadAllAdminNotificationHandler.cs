@@ -38,7 +38,7 @@ public class ReadAllAdminNotificationHandler : OperationResult, ICommandHandler<
             Date=x.DateCreated
 
         })
-        .ToPagedList(request.PageNumber,request.PageSize);
+        .ToList();
 
         await _context
         .Admins

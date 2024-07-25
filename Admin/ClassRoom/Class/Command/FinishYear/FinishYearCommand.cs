@@ -9,6 +9,6 @@ namespace Admin.ClassRoom.Class.Command.FinishYear;
 public class FinishYearCommand: ICommand
 {
 
-    public Guid ClassYearId{get;set;}
+    public Guid ClassId{get;set;}
 
 }

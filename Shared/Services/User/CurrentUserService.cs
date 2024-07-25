@@ -13,6 +13,11 @@ public class CurrentUserService : ICurrentUserService
 
     }
 
+    public bool IsAdmin(){
+
+        return _httpContextAccessor.HttpContext?.User?.HasClaim(x=>x.Issuer=="Admin")??false;
+
+    }
 
 
     public Guid? GetUserid(){
@@ -28,6 +33,12 @@ public class CurrentUserService : ICurrentUserService
 
     private Guid? UserId { get; set; }
 
-    public string? Token => _httpContextAccessor.HttpContext?.Request?.Headers?.Authorization.ToString()?.Split(" ")?[1];
+    public string? Token {get;set;}
 
+
+    public string? getToken(){
+
+
+        return _httpContextAccessor.HttpContext?.Request?.Headers?.Authorization.ToString()?.Split(" ")?[1];
+    }
 }

@@ -1,7 +1,8 @@
 using Domain.AppMetaData.Teacher;
-
+using infrastructure.Attribute;
 using Microsoft.AspNetCore.Mvc;
 using schoolManagement.Base;
+using Shared.Enum;
 using Shared.Swagger;
 using Teacher.Warning.Query.GetAll;
 
@@ -9,7 +10,8 @@ namespace schoolmanagment.Controllers.Teacher;
 
 
 [ApiGroup(ApiGroupName.All, ApiGroupName.Teacher)]
-// [TeacherAuthorizeAtrribute]
+
+[CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Teacher))]
 public class WarningController:ApiController
 {
     

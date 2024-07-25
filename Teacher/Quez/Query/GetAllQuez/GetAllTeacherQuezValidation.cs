@@ -13,9 +13,8 @@ public class GetAllTeacherQuezValidation: AbstractValidator<GetAllQuezQuery>
 
 
         RuleFor(x=>x.YearId)
-        .NotEmpty()
-        .NotNull()
         .Must(id=>context.Years.Any(x=>x.Id==id))
+        .When(x=>x.YearId.HasValue)        
         .WithMessage("this id is not exists in our data");
     }
 

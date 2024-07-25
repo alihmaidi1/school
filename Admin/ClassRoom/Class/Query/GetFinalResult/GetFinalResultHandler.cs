@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Data.Entity;
 using Common.CQRS;
 using Domain.Dto.ClassRoom;
 using infrastructure;
@@ -26,9 +23,37 @@ public class GetFinalResultHandler : OperationResult ,IQueryHandler<GetFinalResu
 
         var Result=_context
         .SubjectYears
-        .Where(x=>x.ClassYear.YearId==request.YearId)
+        .AsNoTracking()
         .Where(x=>x.ClassYear.ClassId==request.ClassId)
-        .Where(x=>!x.ClassYear.Status)
+        .Where(x=>!x.ClassYear.Status);
+
+        if(request.YearId.HasValue){
+
+            Result=Result
+            .Where(x=>x.ClassYear.YearId==request.YearId);
+
+        }else{
+
+            var LastYear=_context
+            .Years
+            .AsNoTracking()
+            .Where(x=>x.ClassYears.Any(x=>!x.Status&&x.ClassId==request.ClassId))
+            .OrderBy(x=>x.Date)
+            .FirstOrDefault();
+            if(LastYear is not null){
+
+                Result=Result.Where(x=>x.ClassYear.YearId==LastYear.Id);
+
+
+            }else{
+
+                Result.Where(x=>false);
+            }
+
+        }
+
+
+        var result=Result
         .SelectMany(x=>x.StudentSubjects)
         .GroupBy(x=>x.Student)
         .Select(x=>new GetAllResultDto{
@@ -49,6 +74,6 @@ public class GetFinalResultHandler : OperationResult ,IQueryHandler<GetFinalResu
         })
         .ToPagedList(request.PageNumber,request.PageSize);
 
-        return Success(Result,"this is the result");
+        return Success(result,"this is the result");
     }
 }

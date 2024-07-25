@@ -48,6 +48,8 @@ public class GetStudentHomeHandler : OperationResult,IQueryHandler<GetStudentHom
         })
         .ToList();
 
+        
+
         Home.Subjects=_context
         .StudentSubjects
         .AsNoTracking()
@@ -64,6 +66,11 @@ public class GetStudentHomeHandler : OperationResult,IQueryHandler<GetStudentHom
         .ToList();
 
         Home.NotificationCount=_context.Students.Where(x=>x.Id==_currentUserService.GetUserid()).Count();
+        
+        var Student=_context.Students.First(x=>x.Id==_currentUserService.GetUserid());
+        Home.Name=Student.Name!;
+        Home.Image=Student.Image!;
+
         return Success(Home);
     }
 }

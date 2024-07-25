@@ -30,7 +30,6 @@ public class GetAllInstallmentHandler : OperationResult ,IQueryHandler<GetAllIns
         .AsSplitQuery()
         .Where(x=>!x.Status)
         .Where(x=>x.SubjectYears.Any(x=>x.StudentSubjects.Any(x=>x.StudentId==request.Id)))
-
         .Select(x=>new GetAllInstallmentDto{
 
             Id=x.ClassId,
@@ -45,7 +44,7 @@ public class GetAllInstallmentHandler : OperationResult ,IQueryHandler<GetAllIns
 
             
         })
-        .ToPagedList(request.PageNumber,request.PageSize);
+        .ToList();
 
         return Success(Installments,"this is all installment");
 

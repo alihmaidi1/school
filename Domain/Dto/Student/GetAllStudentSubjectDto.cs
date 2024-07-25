@@ -12,6 +12,6 @@ public class GetAllStudentSubjectDto
 
     public string Name{get;set;}
 
-    public float? Mark{get;set;}
+    public float? Degree{get;set;}
 
 }

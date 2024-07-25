@@ -9,6 +9,7 @@ using infrastructure.Attribute;
 using Microsoft.AspNetCore.Mvc;
 using schoolManagement.Base;
 using Shared.Entity.EntityOperation;
+using Shared.Enum;
 using Shared.OperationResult.Base;
 using Shared.Swagger;
 using Teacher.Quez.Query.GetAllQuez;
@@ -23,7 +24,8 @@ namespace schoolmanagment.Controllers.Teacher;
 
 [ApiGroup(ApiGroupName.All, ApiGroupName.Teacher)]
 [Microsoft.AspNetCore.Mvc.Route("Api/Teacher/[controller]/[action]")]
-[CheckTokenSession()]
+
+[CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Teacher))]
 
 public class SubjectController: ApiController
 {
@@ -47,7 +49,7 @@ public class SubjectController: ApiController
     /// </summary>
     [Produces(typeof(OperationResultBase<List<GetAllSubjectNameDto>>))]
     [HttpGet]
-    public async Task<IActionResult> GetAllSubjectName(CancellationToken token)
+    public async Task<IActionResult> GetOwnedTeacherActiveSubject(CancellationToken token)
     {
         var response = await this.Mediator.Send(new GetAllTeacherSubjectQuery(),token);
         return response;

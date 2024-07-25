@@ -7,13 +7,13 @@ using Shared.Abstraction;
 
 namespace Admin.ClassRoom.Student.Query.GetSubjectByYear;
 
-public class GetStudentSubjectByYearQuery: PaginationRequest ,IQuery
+public class GetStudentSubjectByYearQuery: IQuery
 {
 
 
     public Guid Id{get;set;}
 
-    public Guid YearId{get;set;}
+    public Guid? YearId{get;set;}
 
 
 

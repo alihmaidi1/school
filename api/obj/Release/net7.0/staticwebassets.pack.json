@@ -1,12 +1,76 @@
 {
   "Files": [
     {
+      "Id": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Admins/07847ce3-5715-4daa-bcb8-0b64caf105dc.png",
+      "PackagePath": "staticwebassets/Admins/07847ce3-5715-4daa-bcb8-0b64caf105dc.png"
+    },
+    {
+      "Id": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Admins/2cfb8c62-8999-482b-9f10-7bac18089b3f.png",
+      "PackagePath": "staticwebassets/Admins/2cfb8c62-8999-482b-9f10-7bac18089b3f.png"
+    },
+    {
+      "Id": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Admins/549b7835-544e-46fe-8cea-cfe16958c035.png",
+      "PackagePath": "staticwebassets/Admins/549b7835-544e-46fe-8cea-cfe16958c035.png"
+    },
+    {
+      "Id": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Admins/9ea0510a-f946-49cc-aac1-b95508ad9e5a.jpeg",
+      "PackagePath": "staticwebassets/Admins/9ea0510a-f946-49cc-aac1-b95508ad9e5a.jpeg"
+    },
+    {
+      "Id": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Admins/d50eb222-4f56-47ca-a115-4b1cfe23b2d7.png",
+      "PackagePath": "staticwebassets/Admins/d50eb222-4f56-47ca-a115-4b1cfe23b2d7.png"
+    },
+    {
+      "Id": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Admins/df1f340b-95b6-4bf0-999b-1ab0891902f3.png",
+      "PackagePath": "staticwebassets/Admins/df1f340b-95b6-4bf0-999b-1ab0891902f3.png"
+    },
+    {
+      "Id": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Parent/8b58b543-920d-466a-b531-0e8562cce3c5.jpeg",
+      "PackagePath": "staticwebassets/Parent/8b58b543-920d-466a-b531-0e8562cce3c5.jpeg"
+    },
+    {
+      "Id": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Student/b2555045-62bb-4190-be09-c8e813a17cc7.png",
+      "PackagePath": "staticwebassets/Student/b2555045-62bb-4190-be09-c8e813a17cc7.png"
+    },
+    {
+      "Id": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Student/b4f7fac8-5efe-43ae-b9b8-72c27a1363c4.png",
+      "PackagePath": "staticwebassets/Student/b4f7fac8-5efe-43ae-b9b8-72c27a1363c4.png"
+    },
+    {
+      "Id": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Teachers/0852a6dc-4622-44b7-bff5-39fc24a254f1.png",
+      "PackagePath": "staticwebassets/Teachers/0852a6dc-4622-44b7-bff5-39fc24a254f1.png"
+    },
+    {
+      "Id": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Teachers/52b9e12a-3f40-4072-a4f5-b41cfadb9906.jpeg",
+      "PackagePath": "staticwebassets/Teachers/52b9e12a-3f40-4072-a4f5-b41cfadb9906.jpeg"
+    },
+    {
+      "Id": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Temps/1324cba0-bbba-469d-9f23-b727949d161e.png",
+      "PackagePath": "staticwebassets/Temps/1324cba0-bbba-469d-9f23-b727949d161e.png"
+    },
+    {
+      "Id": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Temps/26ace5dc-996e-4cd3-b5eb-23e172dfb73b.png",
+      "PackagePath": "staticwebassets/Temps/26ace5dc-996e-4cd3-b5eb-23e172dfb73b.png"
+    },
+    {
+      "Id": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Temps/431b185a-77b8-49de-a9b8-9ab34c422fee.png",
+      "PackagePath": "staticwebassets/Temps/431b185a-77b8-49de-a9b8-9ab34c422fee.png"
+    },
+    {
+      "Id": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Temps/687e3ad8-5c0b-4144-aaa6-6cfa50e4d04a.png",
+      "PackagePath": "staticwebassets/Temps/687e3ad8-5c0b-4144-aaa6-6cfa50e4d04a.png"
+    },
+    {
       "Id": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Temps/6b93ff65-ce9d-4870-9be3-c158234f4cba.png",
       "PackagePath": "staticwebassets/Temps/6b93ff65-ce9d-4870-9be3-c158234f4cba.png"
     },
     {
       "Id": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Temps/de484aab-6866-4ef4-9640-1f9dcf6f41ea.png",
       "PackagePath": "staticwebassets/Temps/de484aab-6866-4ef4-9640-1f9dcf6f41ea.png"
+    },
+    {
+      "Id": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Temps/e30cfac8-6a78-4186-b859-1fb7c6e57271.png",
+      "PackagePath": "staticwebassets/Temps/e30cfac8-6a78-4186-b859-1fb7c6e57271.png"
     },
     {
       "Id": "obj/Release/net7.0/staticwebassets/msbuild.api.Microsoft.AspNetCore.StaticWebAssets.props",

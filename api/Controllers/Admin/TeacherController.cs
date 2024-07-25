@@ -12,7 +12,6 @@ using Admin.Teacher.Teacher.Query.GetAllSubjectAndStudent;
 using Admin.Teacher.Teacher.Query.GetAllTeacherStudentSubject;
 using Admin.Teacher.Teacher.Query.GetAllTeacherYear;
 using Admin.Teacher.Teacher.Query.GetStudentMarkInQuez;
-using Domain.Dto.ClassRoom;
 using Domain.Dto.Quez;
 using Domain.Dto.Teacher;
 using Domain.Enum;
@@ -22,6 +21,7 @@ using infrastructure.Attribute;
 using Microsoft.AspNetCore.Mvc;
 using schoolManagement.Base;
 using Shared.Entity.EntityOperation;
+using Shared.Enum;
 using Shared.OperationResult.Base;
 using Shared.Swagger;
 
@@ -30,18 +30,18 @@ namespace schoolmanagment.Controllers.Admin;
 
 [Route("Api/SuperAdmin/[controller]/[action]")]
 [ApiGroup(ApiGroupName.All, ApiGroupName.Admin)]
-[CheckTokenSession(Policy = nameof(PermissionEnum.Teacher))]
+// [CheckTokenSession(AuthenticationSchemes =$"{nameof(JwtSchema.Admin)},{nameof(JwtSchema.Teacher)}",Policy = nameof(PermissionEnum.Teacher))]
 public class TeacherController:ApiController
 {
     
     
-
 
     /// <summary>
     /// get all Teacher with subject count in this year 
     /// </summary>
     /// <returns>return all role in pagination</returns>
     [Produces(typeof(OperationResultBase<PageList<GetAllTeacherDto>>))]
+    [CheckTokenSession(Policy = nameof(PermissionEnum.Teacher))]
    
     [HttpGet]
     public async Task<IActionResult> GetAllTeacher([FromQuery] GetAllTeacherQuery request,CancellationToken Token)
@@ -87,7 +87,9 @@ public class TeacherController:ApiController
     /// </summary>
     /// <returns>return all role in pagination</returns>
     [Produces(typeof(OperationResultBase<List<GetAllSubjectWithStudentTeacherDto>>))]
-   
+    [CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Teacher))]
+    [CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Admin),Policy = nameof(PermissionEnum.Teacher))]
+
     [HttpGet]
     public async Task<IActionResult> GetAllSubjectWithStudentInSpecificYear([FromQuery] GetAllTeacherStudentSubjectQuery request,CancellationToken Token)
     {
@@ -101,8 +103,10 @@ public class TeacherController:ApiController
     /// get all Teacher  subject  and leson  in specific year 
     /// </summary>
     /// <returns>return all role in pagination</returns>
-    [Produces(typeof(OperationResultBase<PageList<GetAllTeacherLesonDto>>))]
-   
+    [Produces(typeof(OperationResultBase<GetAllTeacherLesonDto>))]
+    [CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Teacher))]
+    [CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Admin),Policy = nameof(PermissionEnum.Teacher))]
+
     [HttpGet]
     public async Task<IActionResult> GetAllSubjectAndLeson([FromQuery] GetAllTeacherLesonQuery request,CancellationToken Token)
     {
@@ -135,6 +139,8 @@ public class TeacherController:ApiController
     /// <returns>return all role in pagination</returns>
     [Produces(typeof(OperationResultBase<GetQuezwithQuestionAndDetailDto>))]
     [HttpGet]
+    [CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Teacher))]
+    [CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Admin),Policy = nameof(PermissionEnum.Quez))]
     public async Task<IActionResult> GetQuezDetailWithQuestionAndAnswer([FromQuery] GetAllQuezDetailQuery request,CancellationToken Token)
     {
         var response = await this.Mediator.Send(request,Token);
@@ -162,8 +168,9 @@ public class TeacherController:ApiController
     /// get all Teacher  subject  and leson  in specific year 
     /// </summary>
     /// <returns>return all role in pagination</returns>
-    [Produces(typeof(OperationResultBase<PageList<GetAllTeacherQuezDto>>))]
-   
+    [Produces(typeof(OperationResultBase<List<GetAllTeacherQuezDto>>))]
+    [CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Teacher))]
+    [CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Admin),Policy = nameof(PermissionEnum.Teacher))]
     [HttpGet]
     public async Task<IActionResult> GetAllTeacherQuez([FromQuery] GetAllTeacherQuezQuery request,CancellationToken Token)
     {
@@ -171,7 +178,6 @@ public class TeacherController:ApiController
         return response;
 
     }
-
 
 
  /// <summary>

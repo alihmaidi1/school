@@ -1,8 +1,10 @@
 
+using Domain.Enum;
 using Dto.Admin.Teacher;
 using infrastructure.Attribute;
 using Microsoft.AspNetCore.Mvc;
 using schoolManagement.Base;
+using Shared.Enum;
 using Shared.OperationResult.Base;
 using Shared.Swagger;
 using Teacher.Leson.Command.Add;
@@ -14,7 +16,6 @@ namespace schoolmanagment.Controllers.Teacher;
 
 [ApiGroup(ApiGroupName.All, ApiGroupName.Teacher)]
 [Route("Api/Teacher/[controller]/[action]")]
-[CheckTokenSession]
 
 public class LesonController: ApiController
 {
@@ -27,6 +28,8 @@ public class LesonController: ApiController
     /// <returns>return all role in pagination</returns>
     [Produces(typeof(OperationResultBase<List<GetAllTeacherLesonDto>>))]
    
+    [CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Teacher))]
+
     [HttpGet]
     public async Task<IActionResult> GetAllSubjectAndLeson([FromQuery] GetAllLesonQuery request,CancellationToken Token)
     {
@@ -40,6 +43,8 @@ public class LesonController: ApiController
     /// </summary>
     [Produces(typeof(OperationResultBase<Boolean>))]
     [HttpPost]
+    [CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Teacher))]
+    [CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Admin),Policy =nameof(PermissionEnum.Leson))]
     public async Task<IActionResult> Add([FromForm] AddLesonCommand command,CancellationToken token)
     {
         var response = await this.Mediator.Send(command,token);
@@ -54,6 +59,8 @@ public class LesonController: ApiController
     /// </summary>
     [Produces(typeof(OperationResultBase<Boolean>))]
     [HttpDelete]
+    [CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Teacher))]
+
     public async Task<IActionResult> Delete([FromQuery] DeleteLesonCommand command,CancellationToken token)
     {
         var response = await this.Mediator.Send(command,token);

@@ -7,10 +7,12 @@ public enum PermissionEnum
     Warning,
     Parent,
     Banner,
+    Quez,
     Subject,
     Student,
     Notification,
-    Programm
+    Programm,
+    Leson
     
     
 }

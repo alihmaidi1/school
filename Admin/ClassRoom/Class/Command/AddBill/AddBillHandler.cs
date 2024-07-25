@@ -42,7 +42,9 @@ public class AddBillHandler : OperationResult,ICommandHandler<AddBillCommand>
             Date=request.Date,
             ClassYearId=ClassYearId,
             StudentBills=students.Select(x=>new StudentBill{
-                StudentId=x.Id
+                StudentId=x.Id,
+                Money=request.Money
+
             }).ToList()
 
         };

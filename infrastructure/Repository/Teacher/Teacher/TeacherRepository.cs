@@ -17,7 +17,9 @@ public class TeacherRepository:GenericRepository<Domain.Entities.Teacher.Teacher
 
         var Result = DbContext
             .Teachers
+            .OrderBy(x=>x.DateCreated)
             .IgnoreQueryFilters()
+            .Include(x=>x.TeacherSubjects)
             .Where(x=>x.DateDeleted==null)
             .Where(x=>x.Name.Contains(Search??""))
             .Where(x=>x.Email.Contains(Search??""))       

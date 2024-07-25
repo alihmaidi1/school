@@ -26,6 +26,7 @@ public class GetStudentAnswerHandler : OperationResult, IQueryHandler<GetStudent
         var Answers=_context
         .StudentQuezs
         .AsNoTracking()
+        .AsSplitQuery()
         .Where(x=>x.StudentId==request.StudentId)
         .Where(x=>x.QuezId==request.QuezId)
         

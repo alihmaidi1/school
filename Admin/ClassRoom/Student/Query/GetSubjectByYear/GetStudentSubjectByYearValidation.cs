@@ -23,9 +23,8 @@ public class GetStudentSubjectByYearValidation:AbstractValidator<GetStudentSubje
 
 
         RuleFor(x=>x.YearId)
-        .NotEmpty()
-        .NotNull()
         .Must(id=>context.Years.Any(x=>x.Id==id))
+        .When(x=>x.YearId.HasValue)
         .WithMessage("year id is not exists in our data");
 
 

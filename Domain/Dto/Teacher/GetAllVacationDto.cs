@@ -10,6 +10,7 @@ public class GetAllVacationDto
 
     public Guid Id{get;set;}
 
+    public int Days{get;set;}
     public string Reson{get;set;}
 
     public DateTimeOffset Date{get;set;}

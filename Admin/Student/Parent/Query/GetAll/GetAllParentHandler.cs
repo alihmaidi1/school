@@ -1,3 +1,4 @@
+using System.Data.Entity;
 using Common.CQRS;
 using Domain.Dto.Student;
 using infrastructure;
@@ -21,6 +22,7 @@ public class GetAllParentHandler:OperationResult,IQueryHandler<GetAllParentsQuer
     {
         var Parents=_context
         .Parents
+        .AsNoTracking()
         .Select(x=>new GetAllParentDto{
 
             Id=x.Id,
@@ -35,6 +37,8 @@ public class GetAllParentHandler:OperationResult,IQueryHandler<GetAllParentsQuer
 
                 Id=y.Id,
                 Name=y.Name,
+                level=y.Level,
+                gender=y.Gender,
                 Email=y.Email,
                 Image=y.Image,
                 Hash=y.Hash

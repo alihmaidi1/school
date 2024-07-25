@@ -34,7 +34,7 @@ public class AddTeacherHandler:OperationResult,ICommandHandler<AddTeacherCommand
             Name=request.Name,
             Email=request.Email,
             Password=PasswordHelper.HashPassword(request.Password),
-            Image=image.Url,
+            Image=image.Url.GetNewPath(FolderName.Teacher).httpPath,
             Hash=image.Hash,
             TeacherSubjects=request.SubjectId.Select(id=>new TeacherSubject{
 

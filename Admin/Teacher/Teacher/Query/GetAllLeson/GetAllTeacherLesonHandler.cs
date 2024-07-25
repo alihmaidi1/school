@@ -28,8 +28,17 @@ public class GetAllTeacherLesonHandler : OperationResult,IQueryHandler<GetAllTea
 
         var Lesons=_context
         .SubjectYears
-        .AsNoTracking()
-        .Where(x=>x.ClassYear.YearId==request.YearId)
+        .AsNoTracking();
+
+        if(request.YearId.HasValue){
+
+            Lesons=Lesons.Where(x=>x.ClassYear.YearId==request.YearId);
+        }else{
+
+            Lesons=Lesons.Where(x=>x.ClassYear.Status);
+        }
+
+        var Result=Lesons
         .Where(x=>x.TeacherId==request.Id)
         .Select(x=>new GetAllTeacherLesonDto(){            
             Id=x.Subject.Id,
@@ -45,7 +54,7 @@ public class GetAllTeacherLesonHandler : OperationResult,IQueryHandler<GetAllTea
 
         })
         .ToList();
-        return Success(Lesons,"this is all your data");
+        return Success(Result,"this is all your data");
 
     }
 }

@@ -1,10 +1,12 @@
 using Domain.Dto.Quez;
+using Domain.Enum;
 using Dto.Admin.Teacher;
 using Dto.Quez;
 using infrastructure.Attribute;
 using Microsoft.AspNetCore.Mvc;
 using schoolManagement.Base;
 using Shared.Entity.EntityOperation;
+using Shared.Enum;
 using Shared.OperationResult.Base;
 using Shared.Swagger;
 using Teacher.Quez.Command.Add;
@@ -21,7 +23,7 @@ namespace schoolmanagment.Controllers.Teacher;
 
 [ApiGroup(ApiGroupName.All, ApiGroupName.Teacher)]
 [Microsoft.AspNetCore.Mvc.Route("Api/Teacher/[controller]/[action]")]
-[CheckTokenSession()]
+
 
 public class QuezController:ApiController
 {
@@ -31,7 +33,10 @@ public class QuezController:ApiController
     /// </summary>
     [Produces(typeof(OperationResultBase<Boolean>))]
     [HttpPost]
-    public async Task<IActionResult> Add([FromForm] AddQuezCommand command,CancellationToken token)
+    [CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Teacher))]
+    [CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Admin),Policy =nameof(PermissionEnum.Quez))]
+
+    public async Task<IActionResult> Add([FromBody] AddQuezCommand command,CancellationToken token)
     {
         var response = await this.Mediator.Send(command,token);
         return response;
@@ -44,6 +49,10 @@ public class QuezController:ApiController
     /// </summary>
     [Produces(typeof(OperationResultBase<Boolean>))]
     [HttpDelete]
+    
+    [CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Teacher))]
+    [CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Admin),Policy =nameof(PermissionEnum.Quez))]
+
     public async Task<IActionResult> Delete([FromQuery] DeleteQuezCommand command,CancellationToken token)
     {
         var response = await this.Mediator.Send(command,token);
@@ -57,6 +66,8 @@ public class QuezController:ApiController
     /// </summary>
     [Produces(typeof(OperationResultBase<Boolean>))]
     [HttpPut]
+    [CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Teacher))]
+
     public async Task<IActionResult> Update([FromForm] UpdateQuezCommand command,CancellationToken token)
     {
         var response = await this.Mediator.Send(command,token);
@@ -69,6 +80,8 @@ public class QuezController:ApiController
     /// </summary>
     [Produces(typeof(OperationResultBase<PageList<GetAllTeacherQuezDto>>))]
     [HttpGet]
+    [CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Teacher))]
+
     public async Task<IActionResult> GetAll([FromQuery] GetAllQuezQuery command,CancellationToken token)
     {
         var response = await this.Mediator.Send(command,token);
@@ -82,6 +95,8 @@ public class QuezController:ApiController
     /// </summary>
     [Produces(typeof(OperationResultBase<GetFinishQuezDetailDto>))]
     [HttpGet]
+    [CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Teacher))]
+
     public async Task<IActionResult> GetQuezDetail([FromQuery] GetQuezDetailQuery command,CancellationToken token)
     {
         var response = await this.Mediator.Send(command,token);
@@ -95,6 +110,8 @@ public class QuezController:ApiController
     /// </summary>
     [Produces(typeof(OperationResultBase<StudentAnswerDto>))]
     [HttpGet]
+    [CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Teacher))]
+
     public async Task<IActionResult> GetStudentAnswer([FromQuery] GetStudentAnswerQuery command,CancellationToken token)
     {
         var response = await this.Mediator.Send(command,token);
@@ -108,6 +125,8 @@ public class QuezController:ApiController
     /// </summary>
     [Produces(typeof(OperationResultBase<PageList<GetQuezQuestionDetailDto>>))]
     [HttpGet]
+    [CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Teacher))]
+
     public async Task<IActionResult> GetQuestion([FromQuery] GetQuezQuestionQuery command,CancellationToken token)
     {
         var response = await this.Mediator.Send(command,token);
@@ -121,6 +140,8 @@ public class QuezController:ApiController
     /// </summary>
     [Produces(typeof(OperationResultBase<GetQuezwithQuestionAndDetailDto>))]
     [HttpGet]
+    [CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Teacher))]
+
     public async Task<IActionResult> GetQuezDetailWithQuestionAndAnswer([FromQuery] GetQuezWithQuestionAndAnswerQuery command,CancellationToken token)
     {
         var response = await this.Mediator.Send(command,token);

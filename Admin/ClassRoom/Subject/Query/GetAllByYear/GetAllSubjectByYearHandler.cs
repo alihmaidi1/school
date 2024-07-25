@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Common.CQRS;
 using Domain.Dto.ClassRoom.Subject;
 using infrastructure;
@@ -27,18 +23,43 @@ public class GetAllSubjectByYearHandler : OperationResult, IQueryHandler<GetAllS
 
 
         };
-        var Subjects=_context
-        .SubjectYears      
-        .Where(x=>x.ClassYear.YearId==request.YearId)
-        .Select(x=>x.Subject)          
-        .Select(x=>new GetAllSubjectByYearDto.Subject{
-            Id=x.Id,
-            Name=x.Name,
-            Year=x.Class.Name,
-            Degree=x.Degree,
-            MinDegree=x.MinDegree,
-        }).ToPagedList(request.PageNumber,request.PageSize);
-        SubjectResponse.Subjects=Subjects;
+
+        PageList<GetAllSubjectByYearDto.Subject> Result;
+
+        if(!request.YearId.HasValue){
+
+            Result=_context
+            .Subjects              
+            .Where(x=>x.Name.Contains(request.Search??""))  
+            .Select(x=>new GetAllSubjectByYearDto.Subject{
+                Id=x.Id,
+                Name=x.Name,
+                Year=x.Class.Name,
+                Degree=x.Degree,
+                MinDegree=x.MinDegree,
+            }).ToPagedList(request.PageNumber,request.PageSize);
+
+        }else{
+
+
+            Result=_context
+            .ClassYears        
+            .Where(x=>x.YearId==request.YearId)
+            .Select(x=>x.Class)
+            .SelectMany(x=>x.Subjects.Where(x=>x.Name.Contains(request.Search??"")))
+            .Select(x=>new GetAllSubjectByYearDto.Subject{
+                Id=x.Id,
+                Name=x.Name,
+                Year=x.Class.Name,
+                Degree=x.Degree,
+                MinDegree=x.MinDegree,
+            }).ToPagedList(request.PageNumber,request.PageSize);
+
+
+        }
+        
+        SubjectResponse.Subjects=Result;
+        SubjectResponse.TotalSubject=Result.Data.Count();
         SubjectResponse.TotalTeacher=_context.Teachers.Where(x=>x.Status).Count();
         return Success(SubjectResponse,"this is all subject");
 

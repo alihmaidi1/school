@@ -17,25 +17,25 @@ public class SendNotificationValidation: AbstractValidator<SendNotificationComma
         .NotNull();
 
         RuleFor(x=>x.Ids)
-        .Must(ids=>ids!=null &&context.Students.Select(x=>x.Id).Intersect(ids).Count()==ids.Count())
+        .Must(ids=>ids!=null &&context.Students.Where(x=>ids.Contains(x.Id)).Count()==ids.Count())
         .When(x=>x.NotificationType==Domain.Enum.NotificationType.Student)
         .WithMessage("some id is not correct");
 
 
         RuleFor(x=>x.Ids)
-        .Must(ids=>ids!=null &&context.Teachers.Select(x=>x.Id).Intersect(ids).Count()==ids.Count())
+        .Must(ids=>ids!=null &&context.Teachers.Where(x=>ids.Contains(x.Id)).Count()==ids.Count())
         .When(x=>x.NotificationType==Domain.Enum.NotificationType.Teacher)
         .WithMessage("some id is not correct");
 
 
         RuleFor(x=>x.Ids)
-        .Must(ids=>ids!=null &&context.Parents.Select(x=>x.Id).Intersect(ids).Count()==ids.Count())
+        .Must(ids=>ids!=null &&context.Parents.Where(x=>ids.Contains(x.Id)).Count()==ids.Count())
         .When(x=>x.NotificationType==Domain.Enum.NotificationType.Parent)
         .WithMessage("some id is not correct");
 
 
         RuleFor(x=>x.Ids)
-        .Must(ids=>ids!=null &&context.Classes.Select(x=>x.Id).Intersect(ids).Count()==ids.Count())
+        .Must(ids=>ids!=null &&context.Classes.Where(x=>ids.Contains(x.Id)).Count()==ids.Count())
         .When(x=>x.NotificationType==Domain.Enum.NotificationType.Class)
         .WithMessage("some id is not correct");
 

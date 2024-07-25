@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Domain.Dto;
 using Dto.Admin.Auth.Dto;
 using infrastructure.Attribute;
 using Microsoft.AspNetCore.Mvc;
@@ -13,6 +14,7 @@ using Parent.Auth.Command.Logout;
 using Parent.Auth.Command.RefreshToken;
 using Parent.Auth.Command.ReSetCode;
 using Parent.Auth.Command.ValidateCode;
+using Parent.Home.Query.GetProfile;
 using schoolManagement.Base;
 using Shared.Enum;
 using Shared.OperationResult.Base;
@@ -60,7 +62,7 @@ public class AuthController:ApiController
     /// Logout Student
     /// </summary>
     [HttpPost]
-    [Produces(typeof(OperationResultBase<AdminRefreshTokenDto>))]
+    [Produces(typeof(OperationResultBase<Boolean>))]
     [CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Parent))]
 
 
@@ -70,6 +72,23 @@ public class AuthController:ApiController
         return response;
 
     }
+
+
+    /// <summary>
+    /// Get Profile Parent
+    /// </summary>
+    [HttpGet]
+    [Produces(typeof(OperationResultBase<GetProfileDto>))]
+    [CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Parent))]
+
+
+    public async Task<IActionResult> GetProfile(CancellationToken Token)
+    {
+        var response = await this.Mediator.Send(new GetProfileQuery(),Token);
+        return response;
+
+    }
+
 
     /// <summary>
     /// Refresh Student Token

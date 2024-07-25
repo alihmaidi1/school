@@ -2,9 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Domain.Enum;
 using infrastructure.Attribute;
 using Microsoft.AspNetCore.Mvc;
 using schoolManagement.Base;
+using Shared.Enum;
 using Shared.OperationResult.Base;
 using Shared.Swagger;
 using Teacher.Question.Command.Add;
@@ -16,7 +18,6 @@ namespace schoolmanagment.Controllers.Teacher;
 
 [ApiGroup(ApiGroupName.All, ApiGroupName.Teacher)]
 [Microsoft.AspNetCore.Mvc.Route("Api/Teacher/[controller]/[action]")]
-[CheckTokenSession()]
 
 public class QuestionController: ApiController
 {
@@ -25,7 +26,9 @@ public class QuestionController: ApiController
     /// </summary>
     [Produces(typeof(OperationResultBase<Boolean>))]
     [HttpPost]
-    public async Task<IActionResult> Add([FromForm] AddQuestionCommand command,CancellationToken token)
+    [CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Teacher))]
+    [CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Admin),Policy =nameof(PermissionEnum.Quez))]
+    public async Task<IActionResult> Add([FromBody] AddQuestionCommand command,CancellationToken token)
     {
         var response = await this.Mediator.Send(command,token);
         return response;
@@ -38,6 +41,8 @@ public class QuestionController: ApiController
     /// </summary>
     [Produces(typeof(OperationResultBase<Boolean>))]
     [HttpDelete]
+    [CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Teacher))]
+
     public async Task<IActionResult> Delete([FromQuery] DeleteQuestionCommand command,CancellationToken token)
     {
         var response = await this.Mediator.Send(command,token);
@@ -51,6 +56,8 @@ public class QuestionController: ApiController
     /// </summary>
     [Produces(typeof(OperationResultBase<Boolean>))]
     [HttpPut]
+    [CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Teacher))]
+
     public async Task<IActionResult> Update([FromForm] UpdateQuestionCommand command,CancellationToken token)
     {
         var response = await this.Mediator.Send(command,token);

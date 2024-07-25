@@ -25,20 +25,33 @@ public class GetAllQuezByYearAndSubjectHandler : OperationResult , IQueryHandler
     {
         var quezes=_context
         .SubjectYears
-        .AsNoTracking()
-        .Where(x=>x.ClassYear.YearId==request.YearId)
-        .Where(x=>x.SubjectId==request.SubjectId)
-        .SelectMany(x=>x.StudentSubjects.Where(x=>x.StudentId==request.Id).Select(x=>x.Student))
+        .AsNoTracking();
+        if(request.YearId.HasValue){
+            quezes=quezes.Where(x=>x.ClassYear.YearId==request.YearId);
+        }else{
+            quezes=quezes.Where(x=>x.ClassYear.Status);
+
+        }        
+        var result=quezes.SelectMany(x=>x.StudentSubjects.Where(x=>x.StudentId==request.Id).Select(x=>x.Student))
         .SelectMany(x=>x.StudentQuezs)
+        .GroupBy(x=>x.Quez.SubjectYear.Subject)
         .Select(x=>new GetAllStudentQuezDto{
 
-                Id=x.QuezId,
-                Name=x.Quez.Name,
-                Mark=x.StudentAnswers.Where(x=>x.Answer.IsCorrect).Sum(x=>x.Answer.Question.Score)
+            Id=x.Key.Id,
+            Name=x.Key.Name,
+            Quezs=x.Select(y=>new GetAllStudentQuezDto.Quez{
+
+                Id=y.Quez.Id,
+                Name=y.Quez.Name,
+                Mark=!y.StudentAnswers.Any()?null:(y.StudentAnswers.Where(x=>x.Answer.IsCorrect).Sum(x=>x.Answer.Question.Score)/y.Quez.Questions.Sum(x=>x.Score))
+
+            }).ToList()
+
             
+
         })
         .ToList();
-        return Success(quezes,"this is all quezes");
+        return Success(result,"this is all quezes");
 
     }
 }

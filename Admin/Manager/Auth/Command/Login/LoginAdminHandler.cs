@@ -52,6 +52,8 @@ public class LoginAdminHandler:OperationResult,ICommandHandler<LoginAdminCommand
             Response=new LoginAdminDto{
                 Token=accountSession.Token,
                 RefreshToken=accountSession.RefreshToken,
+                IsAdmin=true,
+                Id=admin.Id,
                 ExpireAt=accountSession.ExpireAt.ToString(),
                 Permissions=admin.Role.Permissions
             };
@@ -73,6 +75,8 @@ public class LoginAdminHandler:OperationResult,ICommandHandler<LoginAdminCommand
             _dbContext.SaveChanges();
             Response=new LoginAdminDto{
                 Token=accountSession.Token,
+                IsAdmin=false,
+                Id=teacher.Id,
                 RefreshToken=accountSession.RefreshToken,
                 ExpireAt=accountSession.ExpireAt.ToString(),
             };

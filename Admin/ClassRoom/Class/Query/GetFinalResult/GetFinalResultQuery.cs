@@ -13,7 +13,7 @@ public class GetFinalResultQuery : PaginationRequest, IQuery
     public Guid ClassId{get;set;}
 
 
-    public Guid YearId{get;set;}
+    public Guid? YearId{get;set;}
 
 
 

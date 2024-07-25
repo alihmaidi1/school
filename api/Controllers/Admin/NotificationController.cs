@@ -27,7 +27,7 @@ public class NotificationController: ApiController
     /// get all Notification  
     /// </summary>
     /// <returns>return all role in pagination</returns>
-    [Produces(typeof(OperationResultBase<PageList<GetAllNotificationDto>>))]   
+    [Produces(typeof(OperationResultBase<List<GetAllNotificationDto>>))]   
     [HttpGet]
     public async Task<IActionResult> GetAllNotification([FromQuery] ReadAllAdminNotificationCommand command,CancellationToken Token)
     {

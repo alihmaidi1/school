@@ -11,7 +11,6 @@ public class StartYearCommand:ICommand
 
     public Guid ClassId{get;set;}
 
-    public Guid YearId{get;set;}
 
 
 }

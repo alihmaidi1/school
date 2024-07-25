@@ -7,6 +7,7 @@ using Domain.Dto.ClassRoom;
 using infrastructure.Attribute;
 using Microsoft.AspNetCore.Mvc;
 using schoolManagement.Base;
+using Shared.Enum;
 using Shared.OperationResult.Base;
 using Shared.Swagger;
 
@@ -15,7 +16,8 @@ namespace schoolmanagment.Controllers.Teacher;
 
 [ApiGroup(ApiGroupName.All, ApiGroupName.Teacher)]
 [Microsoft.AspNetCore.Mvc.Route("Api/Teacher/[controller]/[action]")]
-[CheckTokenSession()]
+
+[CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Teacher))]
 public class YearController: ApiController
 {
         /// <summary>

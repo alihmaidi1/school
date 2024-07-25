@@ -1,11 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Data.Entity;
 using Common.CQRS;
 using Domain.Dto.Teacher;
 using infrastructure;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 using Shared.OperationResult;
 
@@ -21,20 +17,39 @@ public class GetAllTeacherStudentSubjectHandler : OperationResult, IQueryHandler
     public async Task<JsonResult> Handle(GetAllTeacherStudentSubjectQuery request, CancellationToken cancellationToken)
     {
 
-        var StudentSubject=_context
-        .ClassYears
-        .Where(x=>x.YearId==request.YearId)
-        .SelectMany(x=>x.SubjectYears)
-        .Where(x=>x.TeacherId==request.TeacherId)
+        var StudentSubject=_context.ClassYears.AsNoTracking();
+
+        if(request.YearId.HasValue){
+
+            StudentSubject=StudentSubject.Where(x=>x.YearId==request.YearId);
+
+
+        }else{
+
+
+            StudentSubject=StudentSubject.Where(x=>x.Status);
+
+        }
+
+
+        var Result=StudentSubject.SelectMany(x=>x.SubjectYears)
+        .Where(x=>x.TeacherId==request.Id)
         .Select(x=>new GetAllSubjectWithStudentTeacherDto{
 
             Id=x.Subject.Id,
             Name=x.Subject.Name,
-            Students=x.StudentSubjects.Select(x=>x.Student.Name).ToList()
+            Students=x.StudentSubjects.Select(x=>new GetAllSubjectWithStudentTeacherDto.Student{
+
+                Id=x.Student.Id,
+                Name=x.Student.Name,
+                Image=x.Student.Image,
+                hash=x.Student.Hash
+
+            }).Distinct().ToList()
         })
         .ToList();
 
-        return Success(StudentSubject);
+        return Success(Result);
 
     }
 }

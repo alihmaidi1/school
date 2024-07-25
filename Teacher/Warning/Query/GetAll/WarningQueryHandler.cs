@@ -13,12 +13,11 @@ public class WarningQueryHandler:OperationResult,
     
     
     private IHttpContextAccessor HttpContextAccessor;
-    private IWarningRepository warningRepository;
+    // private IWarningRepository warningRepository;
 
-    public WarningQueryHandler(IHttpContextAccessor HttpContextAccessor,IWarningRepository warningRepository)
+    public WarningQueryHandler(IHttpContextAccessor HttpContextAccessor)
     {
 
-        this.warningRepository = warningRepository;
         this.HttpContextAccessor = HttpContextAccessor;
 
 
@@ -26,8 +25,9 @@ public class WarningQueryHandler:OperationResult,
     
     public async Task<JsonResult> Handle(GetWarningQuery request, CancellationToken cancellationToken)
     {
-        var teacherId = HttpContextAccessor.HttpContext.User.Claims.FirstOrDefault(x=>x.Type==ClaimTypes.NameIdentifier).Value;
-        var Result=warningRepository.GetAll(new Guid(teacherId),request.PageNumber,request.PageSize);
-        return Success(Result,"this is all your warnings");
+        return null;
+        // var teacherId = HttpContextAccessor.HttpContext.User.Claims.FirstOrDefault(x=>x.Type==ClaimTypes.NameIdentifier).Value;
+        // var Result=warningRepository.GetAll(new Guid(teacherId),request.PageNumber,request.PageSize);
+        // return Success(Result,"this is all your warnings");
     }
 }

@@ -12,13 +12,12 @@ public class GetAllSubjectByYearValidation:AbstractValidator<GetAllSubjectByYear
 
     public GetAllSubjectByYearValidation(ApplicationDbContext context){
 
-
         RuleFor(x=>x.YearId)
-        .NotEmpty()
-        .NotNull()
         .Must(id=>context.Years.Any(x=>x.Id==id))
-        .WithMessage("this year id is not exists in our data");
+        .When(x=>x.YearId.HasValue)
+        .WithMessage("this year is not exists in our data");
 
+     
     }
 
 }

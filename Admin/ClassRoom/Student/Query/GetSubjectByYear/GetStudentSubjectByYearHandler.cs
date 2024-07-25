@@ -28,16 +28,22 @@ public class GetStudentSubjectByYearHandler : OperationResult ,IQueryHandler<Get
         var Subjects=_context
         .StudentSubjects
         .AsNoTracking()
-        .Where(x=>x.StudentId==request.Id)
-        .Where(x=>x.SubjectYear.ClassYear.YearId==request.YearId)
-        .Select(x=>new GetAllStudentSubjectDto{
+        .Where(x=>x.StudentId==request.Id);
+        if(request.YearId.HasValue){
+            Subjects=Subjects.Where(x=>x.SubjectYear.ClassYear.YearId==request.YearId);
+        }else{            
+            Subjects=Subjects.Where(x=>x.SubjectYear.ClassYear.Status);
+        }
+        
+        
+        var result=Subjects.Select(x=>new GetAllStudentSubjectDto{
 
 
                 Id=x.SubjectYear.Subject.Id,
                 Name=x.SubjectYear.Subject.Name,
-                Mark=x.Mark
+                Degree=x.Mark
         })
-        .ToPagedList(request.PageNumber,request.PageSize);
-        return Success(Subjects,"this is all your mark");
+        .ToList();
+        return Success(result,"this is all your mark");
     }
 }

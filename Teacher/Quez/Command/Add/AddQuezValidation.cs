@@ -26,17 +26,28 @@ public class AddQuezValidation: AbstractValidator<AddQuezCommand>
         .Must(startAt=>startAt>=DateTimeOffset.UtcNow);
 
 
-        RuleFor(x=>x.SubjectId)
-        .NotNull()
-        .NotEmpty()
-        .Must(id=>context.SubjectYears.Any(x=>x.ClassYear.Status&&x.SubjectId==id&&x.TeacherId==currentUserService.GetUserid()))
-        .WithMessage("this subject is not exists or in active year");
-
-
         RuleFor(x=>x.EndAt)
         .NotEmpty()
         .NotNull()
         .GreaterThan(x=>x.StartAt);
+
+        RuleFor(x=>x.SubjectId)
+        .NotNull()
+        .NotEmpty()
+        .Must(id=>{
+
+            if(currentUserService.IsAdmin()){
+
+                return context.SubjectYears.Any(x=>x.ClassYear.Status&&x.SubjectId==id);                
+            }            
+
+                return context.SubjectYears.Any(x=>x.ClassYear.Status&&x.SubjectId==id&&x.TeacherId==currentUserService.GetUserid());                
+
+
+        })
+        .WithMessage("this subject is not exists or in active year");
+
+
     }
 
 }

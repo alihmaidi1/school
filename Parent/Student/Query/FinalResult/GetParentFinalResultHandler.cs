@@ -37,7 +37,7 @@ public class GetParentFinalResultHandler : OperationResult,IQueryHandler<GetPare
                 .Select(y=>new GetAllStudentResultDto.Result{
 
                     Date=y.Key.Date,
-                    Total=y.Select(x=>x.Mark??0).Sum()/y.Count(),
+                    Total=y.Any()?(y.Select(x=>x.Mark??0).Sum()/y.Count()):0,
                     Marks=y.Select(z=>new GetAllStudentResultDto.SubjectMark{
 
                         Mark=z.Mark??0,

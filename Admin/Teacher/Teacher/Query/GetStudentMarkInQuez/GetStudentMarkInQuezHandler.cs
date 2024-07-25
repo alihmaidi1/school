@@ -26,6 +26,7 @@ public class GetStudentMarkInQuezHandler :OperationResult ,IQueryHandler<GetStud
         var StudentsAnswers=_context
         .Quezs
         .AsNoTracking()
+        .AsSplitQuery()
         .Where(x=>x.Id==request.Id)
         .Where(x=>x.EndAt>=DateTimeOffset.UtcNow)
 
@@ -41,7 +42,7 @@ public class GetStudentMarkInQuezHandler :OperationResult ,IQueryHandler<GetStud
                 Name=y.Student.Name,
                 Image=y.Student.Image,
                 Hash=y.Student.Hash,
-                Precent=(y.StudentAnswers.Count(x=>x.Answer.IsCorrect)/x.Questions.Count())
+                Precent=(y.StudentAnswers.Where(x=>x.Answer.IsCorrect).Sum(x=>x.Answer.Question.Score)/x.Questions.Sum(x=>x.Score))
 
             }).ToList()
 

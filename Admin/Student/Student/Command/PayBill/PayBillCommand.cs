@@ -9,6 +9,9 @@ namespace Admin.Student.Student.Command.PayBill;
 public class PayBillCommand: ICommand
 {
 
-    public Guid Id{get;set;}
+
+    public Guid StudentId{get;set;}
+
+    public Guid BillId{get;set;}
 
 }

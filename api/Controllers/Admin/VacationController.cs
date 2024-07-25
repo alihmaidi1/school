@@ -97,7 +97,7 @@ public class VacationController:ApiController
     /// </summary>
     /// <returns></returns>
 
-    [Produces(typeof(OperationResultBase<PageList<GetAllVacationDto>>))]
+    [Produces(typeof(OperationResultBase<List<GetAllVacationDto>>))]
     
     [HttpGet]
     public async Task<IActionResult> GetAll([FromQuery] GetVacationQuery request,CancellationToken Token)

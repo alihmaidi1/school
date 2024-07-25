@@ -15,9 +15,8 @@ public class GetFinalResultValidation: AbstractValidator<GetFinalResultQuery>
         .WithMessage("this class is not exists in our data");
 
         RuleFor(x=>x.YearId)
-        .NotEmpty()
-        .NotNull()
         .Must(id=>context.Years.Any(x=>x.Id==id))
+        .When(x=>x.YearId.HasValue)
         .WithMessage("this year is not exists in our data");
 
     }

@@ -31,8 +31,18 @@ public class GetAllTeacherQuesHandler : OperationResult, IQueryHandler<GetAllQue
 
         var Result=_context
         .SubjectYears
-        .Where(x=>x.TeacherId==_currentUserService.GetUserid())
-        .Where(x=>x.ClassYear.YearId==request.YearId)
+        .AsNoTracking();
+
+        if(request.YearId.HasValue){
+
+            Result=Result.Where(x=>x.ClassYear.YearId==request.YearId);
+
+        }else{
+
+            Result=Result.Where(x=>x.ClassYear.Status);
+
+        }
+        var Result1=Result.Where(x=>x.TeacherId==_currentUserService.GetUserid())
         .Select(x=>new GetAllTeacherQuezDto(){
 
             Id=x.Subject.Id,
@@ -50,7 +60,7 @@ public class GetAllTeacherQuesHandler : OperationResult, IQueryHandler<GetAllQue
 
         })
         .ToPagedList(request.PageNumber,request.PageSize);
-        return Success(Result,"this is all your data");
+        return Success(Result1,"this is all your data");
 
 
     }
