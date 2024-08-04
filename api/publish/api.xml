@@ -638,6 +638,11 @@
             Solve Quez 
             </summary>
         </member>
+        <member name="M:schoolmanagment.Controllers.Teacher.AuthController.GetTeacherInfo(System.Threading.CancellationToken)">
+            <summary>
+            Get Profile Info
+            </summary>
+        </member>
         <member name="M:schoolmanagment.Controllers.Teacher.LesonController.GetAllSubjectAndLeson(Teacher.Leson.Teacher.Leson.Query.GetAllLeson.GetAllLesonQuery,System.Threading.CancellationToken)">
             <summary>
             get all Teacher  subject  and leson  in specific year 

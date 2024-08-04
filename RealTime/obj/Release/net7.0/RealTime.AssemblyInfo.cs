@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RealTime")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4a0067d6c6aa29fe7657586cc6326c9e8a756dec")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+91de76f40237a106ec7c647630f5887e7291b2f8")]
 [assembly: System.Reflection.AssemblyProductAttribute("RealTime")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RealTime")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -170,8 +170,3 @@
 /home/alihmaidi/Desktop/schhol1/api/obj/Release/net7.0/api.pdb
 /home/alihmaidi/Desktop/schhol1/api/obj/Release/net7.0/api.genruntimeconfig.cache
 /home/alihmaidi/Desktop/schhol1/api/obj/Release/net7.0/ref/api.dll
-/home/alihmaidi/Desktop/schhol1/api/bin/Release/net7.0/publish/web.config
-/home/alihmaidi/Desktop/schhol1/api/bin/Release/net7.0/publish/api.deps.json
-/home/alihmaidi/Desktop/schhol1/api/bin/Release/net7.0/publish/api.runtimeconfig.json
-/home/alihmaidi/Desktop/schhol1/api/bin/Release/net7.0/publish/appsettings.json
-/home/alihmaidi/Desktop/schhol1/api/bin/Release/net7.0/publish/appsettings.Production.json
