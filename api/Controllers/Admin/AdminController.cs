@@ -4,6 +4,7 @@ using Admin.Manager.Admin.Command.Delete;
 using Admin.Manager.Admin.Command.Update;
 using Admin.Manager.Admin.Query.Get;
 using Admin.Manager.Admin.Query.GetAll;
+using Bogus.DataSets;
 using Domain.AppMetaData.Admin;
 using Domain.Dto.Manager.Admin;
 using Domain.Enum;
@@ -38,8 +39,13 @@ public class AdminController:ApiController
     }
 
     
+    [HttpGet]
+    public async Task<DateTime> GetDate()
+    {
+        return DateTime.UtcNow;
+    }
 
-
+    
     /// <summary>
     /// Get  Admin With Role Name
     /// </summary>    

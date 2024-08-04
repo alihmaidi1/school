@@ -24,8 +24,7 @@ public class GetQuezInfoHandler : OperationResult,IQueryHandler<GetQuezInfoQuery
 
         var QuezInfo=_context
         .StudentQuezs
-        .AsNoTracking()
-        
+        .AsNoTracking()        
         .Where(x=>x.Id==request.Id)
         .Select(x=>new GetQuezInfoDto{
 

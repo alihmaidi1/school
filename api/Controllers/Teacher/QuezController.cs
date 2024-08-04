@@ -110,7 +110,8 @@ public class QuezController:ApiController
     /// </summary>
     [Produces(typeof(OperationResultBase<StudentAnswerDto>))]
     [HttpGet]
-    [CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Teacher))]
+     [CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Teacher))]
+    [CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Admin),Policy = nameof(PermissionEnum.Quez))]
 
     public async Task<IActionResult> GetStudentAnswer([FromQuery] GetStudentAnswerQuery command,CancellationToken token)
     {
@@ -141,6 +142,7 @@ public class QuezController:ApiController
     [Produces(typeof(OperationResultBase<GetQuezwithQuestionAndDetailDto>))]
     [HttpGet]
     [CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Teacher))]
+    [CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Admin),Policy = nameof(PermissionEnum.Quez))]
 
     public async Task<IActionResult> GetQuezDetailWithQuestionAndAnswer([FromQuery] GetQuezWithQuestionAndAnswerQuery command,CancellationToken token)
     {

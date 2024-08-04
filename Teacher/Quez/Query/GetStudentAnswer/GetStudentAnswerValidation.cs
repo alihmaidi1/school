@@ -13,17 +13,12 @@ public class GetStudentAnswerValidation: AbstractValidator<GetStudentAnswerQuery
 
     public GetStudentAnswerValidation(ApplicationDbContext context,ICurrentUserService currentUserService){
 
-        RuleFor(x=>x.QuezId)
+        RuleFor(x=>x.StudentQuezId)
         .NotEmpty()
         .NotNull()
-        .Must(id=>context.Quezs.Any(x=>x.Id==id&&x.SubjectYear.TeacherId==currentUserService.GetUserid()))
-        .WithMessage("this quez is not belongs to you");
+        .Must(id=>context.StudentQuezs.Any(x=>x.Id==id))
+        .WithMessage("this id is not correct");
 
-        RuleFor(x=>x.StudentId)
-        .NotEmpty()
-        .NotNull()
-        .Must((request,id)=>context.StudentQuezs.Any(x=>x.StudentId==id&&x.QuezId==request.QuezId))
-        .WithMessage("this student does not have this quez");
     }
 
 }

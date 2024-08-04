@@ -55,7 +55,7 @@ public class ClassController:ApiController
     /// </summary>
     /// <returns>return all role in pagination</returns>
     [Produces(typeof(OperationResultBase<List<GetAllClassDto>>))]
-    [CheckTokenSession(Policy = nameof(PermissionEnum.Subject))]
+    [CheckTokenSession]
     
     [HttpGet]
     public async Task<IActionResult> GetAll(CancellationToken Token)
@@ -88,7 +88,7 @@ public class ClassController:ApiController
     /// <returns>return all role in pagination</returns>
    
     [Produces(typeof(OperationResultBase<Boolean>))]
-    [CheckTokenSession(Policy = nameof(PermissionEnum.Subject))]
+    [CheckTokenSession]
 
     [HttpPost]
     public async Task<IActionResult> StartYear([FromBody]StartYearCommand request,CancellationToken Token)
@@ -105,7 +105,7 @@ public class ClassController:ApiController
     /// <returns>return all role in pagination</returns>
    
     [Produces(typeof(OperationResultBase<List<GetAllActiveClassDto>>))]
-    [CheckTokenSession(Policy = nameof(PermissionEnum.Subject))]
+    [CheckTokenSession]
 
     [HttpGet]
     public async Task<IActionResult> GetAllActiveClasses(CancellationToken Token)
@@ -194,7 +194,7 @@ public class ClassController:ApiController
     /// <returns>return all role in pagination</returns>
    
     [Produces(typeof(OperationResultBase<Boolean>))]
-    [CheckTokenSession(Policy = nameof(PermissionEnum.Subject))]
+    [CheckTokenSession]
 
     [HttpPost]
     public async Task<IActionResult> AddBill([FromBody] AddBillCommand command,CancellationToken Token)
@@ -211,7 +211,7 @@ public class ClassController:ApiController
     /// <returns>return all role in pagination</returns>
    
     [Produces(typeof(OperationResultBase<Boolean>))]
-    [CheckTokenSession(Policy = nameof(PermissionEnum.Subject))]
+    [CheckTokenSession]
 
     [HttpPut]
     public async Task<IActionResult> FinishClassYear([FromBody] FinishYearCommand command,CancellationToken Token)

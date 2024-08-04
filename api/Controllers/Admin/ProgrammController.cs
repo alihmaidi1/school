@@ -16,7 +16,7 @@ namespace schoolmanagment.Controllers.Admin;
 
 [Microsoft.AspNetCore.Mvc.Route("Api/SuperAdmin/[controller]/[action]")]
 [ApiGroup(ApiGroupName.All, ApiGroupName.Admin)]
-[CheckTokenSession(Policy = nameof(PermissionEnum.Programm))]
+[CheckTokenSession(Policy = "Programm")]
 
 public class ProgrammController: ApiController
 {

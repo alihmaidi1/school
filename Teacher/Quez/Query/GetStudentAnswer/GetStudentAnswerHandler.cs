@@ -27,10 +27,7 @@ public class GetStudentAnswerHandler : OperationResult, IQueryHandler<GetStudent
         .StudentQuezs
         .AsNoTracking()
         .AsSplitQuery()
-        .Where(x=>x.StudentId==request.StudentId)
-        .Where(x=>x.QuezId==request.QuezId)
-        
-
+        .Where(x=>x.Id==request.StudentQuezId)
         .Select(x=>new StudentAnswerDto{
 
             Id=x.Quez.Id,
@@ -38,25 +35,30 @@ public class GetStudentAnswerHandler : OperationResult, IQueryHandler<GetStudent
             StartAt=x.Quez.StartAt.ToString(),
             EndAt=x.Quez.EndAt,
 
-            Questions=x.StudentAnswers.Select(y=>new StudentAnswerDto.Question{
+            Questions=x.Quez.Questions.Select(y=>new StudentAnswerDto.Question{
 
-                Id=y.Answer.Question.Id,
-                Name=y.Answer.Question.Name,
-                Image=y.Answer.Question.Image,
-                Answers=y.Answer.Question.Answers.Select(z=>new StudentAnswerDto.Answer{
+                Id=y.Id,
+                Name=y.Name,
+                Score=y.Score,
+                
+                Image=y.Image,
+                Answers=y.Answers.Select(z=>new StudentAnswerDto.Answer{
 
                     Id=z.Id,
                     Name=z.Name,
                     IsCorrect=z.IsCorrect,
-                    IsSelect=z.Id==y.AnswerId
+                    IsSelect=z.StudentAnswers.Any(r=>r.StudentQuizId==request.StudentQuezId)
 
                 }).ToList()
 
 
             }).ToList()
 
-        }).ToList();
+        }).First();
+
         
+
         return Success(Answers,"this is student answer");
     }
 }
+ 

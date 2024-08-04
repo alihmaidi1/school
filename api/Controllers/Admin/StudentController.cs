@@ -22,7 +22,6 @@ namespace schoolmanagment.Controllers.Admin;
 
 [Microsoft.AspNetCore.Mvc.Route("Api/SuperAdmin/[controller]/[action]")]
 [ApiGroup(ApiGroupName.All, ApiGroupName.Admin)]
-[CheckTokenSession(Policy = nameof(PermissionEnum.Student))]
 
 public class StudentController: ApiController
 {
@@ -48,6 +47,8 @@ public class StudentController: ApiController
     /// <returns>return all role in pagination</returns>
     [Produces(typeof(OperationResultBase<Boolean>))]
    
+[CheckTokenSession(Policy = nameof(PermissionEnum.Student))]
+
     [HttpPost]
     public async Task<IActionResult> Add([FromBody] AddStudentCommand request,CancellationToken Token)
     {
@@ -64,6 +65,8 @@ public class StudentController: ApiController
     /// <returns>return all role in pagination</returns>
     [Produces(typeof(OperationResultBase<Boolean>))]
    
+[CheckTokenSession(Policy = nameof(PermissionEnum.Student))]
+
     [HttpDelete]
     public async Task<IActionResult> Delete([FromQuery] DeleteStudentCommand request,CancellationToken Token)
     {
@@ -77,6 +80,7 @@ public class StudentController: ApiController
     /// </summary>
     /// <returns>return all role in pagination</returns>
     [Produces(typeof(OperationResultBase<List<GetAllStudentSubjectDto>>))]
+[CheckTokenSession(Policy = nameof(PermissionEnum.Student))]
 
     [HttpGet]
     public async Task<IActionResult> GetAllStudentSubjectByYear([FromQuery] GetStudentSubjectByYearQuery request,CancellationToken Token)
@@ -93,6 +97,7 @@ public class StudentController: ApiController
     /// </summary>
     /// <returns>return all role in pagination</returns>
     [Produces(typeof(OperationResultBase<List<Dto.Student.Student.GetAllStudentQuezDto>>))]
+[CheckTokenSession(Policy = nameof(PermissionEnum.Student))]
 
     [HttpGet]
     public async Task<IActionResult> GetAllStudentQuezByYearAndSubject([FromQuery] GetAllQuezByYearAndSubjectQuery request,CancellationToken Token)
@@ -108,6 +113,7 @@ public class StudentController: ApiController
     /// </summary>
     /// <returns>return all role in pagination</returns>
     [Produces(typeof(OperationResultBase<PageList<GetAllStudentStageDto>>))]
+[CheckTokenSession(Policy = nameof(PermissionEnum.Student))]
 
     [HttpGet]
     public async Task<IActionResult> GetAll([FromQuery] GetAllStudentQuery request,CancellationToken Token)
@@ -123,6 +129,7 @@ public class StudentController: ApiController
     /// </summary>
     /// <returns>return all role in pagination</returns>
     [Produces(typeof(OperationResultBase<List<GetAllInstallmentDto>>))]
+[CheckTokenSession(Policy = nameof(PermissionEnum.Student))]
 
     [HttpGet]
     public async Task<IActionResult> GetAllInstallment([FromQuery] GetAllInstallmentQuery request,CancellationToken Token)
@@ -139,6 +146,8 @@ public class StudentController: ApiController
     /// <returns>return all role in pagination</returns>
     [Produces(typeof(OperationResultBase<GetAllStudentBillDto>))]
 
+[CheckTokenSession(Policy = nameof(PermissionEnum.Student))]
+
     [HttpGet]
     public async Task<IActionResult> GetAllStudentBill([FromQuery] GetAllStudentBillQuery request,CancellationToken Token)
     {
@@ -154,7 +163,10 @@ public class StudentController: ApiController
     /// </summary>
     /// <returns>return all role in pagination</returns>
     [Produces(typeof(OperationResultBase<Boolean>))]
+[CheckTokenSession(Policy = nameof(PermissionEnum.Parent))]
+   
     [HttpPost]
+   
     public async Task<IActionResult> PayBill([FromBody] PayBillCommand request,CancellationToken Token)
     {
         var response = await this.Mediator.Send(request,Token);

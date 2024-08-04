@@ -9,8 +9,6 @@ namespace Teacher.Quez.Query.GetStudentAnswer;
 public class GetStudentAnswerQuery: IQuery
 {
 
-    public Guid StudentId{get;set;}
-
-    public Guid QuezId{get;set;}
+    public Guid StudentQuezId{get;set;}
 
 }

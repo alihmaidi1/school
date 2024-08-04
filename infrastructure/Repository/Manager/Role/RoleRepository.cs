@@ -19,7 +19,7 @@ public class RoleRepository:GenericRepository<Domain.Entities.Role.Role>,IRoleRe
 
     public PageList<GetAllRoleDto> GetAll(int? pageNumber, int? pageSize,string? Search)
     {
-        var Permissions=Enum.GetNames(typeof(Domain.Enum.PermissionEnum)).Order().ToList();
+        var Permissions=Enum.GetNames(typeof(Domain.Enum.PermissionEnum)).ToList();
         var Result = DbContext.Roles
             .Where(x => !x.Name.Equals(RoleEnum.SuperAdmin.ToString()))
             .Where(x=>x.Name.Contains(Search??""))            

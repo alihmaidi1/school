@@ -33,7 +33,7 @@ public class GetAllQuezHandler : OperationResult,IQueryHandler<GetAllQuezQuery>
         .AsNoTracking()
         .Where(x=>x.Id==_currentUserService.GetUserid())
         .SelectMany(x=>x.StudentQuezs)
-        .Where(x=>x.Quez.StartAt<=DateTime.UtcNow&&x.Quez.EndAt>DateTime.UtcNow)
+        .Where(x=>x.Quez.StartAt<=DateTimeOffset.UtcNow&&x.Quez.EndAt>DateTimeOffset.UtcNow)
         .Where(x=>!x.StudentAnswers.Any())
         .Select(x=>new GetAllStudentQuezDto.Quez{
 

@@ -19,7 +19,7 @@ namespace schoolmanagment.Controllers.Admin;
 
 [Microsoft.AspNetCore.Mvc.Route("Api/SuperAdmin/[controller]/[action]")]
 [ApiGroup(ApiGroupName.All, ApiGroupName.Admin)]
-[CheckTokenSession(Policy = nameof(PermissionEnum.Notification))]
+[CheckTokenSession(Policy = "Notification")]
 public class NotificationController: ApiController
 {
 

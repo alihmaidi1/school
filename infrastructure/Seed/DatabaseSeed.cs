@@ -29,12 +29,12 @@ public static class DatabaseSeed
         try
         {
             
-            // await SuperAdminSeed.SeedData(context);
+            await SuperAdminSeed.SeedData(context);
             // await RoleSeed.SeedData(context);
             // await AdminSeed.SeedData(context);
 
             // await YearSeeder.SeedData(context);
-            // await StageSeeder.SeedData(context);
+            await StageSeeder.SeedData(context);
             // await SubjectSeeder.SeedData(context);
             // await TeacherSeeder.seedData(context);
             // await VacationTypeSeeder.seedData(context);

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
+using Domain.Dto.Teacher;
 using Dto.Admin.Auth.Dto;
 using infrastructure.Attribute;
 using Microsoft.AspNetCore.Mvc;
@@ -10,6 +11,7 @@ using schoolManagement.Base;
 using Shared.Enum;
 using Shared.OperationResult.Base;
 using Shared.Swagger;
+using Teacher.Auth.GetProfile;
 using Teacher.Auth.Login;
 using Teacher.Auth.Logout;
 using Teacher.Auth.RefreshToken;
@@ -25,18 +27,20 @@ namespace schoolmanagment.Controllers.Teacher;
 public class AuthController: ApiController
 {
 
-    // /// <summary>
-    // /// Login teacher to dashboard
-    // /// </summary>
-    // [HttpPost]
-    // [Produces(typeof(OperationResultBase<AdminRefreshTokenDto>))]
+    /// <summary>
+    /// Get Profile Info
+    /// </summary>
+    [HttpGet]
+    [Produces(typeof(OperationResultBase<GetAllTeacherDto>))]
 
-    // public async Task<IActionResult> LoginTeacher([FromBody] LoginTeacherCommand command,CancellationToken Token)
-    // {
-    //     var response = await this.Mediator.Send(command,Token);
-    //     return response;
+    [CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Teacher))]
 
-    // }
+    public async Task<IActionResult> GetTeacherInfo(CancellationToken Token)
+    {
+        var response = await this.Mediator.Send(new GetProfileQuery(),Token);
+        return response;
+
+    }
     
 
 

@@ -7,7 +7,7 @@ using Shared.Abstraction;
 
 namespace Admin.Teacher.VacationType.Query.GetAll;
 
-public class GetAllVacationTypeQuery:PaginationRequest, IQuery
+public class GetAllVacationTypeQuery: IQuery
 {
 
 

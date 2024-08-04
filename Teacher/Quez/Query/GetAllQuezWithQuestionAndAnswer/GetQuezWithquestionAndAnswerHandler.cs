@@ -25,16 +25,21 @@ public class GetQuezWithquestionAndAnswerHandler : OperationResult,IQueryHandler
         .Quezs
         .AsNoTracking()
         .AsSplitQuery()
+        .Where(x=>x.Id==request.Id)
         .Select(x=>new GetQuezwithQuestionAndDetailDto{
+
+
 
             Id=x.Id,
             Name=x.Name,
             StartAt=x.StartAt,
             EndAt=x.EndAt,
-
+            
             Questions=x.Questions.Select(y=>new GetQuezwithQuestionAndDetailDto.Question{
 
                 Id=y.Id,
+
+                Score=y.Score,
                 Name=y.Name,
                 Answers=y.Answers.Select(z=>new  GetQuezwithQuestionAndDetailDto.Answer{
 
@@ -46,11 +51,23 @@ public class GetQuezWithquestionAndAnswerHandler : OperationResult,IQueryHandler
                 
 
 
+            }).ToList(),
+
+            Students=x.EndAt>DateTimeOffset.UtcNow?new List<GetQuezwithQuestionAndDetailDto.Student>():x.StudentQuezs.Select(y=>new GetQuezwithQuestionAndDetailDto.Student{
+
+                Id=y.StudentId,
+                Name=y.Student.Name,
+                Image=y.Student.Image,
+                StudentQuezId=y.Id,
+                Hash=y.Student.Hash,
+                Precent=y.StudentAnswers.Where(x=>x.Answer.IsCorrect).Sum(x=>x.Answer.Question.Score)/y.Quez.Questions.Sum(x=>x.Score)
+
             }).ToList()
 
 
+
         })
-        .FirstAsync(x=>x.Id==request.Id);
+        .FirstAsync();
 
 
         return Success(Quez,"this is your data");

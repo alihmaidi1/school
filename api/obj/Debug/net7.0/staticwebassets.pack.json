@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets/Admins/030f725c-a8da-4f7f-bda0-4b5dd506dc0d.png"
     },
     {
+      "Id": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Admins/04f5c8db-daf0-40ab-8341-38a1e29efb31.png",
+      "PackagePath": "staticwebassets/Admins/04f5c8db-daf0-40ab-8341-38a1e29efb31.png"
+    },
+    {
       "Id": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Admins/07847ce3-5715-4daa-bcb8-0b64caf105dc.png",
       "PackagePath": "staticwebassets/Admins/07847ce3-5715-4daa-bcb8-0b64caf105dc.png"
     },
@@ -93,6 +97,10 @@
       "PackagePath": "staticwebassets/Lesons/b019095e-82be-479e-915e-16708a57bca8.pdf"
     },
     {
+      "Id": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Lesons/daeb2bc0-7cbe-4cce-b9ec-86ce6e757bd9.pdf",
+      "PackagePath": "staticwebassets/Lesons/daeb2bc0-7cbe-4cce-b9ec-86ce6e757bd9.pdf"
+    },
+    {
       "Id": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Lesons/fab50db6-2ad5-4a88-8623-1b0d2351332b.pdf",
       "PackagePath": "staticwebassets/Lesons/fab50db6-2ad5-4a88-8623-1b0d2351332b.pdf"
     },
@@ -119,6 +127,34 @@
     {
       "Id": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Parent/e1fa4b45-72ff-4e5e-a393-b57033a09ea9.png",
       "PackagePath": "staticwebassets/Parent/e1fa4b45-72ff-4e5e-a393-b57033a09ea9.png"
+    },
+    {
+      "Id": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Question/2bdd1496-55a2-46ba-803e-e8abb18c4265.png",
+      "PackagePath": "staticwebassets/Question/2bdd1496-55a2-46ba-803e-e8abb18c4265.png"
+    },
+    {
+      "Id": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Question/7221fbeb-71f8-4bb0-b06a-91e870882e97.png",
+      "PackagePath": "staticwebassets/Question/7221fbeb-71f8-4bb0-b06a-91e870882e97.png"
+    },
+    {
+      "Id": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Question/745c011a-b615-4dd5-a7ec-e715df06f3c8.png",
+      "PackagePath": "staticwebassets/Question/745c011a-b615-4dd5-a7ec-e715df06f3c8.png"
+    },
+    {
+      "Id": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Question/97281c7d-7311-4b4e-b867-40a768fedcc4.png",
+      "PackagePath": "staticwebassets/Question/97281c7d-7311-4b4e-b867-40a768fedcc4.png"
+    },
+    {
+      "Id": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Question/98103580-7e80-4185-b0ad-28a20c65dab1.png",
+      "PackagePath": "staticwebassets/Question/98103580-7e80-4185-b0ad-28a20c65dab1.png"
+    },
+    {
+      "Id": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Question/b70f39ef-9520-404a-be84-7229a0ead381.png",
+      "PackagePath": "staticwebassets/Question/b70f39ef-9520-404a-be84-7229a0ead381.png"
+    },
+    {
+      "Id": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Question/ef49c5f8-773b-4542-99b3-4fe237ea1cd9.png",
+      "PackagePath": "staticwebassets/Question/ef49c5f8-773b-4542-99b3-4fe237ea1cd9.png"
     },
     {
       "Id": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Student/13bbb6c6-b4f6-4242-bf15-e80341fdcc5c.png",
@@ -169,6 +205,10 @@
       "PackagePath": "staticwebassets/Student/b4f7fac8-5efe-43ae-b9b8-72c27a1363c4.png"
     },
     {
+      "Id": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Student/ed516217-9971-4c23-9056-72dc789f88b4.png",
+      "PackagePath": "staticwebassets/Student/ed516217-9971-4c23-9056-72dc789f88b4.png"
+    },
+    {
       "Id": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Student/eeec7967-6a4e-43a4-aad0-6222af599315.png",
       "PackagePath": "staticwebassets/Student/eeec7967-6a4e-43a4-aad0-6222af599315.png"
     },
@@ -191,6 +231,10 @@
     {
       "Id": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Teachers/52b9e12a-3f40-4072-a4f5-b41cfadb9906.jpeg",
       "PackagePath": "staticwebassets/Teachers/52b9e12a-3f40-4072-a4f5-b41cfadb9906.jpeg"
+    },
+    {
+      "Id": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Teachers/72b96a3c-ffd8-450e-9fd5-fd5d261f9560.png",
+      "PackagePath": "staticwebassets/Teachers/72b96a3c-ffd8-450e-9fd5-fd5d261f9560.png"
     },
     {
       "Id": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Teachers/7b788eb4-0dd1-4aea-bcc5-926df42b4845.png",
@@ -217,6 +261,10 @@
       "PackagePath": "staticwebassets/Temps/2181d1aa-e522-417c-b8da-a97599f2895b.png"
     },
     {
+      "Id": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Temps/25f31b0a-2051-422d-a354-a9c4bdaa7a1e.png",
+      "PackagePath": "staticwebassets/Temps/25f31b0a-2051-422d-a354-a9c4bdaa7a1e.png"
+    },
+    {
       "Id": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Temps/26ace5dc-996e-4cd3-b5eb-23e172dfb73b.png",
       "PackagePath": "staticwebassets/Temps/26ace5dc-996e-4cd3-b5eb-23e172dfb73b.png"
     },
@@ -227,6 +275,10 @@
     {
       "Id": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Temps/5e2d6f40-5854-4b55-a31b-d9576bc6fbf7.png",
       "PackagePath": "staticwebassets/Temps/5e2d6f40-5854-4b55-a31b-d9576bc6fbf7.png"
+    },
+    {
+      "Id": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Temps/66c3fa40-9aff-4caf-a4c8-b03b57efb63e.png",
+      "PackagePath": "staticwebassets/Temps/66c3fa40-9aff-4caf-a4c8-b03b57efb63e.png"
     },
     {
       "Id": "/home/alihmaidi/Desktop/schhol1/api/wwwroot/Temps/687e3ad8-5c0b-4144-aaa6-6cfa50e4d04a.png",

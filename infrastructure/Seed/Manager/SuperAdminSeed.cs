@@ -15,6 +15,10 @@ public static class SuperAdminSeed
             List<string> permissions = Enum.GetNames(typeof(PermissionEnum)).ToList();
             permissions.Add("Role");
             permissions.Add("Admin");
+            permissions.Add("Warning");
+            permissions.Add("Notification");
+            permissions.Add("Banner");
+            permissions.Add("Programm");
 
             Role role = new Role()
             {

@@ -66,7 +66,7 @@ public class VacationController:ApiController
     /// </summary>
     /// <returns></returns>
 
-    [Produces(typeof(OperationResultBase<PageList<GetAllVacationTypeDto>>))]
+    [Produces(typeof(OperationResultBase<List<GetAllVacationTypeDto>>))]
     [CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Admin),Policy = nameof(PermissionEnum.Vacation))]
     [CheckTokenSession(AuthenticationSchemes =nameof(JwtSchema.Teacher))]
 

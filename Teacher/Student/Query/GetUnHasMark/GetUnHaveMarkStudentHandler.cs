@@ -35,7 +35,7 @@ public class GetUnHaveMarkStudentHandler : OperationResult,IQueryHandler<GetUnha
         .AsNoTracking()
         .Where(x=>x.TeacherId==_currentUserService.GetUserid())
         .Where(x=>x.SubjectId==request.SubjectId)
-        .SelectMany(x=>x.StudentSubjects.Where(x=>x.Mark==null))
+        .SelectMany(x=>x.StudentSubjects)
         .Select(x=>new GetStudentNameDto{
 
 

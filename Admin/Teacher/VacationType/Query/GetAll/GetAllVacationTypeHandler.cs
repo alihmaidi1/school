@@ -32,7 +32,7 @@ public class GetAllVacationTypeHandler : OperationResult,IQueryHandler<GetAllVac
             Id=x.Id,
             Name=x.Name
         })
-        .ToPagedList(request.PageNumber,100);
+        .ToList();
 
         return Success(vacationsType,"this is all data");
     }

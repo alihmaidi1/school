@@ -187,6 +187,8 @@ public class TeacherController:ApiController
    
     [Produces(typeof(OperationResultBase<Boolean>))]
     [HttpPost]
+    [CheckTokenSession(Policy =nameof(PermissionEnum.Teacher))]
+
     public async Task<IActionResult> AddTeacher([FromBody] AddTeacherCommand request,CancellationToken Token)
     {
         var response = await this.Mediator.Send(request,Token);
@@ -198,8 +200,8 @@ public class TeacherController:ApiController
     /// update exists Teacher info and notify him by email 
     /// </summary>
     /// <returns>return if the operation successed</returns>
+    [CheckTokenSession(Policy =nameof(PermissionEnum.Teacher))]
    
-    
     [HttpPut]
     public async Task<IActionResult> UpdateTeacher([FromBody] UpdateTeacherCommand request,CancellationToken Token)
     {
@@ -212,8 +214,8 @@ public class TeacherController:ApiController
     /// update teacher status 
     /// </summary>
     /// <returns>return if the operation successed</returns>
+    [CheckTokenSession(Policy =nameof(PermissionEnum.Teacher))]
    
-    
     [HttpPut]
     public async Task<IActionResult> UpdateStatus([FromBody] ChangeTeacherStatusCommand request,CancellationToken Token)
     {
@@ -227,6 +229,7 @@ public class TeacherController:ApiController
     /// </summary>
     /// <returns>return if the operation successed</returns>
    
+    [CheckTokenSession(Policy =nameof(PermissionEnum.Teacher))]
     
     [HttpDelete]
     public async Task<IActionResult> DeleteTeacher(DeleteTeacherCommand request,CancellationToken Token)

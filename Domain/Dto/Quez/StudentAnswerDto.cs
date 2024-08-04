@@ -25,6 +25,8 @@ public class StudentAnswerDto
 
         public string? Name{get;set;}
 
+
+        public float Score{get;set;}
         public string? Image{get;set;}
         public List<Answer> Answers{get;set;}
 

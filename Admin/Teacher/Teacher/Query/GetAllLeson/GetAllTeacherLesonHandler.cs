@@ -36,6 +36,7 @@ public class GetAllTeacherLesonHandler : OperationResult,IQueryHandler<GetAllTea
         }else{
 
             Lesons=Lesons.Where(x=>x.ClassYear.Status);
+
         }
 
         var Result=Lesons

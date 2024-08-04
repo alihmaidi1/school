@@ -40,7 +40,7 @@ public class VacationController:ApiController
     /// </summary>
     [Produces(typeof(OperationResultBase<Boolean>))]
     [HttpPost]
-    public async Task<IActionResult> Add([FromForm] RequestVacationCommand command,CancellationToken token)
+    public async Task<IActionResult> Add([FromBody] RequestVacationCommand command,CancellationToken token)
     {
         var response = await this.Mediator.Send(command,token);
         return response;

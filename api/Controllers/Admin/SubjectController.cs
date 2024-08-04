@@ -49,7 +49,7 @@ public class SubjectController: ApiController
     /// </summary>
     /// <returns>return all role in pagination</returns>
     [Produces(typeof(OperationResultBase<List<GetAllSubjectNameDto>>))]
-    [CheckTokenSession(Policy = nameof(PermissionEnum.Subject))]
+    [CheckTokenSession]
    
     [HttpGet]
     public async Task<IActionResult> GetAllSubjectName(CancellationToken Token)

@@ -1,13 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Common.CQRS;
 using Domain.Dto.Student;
 using infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Shared.Entity.EntityOperation;
 using Shared.OperationResult;
 using Shared.Services.User;
 
@@ -48,13 +43,15 @@ public class GetAllQuezHandler : OperationResult,IQueryHandler<GetAllQuezQuery>
         .SelectMany(x=>x.Lesons)
         .Count();
 
+
+
         Result.Quezs=_context
         .Students
         .AsNoTracking()
         .Where(x=>x.Id==_currentUserService.GetUserid())
         .SelectMany(x=>x.StudentQuezs.Where(x=>x.Quez.SubjectYearId==request.SubjectYearId))
-        .Where(x=>x.Quez.StartAt<=DateTime.UtcNow&&x.Quez.EndAt>DateTime.UtcNow)
-        .Where(x=>!x.StudentAnswers.Any())
+        .Where(x=>x.Quez.StartAt<=DateTimeOffset.UtcNow&&x.Quez.EndAt>DateTimeOffset.UtcNow)
+        .Where(x=>!x.StudentAnswers.Any())        
         .Select(x=>new GetAllStudentQuezDto.Quez{
 
             Id=x.Id,

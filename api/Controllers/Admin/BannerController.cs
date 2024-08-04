@@ -19,7 +19,7 @@ namespace schoolmanagment.Controllers.Admin;
 
 [Microsoft.AspNetCore.Mvc.Route("Api/SuperAdmin/[controller]/[action]")]
 [ApiGroup(ApiGroupName.All, ApiGroupName.Admin)]
-[CheckTokenSession(Policy = nameof(PermissionEnum.Banner))]
+[CheckTokenSession(Policy = "Banner")]
 
 public class BannerController:ApiController
 {
