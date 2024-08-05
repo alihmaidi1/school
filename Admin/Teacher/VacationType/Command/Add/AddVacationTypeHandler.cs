@@ -30,6 +30,6 @@ public class AddVacationTypeHandler :OperationResult, ICommandHandler<AddVacatio
 
         await _context.VacationTypes.AddAsync(VacationType);
         await _context.SaveChangesAsync();
-        return Created("data was created successfully");
+        return Success("data was created successfully");
     }
 }
