@@ -68,3 +68,4 @@ public class GetSessionHandler : OperationResult,IQueryHandler<GetSessionQuery>
         return Success(Result,"this is your session number");
     }
 }
+    

@@ -34,7 +34,7 @@ public class AddSessionHandler : OperationResult,ICommandHandler<AddSessionComma
         .Audiences
         .AsNoTracking()
         .OrderByDescending(x=>x.SessionNumber)        
-        .FirstOrDefault(x=>x.SubjectYear.ClassYear.Status&&x.SubjectYear.SubjectId==request.SubjectId)?.SessionNumber??1;
+        .FirstOrDefault(x=>x.SubjectYear.ClassYear.Status&&x.SubjectYear.SubjectId==request.SubjectId)?.SessionNumber+1??1;
         var SubjectYear=_context.SubjectYears.First(x=>x.ClassYear.Status&&x.SubjectId==request.SubjectId);
 
 
