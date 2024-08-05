@@ -63,7 +63,7 @@ public class ErrorHandling:IMiddleware, IBaseSuper
                         var innerexception = exception.InnerException;
                         if (innerexception is SqlException&& ((SqlException)(innerexception)).ErrorCode==-2146232060)
                         {
-                            result.Message = "you can't delete this record becuase it is have relation data";
+                            result.Message = innerexception.Message;
                             result.StatusCode= (int)HttpStatusCode.InternalServerError;
                             response.StatusCode= (int)HttpStatusCode.InternalServerError;
                             break;
