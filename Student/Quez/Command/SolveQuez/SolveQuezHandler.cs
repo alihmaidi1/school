@@ -35,6 +35,18 @@ public class SolveQuezHandler : OperationResult,ICommandHandler<SolveQuezCommand
 
         _context.StudentAnswers.AddRange(StudentAnswer);
         await _context.SaveChangesAsync(cancellationToken);
-        return Success("quez solved successfully");
+
+        var Mark=_context
+        .StudentQuezs
+        .AsNoTracking()
+        .Where(x=>x.Id==request.Id)
+        .SelectMany(x=>x.StudentAnswers.Where(x=>x.Answer.IsCorrect))
+        .Sum(x=>x.Answer.Question.Score)/_context
+        .StudentQuezs
+        .AsNoTracking()
+        .Where(x=>x.Id==request.Id)
+        .SelectMany(x=>x.Quez.Questions)
+        .Sum(x=>x.Score);
+        return Success(Mark,"quez solved successfully");
     }
 }

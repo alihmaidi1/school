@@ -53,7 +53,7 @@ public class QuezController:ApiController
     /// Solve Quez 
     /// </summary>
     [HttpPost]
-    [Produces(typeof(OperationResultBase<Boolean>))]
+    [Produces(typeof(OperationResultBase<Double>))]
 
     public async Task<IActionResult> SolveQuez([FromQuery] SolveQuezCommand command,CancellationToken Token)
     {
