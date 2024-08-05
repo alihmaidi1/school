@@ -140,6 +140,12 @@
             </summary>
             <returns>return all role in pagination</returns>
         </member>
+        <member name="M:schoolmanagment.Controllers.Admin.NotificationController.GetAllStudentOrParent(Admin.Parent.GetAllParentOrStudent.GetAllParentOrStudentQuery,System.Threading.CancellationToken)">
+            <summary>
+            Get All Student Or Parent  
+            </summary>
+            <returns>return all role in pagination</returns>
+        </member>
         <member name="M:schoolmanagment.Controllers.Admin.ParentController.GetAllParent(Admin.Student.Parent.Query.GetAll.GetAllParentsQuery,System.Threading.CancellationToken)">
             <summary>
             get all Parent  

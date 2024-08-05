@@ -1,3 +1,4 @@
+using System.Data.Entity;
 using Domain.Entities.Account;
 using infrastructure;
 using Microsoft.AspNetCore.Mvc;
@@ -25,29 +26,18 @@ public class SendNotificationHandler : OperationResult ,ICommandHandler<SendNoti
             Title=request.Title,
             Body=request.Body,
         };
+        
+        var AccountIds=request.Ids;                
+        var fcmTokens=_context
+        .Accounts
+        .AsNoTracking()
+        .Where(x=>AccountIds.Contains(x.Id))
+        .SelectMany(x=>x.AccountSessions)
+        .Select(x=>x.FcmToken)
+        .ToList();
 
-        List<Guid> AccountIds=new List<Guid>();
 
-        if(request.NotificationType==Domain.Enum.NotificationType.Public){
-
-            AccountIds=_context.Accounts.Select(x=>x.Id).ToList();
-        }else if(request.NotificationType==Domain.Enum.NotificationType.Class){
-
-            AccountIds=_context
-            .SubjectYears
-            .Where(x=>x.ClassYear.Status)            
-            .Where(x=>request.Ids!.Contains(x.ClassYear.ClassId))            
-            .SelectMany(x=>x.StudentSubjects)
-            .Select(x=>x.StudentId)
-            .Distinct()
-            .ToList();
-            
-        }else {
-
-            AccountIds=request.Ids!;
-
-        }
-        var AccountNotifications=AccountIds.Select(x=>new AccountNotification{
+        var AccountNotifications=request.Ids.Select(x=>new AccountNotification{
 
             AccountId=x
 

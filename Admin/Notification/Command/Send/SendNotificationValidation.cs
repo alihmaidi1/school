@@ -16,28 +16,13 @@ public class SendNotificationValidation: AbstractValidator<SendNotificationComma
         .NotEmpty()
         .NotNull();
 
-        RuleFor(x=>x.Ids)
-        .Must(ids=>ids!=null &&context.Students.Where(x=>ids.Contains(x.Id)).Count()==ids.Count())
-        .When(x=>x.NotificationType==Domain.Enum.NotificationType.Student)
-        .WithMessage("some id is not correct");
+
 
 
         RuleFor(x=>x.Ids)
-        .Must(ids=>ids!=null &&context.Teachers.Where(x=>ids.Contains(x.Id)).Count()==ids.Count())
-        .When(x=>x.NotificationType==Domain.Enum.NotificationType.Teacher)
+        .Must(ids=>context.Accounts.Where(x=>ids.Contains(x.Id)).Count()==ids.Count())
         .WithMessage("some id is not correct");
 
-
-        RuleFor(x=>x.Ids)
-        .Must(ids=>ids!=null &&context.Parents.Where(x=>ids.Contains(x.Id)).Count()==ids.Count())
-        .When(x=>x.NotificationType==Domain.Enum.NotificationType.Parent)
-        .WithMessage("some id is not correct");
-
-
-        RuleFor(x=>x.Ids)
-        .Must(ids=>ids!=null &&context.Classes.Where(x=>ids.Contains(x.Id)).Count()==ids.Count())
-        .When(x=>x.NotificationType==Domain.Enum.NotificationType.Class)
-        .WithMessage("some id is not correct");
 
         
 

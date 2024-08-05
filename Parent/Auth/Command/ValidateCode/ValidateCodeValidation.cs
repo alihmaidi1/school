@@ -24,6 +24,10 @@ public class ValidateCodeValidation: AbstractValidator<ValidateCodeCommand>
         .NotNull()
         .Length(6);
 
+        RuleFor(x=>x.FcmToken)
+        .NotEmpty()
+        .NotNull();
+
     }
 
 }

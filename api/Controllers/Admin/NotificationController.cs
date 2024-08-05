@@ -4,7 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Admin.Notification.Command.Send;
 using Admin.Notification.Query.ReadAll;
+using Admin.Parent.GetAllParentOrStudent;
 using Domain.Dto.Notification;
+using Domain.Dto.Student;
 using Domain.Enum;
 using infrastructure.Attribute;
 using Microsoft.AspNetCore.Mvc;
@@ -19,7 +21,6 @@ namespace schoolmanagment.Controllers.Admin;
 
 [Microsoft.AspNetCore.Mvc.Route("Api/SuperAdmin/[controller]/[action]")]
 [ApiGroup(ApiGroupName.All, ApiGroupName.Admin)]
-[CheckTokenSession(Policy = "Notification")]
 public class NotificationController: ApiController
 {
 
@@ -29,6 +30,8 @@ public class NotificationController: ApiController
     /// <returns>return all role in pagination</returns>
     [Produces(typeof(OperationResultBase<List<GetAllNotificationDto>>))]   
     [HttpGet]
+    [CheckTokenSession(Policy = "Notification")]
+
     public async Task<IActionResult> GetAllNotification([FromQuery] ReadAllAdminNotificationCommand command,CancellationToken Token)
     {
         var response = await this.Mediator.Send(command,Token);
@@ -43,6 +46,8 @@ public class NotificationController: ApiController
     /// <returns>return all role in pagination</returns>
     [Produces(typeof(OperationResultBase<Boolean>))]   
     [HttpPost]
+    [CheckTokenSession(Policy = "Notification")]
+
     public async Task<IActionResult> Send([FromBody] SendNotificationCommand command,CancellationToken Token)
     {
         var response = await this.Mediator.Send(command,Token);
@@ -50,6 +55,21 @@ public class NotificationController: ApiController
     
     }
 
+
+
+   /// <summary>
+    /// Get All Student Or Parent  
+    /// </summary>
+    /// <returns>return all role in pagination</returns>
+    [Produces(typeof(OperationResultBase<List<GetAllStudentOrParentDto>>))]  
+    [CheckTokenSession]
+    [HttpGet]
+    public async Task<IActionResult> GetAllStudentOrParent([FromQuery] GetAllParentOrStudentQuery command,CancellationToken Token)
+    {
+        var response = await this.Mediator.Send(command,Token);
+        return response;
+    
+    }
 
 
 }
