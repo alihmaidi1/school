@@ -1,11 +1,6 @@
 /home/alihmaidi/Desktop/schhol1/api/publish/api
-/home/alihmaidi/Desktop/schhol1/api/publish/publish/web.config
 /home/alihmaidi/Desktop/schhol1/api/publish/appsettings.json
 /home/alihmaidi/Desktop/schhol1/api/publish/appsettings.Production.json
-/home/alihmaidi/Desktop/schhol1/api/publish/publish/api.deps.json
-/home/alihmaidi/Desktop/schhol1/api/publish/publish/api.runtimeconfig.json
-/home/alihmaidi/Desktop/schhol1/api/publish/publish/appsettings.json
-/home/alihmaidi/Desktop/schhol1/api/publish/publish/appsettings.Production.json
 /home/alihmaidi/Desktop/schhol1/api/publish/api.dll
 /home/alihmaidi/Desktop/schhol1/api/publish/api.runtimeconfig.json
 /home/alihmaidi/Desktop/schhol1/api/publish/api.pdb

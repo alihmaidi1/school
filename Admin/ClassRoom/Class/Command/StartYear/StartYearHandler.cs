@@ -30,6 +30,9 @@ public class StartYearHandler : OperationResult,ICommandHandler<StartYearCommand
                 Date=DateTime.UtcNow,
             };
 
+            _context.Years.Add(Year);
+            _context.SaveChanges();
+
         }
 
 
